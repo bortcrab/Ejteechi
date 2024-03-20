@@ -4,6 +4,7 @@ import ejteechiFacade.EjteechiFacade;
 import ejteechiFacade.IEjteechiFacade;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import org.jxmapviewer.JXMapViewer;
 
 /**
  *
@@ -18,8 +19,9 @@ public class FrmMapa extends javax.swing.JFrame {
      * Creates new form FrmMapa
      */
     public FrmMapa(EjteechiFacade ef) {
-        this.ef = ef;
         initComponents();
+        this.ef = ef;
+        ef.mostrarMapa(pnlMapa);
     }
 
     /**
@@ -65,7 +67,7 @@ public class FrmMapa extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        pnlMapa = new org.jxmapviewer.JXMapViewer();
         pnlHeader = new javax.swing.JPanel();
         lblHome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -492,8 +494,18 @@ public class FrmMapa extends javax.swing.JFrame {
 
         pnlPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 240, 610));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Captura de pantalla 2024-03-20 004041.png"))); // NOI18N
-        pnlPrincipal.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 910, 540));
+        javax.swing.GroupLayout pnlMapaLayout = new javax.swing.GroupLayout(pnlMapa);
+        pnlMapa.setLayout(pnlMapaLayout);
+        pnlMapaLayout.setHorizontalGroup(
+            pnlMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 910, Short.MAX_VALUE)
+        );
+        pnlMapaLayout.setVerticalGroup(
+            pnlMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+
+        pnlPrincipal.add(pnlMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 910, 540));
 
         getContentPane().add(pnlPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 48, 1200, -1));
 
@@ -789,7 +801,6 @@ public class FrmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -828,6 +839,7 @@ public class FrmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel lblMapa;
     private javax.swing.JLabel lblQuejas;
     private javax.swing.JPanel pnlHeader;
+    private org.jxmapviewer.JXMapViewer pnlMapa;
     private javax.swing.JPanel pnlPrincipal;
     // End of variables declaration//GEN-END:variables
 

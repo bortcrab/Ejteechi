@@ -1,8 +1,15 @@
 package ejteechiFacade;
 
+import static java.awt.SystemColor.info;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import manejoMapa.IManejoMapa;
+import manejoMapa.ManejoMapa;
 import manejoPantallas.IManejoPantallas;
 import manejoPantallas.ManejoPantallas;
+import org.jxmapviewer.JXMapViewer;
+import org.jxmapviewer.OSMTileFactoryInfo;
+import org.jxmapviewer.viewer.DefaultTileFactory;
 
 /**
  *
@@ -15,6 +22,12 @@ public class EjteechiFacade implements IEjteechiFacade{
     public void cambiarPantalla(JFrame origen, JFrame destino) {
         IManejoPantallas mp = new ManejoPantallas();
         mp.cambiarPantalla(origen, destino);
+    }
+
+    @Override
+    public void mostrarMapa(JXMapViewer pnlMapa) {
+        IManejoMapa mp = new ManejoMapa();
+        mp.cargarMapa(pnlMapa);
     }
 
 }
