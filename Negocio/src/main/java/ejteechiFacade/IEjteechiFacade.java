@@ -1,8 +1,8 @@
 
 package ejteechiFacade;
 
+import dto.ClienteDTO;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import org.jxmapviewer.JXMapViewer;
 
 /**
@@ -13,5 +13,7 @@ import org.jxmapviewer.JXMapViewer;
 public interface IEjteechiFacade {
     
     public void cambiarPantalla(JFrame origen, JFrame destino);
+    public void acceder(ClienteDTO cliente);
+    public void registrar(ClienteDTO cliente);
     public void mostrarMapa(JXMapViewer pnlMapa);
 }

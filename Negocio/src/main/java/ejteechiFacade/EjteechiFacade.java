@@ -1,5 +1,6 @@
 package ejteechiFacade;
 
+import dto.ClienteDTO;
 import static java.awt.SystemColor.info;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,6 +29,16 @@ public class EjteechiFacade implements IEjteechiFacade{
     public void mostrarMapa(JXMapViewer pnlMapa) {
         IManejoMapa mp = new ManejoMapa();
         mp.cargarMapa(pnlMapa);
+    }
+
+    @Override
+    public void acceder(ClienteDTO cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void registrar(ClienteDTO cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
