@@ -13,7 +13,7 @@ import mostrarMapa.MostrarMapaFacade;
 public class FrmMapa extends javax.swing.JFrame {
 
     private final ControlNavegacion control;
-    private final IMostrarMapa mostrarMapaFachada;
+    private final IMostrarMapa mapaFachada;
 
     /**
      * Creates new form FrmMapa
@@ -22,9 +22,13 @@ public class FrmMapa extends javax.swing.JFrame {
         initComponents();
         
         this.control = new ControlNavegacion();
-        this.mostrarMapaFachada = new MostrarMapaFacade();
+        this.mapaFachada = new MostrarMapaFacade();
                 
-        mostrarMapaFachada.cargarMapa(pnlMapa);
+        mostrarMapa();
+    }
+    
+    private void mostrarMapa() {
+        mapaFachada.cargarMapa(pnlMapa);
     }
 
     /**

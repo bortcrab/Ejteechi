@@ -63,7 +63,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
         btnCrearCuenta.setBackground(new java.awt.Color(34, 34, 34));
         btnCrearCuenta.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         btnCrearCuenta.setForeground(new java.awt.Color(224, 207, 163));
-        btnCrearCuenta.setText("Iniciar");
+        btnCrearCuenta.setText("Registrarse");
         btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearCuentaActionPerformed(evt);
