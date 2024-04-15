@@ -38,7 +38,7 @@ public class CalcularRuta {
         return graphHopper;
     }
 
-    public List<DatosRutaDTO> calcularRuta(List<DatosRutaDTO> ruta, double inicioLat, double inicioLon, double finLat, double finLon) {
+    public List<DatosRutaDTO> calcularRuta(List<DatosRutaDTO> datosRuta, double inicioLat, double inicioLon, double finLat, double finLon) {
         // simple configuration of the request object
         GHRequest req = new GHRequest(inicioLat, inicioLon, finLat, finLon).
                 // note that we have to specify which profile we are using even when there is only one like here
@@ -60,8 +60,8 @@ public class CalcularRuta {
         // iterate over all turn instructions 
         for (Instruction instruction : il) {
             // System.out.println("distance " + instruction.getDistance() + " for instruction: " + instruction.getTurnDescription(tr));
-            ruta.add(new DatosRutaDTO(instruction.getDistance(), instruction.getTurnDescription(tr), instruction.getPoints()));
+            datosRuta.add(new DatosRutaDTO(instruction.getDistance(), instruction.getTurnDescription(tr), instruction.getPoints()));
         }
-        return ruta;
+        return datosRuta;
     }
 }

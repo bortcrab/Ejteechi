@@ -18,14 +18,14 @@ public class CtrlMostrarMapa {
     
     public List<DatosRutaDTO> cargarRuta(RutaDTO ruta) {
         List<GeoPosition> puntos = ruta.getPuntos();
-        List<DatosRutaDTO> datos = ruta.getDatosRuta();
+        List<DatosRutaDTO> datosRuta = ruta.getDatosRuta();
         for (int i = 0; i < (puntos.size()-1); i++) {
             double inicioLat = puntos.get(i).getLatitude();
             double inicioLon = puntos.get(i).getLongitude();
             double finLat = puntos.get(i+1).getLatitude();
             double finLon = puntos.get(i+1).getLongitude();
-            datos = calcularRuta.calcularRuta(datos, inicioLat, inicioLon, finLat, finLon);
+            datosRuta = calcularRuta.calcularRuta(datosRuta, inicioLat, inicioLon, finLat, finLon);
         }
-        return datos;
+        return datosRuta;
     }
 }

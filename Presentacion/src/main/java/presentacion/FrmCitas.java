@@ -190,7 +190,7 @@ public class FrmCitas extends javax.swing.JFrame {
         });
         pnlHeader.add(lblMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 70, 50));
 
-        jPanel3.setBackground(new java.awt.Color(224, 207, 163));
+        jPanel3.setBackground(new java.awt.Color(153, 165, 198));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
