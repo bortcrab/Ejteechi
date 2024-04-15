@@ -80,7 +80,7 @@ public class FrmMapa extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnLinea1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
+        btnLinea2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -172,32 +172,37 @@ public class FrmMapa extends javax.swing.JFrame {
 
         jPanel1.add(btnLinea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 60));
 
-        jPanel9.setBackground(new java.awt.Color(34, 34, 34));
-        jPanel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLinea2.setBackground(new java.awt.Color(34, 34, 34));
+        btnLinea2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLinea2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLinea2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(224, 207, 163));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Línea 2");
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout btnLinea2Layout = new javax.swing.GroupLayout(btnLinea2);
+        btnLinea2.setLayout(btnLinea2Layout);
+        btnLinea2Layout.setHorizontalGroup(
+            btnLinea2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnLinea2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        btnLinea2Layout.setVerticalGroup(
+            btnLinea2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnLinea2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 220, 60));
+        jPanel1.add(btnLinea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 220, 60));
 
         jPanel10.setBackground(new java.awt.Color(34, 34, 34));
         jPanel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -853,10 +858,15 @@ public class FrmMapa extends javax.swing.JFrame {
         mostrarLinea(1);
     }//GEN-LAST:event_btnLinea1MouseClicked
 
+    private void btnLinea2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLinea2MouseClicked
+        mostrarLinea(2);
+    }//GEN-LAST:event_btnLinea2MouseClicked
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnLinea1;
+    private javax.swing.JPanel btnLinea2;
     private javax.swing.JPanel btnMapa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -894,7 +904,6 @@ public class FrmMapa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAtnAlCliente;
     private javax.swing.JLabel lblCerrarSesion;

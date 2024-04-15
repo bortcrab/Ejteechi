@@ -7,10 +7,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import presentacion.ControlNavegacion;
 import presentacion.FrmLogin;
 
-/**
- *
- * @author jorge
- */
 public class Prueba {
 
     public static void main(String[] args) {
