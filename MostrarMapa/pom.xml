@@ -7,8 +7,8 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.mycompany.negocio.Negocio</exec.mainClass>
     </properties>
     <dependencies>
@@ -18,16 +18,21 @@
             <artifactId>jxmapviewer2</artifactId>
             <version>2.8</version>
         </dependency>
-        <dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>DTOs</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.graphhopper/graphhopper-core -->
         <dependency>
             <groupId>com.graphhopper</groupId>
             <artifactId>graphhopper-core</artifactId>
             <version>9.0-pre1</version>
-            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>DTOs</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>ObjetosNegocio</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <name>MostrarMapa</name>

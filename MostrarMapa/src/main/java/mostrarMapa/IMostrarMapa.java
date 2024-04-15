@@ -1,13 +1,13 @@
 package mostrarMapa;
 
-import org.jxmapviewer.JXMapViewer;
+import dtos.DatosRutaDTO;
+import dtos.MapaDTO;
+import dtos.RutaDTO;
+import java.util.List;
 
-/**
- *
- * @author Diego Valenzuela Parra - 00000247700
- * @author Juventino López García - 00000248547
- */
 public interface IMostrarMapa {
 
-    public void cargarMapa(JXMapViewer pnlMapa);
+    public MapaDTO cargarMapa();
+    
+    public List<DatosRutaDTO> cargarRuta(RutaDTO ruta);
 }
