@@ -79,7 +79,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 lblCrearCuentaMouseExited(evt);
             }
         });
-        pnlPrincipal.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 510, -1, -1));
+        pnlPrincipal.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 510, -1, -1));
 
         pwdContra.setBackground(new java.awt.Color(153, 149, 149));
         pwdContra.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -109,7 +109,7 @@ public class FrmLogin extends javax.swing.JFrame {
         pnlPrincipal.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 430, 70));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/divisionLogin (1).png"))); // NOI18N
-        pnlPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-260, 0, -1, -1));
+        pnlPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-220, 0, -1, 690));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

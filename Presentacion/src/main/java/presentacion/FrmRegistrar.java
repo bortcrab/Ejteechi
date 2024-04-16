@@ -102,7 +102,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
                 lblCrearCuentaMouseExited(evt);
             }
         });
-        pnlPrincipal1.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 570, -1, -1));
+        pnlPrincipal1.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 570, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/correo2Ejteechi.png"))); // NOI18N
@@ -130,7 +130,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
         pnlPrincipal1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-220, 0, 1220, 690));
 
-        getContentPane().add(pnlPrincipal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 690));
+        getContentPane().add(pnlPrincipal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 690));
 
         pack();
         setLocationRelativeTo(null);

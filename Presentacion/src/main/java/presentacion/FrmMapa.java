@@ -563,14 +563,14 @@ public class FrmMapa extends javax.swing.JFrame {
         pnlMapa.setLayout(pnlMapaLayout);
         pnlMapaLayout.setHorizontalGroup(
             pnlMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 880, Short.MAX_VALUE)
+            .addGap(0, 870, Short.MAX_VALUE)
         );
         pnlMapaLayout.setVerticalGroup(
             pnlMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 530, Short.MAX_VALUE)
         );
 
-        pnlPrincipal.add(pnlMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 880, 530));
+        pnlPrincipal.add(pnlMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 870, 530));
 
         getContentPane().add(pnlPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 48, 1200, -1));
 

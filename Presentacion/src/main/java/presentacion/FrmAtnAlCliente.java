@@ -91,6 +91,8 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1200, 700));
+        setPreferredSize(new java.awt.Dimension(1200, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlHeader.setBackground(new java.awt.Color(34, 34, 34));
@@ -106,7 +108,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         pnlHeader.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 10, 50));
@@ -139,7 +141,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         pnlHeader.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 10, 50));
@@ -154,7 +156,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         pnlHeader.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 10, 50));
@@ -187,7 +189,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         pnlHeader.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 10, 50));
@@ -202,7 +204,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         pnlHeader.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 10, 50));
@@ -217,7 +219,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         pnlHeader.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 10, 50));

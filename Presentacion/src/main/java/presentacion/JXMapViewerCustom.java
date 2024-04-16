@@ -2,7 +2,6 @@ package presentacion;
 
 import com.graphhopper.util.shapes.GHPoint3D;
 import dtos.DatosRutaDTO;
-import dtos.RutaDTO;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
