@@ -18,7 +18,7 @@ public class CalcularRuta {
     private final GraphHopper hopper;
     
     public CalcularRuta() {
-        this.hopper = crearGraphHopper("osm/mexico-latest.osm.pbf");
+        this.hopper = crearGraphHopper("osm/sonora.pbf");
     }
 
     private GraphHopper crearGraphHopper(String ghLoc) {
