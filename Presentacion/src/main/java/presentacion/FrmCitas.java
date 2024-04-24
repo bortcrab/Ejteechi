@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmCitas extends javax.swing.JFrame {

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmQuejas extends javax.swing.JFrame {

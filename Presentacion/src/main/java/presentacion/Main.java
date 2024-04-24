@@ -1,14 +1,10 @@
-
-package com.mycompany.prueba;
+package presentacion;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import presentacion.ControlNavegacion;
-import presentacion.FrmLogin;
 
-public class Prueba {
-
+public class Main {
     public static void main(String[] args) {
         // Asignamos el look and feel Flatlaf Mac Light.
         try {
@@ -20,4 +16,5 @@ public class Prueba {
         ControlNavegacion navegacion = new ControlNavegacion();
         navegacion.cambiarPantalla(null, new FrmLogin());
     }
+
 }

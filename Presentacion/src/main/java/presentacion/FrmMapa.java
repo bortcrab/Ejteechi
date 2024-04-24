@@ -53,7 +53,7 @@ public class FrmMapa extends javax.swing.JFrame {
         pnlMapa.addMouseWheelListener(new ZoomMouseWheelListenerCenter(pnlMapa));
     }
     
-    private void mostrarLinea(int numLinea) {
+    private void mostrarRuta(int numLinea) {
         LineaDTO linea = mapa.getLineas().get(numLinea-1);
         RutaDTO ruta = linea.getRuta();
         
@@ -855,11 +855,11 @@ public class FrmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_lblHomeMouseExited
 
     private void btnLinea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLinea1MouseClicked
-        mostrarLinea(1);
+        mostrarRuta(1);
     }//GEN-LAST:event_btnLinea1MouseClicked
 
     private void btnLinea2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLinea2MouseClicked
-        mostrarLinea(2);
+        mostrarRuta(2);
     }//GEN-LAST:event_btnLinea2MouseClicked
 
     

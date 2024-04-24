@@ -2,7 +2,6 @@ package presentacion;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
-import javax.swing.JComponent;
 
 public class FrmHome extends javax.swing.JFrame {
 
