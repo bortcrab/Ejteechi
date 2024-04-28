@@ -24,357 +24,190 @@ public class FrmHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlPrincipal = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        pnlHeader = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        lblMapa = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        lblCitas = new javax.swing.JLabel();
-        lblQuejas = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        lblAtnAlCliente = new javax.swing.JLabel();
-        lblCerrarSesion = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        btnHome = new javax.swing.JPanel();
-        lblHome = new javax.swing.JLabel();
+        jLabelMapa = new javax.swing.JLabel();
+        jLabelQueja = new javax.swing.JLabel();
+        jLabelAtnCliente = new javax.swing.JLabel();
+        jLabelCerrarSesion = new javax.swing.JLabel();
+        jLabelInicio = new javax.swing.JLabel();
+        img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlPrincipal.setBackground(new java.awt.Color(153, 165, 198));
-        pnlPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 72)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Bienvenida.png"))); // NOI18N
-        pnlPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 770, -1));
-
-        jPanel1.setBackground(new java.awt.Color(153, 165, 198));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
-        );
-
-        pnlPrincipal.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 150, -1, 170));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/txt.png"))); // NOI18N
-        pnlPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 820, -1));
-
-        getContentPane().add(pnlPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 48, 1200, 670));
-
-        pnlHeader.setBackground(new java.awt.Color(34, 34, 34));
-        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel2.setBackground(new java.awt.Color(153, 165, 198));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pnlHeader.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 10, 50));
-
-        lblMapa.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        lblMapa.setForeground(new java.awt.Color(224, 207, 163));
-        lblMapa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMapa.setText("Mapa");
-        lblMapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblMapa.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelMapa.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelMapa.setText("Mapa");
+        jLabelMapa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMapaMouseClicked(evt);
+                jLabelMapaMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblMapaMouseEntered(evt);
+                jLabelMapaMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblMapaMouseExited(evt);
+                jLabelMapaMouseExited(evt);
             }
         });
-        pnlHeader.add(lblMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 70, 50));
+        jPanel1.add(jLabelMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 90, 70));
 
-        jPanel3.setBackground(new java.awt.Color(153, 165, 198));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pnlHeader.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 10, 50));
-
-        lblCitas.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        lblCitas.setForeground(new java.awt.Color(224, 207, 163));
-        lblCitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCitas.setText("Citas");
-        lblCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelQueja.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelQueja.setText("Quejas");
+        jLabelQueja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCitasMouseClicked(evt);
+                jLabelQuejaMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCitasMouseEntered(evt);
+                jLabelQuejaMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCitasMouseExited(evt);
+                jLabelQuejaMouseExited(evt);
             }
         });
-        pnlHeader.add(lblCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 70, 50));
+        jPanel1.add(jLabelQueja, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 90, 70));
 
-        lblQuejas.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        lblQuejas.setForeground(new java.awt.Color(224, 207, 163));
-        lblQuejas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblQuejas.setText("Quejas");
-        lblQuejas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblQuejas.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelAtnCliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelAtnCliente.setText("Atención al cliente");
+        jLabelAtnCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblQuejasMouseClicked(evt);
+                jLabelAtnClienteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblQuejasMouseEntered(evt);
+                jLabelAtnClienteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblQuejasMouseExited(evt);
+                jLabelAtnClienteMouseExited(evt);
             }
         });
-        pnlHeader.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 90, 50));
+        jPanel1.add(jLabelAtnCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 210, 90));
 
-        jPanel5.setBackground(new java.awt.Color(153, 165, 198));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pnlHeader.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 10, 50));
-
-        lblAtnAlCliente.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        lblAtnAlCliente.setForeground(new java.awt.Color(224, 207, 163));
-        lblAtnAlCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAtnAlCliente.setText("Atención al cliente");
-        lblAtnAlCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAtnAlCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelCerrarSesion.setText("Cerrar sesión");
+        jLabelCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAtnAlClienteMouseClicked(evt);
+                jLabelCerrarSesionMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblAtnAlClienteMouseEntered(evt);
+                jLabelCerrarSesionMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblAtnAlClienteMouseExited(evt);
+                jLabelCerrarSesionMouseExited(evt);
             }
         });
-        pnlHeader.add(lblAtnAlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 210, 50));
+        jPanel1.add(jLabelCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 30, 150, 90));
 
-        lblCerrarSesion.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        lblCerrarSesion.setForeground(new java.awt.Color(224, 207, 163));
-        lblCerrarSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCerrarSesion.setText("Cerrar sesión");
-        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelInicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelInicio.setText("Inicio");
+        jLabelInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCerrarSesionMouseClicked(evt);
+                jLabelInicioMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCerrarSesionMouseEntered(evt);
+                jLabelInicioMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCerrarSesionMouseExited(evt);
+                jLabelInicioMouseExited(evt);
             }
         });
-        pnlHeader.add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 160, 50));
+        jPanel1.add(jLabelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 90, 70));
 
-        jPanel6.setBackground(new java.awt.Color(153, 165, 198));
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 3 (7).png"))); // NOI18N
+        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1120, 690));
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pnlHeader.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 10, 50));
-
-        jPanel7.setBackground(new java.awt.Color(153, 165, 198));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pnlHeader.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 10, 50));
-
-        jPanel4.setBackground(new java.awt.Color(153, 165, 198));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pnlHeader.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 10, 50));
-
-        btnHome.setBackground(new java.awt.Color(34, 34, 34));
-        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnHomeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnHomeMouseExited(evt);
-            }
-        });
-        btnHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblHome.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(224,207,163)));
-        lblHome.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        lblHome.setForeground(new java.awt.Color(224, 207, 163));
-        lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHome.setText("Home");
-        lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnHome.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 70, 30));
-
-        pnlHeader.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 50));
-
-        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseClicked
+    private void jLabelInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInicioMouseClicked
+        // TODO add your handling code here:
+        jLabelInicio.setForeground(Color.GRAY);
+    }//GEN-LAST:event_jLabelInicioMouseClicked
+
+    private void jLabelMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMapaMouseClicked
+        // TODO add your handling code here:
         control.cambiarPantalla(this, new FrmMapa());
-    }//GEN-LAST:event_lblMapaMouseClicked
+    }//GEN-LAST:event_jLabelMapaMouseClicked
 
-    private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
-        control.cambiarPantalla(this, new FrmCitas());
-    }//GEN-LAST:event_lblCitasMouseClicked
-
-    private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
+    private void jLabelQuejaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuejaMouseClicked
+        // TODO add your handling code here:
         control.cambiarPantalla(this, new FrmQuejas());
-    }//GEN-LAST:event_lblQuejasMouseClicked
+    }//GEN-LAST:event_jLabelQuejaMouseClicked
 
-    private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
+    private void jLabelAtnClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAtnClienteMouseClicked
+        // TODO add your handling code here:
         control.cambiarPantalla(this, new FrmAtnAlCliente());
-    }//GEN-LAST:event_lblAtnAlClienteMouseClicked
+    }//GEN-LAST:event_jLabelAtnClienteMouseClicked
 
-    private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
+    private void jLabelCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseClicked
+        // TODO add your handling code here:
         control.cambiarPantalla(this, new FrmLogin());
-    }//GEN-LAST:event_lblCerrarSesionMouseClicked
+    }//GEN-LAST:event_jLabelCerrarSesionMouseClicked
 
-    private void lblMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseEntered
-        lblMapa.setForeground(Color.WHITE);
-    }//GEN-LAST:event_lblMapaMouseEntered
+    private void jLabelInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInicioMouseEntered
+        // TODO add your handling code here:
+        jLabelInicio.setForeground(Color.GRAY);
+    }//GEN-LAST:event_jLabelInicioMouseEntered
 
-    private void lblMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseExited
-        lblMapa.setForeground(new Color(224, 207, 163));
-    }//GEN-LAST:event_lblMapaMouseExited
+    private void jLabelInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInicioMouseExited
+        // TODO add your handling code here:
+        jLabelInicio.setForeground(Color.black);
+    }//GEN-LAST:event_jLabelInicioMouseExited
 
-    private void lblCitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseEntered
-        lblCitas.setForeground(Color.WHITE);
-    }//GEN-LAST:event_lblCitasMouseEntered
+    private void jLabelMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMapaMouseEntered
+        // TODO add your handling code here:
+        jLabelMapa.setForeground(Color.GRAY);
+    }//GEN-LAST:event_jLabelMapaMouseEntered
 
-    private void lblCitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseExited
-        lblCitas.setForeground(new Color(224, 207, 163));
-    }//GEN-LAST:event_lblCitasMouseExited
+    private void jLabelMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMapaMouseExited
+        // TODO add your handling code here:
+        jLabelMapa.setForeground(Color.black);
+    }//GEN-LAST:event_jLabelMapaMouseExited
 
-    private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
-        lblQuejas.setForeground(Color.WHITE);
-    }//GEN-LAST:event_lblQuejasMouseEntered
+    private void jLabelQuejaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuejaMouseEntered
+        // TODO add your handling code here:
+        jLabelQueja.setForeground(Color.GRAY);
+    }//GEN-LAST:event_jLabelQuejaMouseEntered
 
-    private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
-        lblQuejas.setForeground(new Color(224, 207, 163));
-    }//GEN-LAST:event_lblQuejasMouseExited
+    private void jLabelQuejaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuejaMouseExited
+        // TODO add your handling code here:
+        jLabelQueja.setForeground(Color.black);
+    }//GEN-LAST:event_jLabelQuejaMouseExited
 
-    private void lblAtnAlClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseEntered
-        lblAtnAlCliente.setForeground(Color.WHITE);
-    }//GEN-LAST:event_lblAtnAlClienteMouseEntered
+    private void jLabelAtnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAtnClienteMouseEntered
+        // TODO add your handling code here:
+        jLabelAtnCliente.setForeground(Color.GRAY);
+    }//GEN-LAST:event_jLabelAtnClienteMouseEntered
 
-    private void lblAtnAlClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseExited
-        lblAtnAlCliente.setForeground(new Color(224, 207, 163));
-    }//GEN-LAST:event_lblAtnAlClienteMouseExited
+    private void jLabelAtnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAtnClienteMouseExited
+        // TODO add your handling code here:
+        jLabelAtnCliente.setForeground(Color.black);
+    }//GEN-LAST:event_jLabelAtnClienteMouseExited
 
-    private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
-        lblCerrarSesion.setForeground(Color.WHITE);
-    }//GEN-LAST:event_lblCerrarSesionMouseEntered
+    private void jLabelCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseEntered
+        // TODO add your handling code here:
+        jLabelCerrarSesion.setForeground(Color.GRAY);
+    }//GEN-LAST:event_jLabelCerrarSesionMouseEntered
 
-    private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
-        lblCerrarSesion.setForeground(new Color(224, 207, 163));
-    }//GEN-LAST:event_lblCerrarSesionMouseExited
-
-    private void btnHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseEntered
-        lblHome.setForeground(Color.WHITE);
-        lblHome.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.WHITE));
-    }//GEN-LAST:event_btnHomeMouseEntered
-
-    private void btnHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseExited
-        lblHome.setForeground(new Color(224, 207, 163));
-        lblHome.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(224, 207, 163)));
-    }//GEN-LAST:event_btnHomeMouseExited
+    private void jLabelCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseExited
+        // TODO add your handling code here:
+        jLabelCerrarSesion.setForeground(Color.black);
+    }//GEN-LAST:event_jLabelCerrarSesionMouseExited
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnHome;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel img;
+    private javax.swing.JLabel jLabelAtnCliente;
+    private javax.swing.JLabel jLabelCerrarSesion;
+    private javax.swing.JLabel jLabelInicio;
+    private javax.swing.JLabel jLabelMapa;
+    private javax.swing.JLabel jLabelQueja;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JLabel lblAtnAlCliente;
-    private javax.swing.JLabel lblCerrarSesion;
-    private javax.swing.JLabel lblCitas;
-    private javax.swing.JLabel lblHome;
-    private javax.swing.JLabel lblMapa;
-    private javax.swing.JLabel lblQuejas;
-    private javax.swing.JPanel pnlHeader;
-    private javax.swing.JPanel pnlPrincipal;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -23,158 +23,75 @@ public class FrmRegistrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlPrincipal1 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         txtCorreo = new javax.swing.JTextField();
+        txtConfirmarContrasena = new javax.swing.JPasswordField();
+        txtContrasena = new javax.swing.JPasswordField();
         btnCrearCuenta = new javax.swing.JButton();
-        pwdContra = new javax.swing.JPasswordField();
-        pwdConfirmarContra = new javax.swing.JPasswordField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        lblCrearCuenta = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlPrincipal1.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPrincipal1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtCorreo.setBackground(new java.awt.Color(153, 149, 149));
-        txtCorreo.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        txtCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pnlPrincipal1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 280, -1));
+        txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 420, 70));
+        jPanel1.add(txtConfirmarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 420, 70));
+        jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 420, 70));
 
-        btnCrearCuenta.setBackground(new java.awt.Color(34, 34, 34));
-        btnCrearCuenta.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        btnCrearCuenta.setForeground(new java.awt.Color(224, 207, 163));
-        btnCrearCuenta.setText("Registrarse");
+        btnCrearCuenta.setBackground(new java.awt.Color(133, 175, 218));
+        btnCrearCuenta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnCrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearCuenta.setText("Crear cuenta");
+        btnCrearCuenta.setBorder(null);
+        btnCrearCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCrearCuentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCrearCuentaMouseExited(evt);
+            }
+        });
         btnCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearCuentaActionPerformed(evt);
             }
         });
-        pnlPrincipal1.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 520, -1, -1));
+        jPanel1.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 560, 420, 70));
 
-        pwdContra.setBackground(new java.awt.Color(153, 149, 149));
-        pwdContra.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        pwdContra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pwdContra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pwdContraActionPerformed(evt);
-            }
-        });
-        pnlPrincipal1.add(pwdContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 320, 280, -1));
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 2 (3).png"))); // NOI18N
+        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1110, 690));
 
-        pwdConfirmarContra.setBackground(new java.awt.Color(153, 149, 149));
-        pwdConfirmarContra.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        pwdConfirmarContra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pnlPrincipal1.add(pwdConfirmarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 430, 280, -1));
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/slogan3.0.png"))); // NOI18N
-        pnlPrincipal1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/confirm2.png"))); // NOI18N
-        pnlPrincipal1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 370, -1, -1));
-
-        jLabel1.setBorder(BorderFactory.createMatteBorder(0,0,3,0, java.awt.Color.BLACK));
-        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 100)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pnlPrincipal1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 37, -1, -1));
-
-        lblCrearCuenta.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.BLACK));
-        lblCrearCuenta.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lblCrearCuenta.setText("Ya cuento con una tengo cuenta");
-        lblCrearCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCrearCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCrearCuentaMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCrearCuentaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCrearCuentaMouseExited(evt);
-            }
-        });
-        pnlPrincipal1.add(lblCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 570, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/correo2Ejteechi.png"))); // NOI18N
-        pnlPrincipal1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 180, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/contraseñaEjteechi.png"))); // NOI18N
-        pnlPrincipal1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 270, -1, 40));
-
-        jLabel1.setBorder(BorderFactory.createMatteBorder(0,0,3,0, java.awt.Color.BLACK));
-        jLabel9.setFont(new java.awt.Font("SansSerif", 0, 100)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoEjteechi.png"))); // NOI18N
-        pnlPrincipal1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 27, 530, 240));
-
-        jLabel10.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inicioSesionEjeteechi.png"))); // NOI18N
-        pnlPrincipal1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 430, 70));
-
-        jLabel2.setText("jLabel2");
-        pnlPrincipal1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 400, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/divisionLogin (1).png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        pnlPrincipal1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-220, 0, 1220, 690));
-
-        getContentPane().add(pnlPrincipal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 690));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
-        control.cambiarPantalla(this, new FrmLogin());
+        // TODO add your handling code here:
+        control.cambiarPantalla(this, new FrmHome());
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
-    private void lblCrearCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCrearCuentaMouseClicked
-        control.cambiarPantalla(this, new FrmRegistrar());
-    }//GEN-LAST:event_lblCrearCuentaMouseClicked
-
-    private void lblCrearCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCrearCuentaMouseEntered
-        lblCrearCuenta.setForeground(Color.WHITE);
-        lblCrearCuenta.setBorder(BorderFactory.createMatteBorder(0,0,2,0, java.awt.Color.WHITE));
-    }//GEN-LAST:event_lblCrearCuentaMouseEntered
-
-    private void lblCrearCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCrearCuentaMouseExited
-        lblCrearCuenta.setForeground(Color.BLACK);
-        lblCrearCuenta.setBorder(BorderFactory.createMatteBorder(0,0,2,0, java.awt.Color.BLACK));
-    }//GEN-LAST:event_lblCrearCuentaMouseExited
-
-    private void pwdContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdContraActionPerformed
+    private void btnCrearCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_pwdContraActionPerformed
+        btnCrearCuenta.setForeground(Color.darkGray);
+    }//GEN-LAST:event_btnCrearCuentaMouseEntered
+
+    private void btnCrearCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaMouseExited
+        // TODO add your handling code here:
+        btnCrearCuenta.setForeground(Color.white);
+    }//GEN-LAST:event_btnCrearCuentaMouseExited
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearCuenta;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblCrearCuenta;
-    private javax.swing.JPanel pnlPrincipal1;
-    private javax.swing.JPasswordField pwdConfirmarContra;
-    private javax.swing.JPasswordField pwdContra;
+    private javax.swing.JLabel img;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField txtConfirmarContrasena;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 
