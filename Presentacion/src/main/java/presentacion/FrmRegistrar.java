@@ -5,13 +5,9 @@ import javax.swing.BorderFactory;
 
 public class FrmRegistrar extends javax.swing.JFrame {
     
-    private final ControlNavegacion control;
-    
     /** Creates new form FrmRegistrar */
     public FrmRegistrar() {
         initComponents();
-        
-        this.control = new ControlNavegacion();
     }
 
     /** This method is called from within the constructor to
@@ -28,6 +24,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
         txtConfirmarContrasena = new javax.swing.JPasswordField();
         txtContrasena = new javax.swing.JPasswordField();
         btnCrearCuenta = new javax.swing.JButton();
+        btnYaTengoCuenta = new javax.swing.JLabel();
         img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,10 +55,28 @@ public class FrmRegistrar extends javax.swing.JFrame {
                 btnCrearCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 560, 420, 70));
+        jPanel1.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, 420, 70));
+
+        btnYaTengoCuenta.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
+        btnYaTengoCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        btnYaTengoCuenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnYaTengoCuenta.setText("Ya tengo una cuenta");
+        btnYaTengoCuenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnYaTengoCuentaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnYaTengoCuentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnYaTengoCuentaMouseExited(evt);
+            }
+        });
+        jPanel1.add(btnYaTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 630, 230, 30));
+        btnYaTengoCuenta.setBorder(BorderFactory.createMatteBorder(0,0,2,0, java.awt.Color.WHITE));
 
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 2 (3).png"))); // NOI18N
-        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1110, 690));
+        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
@@ -70,8 +85,9 @@ public class FrmRegistrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
-        // TODO add your handling code here:
-        control.cambiarPantalla(this, new FrmHome());
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     private void btnCrearCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaMouseEntered
@@ -84,10 +100,29 @@ public class FrmRegistrar extends javax.swing.JFrame {
         btnCrearCuenta.setForeground(Color.white);
     }//GEN-LAST:event_btnCrearCuentaMouseExited
 
+    private void btnYaTengoCuentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnYaTengoCuentaMouseClicked
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnYaTengoCuentaMouseClicked
+
+    private void btnYaTengoCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnYaTengoCuentaMouseEntered
+        // TODO add your handling code here:
+        btnYaTengoCuenta.setForeground(Color.BLACK);
+        btnYaTengoCuenta.setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.BLACK));
+    }//GEN-LAST:event_btnYaTengoCuentaMouseEntered
+
+    private void btnYaTengoCuentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnYaTengoCuentaMouseExited
+        // TODO add your handling code here:
+        btnYaTengoCuenta.setForeground(Color.WHITE);
+        btnYaTengoCuenta.setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.WHITE));
+    }//GEN-LAST:event_btnYaTengoCuentaMouseExited
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearCuenta;
+    private javax.swing.JLabel btnYaTengoCuenta;
     private javax.swing.JLabel img;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtConfirmarContrasena;

@@ -5,15 +5,9 @@ import javax.swing.BorderFactory;
 
 public class FrmLogin extends javax.swing.JFrame {
     
-    private final ControlNavegacion control;
-    
     /** Creates new form Login */
     public FrmLogin() {
         initComponents();
-                        
-        this.control = new ControlNavegacion();
-        
-        btnRegistrate.setBorder(BorderFactory.createMatteBorder(0,0,2,0, java.awt.Color.BLACK));
     }
 
     /** This method is called from within the constructor to
@@ -38,6 +32,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         btnRegistrate.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
         btnRegistrate.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnRegistrate.setText("Registrate");
         btnRegistrate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -50,7 +45,8 @@ public class FrmLogin extends javax.swing.JFrame {
                 btnRegistrateMouseExited(evt);
             }
         });
-        jPanel1.add(btnRegistrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 140, 40));
+        jPanel1.add(btnRegistrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 120, 30));
+        btnRegistrate.setBorder(BorderFactory.createMatteBorder(0,0,2,0, java.awt.Color.WHITE));
 
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 440, 60));
@@ -73,7 +69,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 440, 60));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 440, 60));
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 440, 60));
@@ -101,8 +97,9 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
-        control.cambiarPantalla(this, new FrmHome());
+        FrmHome frmHome = new FrmHome();
+        frmHome.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseEntered
@@ -116,18 +113,21 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarMouseExited
 
     private void btnRegistrateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrateMouseClicked
-        // TODO add your handling code here:
-        control.cambiarPantalla(this, new FrmRegistrar());
+        FrmRegistrar frmRegistrar = new FrmRegistrar();
+        frmRegistrar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegistrateMouseClicked
 
     private void btnRegistrateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrateMouseEntered
         // TODO add your handling code here:
-        btnRegistrate.setForeground(Color.darkGray);
+        btnRegistrate.setForeground(Color.BLACK);
+        btnRegistrate.setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.BLACK));
     }//GEN-LAST:event_btnRegistrateMouseEntered
 
     private void btnRegistrateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrateMouseExited
         // TODO add your handling code here:
         btnRegistrate.setForeground(Color.WHITE);
+        btnRegistrate.setBorder(BorderFactory.createMatteBorder(0,0,2,0, Color.WHITE));
     }//GEN-LAST:event_btnRegistrateMouseExited
 
     

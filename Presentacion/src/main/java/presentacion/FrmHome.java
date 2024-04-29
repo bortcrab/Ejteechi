@@ -1,17 +1,16 @@
 package presentacion;
 
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 public class FrmHome extends javax.swing.JFrame {
 
-    private final ControlNavegacion control;
-    
     /** Creates new form FrmAtnAlCliente */
     public FrmHome() {
         initComponents();
-        
-        this.control = new ControlNavegacion();
     }
 
 
@@ -26,11 +25,12 @@ public class FrmHome extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
-        jLabelMapa = new javax.swing.JLabel();
-        jLabelQueja = new javax.swing.JLabel();
-        jLabelAtnCliente = new javax.swing.JLabel();
-        jLabelCerrarSesion = new javax.swing.JLabel();
-        jLabelInicio = new javax.swing.JLabel();
+        lblCitas = new javax.swing.JLabel();
+        lblMapa = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
+        lblQuejas = new javax.swing.JLabel();
+        lblAtnAlCliente = new javax.swing.JLabel();
+        lblCerrarSesion = new javax.swing.JLabel();
         img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,83 +38,106 @@ public class FrmHome extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelMapa.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelMapa.setText("Mapa");
-        jLabelMapa.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblCitas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblCitas.setForeground(new java.awt.Color(0, 0, 0));
+        lblCitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCitas.setText("Citas");
+        lblCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelMapaMouseClicked(evt);
+                lblCitasMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelMapaMouseEntered(evt);
+                lblCitasMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelMapaMouseExited(evt);
+                lblCitasMouseExited(evt);
             }
         });
-        jPanel1.add(jLabelMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 90, 70));
+        jPanel1.add(lblCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 100, 70));
 
-        jLabelQueja.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelQueja.setText("Quejas");
-        jLabelQueja.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblMapa.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMapa.setForeground(new java.awt.Color(0, 0, 0));
+        lblMapa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMapa.setText("Mapa");
+        lblMapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMapa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelQuejaMouseClicked(evt);
+                lblMapaMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelQuejaMouseEntered(evt);
+                lblMapaMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelQuejaMouseExited(evt);
+                lblMapaMouseExited(evt);
             }
         });
-        jPanel1.add(jLabelQueja, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 90, 70));
+        jPanel1.add(lblMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 90, 70));
 
-        jLabelAtnCliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelAtnCliente.setText("Atención al cliente");
-        jLabelAtnCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelAtnClienteMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelAtnClienteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelAtnClienteMouseExited(evt);
-            }
-        });
-        jPanel1.add(jLabelAtnCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 210, 90));
+        lblHome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblHome.setForeground(new java.awt.Color(0, 0, 0));
+        lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 220, 100));
 
-        jLabelCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelCerrarSesion.setText("Cerrar sesión");
-        jLabelCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblQuejas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblQuejas.setForeground(new java.awt.Color(0, 0, 0));
+        lblQuejas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblQuejas.setText("Quejas");
+        lblQuejas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblQuejas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelCerrarSesionMouseClicked(evt);
+                lblQuejasMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelCerrarSesionMouseEntered(evt);
+                lblQuejasMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelCerrarSesionMouseExited(evt);
+                lblQuejasMouseExited(evt);
             }
         });
-        jPanel1.add(jLabelCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 30, 150, 90));
+        jPanel1.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 90, 70));
 
-        jLabelInicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelInicio.setText("Inicio");
-        jLabelInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblAtnAlCliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblAtnAlCliente.setForeground(new java.awt.Color(0, 0, 0));
+        lblAtnAlCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAtnAlCliente.setText("Atención al cliente");
+        lblAtnAlCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblAtnAlCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelInicioMouseClicked(evt);
+                lblAtnAlClienteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelInicioMouseEntered(evt);
+                lblAtnAlClienteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabelInicioMouseExited(evt);
+                lblAtnAlClienteMouseExited(evt);
             }
         });
-        jPanel1.add(jLabelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 90, 70));
+        jPanel1.add(lblAtnAlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 210, 90));
+
+        lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
+        lblCerrarSesion.setText("       Cerrar sesión");
+        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 30, 200, 90));
 
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 3 (7).png"))); // NOI18N
-        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1120, 690));
+        img.setMaximumSize(new java.awt.Dimension(1120, 690));
+        img.setMinimumSize(new java.awt.Dimension(1120, 690));
+        img.setPreferredSize(new java.awt.Dimension(1120, 690));
+        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
@@ -122,92 +145,92 @@ public class FrmHome extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabelInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInicioMouseClicked
-        // TODO add your handling code here:
-        jLabelInicio.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelInicioMouseClicked
+    private void lblMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseClicked
+        try {
+            FrmMapa frmMapa = new FrmMapa();
+            frmMapa.setVisible(true);
+            this.dispose();
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_lblMapaMouseClicked
 
-    private void jLabelMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMapaMouseClicked
-        // TODO add your handling code here:
-        control.cambiarPantalla(this, new FrmMapa());
-    }//GEN-LAST:event_jLabelMapaMouseClicked
+    private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
+        FrmQuejas frmQuejas = new FrmQuejas();
+        frmQuejas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblQuejasMouseClicked
 
-    private void jLabelQuejaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuejaMouseClicked
-        // TODO add your handling code here:
-        control.cambiarPantalla(this, new FrmQuejas());
-    }//GEN-LAST:event_jLabelQuejaMouseClicked
+    private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
+        FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente();
+        frmAtnAlCliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblAtnAlClienteMouseClicked
 
-    private void jLabelAtnClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAtnClienteMouseClicked
-        // TODO add your handling code here:
-        control.cambiarPantalla(this, new FrmAtnAlCliente());
-    }//GEN-LAST:event_jLabelAtnClienteMouseClicked
+    private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
-    private void jLabelCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseClicked
-        // TODO add your handling code here:
-        control.cambiarPantalla(this, new FrmLogin());
-    }//GEN-LAST:event_jLabelCerrarSesionMouseClicked
+    private void lblMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseEntered
+        lblMapa.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblMapaMouseEntered
 
-    private void jLabelInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInicioMouseEntered
-        // TODO add your handling code here:
-        jLabelInicio.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelInicioMouseEntered
+    private void lblMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseExited
+        lblMapa.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblMapaMouseExited
 
-    private void jLabelInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelInicioMouseExited
-        // TODO add your handling code here:
-        jLabelInicio.setForeground(Color.black);
-    }//GEN-LAST:event_jLabelInicioMouseExited
+    private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
+        lblQuejas.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblQuejasMouseEntered
 
-    private void jLabelMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMapaMouseEntered
-        // TODO add your handling code here:
-        jLabelMapa.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelMapaMouseEntered
+    private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
+        lblQuejas.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblQuejasMouseExited
 
-    private void jLabelMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMapaMouseExited
-        // TODO add your handling code here:
-        jLabelMapa.setForeground(Color.black);
-    }//GEN-LAST:event_jLabelMapaMouseExited
+    private void lblAtnAlClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseEntered
+        lblAtnAlCliente.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblAtnAlClienteMouseEntered
 
-    private void jLabelQuejaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuejaMouseEntered
-        // TODO add your handling code here:
-        jLabelQueja.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelQuejaMouseEntered
+    private void lblAtnAlClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseExited
+        lblAtnAlCliente.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblAtnAlClienteMouseExited
 
-    private void jLabelQuejaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuejaMouseExited
-        // TODO add your handling code here:
-        jLabelQueja.setForeground(Color.black);
-    }//GEN-LAST:event_jLabelQuejaMouseExited
+    private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
+        lblCerrarSesion.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblCerrarSesionMouseEntered
 
-    private void jLabelAtnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAtnClienteMouseEntered
-        // TODO add your handling code here:
-        jLabelAtnCliente.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelAtnClienteMouseEntered
+    private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
+        lblCerrarSesion.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblCerrarSesionMouseExited
 
-    private void jLabelAtnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAtnClienteMouseExited
-        // TODO add your handling code here:
-        jLabelAtnCliente.setForeground(Color.black);
-    }//GEN-LAST:event_jLabelAtnClienteMouseExited
+    private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
+        FrmCitas frmCitas = new FrmCitas();
+        frmCitas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblCitasMouseClicked
 
-    private void jLabelCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseEntered
-        // TODO add your handling code here:
-        jLabelCerrarSesion.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jLabelCerrarSesionMouseEntered
+    private void lblCitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseEntered
+        lblCitas.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblCitasMouseEntered
 
-    private void jLabelCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCerrarSesionMouseExited
-        // TODO add your handling code here:
-        jLabelCerrarSesion.setForeground(Color.black);
-    }//GEN-LAST:event_jLabelCerrarSesionMouseExited
+    private void lblCitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseExited
+        lblCitas.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblCitasMouseExited
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel img;
-    private javax.swing.JLabel jLabelAtnCliente;
-    private javax.swing.JLabel jLabelCerrarSesion;
-    private javax.swing.JLabel jLabelInicio;
-    private javax.swing.JLabel jLabelMapa;
-    private javax.swing.JLabel jLabelQueja;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblAtnAlCliente;
+    private javax.swing.JLabel lblCerrarSesion;
+    private javax.swing.JLabel lblCitas;
+    private javax.swing.JLabel lblHome;
+    private javax.swing.JLabel lblMapa;
+    private javax.swing.JLabel lblQuejas;
     // End of variables declaration//GEN-END:variables
 
 }

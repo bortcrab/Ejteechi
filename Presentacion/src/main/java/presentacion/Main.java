@@ -13,8 +13,8 @@ public class Main {
             
         }
         
-        ControlNavegacion navegacion = new ControlNavegacion();
-        navegacion.cambiarPantalla(null, new FrmLogin());
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
     }
 
 }

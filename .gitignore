@@ -33,3 +33,5 @@ replay_pid*
 /DTOs/target/
 /Prueba/target/
 /ObjetosNegocio/target/
+/ObtenerMapa/target/
+/ObtenerImagenesMapa/target/

@@ -1,4 +1,4 @@
-package presentacion;
+package dtos;
 
 import com.graphhopper.util.shapes.GHPoint3D;
 import dtos.DatosRutaDTO;
@@ -17,6 +17,7 @@ import org.jxmapviewer.viewer.GeoPosition;
 public class JXMapViewerCustom extends JXMapViewer {
     
     private List<DatosRutaDTO> routingData;
+    private boolean first = true;
     
     public List<DatosRutaDTO> getRoutingData() {
         return routingData;
@@ -45,7 +46,6 @@ public class JXMapViewerCustom extends JXMapViewer {
         }
     }
 
-    private boolean first = true;
 
     private void draw(Path2D p2, DatosRutaDTO d) {
         d.getPuntos().forEach(new Consumer<GHPoint3D>() {
