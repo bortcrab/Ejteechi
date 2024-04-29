@@ -4,7 +4,6 @@ import dtos.CitaDTO;
 import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

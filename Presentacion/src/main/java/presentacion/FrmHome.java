@@ -1,9 +1,6 @@
 package presentacion;
 
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 public class FrmHome extends javax.swing.JFrame {
