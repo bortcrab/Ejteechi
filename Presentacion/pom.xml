@@ -37,12 +37,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>MostrarMapa</artifactId>
+            <artifactId>CrearCuenta</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>CrearCuenta</artifactId>
+            <artifactId>MostrarMapa</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
