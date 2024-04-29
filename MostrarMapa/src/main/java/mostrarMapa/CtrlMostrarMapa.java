@@ -8,20 +8,20 @@ import java.util.List;
 import objetosNegocio.IMapaBO;
 import objetosNegocio.MapaBO;
 import objetosNegocio.ObjetosNegocioException;
-import obtenerImagenMapa.FacadeObtenerImagenMapa;
+import obtenerImagenesMapa.FacadeObtenerImagenesMapa;
 import org.jxmapviewer.viewer.GeoPosition;
-import obtenerImagenMapa.IObtenerImagenMapa;
+import obtenerImagenesMapa.IObtenerImagenesMapa;
 
 public class CtrlMostrarMapa {
 
-    private final IObtenerImagenMapa obtenerImagenMapa = new FacadeObtenerImagenMapa();
+    private final IObtenerImagenesMapa obtenerImagenesMapa = new FacadeObtenerImagenesMapa();
     private final IMapaBO mapaBO = new MapaBO();
     private final CalcularRuta calcularRuta = new CalcularRuta();
 
     public MapaDTO cargarMapa(JXMapViewerCustom pnlMapa) throws MostrarMapaException {
         try {
             MapaDTO mapaDTO = mapaBO.obtenerMapa();
-            obtenerImagenMapa.obtenerImagenMapa(pnlMapa, mapaDTO.getCoordenadas());
+            obtenerImagenesMapa.obtenerImagenMapa(pnlMapa, mapaDTO.getCoordenadas());
             return mapaDTO;
         } catch (ObjetosNegocioException one) {
             throw new MostrarMapaException(one.getMessage());

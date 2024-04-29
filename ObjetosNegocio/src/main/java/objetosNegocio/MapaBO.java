@@ -32,6 +32,7 @@ public class MapaBO implements IMapaBO {
         }
     }
     
+    @Override
     public MapaDTO convertirMapaDTO(Mapa mapa) {
         List<Linea> lineas = mapa.getLineas();
         List<LineaDTO> lineasDTO = new ArrayList<>();
@@ -43,6 +44,7 @@ public class MapaBO implements IMapaBO {
         return mapaDTO;
     }
     
+    @Override
     public LineaDTO convertirLineaDTO(Linea linea) {
         List<List<Double>> paradas = linea.getParadas();
         Set<Waypoint> paradasWaypoint = new HashSet<>();
@@ -55,6 +57,7 @@ public class MapaBO implements IMapaBO {
         return lineaDTO;
     }
     
+    @Override
     public RutaDTO convertirRutaDTO(Ruta ruta) {
         List<List<Double>> puntos = ruta.getPuntos();
         List<GeoPosition> puntosGeoPosition = new ArrayList<>();

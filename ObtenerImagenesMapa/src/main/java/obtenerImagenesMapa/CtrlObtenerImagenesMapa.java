@@ -1,4 +1,4 @@
-package obtenerImagenMapa;
+package obtenerImagenesMapa;
 
 import dtos.JXMapViewerCustom;
 import javax.swing.event.MouseInputListener;
@@ -9,7 +9,7 @@ import org.jxmapviewer.viewer.DefaultTileFactory;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 
-public class CtrlObtenerImagenMapa {
+public class CtrlObtenerImagenesMapa {
     public void obtenerImagenesMapa(JXMapViewerCustom pnlMapa, double[] coordenadas) {
         // Creamos un objeto TileFactoryInfo.
         TileFactoryInfo info = new OSMTileFactoryInfo();
