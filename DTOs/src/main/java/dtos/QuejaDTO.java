@@ -4,25 +4,34 @@ import java.util.Date;
 
 public class QuejaDTO {
     private String noQueja;
+    private String tipoQueja;
     private Date fecha;
     private String queja;
     private boolean anonimo;
     private String idCliente;
 
     
-    public QuejaDTO(Date fecha, String queja, boolean anonimo, String idCliente) {
-        
+    public QuejaDTO(Date fecha, String queja, boolean anonimo, String idCliente, String tipoQueja) {
+        this.queja = queja;
         this.fecha = fecha;
         this.queja = queja;
         this.anonimo = anonimo;
         this.idCliente = idCliente;
     }
 
-    public QuejaDTO(Date fecha, String queja, boolean anonimo) {
-        
+    public QuejaDTO(Date fecha, String queja, boolean anonimo,String tipoQueja) {
+         this.queja = queja;
         this.fecha = fecha;
         this.queja = queja;
         this.anonimo = anonimo;
+    }
+
+    public String getTipoQueja() {
+        return tipoQueja;
+    }
+
+    public void setTipoQueja(String tipoQueja) {
+        this.tipoQueja = tipoQueja;
     }
 
     public String getNoQueja() {

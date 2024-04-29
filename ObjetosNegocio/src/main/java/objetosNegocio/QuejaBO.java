@@ -19,24 +19,24 @@ public class QuejaBO implements IQuejaBO {
     @Override
     public QuejaDTO enviarQueja(String comentario, String tipo, boolean anonimo, ObjectId iDcliente) throws ObjetosNegocioException {
         try {
-            return convertirDocumentoAQuejaDTO(quejaDAO.enviarComentario(comentario, tipo, anonimo, iDcliente));
+            return convertirDocumentoAQuejaDTO(quejaDAO.enviarComentario(comentario,tipo,anonimo,iDcliente));
         } catch (PersistenciaException e) {
             throw new ObjetosNegocioException(e.getMessage());
         }
     }
-
     public static QuejaDTO convertirDocumentoAQuejaDTO(Document documento) {
 
         String queja = documento.getString("queja");
+        String tipoQueja = documento.getString("tipoQueja");
         boolean anonimo = documento.getBoolean("anonimo");
         Date fecha = new Date();
         if (documento.getObjectId("idCliente").toString() == null) {
-            return new QuejaDTO(fecha, queja, anonimo);
+            return new QuejaDTO(fecha, queja, anonimo, tipoQueja);
         }
 
         String idCliente = documento.getObjectId("idCliente").toString();
 
-        return new QuejaDTO(fecha, queja, anonimo, idCliente);
+        return new QuejaDTO(fecha, queja, anonimo,tipoQueja, idCliente);
     }
 
 }
