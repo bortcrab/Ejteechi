@@ -1,23 +1,40 @@
 package presentacion;
 
+import dtos.ClienteDTO;
 import dtos.QuejaDTO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class FrmQuejas extends javax.swing.JFrame {
 
+    private final ClienteDTO cliente;
+    
     /**
      * Creates new form FrmQuejas
      */
-    public FrmQuejas() {
+    public FrmQuejas(ClienteDTO cliente) throws PresentacionException {
         initComponents();
-                
+        
+        Validador.validarSesion(cliente, this);
+        this.cliente = cliente;
+        
         cargarDatos();
     }
 
+    private void validarSesion(ClienteDTO cliente) throws PresentacionException {
+        if (cliente == null) {
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.setVisible(true);
+            this.dispose();
+            throw new PresentacionException("Necesitas una sesión activa para acceder a esta funcionalidad.");
+        }
+    }
+    
     public void cargarDatos() {
         List<QuejaDTO> listaQuejas = new ArrayList<>();
         listaQuejas.add(new QuejaDTO("1", "12 de mayo de 2023", "No me gusta que los camiones están en condiciones."));
@@ -186,19 +203,23 @@ public class FrmQuejas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
-        FrmHome frmHome = new FrmHome();
-        frmHome.setVisible(true);
+        try {
+            FrmHome frmHome = new FrmHome(cliente);
+            frmHome.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
     private void lblMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseClicked
         try {
-            FrmMapa frmMapa = new FrmMapa();
+            FrmMapa frmMapa = new FrmMapa(cliente);
             frmMapa.setVisible(true);
-            this.dispose();
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
+        this.dispose();
     }//GEN-LAST:event_lblMapaMouseClicked
 
     private void lblMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseEntered
@@ -210,8 +231,12 @@ public class FrmQuejas extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMapaMouseExited
 
     private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
-        FrmCitas frmCitas = new FrmCitas();
-        frmCitas.setVisible(true);
+        try {
+            FrmCitas frmCitas = new FrmCitas(cliente);
+            frmCitas.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblCitasMouseClicked
 
@@ -232,8 +257,12 @@ public class FrmQuejas extends javax.swing.JFrame {
     }//GEN-LAST:event_lblQuejasMouseExited
 
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
-        FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente();
-        frmAtnAlCliente.setVisible(true);
+        try {
+            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(cliente);
+            frmAtnAlCliente.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblAtnAlClienteMouseClicked
 

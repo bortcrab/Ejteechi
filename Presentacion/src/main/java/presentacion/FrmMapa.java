@@ -1,5 +1,6 @@
 package presentacion;
 
+import dtos.ClienteDTO;
 import dtos.DatosRutaDTO;
 import dtos.LineaDTO;
 import dtos.MapaDTO;
@@ -16,14 +17,17 @@ public class FrmMapa extends javax.swing.JFrame {
 
     private final IMostrarMapa mostrarMapa;
     private MapaDTO mapa;
+    private final ClienteDTO cliente;
 
     /**
      * Creates new form FrmMapa
      */
-    public FrmMapa() throws PresentacionException {
+    public FrmMapa(ClienteDTO cliente) throws PresentacionException {
         try {
             initComponents();
             
+            Validador.validarSesion(cliente, this);
+            this.cliente = cliente;
             this.mostrarMapa = new FacadeMostrarMapa();
             lblLinea.setVisible(false);
             
@@ -867,8 +871,12 @@ public class FrmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
-        FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente();
-        frmAtnAlCliente.setVisible(true);
+        try {
+            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(cliente);
+            frmAtnAlCliente.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblAtnAlClienteMouseClicked
 
@@ -881,8 +889,12 @@ public class FrmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAtnAlClienteMouseExited
 
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
-        FrmQuejas frmQuejas = new FrmQuejas();
-        frmQuejas.setVisible(true);
+        try {
+            FrmQuejas frmQuejas = new FrmQuejas(cliente);
+            frmQuejas.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblQuejasMouseClicked
 
@@ -895,8 +907,12 @@ public class FrmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_lblQuejasMouseExited
 
     private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
-        FrmCitas frmCitas = new FrmCitas();
-        frmCitas.setVisible(true);
+        try {
+            FrmCitas frmCitas = new FrmCitas(cliente);
+            frmCitas.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblCitasMouseClicked
 
@@ -917,8 +933,12 @@ public class FrmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMapaMouseExited
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
-        FrmHome frmHome = new FrmHome();
-        frmHome.setVisible(true);
+        try {
+            FrmHome frmHome = new FrmHome(cliente);
+            frmHome.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
     

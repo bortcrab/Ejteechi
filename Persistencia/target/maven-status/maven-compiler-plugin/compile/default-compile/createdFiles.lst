@@ -1,8 +1,11 @@
 persistencia\IMapaDAO.class
 persistencia\Conexion.class
 persistencia\MapaDAO.class
+persistencia\Cliente.class
 persistencia\Linea.class
+persistencia\IClienteDAO.class
 persistencia\Mapa.class
 persistencia\IConexion.class
+persistencia\ClienteDAO.class
 persistencia\PersistenciaException.class
 persistencia\Ruta.class

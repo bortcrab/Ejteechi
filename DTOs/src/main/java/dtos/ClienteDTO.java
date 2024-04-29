@@ -1,22 +1,12 @@
 package dtos;
 
 public class ClienteDTO {
-    private String nombre;
     private String correo;
     private String contra;
 
-    public ClienteDTO(String nombre, String correo, String contra) {
-        this.nombre = nombre;
+    public ClienteDTO(String correo, String contra) {
         this.correo = correo;
         this.contra = contra;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getCorreo() {
