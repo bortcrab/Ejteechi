@@ -34,15 +34,20 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>MostrarMapa</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>ObtenerImagenesMapa</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>ObjetosNegocio</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>DTOs</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>ObjetosNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
