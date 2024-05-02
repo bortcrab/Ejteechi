@@ -28,16 +28,18 @@ public class MapaDAO implements IMapaDAO {
                         .append("localField", "lineas")
                         .append("foreignField", "_id")
                         .append("as", "lineas"));
-        
+
         Document buscarRutas = new Document("$lookup",
                 new Document("from", "rutas")
                         .append("localField", "lineas.ruta")
                         .append("foreignField", "_id")
                         .append("as", "rutas"));
 
+        Document ordenarResultados = new Document("$sort",
+                new Document("lineas.numero", 1));
 
         // Ejecutar la agregación
-        Document documento = coleccion.aggregate(Arrays.asList(buscarLineas, buscarRutas)).first();
+        Document documento = coleccion.aggregate(Arrays.asList(buscarLineas, buscarRutas, ordenarResultados)).first();
         logger.log(Level.INFO, "Se ha consultado la colección 'mapas'.");    
         
         if (documento == null) {

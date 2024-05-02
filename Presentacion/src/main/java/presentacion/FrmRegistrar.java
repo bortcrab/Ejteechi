@@ -1,13 +1,47 @@
+
 package presentacion;
 
+import crearCuenta.CrearCuentaException;
+import crearCuenta.FacadeCrearCuenta;
+import crearCuenta.ICrearCuenta;
+import dtos.ClienteDTO;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 public class FrmRegistrar extends javax.swing.JFrame {
+    
+    private ICrearCuenta crearCuenta;
     
     /** Creates new form FrmRegistrar */
     public FrmRegistrar() {
         initComponents();
+        
+        this.crearCuenta = new FacadeCrearCuenta();
+    }
+    
+    private void crearCuenta() {
+        String correo = txtCorreo.getText().trim();
+        String contrasenia1 = new String(pwdContrasenia.getPassword()).trim();
+        String contrasenia2 = new String(pwdConfirmarContrasena.getPassword()).trim();
+        
+        Validador validador = new Validador();
+        try {
+            validador.validarCorreo(correo);
+            validador.validarContrasenia(contrasenia1);
+            validador.validarConfirmarContrasenia(contrasenia1, contrasenia2);
+            
+            ClienteDTO cliente = new ClienteDTO(correo, contrasenia1);
+            
+            crearCuenta.crearCuenta(cliente);
+            
+            FrmHome frmHome = new FrmHome(cliente);
+            frmHome.setVisible(true);
+            this.dispose();
+            JOptionPane.showMessageDialog(this, "¡Cuenta creada con éxito!", "¡Yippee!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (PresentacionException | CrearCuentaException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -21,8 +55,8 @@ public class FrmRegistrar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         txtCorreo = new javax.swing.JTextField();
-        txtConfirmarContrasena = new javax.swing.JPasswordField();
-        txtContrasena = new javax.swing.JPasswordField();
+        pwdConfirmarContrasena = new javax.swing.JPasswordField();
+        pwdContrasenia = new javax.swing.JPasswordField();
         btnCrearCuenta = new javax.swing.JButton();
         btnYaTengoCuenta = new javax.swing.JLabel();
         img = new javax.swing.JLabel();
@@ -34,8 +68,8 @@ public class FrmRegistrar extends javax.swing.JFrame {
 
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 420, 70));
-        jPanel1.add(txtConfirmarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 420, 70));
-        jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 420, 70));
+        jPanel1.add(pwdConfirmarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 420, 70));
+        jPanel1.add(pwdContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 420, 70));
 
         btnCrearCuenta.setBackground(new java.awt.Color(133, 175, 218));
         btnCrearCuenta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -72,7 +106,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
                 btnYaTengoCuentaMouseExited(evt);
             }
         });
-        jPanel1.add(btnYaTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 630, 230, 30));
+        jPanel1.add(btnYaTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, 240, 30));
         btnYaTengoCuenta.setBorder(BorderFactory.createMatteBorder(0,0,2,0, java.awt.Color.WHITE));
 
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 2 (3).png"))); // NOI18N
@@ -85,9 +119,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
-        FrmLogin frmLogin = new FrmLogin();
-        frmLogin.setVisible(true);
-        this.dispose();
+        crearCuenta();
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     private void btnCrearCuentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCuentaMouseEntered
@@ -125,8 +157,8 @@ public class FrmRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel btnYaTengoCuenta;
     private javax.swing.JLabel img;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField txtConfirmarContrasena;
-    private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JPasswordField pwdConfirmarContrasena;
+    private javax.swing.JPasswordField pwdContrasenia;
     private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 

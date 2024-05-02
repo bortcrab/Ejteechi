@@ -1,23 +1,26 @@
 package presentacion;
 
+import dtos.ClienteDTO;
 import dtos.TicketDTO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmAtnAlCliente extends javax.swing.JFrame {
     
+    private final ClienteDTO cliente;
+    
     /** Creates new form FrmAtnAlCliente */
-    public FrmAtnAlCliente() {
+    public FrmAtnAlCliente(ClienteDTO cliente) throws PresentacionException {
         initComponents();
         
-        cargarDatos();
+        Validador.validarSesion(cliente, this);
+        this.cliente = cliente;
     }
-
+    
     public void cargarDatos() {
         List<TicketDTO> listaTickets = new ArrayList<>();
         listaTickets.add(new TicketDTO("1", "Interfaz", "Tengo un problema, no me carga el mapa.", "Resuelto"));
@@ -249,12 +252,12 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
 
     private void lblMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseClicked
         try {
-            FrmMapa frmMapa = new FrmMapa();
+            FrmMapa frmMapa = new FrmMapa(cliente);
             frmMapa.setVisible(true);
-            this.dispose();
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
+        this.dispose();
     }//GEN-LAST:event_lblMapaMouseClicked
 
     private void lblMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseEntered
@@ -266,20 +269,32 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMapaMouseExited
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
-        FrmHome frmHome = new FrmHome();
-        frmHome.setVisible(true);
+        try {
+            FrmHome frmHome = new FrmHome(cliente);
+            frmHome.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
     private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
-        FrmCitas frmCitas = new FrmCitas();
-        frmCitas.setVisible(true);
+        try {
+            FrmCitas frmCitas = new FrmCitas(cliente);
+            frmCitas.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblCitasMouseClicked
 
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
-        FrmQuejas frmQuejas = new FrmQuejas();
-        frmQuejas.setVisible(true);
+        try {
+            FrmQuejas frmQuejas = new FrmQuejas(cliente);
+            frmQuejas.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
         this.dispose();
     }//GEN-LAST:event_lblQuejasMouseClicked
 
