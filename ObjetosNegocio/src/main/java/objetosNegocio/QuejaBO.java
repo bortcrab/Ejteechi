@@ -6,6 +6,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import persistencia.IQuejaDAO;
 import persistencia.PersistenciaException;
+import persistencia.Queja;
 import persistencia.QuejaDAO;
 
 public class QuejaBO implements IQuejaBO {
@@ -17,26 +18,25 @@ public class QuejaBO implements IQuejaBO {
     }
 
     @Override
-    public QuejaDTO enviarQueja(String comentario, String tipo, boolean anonimo, ObjectId iDcliente) throws ObjetosNegocioException {
+    public QuejaDTO enviarQueja(QuejaDTO queja) throws ObjetosNegocioException {
         try {
-            return convertirDocumentoAQuejaDTO(quejaDAO.enviarComentario(comentario,tipo,anonimo,iDcliente));
+            ObjectId idPersona = new ObjectId(queja.getIdCliente());
+            Queja quejaEntidad = new Queja(queja.getFecha(), queja.getQueja(), queja.isAnonimo(), idPersona, queja.getTipoQueja());
+            return documentToDTO(quejaDAO.enviarComentario(quejaEntidad));
         } catch (PersistenciaException e) {
             throw new ObjetosNegocioException(e.getMessage());
         }
     }
-    public static QuejaDTO convertirDocumentoAQuejaDTO(Document documento) {
+    
+    
+    public static QuejaDTO documentToDTO(Document document) { 
+        String tipoQueja = document.getString("tipoQueja");
+        Date fecha = document.getDate("fecha");
+        String queja = document.getString("queja");
+        boolean anonimo = document.getBoolean("anonimo");
+        String idCliente = document.getString("idCliente");
 
-        String queja = documento.getString("queja");
-        String tipoQueja = documento.getString("tipoQueja");
-        boolean anonimo = documento.getBoolean("anonimo");
-        Date fecha = new Date();
-        if (documento.getObjectId("idCliente").toString() == null) {
-            return new QuejaDTO(fecha, queja, anonimo, tipoQueja);
-        }
-
-        String idCliente = documento.getObjectId("idCliente").toString();
-
-        return new QuejaDTO(fecha, queja, anonimo,tipoQueja, idCliente);
+        return new QuejaDTO( fecha, queja, anonimo, tipoQueja, idCliente);
     }
 
 }

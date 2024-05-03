@@ -4,7 +4,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.Date;
 import org.bson.Document;
-import org.bson.types.ObjectId;
 
 public class QuejaDAO implements IQuejaDAO {
 
@@ -17,16 +16,16 @@ public class QuejaDAO implements IQuejaDAO {
     }
 
     @Override
-    public Document enviarComentario(String comentario, String tipo, boolean anonimo, ObjectId iDcliente) throws PersistenciaException {
+    public Document enviarComentario(Queja queja) throws PersistenciaException {
 
         Document nuevoComentario = new Document();
-        nuevoComentario.append("comentario", comentario)
-                .append("tipo", tipo)
-                .append("anonimo", anonimo)
+        nuevoComentario.append("comentario", queja.getQueja())
+                .append("tipo", queja.getTipoQueja())
+                .append("anonimo", queja.isAnonimo())
                 .append("fecha", new Date()); 
 
-        if (!anonimo) {
-            nuevoComentario.append("idCliente", iDcliente);
+        if (!queja.isAnonimo()) {
+            nuevoComentario.append("idCliente", queja.getIdCliente());
         }
 
         coleccion.insertOne(nuevoComentario);

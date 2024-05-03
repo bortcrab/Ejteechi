@@ -15,7 +15,7 @@ public interface IQuejaDAO {
     
     
     
-    public Document enviarComentario(String comentario, String tipo, boolean anonimo, ObjectId iDcliente) throws PersistenciaException;
+    public Document enviarComentario(Queja queja) throws PersistenciaException;
     
     
 }

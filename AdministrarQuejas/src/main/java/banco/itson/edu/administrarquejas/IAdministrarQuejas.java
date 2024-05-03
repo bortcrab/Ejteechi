@@ -4,8 +4,7 @@
  */
 package banco.itson.edu.administrarquejas;
 
-import objetosNegocio.ObjetosNegocioException;
-import org.bson.types.ObjectId;
+import dtos.QuejaDTO;
 
 /**
  *
@@ -13,6 +12,6 @@ import org.bson.types.ObjectId;
  */
 public interface IAdministrarQuejas {
     
-    public void enviarQueja(String comentario, String tipo, boolean anonimo, ObjectId idCliente) throws ObjetosNegocioException;
+    public void enviarQueja(QuejaDTO queja) throws AdministrarQuejaException;
     
 }

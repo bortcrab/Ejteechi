@@ -1,22 +1,24 @@
 package banco.itson.edu.administrarquejas;
 
+import dtos.QuejaDTO;
+import objetosNegocio.IQuejaBO;
 import objetosNegocio.ObjetosNegocioException;
-import org.bson.types.ObjectId;
+import objetosNegocio.QuejaBO;
 
 public class CtrlAdministrarQuejas {
 
-    private final IAdministrarQuejas quejaFacade;
+    private final IQuejaBO quejaBO;
 
     public CtrlAdministrarQuejas() {
-        this.quejaFacade = new FacadeAdministrarQuejas();
+        this.quejaBO = new QuejaBO();
     }
 
-    public void enviarQueja(String comentario, String tipo, boolean anonimo, ObjectId idCliente) throws ObjetosNegocioException {
-try{
-        quejaFacade.enviarQueja(comentario, tipo, anonimo, idCliente);
-}catch(ObjetosNegocioException e){
-    throw new ObjetosNegocioException(e.getMessage());
-}
+    public void enviarQueja(QuejaDTO queja) throws AdministrarQuejaException {
+         try {
+            quejaBO.enviarQueja(queja);
+            } catch (ObjetosNegocioException one) {
+            throw new AdministrarQuejaException(one.getMessage());
+        }
     }
 
 }

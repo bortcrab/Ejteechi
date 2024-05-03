@@ -5,12 +5,11 @@
 package objetosNegocio;
 
 import dtos.QuejaDTO;
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author elimo
  */
 public interface IQuejaBO {
-    public QuejaDTO enviarQueja(String comentario, String tipo, boolean anonimo, ObjectId iDcliente) throws ObjetosNegocioException;
+    public QuejaDTO enviarQueja(QuejaDTO queja) throws ObjetosNegocioException;
 }

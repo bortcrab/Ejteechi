@@ -1,13 +1,7 @@
 package presentacion;
 
 import dtos.ClienteDTO;
-import dtos.QuejaDTO;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class FrmQuejas extends javax.swing.JFrame {
@@ -22,8 +16,6 @@ public class FrmQuejas extends javax.swing.JFrame {
         
         Validador.validarSesion(cliente, this);
         this.cliente = cliente;
-        
-        cargarDatos();
     }
 
     private void validarSesion(ClienteDTO cliente) throws PresentacionException {
@@ -35,25 +27,6 @@ public class FrmQuejas extends javax.swing.JFrame {
         }
     }
     
-    public void cargarDatos() {
-        List<QuejaDTO> listaQuejas = new ArrayList<>();
-        listaQuejas.add(new QuejaDTO("1", "12 de mayo de 2023", "No me gusta que los camiones están en condiciones."));
-        listaQuejas.add(new QuejaDTO("2", "15 de mayo de 2023", "Tarda mucho en llegar la línea 10."));
-        listaQuejas.add(new QuejaDTO("3", "30 de junio de 2023", "Un chofer de la línea 3 me dijo cosas feas."));
-        listaQuejas.add(new QuejaDTO("4", "09 de septiembre de 2023", "No hay suficientes paradas de la línea 3."));
-        listaQuejas.add(new QuejaDTO("5", "27 de octubre de 2023", "No me gusta el apartado del mapa, se me hace complicado."));
-
-        DefaultComboBoxModel<QuejaDTO> modelo = new DefaultComboBoxModel<>();
-        for (QuejaDTO queja : listaQuejas) {
-            modelo.addElement(queja);
-        }
-
-        llenarTablaTarifas(listaQuejas);
-    }
-
-    private void llenarTablaTarifas(List<QuejaDTO> listaQuejas) {
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
