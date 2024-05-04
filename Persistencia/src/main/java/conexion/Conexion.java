@@ -1,9 +1,8 @@
 /*
  * Conexion.java
  */
-package implementaciones;
+package conexion;
 
-import interfaces.IConexion;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;

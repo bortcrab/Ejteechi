@@ -1,7 +1,7 @@
 /*
  * Ruta.java
  */
-package entidades;
+package colecciones;
 
 import java.util.List;
 import org.bson.types.ObjectId;

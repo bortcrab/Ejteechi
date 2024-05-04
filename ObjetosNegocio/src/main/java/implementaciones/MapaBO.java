@@ -13,10 +13,10 @@ import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
 import interfaces.IMapaDAO;
-import entidades.Linea;
-import entidades.Mapa;
+import colecciones.Linea;
+import colecciones.Mapa;
 import excepciones.PersistenciaException;
-import entidades.Ruta;
+import colecciones.Ruta;
 
 public class MapaBO implements IMapaBO {
 

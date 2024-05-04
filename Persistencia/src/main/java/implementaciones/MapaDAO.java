@@ -3,12 +3,13 @@
  */
 package implementaciones;
 
-import entidades.Mapa;
+import conexion.Conexion;
+import colecciones.Mapa;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import interfaces.IConexion;
+import conexion.IConexion;
 import interfaces.IMapaDAO;
 import excepciones.PersistenciaException;
 

@@ -1,8 +1,8 @@
 interfaces\IMapaDAO.class
-entidades\Ruta.class
-interfaces\IConexion.class
-entidades\Linea.class
-implementaciones\Conexion.class
+colecciones\Linea.class
+colecciones\Ruta.class
 excepciones\PersistenciaException.class
-entidades\Mapa.class
+colecciones\Mapa.class
+conexion\Conexion.class
+conexion\IConexion.class
 implementaciones\MapaDAO.class

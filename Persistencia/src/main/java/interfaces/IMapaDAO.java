@@ -3,7 +3,7 @@
  */
 package interfaces;
 
-import entidades.Mapa;
+import colecciones.Mapa;
 import excepciones.PersistenciaException;
 
 /**
