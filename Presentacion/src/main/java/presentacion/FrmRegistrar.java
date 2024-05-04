@@ -1,23 +1,22 @@
-
 package presentacion;
 
-import crearCuenta.CrearCuentaException;
-import crearCuenta.FacadeCrearCuenta;
-import crearCuenta.ICrearCuenta;
-import dtos.ClienteDTO;
+import crearCuenta.CrearCuentaClienteException;
+import crearCuenta.FacadeCrearCuentaCliente;
+import crearCuenta.ICrearCuentaCliente;
+import dtos.UsuarioDTO;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 public class FrmRegistrar extends javax.swing.JFrame {
     
-    private ICrearCuenta crearCuenta;
+    private final ICrearCuentaCliente facadeCrearCuentaCliente;
     
     /** Creates new form FrmRegistrar */
     public FrmRegistrar() {
         initComponents();
         
-        this.crearCuenta = new FacadeCrearCuenta();
+        this.facadeCrearCuentaCliente = new FacadeCrearCuentaCliente();
     }
     
     private void crearCuenta() {
@@ -31,15 +30,15 @@ public class FrmRegistrar extends javax.swing.JFrame {
             validador.validarContrasenia(contrasenia1);
             validador.validarConfirmarContrasenia(contrasenia1, contrasenia2);
             
-            ClienteDTO cliente = new ClienteDTO(correo, contrasenia1);
+            UsuarioDTO usuario = new UsuarioDTO(correo, contrasenia1, "cliente");
             
-            crearCuenta.crearCuenta(cliente);
+            usuario = facadeCrearCuentaCliente.crearCuenta(usuario);
             
-            FrmHome frmHome = new FrmHome(cliente);
+            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
             frmHome.setVisible(true);
             this.dispose();
             JOptionPane.showMessageDialog(this, "¡Cuenta creada con éxito!", "¡Yippee!", JOptionPane.INFORMATION_MESSAGE);
-        } catch (PresentacionException | CrearCuentaException ex) {
+        } catch (PresentacionException | CrearCuentaClienteException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
     }

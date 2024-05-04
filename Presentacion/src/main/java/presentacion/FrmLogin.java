@@ -1,12 +1,14 @@
 package presentacion;
 
-import dtos.ClienteDTO;
+import dtos.UsuarioDTO;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 public class FrmLogin extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Login
      */
@@ -27,7 +29,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnRegistrate = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        pwdContrasenia = new javax.swing.JPasswordField();
         img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,8 +77,8 @@ public class FrmLogin extends javax.swing.JFrame {
         });
         jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 440, 60));
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 440, 60));
+        pwdContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel1.add(pwdContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 440, 60));
 
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Group 18 (2).png"))); // NOI18N
         jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
@@ -102,9 +104,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         try {
-            ClienteDTO cliente = null;
-            FrmHome frmHome = new FrmHome(cliente);
-            frmHome.setVisible(true);
+            FrmHomeCliente frmHomeCliente = new FrmHomeCliente(new UsuarioDTO());
+            frmHomeCliente.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
@@ -145,7 +146,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel btnRegistrate;
     private javax.swing.JLabel img;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField pwdContrasenia;
     private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 

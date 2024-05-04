@@ -1,6 +1,6 @@
 package obtenerImagenesMapa;
 
-import dtos.JXMapViewerCustom;
+import utilidades.JXMapViewerCustom;
 
 public interface IObtenerImagenesMapa {
     

@@ -1,6 +1,6 @@
 package presentacion;
 
-import dtos.ClienteDTO;
+import dtos.UsuarioDTO;
 import dtos.DatosRutaDTO;
 import dtos.LineaDTO;
 import dtos.MapaDTO;
@@ -15,46 +15,44 @@ import org.jxmapviewer.viewer.WaypointPainter;
 
 public class FrmMapa extends javax.swing.JFrame {
 
-    private final IMostrarMapa mostrarMapa;
+    private final IMostrarMapa facadeMostrarMapa;
     private MapaDTO mapa;
-    private final ClienteDTO cliente;
+    private final UsuarioDTO usuario;
 
     /**
      * Creates new form FrmMapa
+     *
+     * @param usuario
      */
-    public FrmMapa(ClienteDTO cliente) throws PresentacionException {
-        try {
-            initComponents();
-            
-            Validador.validarSesion(cliente, this);
-            this.cliente = cliente;
-            this.mostrarMapa = new FacadeMostrarMapa();
-            lblLinea.setVisible(false);
-            
-            mostrarMapa();
-        } catch (PresentacionException pe) {
-            throw new PresentacionException(pe.getMessage());
-        }
+    public FrmMapa(UsuarioDTO usuario) throws PresentacionException {
+        initComponents();
+
+        this.usuario = usuario;
+        this.facadeMostrarMapa = new FacadeMostrarMapa();
+        lblLinea.setVisible(false);
+
+        Validador.validarSesion(usuario, this);
+
+        mostrarMapa();
     }
-    
+
     private void mostrarMapa() throws PresentacionException {
         try {
-            mapa = mostrarMapa.cargarMapa(pnlMapa);
+            mapa = facadeMostrarMapa.cargarMapa(pnlMapa);
         } catch (MostrarMapaException mme) {
-            this.dispose();
             throw new PresentacionException(mme.getMessage());
         }
     }
-    
+
     private void mostrarRuta(int numLinea) {
-        LineaDTO linea = mapa.getLineas().get(numLinea-1);
+        LineaDTO linea = mapa.getLineas().get(numLinea - 1);
         RutaDTO ruta = linea.getRuta();
-        
-        List<DatosRutaDTO> datos = mostrarMapa.cargarRuta(ruta);
-                
+
+        List<DatosRutaDTO> datos = facadeMostrarMapa.cargarRuta(ruta);
+
         WaypointPainter wp = new WaypointPainter();
         wp.setWaypoints(linea.getParadas());
-        
+
         pnlMapa.setOverlayPainter(wp);
         pnlMapa.setRoutingData(datos);
     }
@@ -68,7 +66,7 @@ public class FrmMapa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlMapa = new dtos.JXMapViewerCustom();
+        pnlMapa = new utilidades.JXMapViewerCustom();
         jPanel2 = new javax.swing.JPanel();
         lblLinea = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -872,7 +870,7 @@ public class FrmMapa extends javax.swing.JFrame {
 
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
         try {
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(cliente);
+            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
             frmAtnAlCliente.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -890,7 +888,7 @@ public class FrmMapa extends javax.swing.JFrame {
 
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
         try {
-            FrmQuejas frmQuejas = new FrmQuejas(cliente);
+            FrmQuejas frmQuejas = new FrmQuejas(usuario);
             frmQuejas.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -908,7 +906,7 @@ public class FrmMapa extends javax.swing.JFrame {
 
     private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
         try {
-            FrmCitas frmCitas = new FrmCitas(cliente);
+            FrmCitas frmCitas = new FrmCitas(usuario);
             frmCitas.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -934,14 +932,14 @@ public class FrmMapa extends javax.swing.JFrame {
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
-            FrmHome frmHome = new FrmHome(cliente);
+            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
             frmHome.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnLinea1;
     private javax.swing.JPanel btnLinea10;
@@ -984,7 +982,7 @@ public class FrmMapa extends javax.swing.JFrame {
     private javax.swing.JLabel lblLinea;
     private javax.swing.JLabel lblMapa;
     private javax.swing.JLabel lblQuejas;
-    private dtos.JXMapViewerCustom pnlMapa;
+    private utilidades.JXMapViewerCustom pnlMapa;
     // End of variables declaration//GEN-END:variables
 
 }

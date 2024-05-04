@@ -36,3 +36,5 @@ replay_pid*
 /ObtenerMapa/target/
 /ObtenerImagenesMapa/target/
 /CrearCuenta/target/
+/IniciarSesion/target/
+/CrearCuentaCliente/target/

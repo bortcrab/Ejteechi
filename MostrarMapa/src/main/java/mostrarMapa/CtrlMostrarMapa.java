@@ -1,22 +1,26 @@
 package mostrarMapa;
 
 import dtos.DatosRutaDTO;
-import dtos.JXMapViewerCustom;
+import utilidades.JXMapViewerCustom;
 import dtos.MapaDTO;
 import dtos.RutaDTO;
 import java.util.List;
-import objetosNegocio.IMapaBO;
-import objetosNegocio.MapaBO;
-import objetosNegocio.ObjetosNegocioException;
+import interfaces.IMapaBO;
+import implementaciones.MapaBO;
+import excepciones.ObjetosNegocioException;
 import obtenerImagenesMapa.FacadeObtenerImagenesMapa;
 import org.jxmapviewer.viewer.GeoPosition;
 import obtenerImagenesMapa.IObtenerImagenesMapa;
 
 public class CtrlMostrarMapa {
 
-    private final IObtenerImagenesMapa obtenerImagenesMapa = new FacadeObtenerImagenesMapa();
-    private final IMapaBO mapaBO = new MapaBO();
-    private final CalcularRuta calcularRuta = new CalcularRuta();
+    private final IObtenerImagenesMapa obtenerImagenesMapa;
+    private final IMapaBO mapaBO;
+
+    public CtrlMostrarMapa() {
+        obtenerImagenesMapa = new FacadeObtenerImagenesMapa();
+        mapaBO = new MapaBO();
+    }
 
     public MapaDTO cargarMapa(JXMapViewerCustom pnlMapa) throws MostrarMapaException {
         try {
@@ -29,6 +33,7 @@ public class CtrlMostrarMapa {
     }
 
     public List<DatosRutaDTO> cargarRuta(RutaDTO ruta) {
+        CalcularRuta calcularRuta = new CalcularRuta();
         List<GeoPosition> puntos = ruta.getPuntos();
         List<DatosRutaDTO> datosRuta = ruta.getDatosRuta();
         for (int i = 0; i < (puntos.size()); i++) {

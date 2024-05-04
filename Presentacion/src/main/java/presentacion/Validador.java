@@ -3,7 +3,7 @@
  */
 package presentacion;
 
-import dtos.ClienteDTO;
+import dtos.UsuarioDTO;
 import javax.swing.JFrame;
 
 /**
@@ -108,14 +108,14 @@ public class Validador {
     }
 
     /**
-     * Método para validar si hay una sesión activa para continuar.
+     * Método para validar sí hay una sesión activa para continuar.
      *
-     * @param cliente Cliente que debe estar logueado.
+     * @param usuario Usuario que debe tener una sesión iniciada.
      * @param pantalla Pantalla donde se hace la validación.
      * @throws PresentacionException si la sesión no está activa
      */
-    public static void validarSesion(ClienteDTO cliente, JFrame pantalla) throws PresentacionException {
-        if (cliente == null) {
+    public static void validarSesion(UsuarioDTO usuario, JFrame pantalla) throws PresentacionException {
+        if (usuario == null) {
             FrmLogin frmLogin = new FrmLogin();
             frmLogin.setVisible(true);
             pantalla.dispose();

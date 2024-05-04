@@ -1,6 +1,6 @@
 package obtenerImagenesMapa;
 
-import dtos.JXMapViewerCustom;
+import utilidades.JXMapViewerCustom;
 import javax.swing.event.MouseInputListener;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.input.PanMouseInputListener;

@@ -1,14 +1,18 @@
 package mostrarMapa;
 
 import dtos.DatosRutaDTO;
-import dtos.JXMapViewerCustom;
+import utilidades.JXMapViewerCustom;
 import dtos.MapaDTO;
 import dtos.RutaDTO;
 import java.util.List;
 
 public class FacadeMostrarMapa implements IMostrarMapa {
 
-    private final CtrlMostrarMapa ctrlMostrarMapa = new CtrlMostrarMapa();
+    private final CtrlMostrarMapa ctrlMostrarMapa;
+    
+    public FacadeMostrarMapa() {
+        ctrlMostrarMapa = new CtrlMostrarMapa();
+    }
     
     @Override
     public MapaDTO cargarMapa(JXMapViewerCustom pnlMapa) throws MostrarMapaException {

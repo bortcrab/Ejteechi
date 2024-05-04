@@ -1,7 +1,7 @@
 package presentacion;
 
 import dtos.CitaDTO;
-import dtos.ClienteDTO;
+import dtos.UsuarioDTO;
 import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
@@ -13,16 +13,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class FrmCitas extends javax.swing.JFrame {
 
-    private final ClienteDTO cliente;
+    private final UsuarioDTO usuario;
     
     /**
      * Creates new form FrmCItas
      */
-    public FrmCitas(ClienteDTO cliente) throws PresentacionException {
+    public FrmCitas(UsuarioDTO usuario) throws PresentacionException {
         initComponents();
         
-        Validador.validarSesion(cliente, this);
-        this.cliente = cliente;
+        Validador.validarSesion(usuario, this);
+        this.usuario = usuario;
         
         cargarDatos();
     }
@@ -215,7 +215,7 @@ public class FrmCitas extends javax.swing.JFrame {
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
-            FrmHome frmHome = new FrmHome(cliente);
+            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
             frmHome.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -225,7 +225,7 @@ public class FrmCitas extends javax.swing.JFrame {
 
     private void lblMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseClicked
         try {
-            FrmMapa frmMapa = new FrmMapa(cliente);
+            FrmMapa frmMapa = new FrmMapa(usuario);
             frmMapa.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -259,7 +259,7 @@ public class FrmCitas extends javax.swing.JFrame {
 
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
         try {
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(cliente);
+            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
             frmAtnAlCliente.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -291,7 +291,7 @@ public class FrmCitas extends javax.swing.JFrame {
 
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
         try {
-            FrmQuejas frmQuejas = new FrmQuejas(cliente);
+            FrmQuejas frmQuejas = new FrmQuejas(usuario);
             frmQuejas.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
