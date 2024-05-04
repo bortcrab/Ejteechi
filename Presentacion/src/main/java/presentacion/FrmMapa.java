@@ -871,13 +871,7 @@ public class FrmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
-        try {
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(cliente);
-            frmAtnAlCliente.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+        
     }//GEN-LAST:event_lblAtnAlClienteMouseClicked
 
     private void lblAtnAlClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseEntered
@@ -907,13 +901,7 @@ public class FrmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_lblQuejasMouseExited
 
     private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
-        try {
-            FrmCitas frmCitas = new FrmCitas(cliente);
-            frmCitas.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+        
     }//GEN-LAST:event_lblCitasMouseClicked
 
     private void lblCitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseEntered
@@ -933,13 +921,7 @@ public class FrmMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMapaMouseExited
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
-        try {
-            FrmHome frmHome = new FrmHome(cliente);
-            frmHome.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+       
     }//GEN-LAST:event_lblHomeMouseClicked
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

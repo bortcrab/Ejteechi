@@ -2,8 +2,6 @@ package presentacion;
 
 import dtos.ClienteDTO;
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FrmHome extends javax.swing.JFrame {
@@ -12,10 +10,9 @@ public class FrmHome extends javax.swing.JFrame {
     
     /** Creates new form FrmAtnAlCliente
      * @param cliente */
-    public FrmHome(ClienteDTO cliente) throws PresentacionException {
+    public FrmHome(ClienteDTO cliente)   {
         initComponents();
         
-        Validador.validarSesion(cliente, this);
         this.cliente = cliente;
     }
 
@@ -171,13 +168,7 @@ public class FrmHome extends javax.swing.JFrame {
     }//GEN-LAST:event_lblQuejasMouseClicked
 
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
-        try {
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(cliente);
-            frmAtnAlCliente.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+       
     }//GEN-LAST:event_lblAtnAlClienteMouseClicked
 
     private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
@@ -219,13 +210,7 @@ public class FrmHome extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
     private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
-        try {
-            FrmCitas frmCitas = new FrmCitas(cliente);
-            frmCitas.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+        
     }//GEN-LAST:event_lblCitasMouseClicked
 
     private void lblCitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseEntered
