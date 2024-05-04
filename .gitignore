@@ -18,21 +18,3 @@
 *.zip
 *.tar.gz
 *.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
-/Ejteechi/target/
-/Presentacion/target/
-/Negocio/target/
-/EjteechiNegocio/target/
-/EjteechiPresentacion/target/
-/EjteechiPrueba/target/
-/MostrarMapa/target/
-/EjteechiDTOs/target/
-/DTOs/target/
-/Prueba/target/
-/ObjetosNegocio/target/
-/ObtenerMapa/target/
-/ObtenerImagenesMapa/target/
-/CrearCuenta/target/
