@@ -1,3 +1,6 @@
+/**
+ * MapaBO.java
+ */
 package implementaciones;
 
 import excepciones.ObjetosNegocioException;
@@ -18,6 +21,14 @@ import colecciones.Mapa;
 import excepciones.PersistenciaException;
 import colecciones.Ruta;
 
+/**
+ * Interfaz que define los métodos para aplicar las reglas de negocio en lo
+ * relacionado al mapa.
+ *
+ * @author Eliana Monge Cámara - 00000247782
+ * @author Francisco Valdez Gastelum - 00000246904
+ * @author Diego Valenzuela Parra - 00000247700
+ */
 public class MapaBO implements IMapaBO {
 
     private final IMapaDAO mapaDAO;
