@@ -23,13 +23,5 @@ public interface IUsuarioBO {
      * correo proporcionado.
      */
     public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) throws ObjetosNegocioException;
-
-    /**
-     * Método para obtener un usuario.
-     *
-     * @param usuarioDTO Usuario a buscar.
-     * @return El usuario encontrado.
-     * @throws ObjetosNegocioException si no se encontró el usuario.
-     */
-    public UsuarioDTO obtenerUsuario(UsuarioDTO usuarioDTO) throws ObjetosNegocioException;
+    
 }

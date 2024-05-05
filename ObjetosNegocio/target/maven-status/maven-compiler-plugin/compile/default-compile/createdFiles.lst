@@ -1,4 +1,6 @@
 interfaces\IMapaBO.class
+utilidades\Encriptador.class
 interfaces\IUsuarioBO.class
 excepciones\ObjetosNegocioException.class
+implementaciones\UsuarioBO.class
 implementaciones\MapaBO.class

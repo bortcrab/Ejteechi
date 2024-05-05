@@ -59,32 +59,6 @@ public class UsuarioBO implements IUsuarioBO {
     }
 
     /**
-     * Método para obtener un usuario.
-     *
-     * @param usuarioDTO Usuario a buscar.
-     * @return El usuario encontrado.
-     * @throws ObjetosNegocioException si no se encontró el usuario.
-     */
-    @Override
-    public UsuarioDTO obtenerUsuario(UsuarioDTO usuarioDTO) throws ObjetosNegocioException {
-        try {
-            String correo = encriptador.encriptar(usuarioDTO.getCorreo());
-            String contrasenia = encriptador.encriptar(usuarioDTO.getContra());
-
-            Usuario usuarioEnt = usuarioDAO.obtenerUsuarioCorreoContra(correo, contrasenia);
-            if (usuarioEnt == null) {
-                throw new ObjetosNegocioException("No se encontró ninguna cuenta con los datos ingresados.");
-            }
-
-            usuarioDTO = convertirUsuario(usuarioEnt);
-
-            return usuarioDTO;
-        } catch (Exception ex) {
-            throw new ObjetosNegocioException(ex.getMessage());
-        }
-    }
-
-    /**
      * Método para convertir de UsuarioDTO a una entidad Usuario.
      *
      * @param usuarioDTO UsuarioDTO a convertir.
