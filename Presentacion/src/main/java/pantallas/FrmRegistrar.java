@@ -4,8 +4,8 @@
 package pantallas;
 
 import excepciones.CrearCuentaClienteException;
-import crearCuenta.FacadeCrearCuentaCliente;
-import crearCuenta.ICrearCuentaCliente;
+import crearCuentaCliente.FacadeCrearCuentaCliente;
+import crearCuentaCliente.ICrearCuentaCliente;
 import dtos.UsuarioDTO;
 import java.awt.Color;
 import javax.swing.BorderFactory;

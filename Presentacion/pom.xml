@@ -31,12 +31,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>CrearCuentaCliente</artifactId>
+            <artifactId>MostrarMapa</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>MostrarMapa</artifactId>
+            <artifactId>CrearCuentaCliente</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -44,7 +44,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <exec.mainClass>Ejteechi</exec.mainClass>
+        <exec.mainClass>Presentacion</exec.mainClass>
     </properties>
     <name>Presentacion</name>
 </project>

@@ -1,6 +1,7 @@
 interfaces\IMapaBO.class
-utilidades\Encriptador.class
 interfaces\IUsuarioBO.class
 excepciones\ObjetosNegocioException.class
 implementaciones\UsuarioBO.class
+utilidades\Encriptador.class
+.netbeans_automatic_build
 implementaciones\MapaBO.class

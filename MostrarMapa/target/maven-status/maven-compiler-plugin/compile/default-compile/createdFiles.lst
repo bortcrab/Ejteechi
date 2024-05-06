@@ -1,5 +1,6 @@
 mostrarMapa\CalcularDatosRuta.class
 mostrarMapa\CtrlMostrarMapa.class
 excepciones\MostrarMapaException.class
+.netbeans_automatic_build
 mostrarMapa\FacadeMostrarMapa.class
 mostrarMapa\IMostrarMapa.class
