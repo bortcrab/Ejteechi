@@ -49,6 +49,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 
         // Imprimimos lo que se hizo.
         logger.log(Level.INFO, "Se ha insertado un documento en la colección 'usuarios'.");
+        conexion.cerrarConexion(); // Cerramos la conexión.
     }
 
     /**
