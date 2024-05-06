@@ -67,8 +67,7 @@ public class MapaBO implements IMapaBO {
      * @param mapa Mapa entidad a convertir.
      * @return El mapa convertido a DTO.
      */
-    @Override
-    public MapaDTO convertirMapa(Mapa mapa) {
+    private MapaDTO convertirMapa(Mapa mapa) {
         // Obtenemos la lista de líneas del mapa.
         List<Linea> lineas = mapa.getLineas();
         // Creamos una lista de líneas DTO.
@@ -93,8 +92,7 @@ public class MapaBO implements IMapaBO {
      * @param linea Línea entidad a convertir.
      * @return La línea convertida a DTO.
      */
-    @Override
-    public LineaDTO convertirLinea(Linea linea) {
+    private LineaDTO convertirLinea(Linea linea) {
         // Obtenemos la lista de paradas de la línea.
         List<List<Double>> paradas = linea.getParadas();
         // Creamos un set de Waypoints para almacenar las paradas.
@@ -121,8 +119,7 @@ public class MapaBO implements IMapaBO {
      * @param ruta Ruta entidad a convertir.
      * @return La ruta convertida a DTO.
      */
-    @Override
-    public RutaDTO convertirRuta(Ruta ruta) {
+    private RutaDTO convertirRuta(Ruta ruta) {
         // Obtenemos los puntos por donde pasa la ruta.
         List<List<Double>> puntos = ruta.getPuntos();
         // Creamos una lista de posiciones geográficas para guardar los puntos.
