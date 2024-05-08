@@ -10,6 +10,10 @@ public class QuejaDTO {
     private boolean anonimo;
     private String idCliente;
 
+    public QuejaDTO() {
+    }
+
+    
     
     public QuejaDTO(Date fecha, String queja, boolean anonimo, String idCliente, String tipoQueja) {
         this.queja = queja;

@@ -101,13 +101,9 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        try {
-            ClienteDTO cliente = null;
-            FrmHome frmHome = new FrmHome(cliente);
-            frmHome.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
+        ClienteDTO cliente = null;
+        FrmHome frmHome = new FrmHome(cliente);
+        frmHome.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarActionPerformed
 

@@ -1,31 +1,31 @@
 package presentacion;
 
+import banco.itson.edu.administrarquejas.AdministrarQuejaException;
+import banco.itson.edu.administrarquejas.FacadeAdministrarQuejas;
+import banco.itson.edu.administrarquejas.IAdministrarQuejas;
 import dtos.ClienteDTO;
+import dtos.QuejaDTO;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FrmQuejas extends javax.swing.JFrame {
 
     private final ClienteDTO cliente;
+    private int desiredPosition = 51;
+    private IAdministrarQuejas administrar;
     
     /**
      * Creates new form FrmQuejas
      */
     public FrmQuejas(ClienteDTO cliente) throws PresentacionException {
         initComponents();
+        administrar = new FacadeAdministrarQuejas();
         
-        Validador.validarSesion(cliente, this);
         this.cliente = cliente;
     }
 
-    private void validarSesion(ClienteDTO cliente) throws PresentacionException {
-        if (cliente == null) {
-            FrmLogin frmLogin = new FrmLogin();
-            frmLogin.setVisible(true);
-            this.dispose();
-            throw new PresentacionException("Necesitas una sesión activa para acceder a esta funcionalidad.");
-        }
-    }
     
 
     /**
@@ -39,7 +39,7 @@ public class FrmQuejas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtQueja = new javax.swing.JTextArea();
         btnAnonimo = new javax.swing.JRadioButton();
         jComboBoxTipoQueja = new javax.swing.JComboBox<>();
         lblHome = new javax.swing.JLabel();
@@ -49,17 +49,23 @@ public class FrmQuejas extends javax.swing.JFrame {
         lblAtnAlCliente = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
         img = new javax.swing.JLabel();
+        btnEnviar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1120, 690));
-        setPreferredSize(new java.awt.Dimension(1120, 690));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtQueja.setColumns(20);
+        txtQueja.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtQueja.setRows(5);
+        txtQueja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQuejaKeyTyped(evt);
+            }
+        });
+        jScrollPane1.setViewportView(txtQueja);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 690, 280));
 
@@ -70,7 +76,6 @@ public class FrmQuejas extends javax.swing.JFrame {
         jPanel1.add(jComboBoxTipoQueja, new org.netbeans.lib.awtextra.AbsoluteConstraints(522, 290, 220, -1));
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblHome.setForeground(new java.awt.Color(0, 0, 0));
         lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,7 +86,6 @@ public class FrmQuejas extends javax.swing.JFrame {
         jPanel1.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 220, 100));
 
         lblMapa.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblMapa.setForeground(new java.awt.Color(0, 0, 0));
         lblMapa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMapa.setText("Mapa");
         lblMapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -99,7 +103,6 @@ public class FrmQuejas extends javax.swing.JFrame {
         jPanel1.add(lblMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 90, 70));
 
         lblCitas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCitas.setForeground(new java.awt.Color(0, 0, 0));
         lblCitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCitas.setText("Citas");
         lblCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -117,7 +120,6 @@ public class FrmQuejas extends javax.swing.JFrame {
         jPanel1.add(lblCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 100, 70));
 
         lblQuejas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblQuejas.setForeground(new java.awt.Color(0, 0, 0));
         lblQuejas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblQuejas.setText("Quejas");
         lblQuejas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -132,7 +134,6 @@ public class FrmQuejas extends javax.swing.JFrame {
         jPanel1.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 90, 70));
 
         lblAtnAlCliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblAtnAlCliente.setForeground(new java.awt.Color(0, 0, 0));
         lblAtnAlCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAtnAlCliente.setText("Atención al cliente");
         lblAtnAlCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -150,7 +151,6 @@ public class FrmQuejas extends javax.swing.JFrame {
         jPanel1.add(lblAtnAlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 210, 90));
 
         lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
         lblCerrarSesion.setText("       Cerrar sesión");
         lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,6 +168,14 @@ public class FrmQuejas extends javax.swing.JFrame {
 
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 5 (2).png"))); // NOI18N
         jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
+
+        btnEnviar.setText("jButton1");
+        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEnviarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 280, 160));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 700));
 
@@ -243,20 +251,50 @@ public class FrmQuejas extends javax.swing.JFrame {
         lblCerrarSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
+    private void txtQuejaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuejaKeyTyped
+        // TODO add your handling code here:
+         int caretPosition = txtQueja.getCaretPosition();
+        if (caretPosition == desiredPosition) {
+            // Si el cursor está en la posición deseada, agrega un salto de línea
+            txtQueja.append("\n");
+            // Actualiza la posición deseada para que el salto de línea no se agregue repetidamente
+            desiredPosition += 54; // Incrementa la posición deseada por la longitud del texto más el salto de línea agregado
+        }if (txtQueja.getText().length() > 150) {
+            // Si se supera el límite, lanzar una excepción
+            JOptionPane.showMessageDialog(this, "¡Has llegado al límite de caracteres!", "Límite alcanzado", JOptionPane.ERROR_MESSAGE);
+            // Eliminar el exceso de caracteres
+            txtQueja.setText(txtQueja.getText().substring(0, 15));
+        }
+    }//GEN-LAST:event_txtQuejaKeyTyped
+
+    private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
+        // TODO add your handling code here:
+        QuejaDTO queja = new QuejaDTO();
+        queja.setQueja(txtQueja.getText());
+        queja.setTipoQueja(jComboBoxTipoQueja.getSelectedItem().toString());
+        
+        try {
+            administrar.enviarQueja(queja);
+        } catch (AdministrarQuejaException ex) {
+            Logger.getLogger(FrmQuejas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnEnviarMouseClicked
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnAnonimo;
+    private javax.swing.JButton btnEnviar;
     private javax.swing.JLabel img;
     private javax.swing.JComboBox<String> jComboBoxTipoQueja;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblAtnAlCliente;
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JLabel lblCitas;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblMapa;
     private javax.swing.JLabel lblQuejas;
+    private javax.swing.JTextArea txtQueja;
     // End of variables declaration//GEN-END:variables
 }
