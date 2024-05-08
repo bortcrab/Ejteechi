@@ -1,4 +1,4 @@
-banco\itson\edu\administrarquejas\CtrlAdministrarQuejas.class
-banco\itson\edu\administrarquejas\IAdministrarQuejas.class
-banco\itson\edu\administrarquejas\FacadeAdministrarQuejas.class
-banco\itson\edu\administrarquejas\AdministrarQuejaException.class
+administrarQuejas\CtrlAdministrarQuejas.class
+administrarQuejas\AdministrarQuejaException.class
+administrarQuejas\FacadeAdministrarQuejas.class
+administrarQuejas\IAdministrarQuejas.class

@@ -1,8 +1,8 @@
 package pantallas;
 
-import banco.itson.edu.administrarquejas.AdministrarQuejaException;
-import banco.itson.edu.administrarquejas.FacadeAdministrarQuejas;
-import banco.itson.edu.administrarquejas.IAdministrarQuejas;
+import administrarQuejas.AdministrarQuejaException;
+import administrarQuejas.FacadeAdministrarQuejas;
+import administrarQuejas.IAdministrarQuejas;
 import dtos.QuejaDTO;
 import dtos.UsuarioDTO;
 import java.awt.Color;

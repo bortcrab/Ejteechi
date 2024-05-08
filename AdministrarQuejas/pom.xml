@@ -21,7 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <exec.mainClass>banco.itson.edu.administrarquejas.AdministrarQuejas</exec.mainClass>
+        <exec.mainClass>administrarQuejas.AdministrarQuejas1</exec.mainClass>
     </properties>
     <name>AdministrarQuejas</name>
 </project>
