@@ -60,10 +60,16 @@ public class FrmLogin extends javax.swing.JFrame {
             
             // Mandamos a crear la cuenta del usuario.
             usuario = facadeIniciarSesion.iniciarSesion(usuario);
-
-            // Redireccionamos al usuario al home para clientes.
-            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
-            frmHome.setVisible(true);
+            
+            if (!usuario.getTipo().equals("cliente")) {
+                // Redireccionamos al usuario al home para clientes.
+                FrmHomeEmpleado frmHome = new FrmHomeEmpleado(usuario);
+                frmHome.setVisible(true);
+            } else {
+                // Redireccionamos al usuario al home para clientes.
+                FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
+                frmHome.setVisible(true);
+            }
             this.dispose();
         } catch (PresentacionException | IniciarSesionException ex) {
             // Mensaje para indicar que la cuenta fue creada.
