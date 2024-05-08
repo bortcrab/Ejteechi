@@ -6,23 +6,18 @@ public class QuejaDTO {
     private String noQueja;
     private String tipoQueja;
     private Date fecha;
-    private String queja;
+    private String descripcion;
     private boolean anonimo;
     private String idCliente;
 
     
-    public QuejaDTO(Date fecha, String queja, boolean anonimo, String idCliente, String tipoQueja) {
-        this.queja = queja;
-        this.fecha = fecha;
-        this.queja = queja;
-        this.anonimo = anonimo;
-        this.idCliente = idCliente;
+    public QuejaDTO() {
     }
-
-    public QuejaDTO(Date fecha, String queja, boolean anonimo,String tipoQueja) {
-         this.queja = queja;
+    
+    public QuejaDTO(Date fecha, String descripcion, boolean anonimo, String tipoQueja) {
+        this.descripcion = descripcion;
         this.fecha = fecha;
-        this.queja = queja;
+        this.tipoQueja = tipoQueja;
         this.anonimo = anonimo;
     }
 
@@ -50,12 +45,12 @@ public class QuejaDTO {
         this.fecha = fecha;
     }
 
-    public String getQueja() {
-        return queja;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setQueja(String queja) {
-        this.queja = queja;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public boolean isAnonimo() {
