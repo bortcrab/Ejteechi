@@ -1,8 +1,11 @@
 interfaces\IMapaDAO.class
+colecciones\Usuario.class
 colecciones\Linea.class
 colecciones\Ruta.class
 excepciones\PersistenciaException.class
 colecciones\Mapa.class
+implementaciones\UsuarioDAO.class
+interfaces\IUsuarioDAO.class
 conexion\Conexion.class
 conexion\IConexion.class
 implementaciones\MapaDAO.class

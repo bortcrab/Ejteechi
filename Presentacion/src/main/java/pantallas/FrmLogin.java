@@ -48,7 +48,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnRegistrate.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
         btnRegistrate.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnRegistrate.setText("Registrate");
+        btnRegistrate.setText("Regístrate");
         btnRegistrate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrateMouseClicked(evt);

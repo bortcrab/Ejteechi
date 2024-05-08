@@ -1,17 +1,18 @@
 /*
- * UsuarioDTO.java
+ * Usuario.java
  */
-package dtos;
+package colecciones;
+
+import org.bson.types.ObjectId;
 
 /**
- * Clase DTO con las características que conforman un usuario (ya sea cliente o
- * empleado).
+ * Clase para representar una entidad de Usuario.
  *
- * @author Francisco Valdez Gastelum - 00000246904
  * @author Diego Valenzuela Parra - 00000247700
  */
-public class UsuarioDTO {
+public class Usuario {
 
+    private ObjectId id;
     private String nombres;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -19,38 +20,38 @@ public class UsuarioDTO {
     private String curp;
     private String rfc;
     private String correo;
-    private String contra;
+    private String contrasenia;
     private String tipo;
 
     /**
      * Constructor por ausencia.
      */
-    public UsuarioDTO() {
+    public Usuario() {
     }
 
     /**
-     * Constructor que inicializa todos los atributos de un usuario.
+     * Constructor que inicializa todos los atributos menos el ID de un usuario.
      *
      * @param nombres Nombres del usuario.
      * @param apellidoPaterno Apellido paterno del usuario.
      * @param apellidoMaterno Apellido materno del usuario.
      * @param telefono Teléfono del usuario.
+     * @param correo Correo del usuario.
+     * @param contrasenia Contraseña del usuario.
      * @param curp CURP del usuario.
      * @param rfc RFC del usuario.
-     * @param correo Correo del usuario.
-     * @param contra Contraseña del usuario.
      * @param tipo Tipo de usuario (atención al cliente, rrhh, mantenimiento,
      * gerente).
      */
-    public UsuarioDTO(String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String curp, String rfc, String correo, String contra, String tipo) {
+    public Usuario(String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String correo, String contrasenia, String curp, String rfc, String tipo) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.telefono = telefono;
+        this.correo = correo;
+        this.contrasenia = contrasenia;
         this.curp = curp;
         this.rfc = rfc;
-        this.correo = correo;
-        this.contra = contra;
         this.tipo = tipo;
     }
 
@@ -59,13 +60,31 @@ public class UsuarioDTO {
      * cliente.
      *
      * @param correo Correo del cliente.
-     * @param contra Contraseña del cliente.
+     * @param contrasenia Contraseña del cliente.
      * @param tipo Tipo de usuario (en este caso cliente).
      */
-    public UsuarioDTO(String correo, String contra, String tipo) {
+    public Usuario(String correo, String contrasenia, String tipo) {
         this.correo = correo;
-        this.contra = contra;
+        this.contrasenia = contrasenia;
         this.tipo = tipo;
+    }
+
+    /**
+     * Método que devuelve el ID de un usuario.
+     *
+     * @return El ID de un usuario.
+     */
+    public ObjectId getId() {
+        return id;
+    }
+
+    /**
+     * Método que asignar el ID a un usuario.
+     *
+     * @param id ID a asignar a un usuario.
+     */
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     /**
@@ -159,10 +178,13 @@ public class UsuarioDTO {
     }
 
     /**
+     * Método que devuelve el RFC de un usuario.
+     *
      * @return RFC de un usuario.
      */
     public String getRfc() {
         return rfc;
+    }
 
     /**
      * Método que asigna el RFC a un usuario.
@@ -174,10 +196,13 @@ public class UsuarioDTO {
     }
 
     /**
+     * Método que devuelve el correo de un usuario.
+     *
      * @return El correo de un usuario.
      */
     public String getCorreo() {
         return correo;
+    }
 
     /**
      * Método que asigna el correo a un usuario.
@@ -193,17 +218,17 @@ public class UsuarioDTO {
      *
      * @return La contraseña de un usuario.
      */
-    public String getContra() {
-        return contra;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
     /**
      * Método que asigna la contraseña a un usuario.
      *
-     * @param contra Contraseña a asignar a un usuario.
+     * @param contrasenia Contraseña a asignar a un usuario.
      */
-    public void setContra(String contra) {
-        this.contra = contra;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     /**
