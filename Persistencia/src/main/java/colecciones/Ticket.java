@@ -1,30 +1,26 @@
-package dtos;
+package colecciones;
 
 import java.util.Date;
 import java.util.List;
+import org.bson.types.ObjectId;
 
-public class TicketDTO {
+/**
+ *
+ * @author Diego Valenzuela Parra - 00000247700
+ */
+public class Ticket {
     
-    private String id;
+    private ObjectId id;
     private String contenido;
     private Date fecha;
     private String estado;
-    private String idUsuario;
-    private List<RespuestaDTO> respuestas;
+    private ObjectId idUsuario;
+    private List<Respuesta> respuestas;
 
-    public TicketDTO() {
+    public Ticket() {
     }
 
-    public TicketDTO(String id, String contenido, Date fecha, String estado, String idUsuario, List<RespuestaDTO> respuestas) {
-        this.id = id;
-        this.contenido = contenido;
-        this.fecha = fecha;
-        this.estado = estado;
-        this.idUsuario = idUsuario;
-        this.respuestas = respuestas;
-    }
-    
-    public TicketDTO(String contenido, Date fecha, String estado, String idUsuario, List<RespuestaDTO> respuestas) {
+    public Ticket(String contenido, Date fecha, String estado, ObjectId idUsuario, List<Respuesta> respuestas) {
         this.contenido = contenido;
         this.fecha = fecha;
         this.estado = estado;
@@ -32,11 +28,11 @@ public class TicketDTO {
         this.respuestas = respuestas;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -64,19 +60,19 @@ public class TicketDTO {
         this.estado = estado;
     }
 
-    public String getIdUsuario() {
+    public ObjectId getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(ObjectId idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public List<RespuestaDTO> getRespuestas() {
+    public List<Respuesta> getRespuestas() {
         return respuestas;
     }
 
-    public void setRespuestas(List<RespuestaDTO> respuestas) {
+    public void setRespuestas(List<Respuesta> respuestas) {
         this.respuestas = respuestas;
     }
     

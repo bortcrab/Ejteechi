@@ -13,6 +13,7 @@ package dtos;
  */
 public class UsuarioDTO {
 
+    private String id;
     private String nombres;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -32,6 +33,7 @@ public class UsuarioDTO {
     /**
      * Constructor que inicializa todos los atributos de un usuario.
      *
+     * @param id ID del usuario.
      * @param nombres Nombres del usuario.
      * @param apellidoPaterno Apellido paterno del usuario.
      * @param apellidoMaterno Apellido materno del usuario.
@@ -43,7 +45,8 @@ public class UsuarioDTO {
      * @param tipo Tipo de usuario (atención al cliente, rrhh, mantenimiento,
      * gerente).
      */
-    public UsuarioDTO(String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String curp, String rfc, String correo, String contra, String tipo) {
+    public UsuarioDTO(String id, String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String curp, String rfc, String correo, String contra, String tipo) {
+        this.id = id;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -59,16 +62,35 @@ public class UsuarioDTO {
      * Constructor que inicializa los atributos del usuario en caso de ser
      * cliente.
      *
+     * @param id ID del cliente.
      * @param correo Correo del cliente.
      * @param contra Contraseña del cliente.
      * @param tipo Tipo de usuario (en este caso cliente).
      */
-    public UsuarioDTO(String correo, String contra, String tipo) {
+    public UsuarioDTO(String id, String correo, String contra, String tipo) {
         this.correo = correo;
         this.contra = contra;
         this.tipo = tipo;
     }
 
+    /**
+     * Método que devuelve el ID de un usuario.
+     *
+     * @return ID de un usuario.
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Método que asigna el ID a un usuario.
+     *
+     * @param id ID a asignar a un usuario.
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     /**
      * Método que devuelve los nombres de un usuario.
      *

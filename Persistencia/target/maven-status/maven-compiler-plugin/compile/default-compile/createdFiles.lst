@@ -3,9 +3,13 @@ colecciones\Usuario.class
 colecciones\Linea.class
 colecciones\Ruta.class
 excepciones\PersistenciaException.class
-colecciones\Mapa.class
 implementaciones\UsuarioDAO.class
+implementaciones\TicketDAO.class
+colecciones\Ticket.class
+interfaces\ITicketDAO.class
+colecciones\Mapa.class
 interfaces\IUsuarioDAO.class
 conexion\Conexion.class
+colecciones\Respuesta.class
 conexion\IConexion.class
 implementaciones\MapaDAO.class

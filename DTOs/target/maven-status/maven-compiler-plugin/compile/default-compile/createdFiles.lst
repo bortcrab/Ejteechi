@@ -7,4 +7,5 @@ dtos\CitaDTO.class
 dtos\MapaDTO.class
 dtos\TicketDTO.class
 dtos\LineaDTO.class
+dtos\RespuestaDTO.class
 dtos\UsuarioDTO.class

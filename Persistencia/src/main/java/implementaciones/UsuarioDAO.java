@@ -38,7 +38,7 @@ public class UsuarioDAO implements IUsuarioDAO {
      * @param usuario Usuario a agregar.
      */
     @Override
-    public void agregarUsuario(Usuario usuario) {
+    public Usuario agregarUsuario(Usuario usuario) {
         // Creamos la conexión con el servidor.
         MongoDatabase db = conexion.crearConexion();
         // Obtenemos la colección de usuarios.
@@ -46,10 +46,14 @@ public class UsuarioDAO implements IUsuarioDAO {
 
         // Mandamos a insertar el usuario.
         coleccion.insertOne(usuario);
-
+        
         // Imprimimos lo que se hizo.
         logger.log(Level.INFO, "Se ha insertado un documento en la colección 'usuarios'.");
         conexion.cerrarConexion(); // Cerramos la conexión.
+        
+        usuario = obtenerUsuarioCorreo(usuario.getCorreo());
+        
+        return usuario;
     }
 
     /**

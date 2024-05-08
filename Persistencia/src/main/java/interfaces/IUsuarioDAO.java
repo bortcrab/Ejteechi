@@ -18,7 +18,7 @@ public interface IUsuarioDAO {
      *
      * @param usuario Usuario a agregar.
      */
-    public void agregarUsuario(Usuario usuario);
+    public Usuario agregarUsuario(Usuario usuario);
 
     /**
      * Método para obtener un usuario de la base de datos dado su correo.

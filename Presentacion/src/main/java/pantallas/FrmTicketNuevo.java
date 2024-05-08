@@ -1,137 +1,57 @@
 package pantallas;
 
-import contactarAtnAlCliente.FacadeContactarAtnAlCliente;
 import contactarAtnAlCliente.IContactarAtnAlCliente;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
+import excepciones.EnviarTicketException;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import utilidades.JButtonCellEditor;
-import utilidades.JButtonRenderer;
+import java.util.Date;
 import utilidades.Validador;
 
-public class FrmAtnAlCliente extends javax.swing.JFrame {
-
+public class FrmTicketNuevo extends javax.swing.JFrame {
+    
     private final IContactarAtnAlCliente facadeContactarAtnAlCliente;
     private final UsuarioDTO usuario;
-    private List<TicketDTO> listaTickets;
-
-    /**
-     * Creates new form FrmAtnAlCliente
-     */
-    public FrmAtnAlCliente(UsuarioDTO usuario) throws PresentacionException {
+    
+    /** Creates new form FrmAtnAlCliente */
+    public FrmTicketNuevo(UsuarioDTO usuario, IContactarAtnAlCliente facadeContactarAtnAlCliente) throws PresentacionException {
         initComponents();
-
-        this.facadeContactarAtnAlCliente = new FacadeContactarAtnAlCliente();
-        this.usuario = usuario;
-
-        Validador.validarSesion(usuario, this);
-
-        // Mandamos a formatear la tabla y a cargar los datos.
-        formatearTabla();
-        cargarDatos();
-    }
-
-    /**
-     * Método para cargar los datos de los trámites.
-     */
-    private void cargarDatos() {
-        // Obtenemos la lista de trámites.
-        listaTickets = facadeContactarAtnAlCliente.obtenerTickets(usuario);
-
-        llenarTabla(listaTickets);
-    }
-
-    /**
-     * Método para llenar la tabla de trámites.
-     *
-     * @param listaTramites Lista de trámites con la que se llenará la tabla.
-     */
-    private void llenarTabla(List<TicketDTO> listaTickets) {
-        DefaultTableModel modeloTabla = (DefaultTableModel) tblTickets.getModel();
-
-        if (modeloTabla.getRowCount() > 0) {
-            for (int i = modeloTabla.getRowCount() - 1; i > -1; i--) {
-                modeloTabla.removeRow(i);
-            }
-        }
-
-        listaTickets.forEach(row -> {
-            Object[] fila = new Object[4];
-            fila[0] = row.getId();
-            fila[1] = row.getContenido();
-            fila[2] = row.getFecha();
-            fila[3] = row.getEstado();
-
-            modeloTabla.addRow(fila);
-        });
-    }
-
-    /**
-     * Método para darle formato a la tabla.
-     */
-    private void formatearTabla() {
-        // Cambiamos el color del fondo.
-        tblTickets.getTableHeader().setBackground(new Color(106, 27, 49));
-        // Cambiamos la fuente y el tamaño.
-        tblTickets.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));
-        // Cambiamos el color de la letra.
-        tblTickets.getTableHeader().setForeground(new Color(188, 149, 92));
         
-        // Creamos el evento de cuando le pican al botón para ver el historial
-        // de una persona.
-        ActionListener onEditarClickListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Metodo para seleccionar una persona.
-                seleccionarTicket();
-            }
-        };
-        int indiceColumnaSeleccionar = 4;
-        TableColumnModel modeloColumnas = this.tblTickets.getColumnModel();
-        modeloColumnas.getColumn(indiceColumnaSeleccionar).setCellRenderer(new JButtonRenderer("Seleccionar"));
-        modeloColumnas.getColumn(indiceColumnaSeleccionar).setCellEditor(new JButtonCellEditor("Seleccionar", onEditarClickListener));
+        this.facadeContactarAtnAlCliente = facadeContactarAtnAlCliente;
+        this.usuario = usuario;
+        
+        Validador.validarSesion(usuario, this);
     }
     
-    /**
-     * Método para seleccionar a una persona de la tabla.
-     */
-    private void seleccionarTicket() {
+    private void mandarTicket() throws PresentacionException {
         try {
-            TicketDTO ticket = listaTickets.get(this.tblTickets.getSelectedRow());
-            System.out.println(ticket.getId());
-            System.out.println(ticket.getContenido());
-            System.out.println(ticket.getFecha());
-            System.out.println(ticket.getEstado());
-            System.out.println(ticket.getIdUsuario());
-            FrmChatTicket frmChatTicket = new FrmChatTicket(usuario, facadeContactarAtnAlCliente, ticket);
-            frmChatTicket.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+            TicketDTO ticket = new TicketDTO(areaTicket.getText(), new Date(), "Pendiente", usuario.getId(), new ArrayList<>());
+            facadeContactarAtnAlCliente.enviarTicket(ticket);
+            
+            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
+            frmAtnAlCliente.setVisible(true);
+            this.dispose();
+        } catch (EnviarTicketException etx) {
+            throw new PresentacionException(etx.getMessage());
         }
-        this.dispose();
     }
-    
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
+
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblTickets = new javax.swing.JTable();
-        btnNuevoTicket = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        areaTicket = new javax.swing.JTextArea();
+        btnCancelar = new javax.swing.JButton();
+        btnEnviar = new javax.swing.JButton();
         lblCerrarSesion = new javax.swing.JLabel();
         lblAtnAlCliente = new javax.swing.JLabel();
         lblQuejas = new javax.swing.JLabel();
@@ -144,131 +64,41 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1120, 690));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 80));
+        areaTicket.setColumns(20);
+        areaTicket.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        areaTicket.setForeground(new java.awt.Color(0, 0, 0));
+        areaTicket.setLineWrap(true);
+        areaTicket.setRows(5);
+        areaTicket.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(areaTicket);
 
-        tblTickets.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Folio", "Contenido", "Fecha", "Estado", "Acción"
-            }
-        ));
-        tblTickets.setPreferredSize(new java.awt.Dimension(300, 80));
-        tblTickets.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblTickets);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 940, 420));
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 720, 420));
-
-        btnNuevoTicket.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        btnNuevoTicket.setBorder(null);
-        btnNuevoTicket.setContentAreaFilled(false);
-        btnNuevoTicket.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevoTicket.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(255, 102, 102));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCancelar.setFocusable(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoTicketActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevoTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 440, 200, 230));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, 140, 50));
+
+        btnEnviar.setBackground(new java.awt.Color(79, 89, 144));
+        btnEnviar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnEnviar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEnviar.setText("Enviar");
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEnviar.setFocusable(false);
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 160, 130, 50));
 
         lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -367,7 +197,9 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         });
         getContentPane().add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 220, 100));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoTickets.png"))); // NOI18N
+        fondo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        fondo.setForeground(new java.awt.Color(0, 0, 0));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ticketNuevo.png"))); // NOI18N
         fondo.setText("jLabel3");
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
@@ -452,37 +284,41 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCitasMouseClicked
 
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
-        try {
-            FrmQuejas frmQuejas = new FrmQuejas(usuario);
-            frmQuejas.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+        
     }//GEN-LAST:event_lblQuejasMouseClicked
 
-    private void btnNuevoTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoTicketActionPerformed
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         try {
-            FrmTicketNuevo frmTicketNuevo = new FrmTicketNuevo(usuario, facadeContactarAtnAlCliente);
-            frmTicketNuevo.setVisible(true);
+            mandarTicket();
+        } catch (PresentacionException etx) {
+            
+        }
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        try {
+            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
+            frmAtnAlCliente.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_btnNuevoTicketActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNuevoTicket;
+    private javax.swing.JTextArea areaTicket;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEnviar;
     private javax.swing.JLabel fondo;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAtnAlCliente;
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JLabel lblCitas;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblMapa;
     private javax.swing.JLabel lblQuejas;
-    private javax.swing.JTable tblTickets;
     // End of variables declaration//GEN-END:variables
 
 }

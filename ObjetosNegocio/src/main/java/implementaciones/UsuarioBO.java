@@ -48,7 +48,7 @@ public class UsuarioBO implements IUsuarioBO {
 
             usuarioEnt = convertirUsuario(usuarioDTO);
 
-            usuarioDAO.agregarUsuario(usuarioEnt);
+            usuarioEnt = usuarioDAO.agregarUsuario(usuarioEnt);
 
             usuarioDTO = convertirUsuario(usuarioEnt);
 
@@ -88,6 +88,7 @@ public class UsuarioBO implements IUsuarioBO {
      */
     private UsuarioDTO convertirUsuario(Usuario usuarioEnt) {
         UsuarioDTO usuarioDTO = new UsuarioDTO(
+                usuarioEnt.getId().toString(),
                 usuarioEnt.getNombres(),
                 usuarioEnt.getApellidoPaterno(),
                 usuarioEnt.getApellidoMaterno(),
