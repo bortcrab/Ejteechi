@@ -2,6 +2,7 @@ package pantallas;
 
 import contactarAtnAlCliente.FacadeContactarAtnAlCliente;
 import contactarAtnAlCliente.IContactarAtnAlCliente;
+import dtos.RespuestaDTO;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
 import java.awt.Color;
@@ -10,6 +11,9 @@ import excepciones.PresentacionException;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -45,7 +49,6 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
     private void cargarDatos() {
         // Obtenemos la lista de trámites.
         listaTickets = facadeContactarAtnAlCliente.obtenerTickets(usuario);
-
         llenarTabla(listaTickets);
     }
 
@@ -63,15 +66,19 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
             }
         }
 
-        listaTickets.forEach(row -> {
+        for (TicketDTO ticket : listaTickets) {
             Object[] fila = new Object[4];
-            fila[0] = row.getId();
-            fila[1] = row.getContenido();
-            fila[2] = row.getFecha();
-            fila[3] = row.getEstado();
+            fila[0] = ticket.getId();
+            fila[1] = ticket.getContenido();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:MM:ss");
+            String fecha = formatter.format(ticket.getFecha().getTime());
+            fila[2] = fecha;
+            fila[3] = ticket.getEstado();
 
             modeloTabla.addRow(fila);
-        });
+        }
+        
+        tblTickets.setModel(modeloTabla);
     }
 
     /**
@@ -81,7 +88,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         // Cambiamos el color del fondo.
         tblTickets.getTableHeader().setBackground(new Color(106, 27, 49));
         // Cambiamos la fuente y el tamaño.
-        tblTickets.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 12));
+        tblTickets.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 24));
         // Cambiamos el color de la letra.
         tblTickets.getTableHeader().setForeground(new Color(188, 149, 92));
         
@@ -146,14 +153,9 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
         jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 80));
 
         tblTickets.setAutoCreateRowSorter(true);
+        tblTickets.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         tblTickets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -163,7 +165,9 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
                 "Folio", "Contenido", "Fecha", "Estado", "Acción"
             }
         ));
-        tblTickets.setPreferredSize(new java.awt.Dimension(300, 80));
+        tblTickets.setMaximumSize(new java.awt.Dimension(2147483647, 420));
+        tblTickets.setShowGrid(true);
+        tblTickets.setShowHorizontalLines(true);
         tblTickets.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblTickets);
 

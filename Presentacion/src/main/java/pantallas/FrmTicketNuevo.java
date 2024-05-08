@@ -31,9 +31,11 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
             TicketDTO ticket = new TicketDTO(areaTicket.getText(), new Date(), "Pendiente", usuario.getId(), new ArrayList<>());
             facadeContactarAtnAlCliente.enviarTicket(ticket);
             
+            
             FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
             frmAtnAlCliente.setVisible(true);
             this.dispose();
+            JOptionPane.showMessageDialog(this, "¡Ticket enviado!", "¡Yippee!", JOptionPane.INFORMATION_MESSAGE);
         } catch (EnviarTicketException etx) {
             throw new PresentacionException(etx.getMessage());
         }
