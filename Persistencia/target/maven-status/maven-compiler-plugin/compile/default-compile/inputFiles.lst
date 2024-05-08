@@ -1,4 +1,5 @@
 C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\conexion\Conexion.java
+C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\interfaces\IUsuarioDAO.java
 C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\colecciones\Mapa.java
 C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\interfaces\IMapaDAO.java
 C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\colecciones\Linea.java
@@ -6,3 +7,5 @@ C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\ex
 C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\conexion\IConexion.java
 C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\colecciones\Ruta.java
 C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\implementaciones\MapaDAO.java
+C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\implementaciones\UsuarioDAO.java
+C:\Users\jorge\OneDrive\Documentos\GitHub\Ejteechi\Persistencia\src\main\java\colecciones\Usuario.java

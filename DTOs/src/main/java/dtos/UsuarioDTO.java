@@ -7,6 +7,7 @@ package dtos;
  * Clase DTO con las características que conforman un usuario (ya sea cliente o
  * empleado).
  *
+ * @author Eliana Monge Cámara - 00000247782
  * @author Francisco Valdez Gastelum - 00000246904
  * @author Diego Valenzuela Parra - 00000247700
  */
@@ -163,7 +164,8 @@ public class UsuarioDTO {
      */
     public String getRfc() {
         return rfc;
-
+    }
+    
     /**
      * Método que asigna el RFC a un usuario.
      *
@@ -178,7 +180,8 @@ public class UsuarioDTO {
      */
     public String getCorreo() {
         return correo;
-
+    }
+    
     /**
      * Método que asigna el correo a un usuario.
      *
