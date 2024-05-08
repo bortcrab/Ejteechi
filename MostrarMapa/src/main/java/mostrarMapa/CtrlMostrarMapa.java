@@ -48,7 +48,7 @@ public class CtrlMostrarMapa {
             // Mandamos a obtener el mapa.
             MapaDTO mapaDTO = mapaBO.obtenerMapa();
             // Mandamos a obtener las imágenes del mapa.
-            obtenerImagenesMapa.obtenerImagenesMapa(pnlMapa, mapaDTO.getCoordenadas());
+            obtenerImagenesMapa.obtenerImagenesMapa(pnlMapa, mapaDTO.getPosicionDefault());
             // Retornamos el mapa.
             return mapaDTO;
         } catch (ObjetosNegocioException one) {

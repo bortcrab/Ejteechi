@@ -25,9 +25,9 @@ public class CtrlObtenerImagenesMapa {
      * Método para obtener las imágenes del mapa de internet.
      *
      * @param pnlMapa Panel donde se dibujará el mapa.
-     * @param coordenadas Coordenadas donde se centrará el mapa.
+     * @param posicionDefault Coordenadas donde se centrará el mapa.
      */
-    public void obtenerImagenesMapa(JXMapViewerCustom pnlMapa, double[] coordenadas) {
+    public void obtenerImagenesMapa(JXMapViewerCustom pnlMapa, double[] posicionDefault) {
         // Creamos un objeto TileFactoryInfo.
         TileFactoryInfo info = new OSMTileFactoryInfo();
         // Creamos un objeto TileFactory.
@@ -37,7 +37,7 @@ public class CtrlObtenerImagenesMapa {
         pnlMapa.setTileFactory(tileFactory);
         
         // Asignamos las coordenadas del mapa.
-        GeoPosition geo = new GeoPosition(coordenadas);
+        GeoPosition geo = new GeoPosition(posicionDefault);
         pnlMapa.setAddressLocation(geo);
         // Asignamos un zoom inicial.
         pnlMapa.setZoom(6);

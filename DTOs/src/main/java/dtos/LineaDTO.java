@@ -15,6 +15,7 @@ import org.jxmapviewer.viewer.Waypoint;
  */
 public class LineaDTO {
 
+    private int numero;
     private Set<Waypoint> paradas;
     private RutaDTO ruta;
 
@@ -27,14 +28,23 @@ public class LineaDTO {
     /**
      * Constructor que inicializa todos los atributos de la clase.
      *
+     * @param numero
      * @param paradas Paradas de la línea.
      * @param ruta Ruta de la línea.
      */
-    public LineaDTO(Set<Waypoint> paradas, RutaDTO ruta) {
+    public LineaDTO(int numero, Set<Waypoint> paradas, RutaDTO ruta) {
         this.paradas = paradas;
         this.ruta = ruta;
     }
 
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+    
     /**
      * Método que devuelve las paradas de una línea.
      *

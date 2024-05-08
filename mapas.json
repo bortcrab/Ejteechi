@@ -3,7 +3,7 @@
 // Luego ejecutan todo de golpe en Studio 3T
 db.mapas.insertOne(
     {
-        "coordenadas" : [27.4845523,-109.9237108],
+        "posicionDefault" : [27.4845523,-109.9237108],
         "lineas" : [
             {
                 // LÍNEA 1

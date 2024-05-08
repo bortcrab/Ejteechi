@@ -16,7 +16,7 @@ import org.bson.types.ObjectId;
 public class Mapa {
 
     private ObjectId id;
-    private List<Double> coordenadas;
+    private List<Double> posicionDefault;
     private List<Linea> lineas;
 
     /**
@@ -28,11 +28,11 @@ public class Mapa {
     /**
      * Constructor que inicializa todos los atributos menos el ID de la entidad.
      *
-     * @param coordenadas Coordenadas del mapa.
+     * @param posicionDefault Coordenadas default del mapa.
      * @param lineas Lista de líneas del mapa.
      */
-    public Mapa(List<Double> coordenadas, List<Linea> lineas) {
-        this.coordenadas = coordenadas;
+    public Mapa(List<Double> posicionDefault, List<Linea> lineas) {
+        this.posicionDefault = posicionDefault;
         this.lineas = lineas;
     }
 
@@ -59,17 +59,17 @@ public class Mapa {
      *
      * @return
      */
-    public List<Double> getCoordenadas() {
-        return coordenadas;
+    public List<Double> getPosicionDefault() {
+        return posicionDefault;
     }
 
     /**
      * Método para asignar unas coordenadas al mapa.
      *
-     * @param coordenadas Coordenadas a asignar.
+     * @param posicionDefault Coordenadas default a asignar.
      */
-    public void setCoordenadas(List<Double> coordenadas) {
-        this.coordenadas = coordenadas;
+    public void setPosicionDefault(List<Double> posicionDefault) {
+        this.posicionDefault = posicionDefault;
     }
 
     /**

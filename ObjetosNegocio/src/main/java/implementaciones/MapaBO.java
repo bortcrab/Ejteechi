@@ -79,10 +79,10 @@ public class MapaBO implements IMapaBO {
         }
         
         // Para las coordenadas convertimos una lista de double a un arreglo de double.
-        double[] coordenada = mapa.getCoordenadas().stream().mapToDouble(Double::doubleValue).toArray();
+        double[] posicionDefault = mapa.getPosicionDefault().stream().mapToDouble(Double::doubleValue).toArray();
         
         // Hacemos un mapa DTO y le asignamos las líneas y las coordenadas ya convertidas.
-        MapaDTO mapaDTO = new MapaDTO(coordenada, lineasDTO);
+        MapaDTO mapaDTO = new MapaDTO(posicionDefault, lineasDTO);
         return mapaDTO; // Lo retornamos.
     }
 
@@ -108,8 +108,10 @@ public class MapaBO implements IMapaBO {
         // Mandamos a convertir la ruta de la línea a DTO.
         RutaDTO rutaDTO = convertirRuta(linea.getRuta());
         
+        int numLinea = linea.getNumero();
+        
         // Hacemos una línea DTO y le asignamos las paradas y su ruta ya convertidas.
-        LineaDTO lineaDTO = new LineaDTO(paradasWaypoint, rutaDTO);
+        LineaDTO lineaDTO = new LineaDTO(numLinea, paradasWaypoint, rutaDTO);
         return lineaDTO; // La retornamos.
     }
 

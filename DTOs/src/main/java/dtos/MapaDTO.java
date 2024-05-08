@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MapaDTO {
 
-    private double[] coordenadas;
+    private double[] posicionDefault;
     private List<LineaDTO> lineas;
 
     /**
@@ -26,11 +26,11 @@ public class MapaDTO {
     /**
      * Constructor que inicializa los atributos de la clase.
      *
-     * @param coordenadas Coordenadas del mapa.
+     * @param posicionDefault Coordenadas default del mapa.
      * @param lineas Lista de líneas que conforman al mapa.
      */
-    public MapaDTO(double[] coordenadas, List<LineaDTO> lineas) {
-        this.coordenadas = coordenadas;
+    public MapaDTO(double[] posicionDefault, List<LineaDTO> lineas) {
+        this.posicionDefault = posicionDefault;
         this.lineas = lineas;
     }
 
@@ -55,19 +55,19 @@ public class MapaDTO {
     /**
      * Método para devolver las coordenadas del mapa.
      *
-     * @return Coordenadas del mapa.
+     * @return Coordenadas default del mapa.
      */
-    public double[] getCoordenadas() {
-        return coordenadas;
+    public double[] getPosicionDefault() {
+        return posicionDefault;
     }
 
     /**
      * Método para asignar unas coordenadas al mapa.
      *
-     * @param coordenadas Coordenadas a asiganar.
+     * @param posicionDefault Coordenadas default a asiganar.
      */
-    public void setCoordenadas(double[] coordenadas) {
-        this.coordenadas = coordenadas;
+    public void setPosicionDefault(double[] posicionDefault) {
+        this.posicionDefault = posicionDefault;
     }
 
 }

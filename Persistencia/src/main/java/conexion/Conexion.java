@@ -23,8 +23,8 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public class Conexion implements IConexion {
     
-    private final ConnectionString cadenaConexion = new ConnectionString("mongodb://diegovalenzuela247700:wYZZNu9bnHOtHsQN@ac-rvttj18-shard-00-00.kjczdex.mongodb.net:27017,ac-rvttj18-shard-00-01.kjczdex.mongodb.net:27017,ac-rvttj18-shard-00-02.kjczdex.mongodb.net:27017/?ssl=true&replicaSet=atlas-xfbyw1-shard-0&authSource=admin&retryWrites=true&w=majority&appName=ejteechi");
-//    private final ConnectionString cadenaConexion = new ConnectionString("mongodb://localhost:27017");
+//    private final ConnectionString cadenaConexion = new ConnectionString("mongodb://diegovalenzuela247700:wYZZNu9bnHOtHsQN@ac-rvttj18-shard-00-00.kjczdex.mongodb.net:27017,ac-rvttj18-shard-00-01.kjczdex.mongodb.net:27017,ac-rvttj18-shard-00-02.kjczdex.mongodb.net:27017/?ssl=true&replicaSet=atlas-xfbyw1-shard-0&authSource=admin&retryWrites=true&w=majority&appName=ejteechi");
+    private final ConnectionString cadenaConexion = new ConnectionString("mongodb://localhost:27017");
     private final String nombreBaseDatos = "ejteechidb";
     private static final Logger logger = Logger.getLogger(Conexion.class.getName());
     private MongoClient servidor;
