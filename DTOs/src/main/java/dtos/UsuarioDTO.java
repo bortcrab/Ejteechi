@@ -22,6 +22,7 @@ public class UsuarioDTO {
     private String correo;
     private String contra;
     private String tipo;
+    private String idUsuario;
 
     /**
      * Constructor por ausencia.
@@ -76,6 +77,22 @@ public class UsuarioDTO {
      */
     public String getNombres() {
         return nombres;
+    }
+
+    /**
+     * Metodo que devuelve el id de usuario
+     * @return Id del usuario
+     */
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    /**
+     * Metodo que asigna el id de usuario
+     * @param idUsuario
+     */
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     /**
@@ -165,7 +182,7 @@ public class UsuarioDTO {
     public String getRfc() {
         return rfc;
     }
-    
+
     /**
      * Método que asigna el RFC a un usuario.
      *
@@ -181,7 +198,7 @@ public class UsuarioDTO {
     public String getCorreo() {
         return correo;
     }
-    
+
     /**
      * Método que asigna el correo a un usuario.
      *
