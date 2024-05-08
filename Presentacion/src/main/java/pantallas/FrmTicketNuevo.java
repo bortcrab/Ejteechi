@@ -28,7 +28,13 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
     
     private void enviarTicket() {
         try {
-            TicketDTO ticket = new TicketDTO(areaTicket.getText(), new Date(), "Pendiente", usuario.getId(), new ArrayList<>());
+            Validador validador = new Validador();
+            
+            String contenido = areaTicket.getText();
+            
+            validador.validarTicket(contenido);
+            
+            TicketDTO ticket = new TicketDTO(contenido, new Date(), "Pendiente", usuario.getId(), new ArrayList<>());
             facadeAdministrarTickets.enviarTicket(ticket);
             
             
