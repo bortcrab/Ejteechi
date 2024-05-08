@@ -4,11 +4,11 @@
 package implementaciones;
 
 import colecciones.Usuario;
+import dtos.UsuarioDTO;
 import excepciones.ObjetosNegocioException;
 import interfaces.IUsuarioBO;
-import utilidades.Encriptador;
-import dtos.UsuarioDTO;
 import interfaces.IUsuarioDAO;
+import utilidades.Encriptador;
 
 /**
  * Clase que implementa los métodos de la interfaz IUsuarioBO para aplicar
@@ -49,6 +49,37 @@ public class UsuarioBO implements IUsuarioBO {
             usuarioEnt = convertirUsuario(usuarioDTO);
 
             usuarioEnt = usuarioDAO.agregarUsuario(usuarioEnt);
+
+            usuarioDTO = convertirUsuario(usuarioEnt);
+
+            return usuarioDTO;
+        } catch (Exception ex) {
+            throw new ObjetosNegocioException(ex.getMessage());
+        }
+    }
+    
+    /**
+     * Método para obtener un usuario.
+     *
+     * @param usuarioDTO Usuario a buscar.
+     * @return El usuario encontrado.
+     * @throws ObjetosNegocioException si no se encontró el usuario.
+     */
+    @Override
+    public UsuarioDTO obtenerUsuarioCorreoContra(UsuarioDTO usuarioDTO) throws ObjetosNegocioException {
+        try {
+            String correo = encriptador.encriptar(usuarioDTO.getCorreo());
+            String contrasenia = encriptador.encriptar(usuarioDTO.getContra());
+            
+            Usuario usuarioEnt = usuarioDAO.obtenerUsuarioCorreo(correo);
+            if (usuarioEnt == null) {
+                throw new ObjetosNegocioException("No se encontró ninguna cuenta con el correo proporcionado.");
+            }
+
+            usuarioEnt = usuarioDAO.obtenerUsuarioCorreoContra(correo, contrasenia);
+            if (usuarioEnt == null) {
+                throw new ObjetosNegocioException("Contraseña incorrecta.");
+            }
 
             usuarioDTO = convertirUsuario(usuarioEnt);
 

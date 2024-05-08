@@ -24,24 +24,13 @@ public class FrmQuejas extends javax.swing.JFrame {
      */
     public FrmQuejas(UsuarioDTO usuario) throws PresentacionException {
         initComponents();
+        
         administrar = new FacadeAdministrarQuejas();
-        usuario.setIdUsuario("662f53da09d3e18ef3f5e9a0");
+        this.usuario = usuario;
 
         Validador.validarSesion(usuario, this);
-        this.usuario = usuario;
         
-//        cargarDatos();
     }
-
-    private void validarSesion(UsuarioDTO usuario) throws PresentacionException {
-        if (usuario == null) {
-            FrmLogin frmLogin = new FrmLogin();
-            frmLogin.setVisible(true);
-            this.dispose();
-            throw new PresentacionException("Necesitas una sesión activa para acceder a esta funcionalidad.");
-        }
-    }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,7 +63,9 @@ public class FrmQuejas extends javax.swing.JFrame {
 
         txtQueja.setColumns(20);
         txtQueja.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtQueja.setLineWrap(true);
         txtQueja.setRows(5);
+        txtQueja.setWrapStyleWord(true);
         txtQueja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtQuejaKeyTyped(evt);
@@ -190,7 +181,7 @@ public class FrmQuejas extends javax.swing.JFrame {
                 btnEnviarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 280, 160));
+        jPanel1.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 450, 310, 180));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 700));
 

@@ -36,6 +36,7 @@ public class UsuarioDAO implements IUsuarioDAO {
      * Método para agregar un usuario a la base de datos.
      *
      * @param usuario Usuario a agregar.
+     * @return El usuario con su ID de la base de datos.
      */
     @Override
     public Usuario agregarUsuario(Usuario usuario) {
@@ -79,6 +80,41 @@ public class UsuarioDAO implements IUsuarioDAO {
          * Mandamos a ejecutar la consulta con el filtro, limitamos los
          * resultados a uno porque sólo debe haber un usuario con ese correo. Lo
          * que obtengamos lo guardamos en una variable.
+         */
+        Usuario usuario = coleccion.find(filtro).first();
+        // Mensajito indicando lo que se hizo.
+        logger.log(Level.INFO, "Se ha consultado la colección 'usuarios'.");
+        conexion.cerrarConexion(); // Cerramos la conexión.
+
+        // Retornamos el usuario encontrado.
+        return usuario;
+    }
+    
+    /**
+     * Método para obtener un usuario de la base de datos dados su correo y
+     * contraseña.
+     *
+     * @param correo Correo del usuario a buscar.
+     * @param contrasenia Contraseña del usuario a buscar.
+     * @return El usuario encontrado, null si no se encontró nada.
+     */
+    @Override
+    public Usuario obtenerUsuarioCorreoContra(String correo, String contrasenia) {
+        // Creamos la conexión con el servidor.
+        MongoDatabase db = conexion.crearConexion();
+        // Obtenemos la colección de usuarios.
+        coleccion = db.getCollection("usuarios", Usuario.class);
+
+        /**
+         * Filtro para indicar que sólo se busque usuarios cuyos correo y
+         * contraseña sean los mismos que los proporcionado.
+         */
+        Document filtro = new Document("correo", correo).append("contrasenia", contrasenia);
+
+        /**
+         * Mandamos a ejecutar la consulta con el filtro, limitamos los
+         * resultados a uno porque sólo debe haber un usuario con el correo
+         * proporcionado. Lo que obtengamos lo guardamos en una variable.
          */
         Usuario usuario = coleccion.find(filtro).first();
         // Mensajito indicando lo que se hizo.

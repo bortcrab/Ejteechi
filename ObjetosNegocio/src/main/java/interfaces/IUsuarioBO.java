@@ -23,5 +23,7 @@ public interface IUsuarioBO {
      * correo proporcionado.
      */
     public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) throws ObjetosNegocioException;
+
+    public UsuarioDTO obtenerUsuarioCorreoContra(UsuarioDTO usuario) throws ObjetosNegocioException;
     
 }

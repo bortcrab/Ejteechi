@@ -8,6 +8,12 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
+import iniciarSesion.FacadeIniciarSesion;
+import iniciarSesion.IIniciarSesion;
+import iniciarSesion.IniciarSesionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import utilidades.Validador;
 
 /**
  * Clase que representa la pantalla para que el usuario pueda iniciar sesión.
@@ -18,11 +24,51 @@ import excepciones.PresentacionException;
  */
 public class FrmLogin extends javax.swing.JFrame {
 
+    private final IIniciarSesion facadeIniciarSesion;
+
     /**
      * Constructor que inicializa los componentes de la clase.
      */
     public FrmLogin() {
         initComponents();
+
+        this.facadeIniciarSesion = new FacadeIniciarSesion();
+    }
+
+    /**
+     * Método iniciar sesión con el correo y contraseña introducidos.
+     */
+    private void iniciarSesion() {
+        try {
+            // Obtenemos el correo y las contraseñas sin espacios.
+            String correo = txtCorreo.getText().trim();
+            String contrasenia = new String(pwdContrasenia.getPassword()).trim();
+
+            // Creamos una instancia del validador.
+            Validador validador = new Validador();
+
+            try {
+                // Validamos cada dato.
+                validador.validarVacio(correo);
+                validador.validarVacio(contrasenia);
+            } catch (PresentacionException ex) {
+                throw new PresentacionException("Favor de llenar ambos campos.");
+            }
+
+            // Creamos un usuario DTO con los datos introducidos.
+            UsuarioDTO usuario = new UsuarioDTO("", correo, contrasenia, "");
+            
+            // Mandamos a crear la cuenta del usuario.
+            usuario = facadeIniciarSesion.iniciarSesion(usuario);
+
+            // Redireccionamos al usuario al home para clientes.
+            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
+            frmHome.setVisible(true);
+            this.dispose();
+        } catch (PresentacionException | IniciarSesionException ex) {
+            // Mensaje para indicar que la cuenta fue creada.
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -118,14 +164,7 @@ public class FrmLogin extends javax.swing.JFrame {
      * @param evt Evento al que se escucha.
      */
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        try {
-            FrmHomeCliente frmHomeCliente = new FrmHomeCliente(new UsuarioDTO());
-            frmHomeCliente.setVisible(true);
-        } catch (PresentacionException pe) {
-            // Se muestra un mensaje si no se validó la sesión.
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+        iniciarSesion();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

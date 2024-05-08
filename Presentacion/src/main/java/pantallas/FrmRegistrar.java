@@ -39,7 +39,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
         // Obtenemos el correo y las contraseñas sin espacios.
         String correo = txtCorreo.getText().trim();
         String contrasenia1 = new String(pwdContrasenia.getPassword()).trim();
-        String contrasenia2 = new String(pwdConfirmarContrasena.getPassword()).trim();
+        String contrasenia2 = new String(pwdConfirmarContrasenia.getPassword()).trim();
 
         // Creamos una instancia del validador.
         Validador validador = new Validador();
@@ -78,7 +78,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         txtCorreo = new javax.swing.JTextField();
-        pwdConfirmarContrasena = new javax.swing.JPasswordField();
+        pwdConfirmarContrasenia = new javax.swing.JPasswordField();
         pwdContrasenia = new javax.swing.JPasswordField();
         btnCrearCuenta = new javax.swing.JButton();
         btnYaTengoCuenta = new javax.swing.JLabel();
@@ -91,7 +91,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
 
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 420, 70));
-        jPanel1.add(pwdConfirmarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 420, 70));
+        jPanel1.add(pwdConfirmarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 420, 70));
         jPanel1.add(pwdContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 420, 70));
 
         btnCrearCuenta.setBackground(new java.awt.Color(133, 175, 218));
@@ -215,7 +215,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
     private javax.swing.JLabel btnYaTengoCuenta;
     private javax.swing.JLabel img;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField pwdConfirmarContrasena;
+    private javax.swing.JPasswordField pwdConfirmarContrasenia;
     private javax.swing.JPasswordField pwdContrasenia;
     private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables

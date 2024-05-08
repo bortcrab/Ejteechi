@@ -5,6 +5,6 @@ excepciones\ObjetosNegocioException.class
 implementaciones\UsuarioBO.class
 implementaciones\TicketBO.class
 utilidades\Encriptador.class
-interfaces\ITicketBO.class
 interfaces\IQuejaBO.class
+interfaces\ITicketBO.class
 implementaciones\MapaBO.class

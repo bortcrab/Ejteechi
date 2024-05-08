@@ -10,7 +10,6 @@ public class QuejaDTO {
     private boolean anonimo;
     private String idCliente;
 
-    
     public QuejaDTO() {
     }
     

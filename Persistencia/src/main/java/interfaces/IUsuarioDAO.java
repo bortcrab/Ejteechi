@@ -16,7 +16,8 @@ public interface IUsuarioDAO {
     /**
      * Método para agregar un usuario a la base de datos.
      *
-     * @param usuario Usuario a agregar.
+     * @param usuario Usuario a agregar..
+     * @return El usuario con su ID de la base de datos.
      */
     public Usuario agregarUsuario(Usuario usuario);
 
@@ -27,5 +28,15 @@ public interface IUsuarioDAO {
      * @return El usuario encontrado, null si no se encontró nada.
      */
     public Usuario obtenerUsuarioCorreo(String correo);
+    
+    /**
+     * Método para obtener un usuario de la base de datos dados su correo y
+     * contraseña.
+     *
+     * @param correo Correo del usuario a buscar.
+     * @param contrasenia Contraseña del usuario a buscar.
+     * @return El usuario encontrado, null si no se encontró nada.
+     */
+    public Usuario obtenerUsuarioCorreoContra(String correo, String contrasenia);
 
 }
