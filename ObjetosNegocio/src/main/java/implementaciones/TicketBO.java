@@ -32,14 +32,9 @@ public class TicketBO implements ITicketBO {
     }
     
     @Override
-    public void enviarTicket(TicketDTO ticketDTO) throws ObjetosNegocioException {
-        try {
-            Ticket ticketEnt = convertirTicket(ticketDTO);
-                        
-            ticketDAO.agregarTicket(ticketEnt);
-        } catch (Exception ex) {
-            throw new ObjetosNegocioException(ex.getMessage());
-        }
+    public void enviarTicket(TicketDTO ticketDTO) {
+        Ticket ticketEnt = convertirTicket(ticketDTO);
+        ticketDAO.agregarTicket(ticketEnt);
     }
     
     @Override
@@ -60,7 +55,7 @@ public class TicketBO implements ITicketBO {
         return ticketDTO;
     }
     
-    private Ticket convertirTicket(TicketDTO ticketDTO) throws Exception {
+    private Ticket convertirTicket(TicketDTO ticketDTO) {
         Ticket ticketEnt = new Ticket(
                 ticketDTO.getContenido(),
                 ticketDTO.getFecha(),
@@ -83,7 +78,7 @@ public class TicketBO implements ITicketBO {
         return ticketDTO;
     }
     
-    private Usuario convertirUsuario(UsuarioDTO usuarioDTO) throws Exception {
+    private Usuario convertirUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuarioEnt = new Usuario(
                 usuarioDTO.getNombres(),
                 usuarioDTO.getApellidoPaterno(),
@@ -98,7 +93,7 @@ public class TicketBO implements ITicketBO {
         return usuarioEnt;
     }
     
-    private List<Respuesta> convertirRespuestasDTO(List<RespuestaDTO> respuestasDTO) throws Exception {
+    private List<Respuesta> convertirRespuestasDTO(List<RespuestaDTO> respuestasDTO) {
         List<Respuesta> respuestasEnt = new ArrayList<>();
         for (RespuestaDTO respuestaDTO : respuestasDTO) {
             Respuesta respuestaEnt = new Respuesta(

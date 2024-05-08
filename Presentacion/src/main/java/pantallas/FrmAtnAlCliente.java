@@ -1,8 +1,7 @@
 package pantallas;
 
-import contactarAtnAlCliente.FacadeContactarAtnAlCliente;
-import contactarAtnAlCliente.IContactarAtnAlCliente;
-import dtos.RespuestaDTO;
+import administrarTickets.FacadeAdministrarTickets;
+import administrarTickets.IAdministrarTickets;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
 import java.awt.Color;
@@ -12,8 +11,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -23,7 +20,7 @@ import utilidades.Validador;
 
 public class FrmAtnAlCliente extends javax.swing.JFrame {
 
-    private final IContactarAtnAlCliente facadeContactarAtnAlCliente;
+    private final IAdministrarTickets facadeAdministrarTickets;
     private final UsuarioDTO usuario;
     private List<TicketDTO> listaTickets;
 
@@ -33,7 +30,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
     public FrmAtnAlCliente(UsuarioDTO usuario) throws PresentacionException {
         initComponents();
 
-        this.facadeContactarAtnAlCliente = new FacadeContactarAtnAlCliente();
+        this.facadeAdministrarTickets = new FacadeAdministrarTickets();
         this.usuario = usuario;
 
         Validador.validarSesion(usuario, this);
@@ -48,7 +45,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
      */
     private void cargarDatos() {
         // Obtenemos la lista de trámites.
-        listaTickets = facadeContactarAtnAlCliente.obtenerTickets(usuario);
+        listaTickets = facadeAdministrarTickets.obtenerTickets(usuario);
         llenarTabla(listaTickets);
     }
 
@@ -118,7 +115,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
             System.out.println(ticket.getFecha());
             System.out.println(ticket.getEstado());
             System.out.println(ticket.getIdUsuario());
-            FrmChatTicket frmChatTicket = new FrmChatTicket(usuario, facadeContactarAtnAlCliente, ticket);
+            FrmChatTicket frmChatTicket = new FrmChatTicket(usuario, facadeAdministrarTickets, ticket);
             frmChatTicket.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -377,7 +374,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
 
     private void btnNuevoTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoTicketActionPerformed
         try {
-            FrmTicketNuevo frmTicketNuevo = new FrmTicketNuevo(usuario, facadeContactarAtnAlCliente);
+            FrmTicketNuevo frmTicketNuevo = new FrmTicketNuevo(usuario, facadeAdministrarTickets);
             frmTicketNuevo.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);

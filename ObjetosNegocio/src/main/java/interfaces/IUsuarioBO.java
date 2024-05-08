@@ -24,6 +24,14 @@ public interface IUsuarioBO {
      */
     public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) throws ObjetosNegocioException;
 
-    public UsuarioDTO obtenerUsuarioCorreoContra(UsuarioDTO usuario) throws ObjetosNegocioException;
+    /**
+     * Método para obtener un usuario.
+     *
+     * @param usuarioDTO Usuario a buscar.
+     * @return El usuario encontrado.
+     * @throws ObjetosNegocioException si no se encontró el usuario o si la
+     * contraseña es incorrecta.
+     */
+    public UsuarioDTO obtenerUsuarioCorreoContra(UsuarioDTO usuarioDTO) throws ObjetosNegocioException;
     
 }

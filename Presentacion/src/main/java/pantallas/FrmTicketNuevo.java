@@ -1,9 +1,9 @@
 package pantallas;
 
-import contactarAtnAlCliente.IContactarAtnAlCliente;
+import administrarTickets.IAdministrarTickets;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
-import excepciones.EnviarTicketException;
+import excepciones.AdministrarTicketsException;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
@@ -13,31 +13,31 @@ import utilidades.Validador;
 
 public class FrmTicketNuevo extends javax.swing.JFrame {
     
-    private final IContactarAtnAlCliente facadeContactarAtnAlCliente;
+    private final IAdministrarTickets facadeAdministrarTickets;
     private final UsuarioDTO usuario;
     
     /** Creates new form FrmAtnAlCliente */
-    public FrmTicketNuevo(UsuarioDTO usuario, IContactarAtnAlCliente facadeContactarAtnAlCliente) throws PresentacionException {
+    public FrmTicketNuevo(UsuarioDTO usuario, IAdministrarTickets facadeAdministrarTickets) throws PresentacionException {
         initComponents();
         
-        this.facadeContactarAtnAlCliente = facadeContactarAtnAlCliente;
+        this.facadeAdministrarTickets = facadeAdministrarTickets;
         this.usuario = usuario;
         
         Validador.validarSesion(usuario, this);
     }
     
-    private void mandarTicket() throws PresentacionException {
+    private void enviarTicket() {
         try {
             TicketDTO ticket = new TicketDTO(areaTicket.getText(), new Date(), "Pendiente", usuario.getId(), new ArrayList<>());
-            facadeContactarAtnAlCliente.enviarTicket(ticket);
+            facadeAdministrarTickets.enviarTicket(ticket);
             
             
             FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
             frmAtnAlCliente.setVisible(true);
             this.dispose();
             JOptionPane.showMessageDialog(this, "¡Ticket enviado!", "¡Yippee!", JOptionPane.INFORMATION_MESSAGE);
-        } catch (EnviarTicketException etx) {
-            throw new PresentacionException(etx.getMessage());
+        } catch (AdministrarTicketsException | PresentacionException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -290,11 +290,7 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_lblQuejasMouseClicked
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        try {
-            mandarTicket();
-        } catch (PresentacionException etx) {
-            
-        }
+        enviarTicket();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

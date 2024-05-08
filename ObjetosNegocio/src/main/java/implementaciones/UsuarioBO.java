@@ -39,54 +39,47 @@ public class UsuarioBO implements IUsuarioBO {
      */
     @Override
     public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) throws ObjetosNegocioException {
-        try {
-            Usuario usuarioEnt = usuarioDAO.obtenerUsuarioCorreo(encriptador.encriptar(usuarioDTO.getCorreo()));
+        Usuario usuarioEnt = usuarioDAO.obtenerUsuarioCorreo(encriptador.encriptar(usuarioDTO.getCorreo()));
 
-            if (usuarioEnt != null) {
-                throw new ObjetosNegocioException("Ese correo ya está registrado.");
-            }
-
-            usuarioEnt = convertirUsuario(usuarioDTO);
-
-            usuarioEnt = usuarioDAO.agregarUsuario(usuarioEnt);
-
-            usuarioDTO = convertirUsuario(usuarioEnt);
-
-            return usuarioDTO;
-        } catch (Exception ex) {
-            throw new ObjetosNegocioException(ex.getMessage());
+        if (usuarioEnt != null) {
+            throw new ObjetosNegocioException("Ese correo ya está registrado.");
         }
+
+        usuarioEnt = convertirUsuario(usuarioDTO);
+
+        usuarioEnt = usuarioDAO.agregarUsuario(usuarioEnt);
+
+        usuarioDTO = convertirUsuario(usuarioEnt);
+
+        return usuarioDTO;
     }
-    
+
     /**
      * Método para obtener un usuario.
      *
      * @param usuarioDTO Usuario a buscar.
      * @return El usuario encontrado.
-     * @throws ObjetosNegocioException si no se encontró el usuario.
+     * @throws ObjetosNegocioException si no se encontró el usuario o si la
+     * contraseña es incorrecta.
      */
     @Override
     public UsuarioDTO obtenerUsuarioCorreoContra(UsuarioDTO usuarioDTO) throws ObjetosNegocioException {
-        try {
-            String correo = encriptador.encriptar(usuarioDTO.getCorreo());
-            String contrasenia = encriptador.encriptar(usuarioDTO.getContra());
-            
-            Usuario usuarioEnt = usuarioDAO.obtenerUsuarioCorreo(correo);
-            if (usuarioEnt == null) {
-                throw new ObjetosNegocioException("No se encontró ninguna cuenta con el correo proporcionado.");
-            }
+        String correo = encriptador.encriptar(usuarioDTO.getCorreo());
+        String contrasenia = encriptador.encriptar(usuarioDTO.getContra());
 
-            usuarioEnt = usuarioDAO.obtenerUsuarioCorreoContra(correo, contrasenia);
-            if (usuarioEnt == null) {
-                throw new ObjetosNegocioException("Contraseña incorrecta.");
-            }
-
-            usuarioDTO = convertirUsuario(usuarioEnt);
-
-            return usuarioDTO;
-        } catch (Exception ex) {
-            throw new ObjetosNegocioException(ex.getMessage());
+        Usuario usuarioEnt = usuarioDAO.obtenerUsuarioCorreo(correo);
+        if (usuarioEnt == null) {
+            throw new ObjetosNegocioException("No se encontró ninguna cuenta con el correo proporcionado.");
         }
+
+        usuarioEnt = usuarioDAO.obtenerUsuarioCorreoContra(correo, contrasenia);
+        if (usuarioEnt == null) {
+            throw new ObjetosNegocioException("Contraseña incorrecta.");
+        }
+
+        usuarioDTO = convertirUsuario(usuarioEnt);
+
+        return usuarioDTO;
     }
 
     /**
@@ -94,9 +87,8 @@ public class UsuarioBO implements IUsuarioBO {
      *
      * @param usuarioDTO UsuarioDTO a convertir.
      * @return La entidad de Usuario ya convertida.
-     * @throws Exception si ocurre un error de encriptación.
      */
-    private Usuario convertirUsuario(UsuarioDTO usuarioDTO) throws Exception {
+    private Usuario convertirUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuarioEnt = new Usuario(
                 usuarioDTO.getNombres(),
                 usuarioDTO.getApellidoPaterno(),

@@ -1,44 +1,28 @@
 package pantallas;
 
-import contactarAtnAlCliente.IContactarAtnAlCliente;
+import administrarTickets.IAdministrarTickets;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
-import excepciones.EnviarTicketException;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
-import java.util.ArrayList;
-import java.util.Date;
 import utilidades.Validador;
 
 public class FrmChatTicket extends javax.swing.JFrame {
     
-    private final IContactarAtnAlCliente facadeContactarAtnAlCliente;
+    private final IAdministrarTickets facadeAdministrarTickets;
     private final UsuarioDTO usuario;
     private TicketDTO ticket;
     
     /** Creates new form FrmAtnAlCliente */
-    public FrmChatTicket(UsuarioDTO usuario, IContactarAtnAlCliente facadeContactarAtnAlCliente, TicketDTO ticket) throws PresentacionException {
+    public FrmChatTicket(UsuarioDTO usuario, IAdministrarTickets facadeAdministrarTickets, TicketDTO ticket) throws PresentacionException {
         initComponents();
         
         this.usuario = usuario;
-        this.facadeContactarAtnAlCliente = facadeContactarAtnAlCliente;
+        this.facadeAdministrarTickets = facadeAdministrarTickets;
         this.ticket = ticket;
         
         Validador.validarSesion(usuario, this);
-    }
-    
-    private void mandarTicket() throws PresentacionException {
-        try {
-            TicketDTO ticket = new TicketDTO(areaTicket.getText(), new Date(), "Pendiente", usuario.getId(), new ArrayList<>());
-            facadeContactarAtnAlCliente.enviarTicket(ticket);
-            
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
-            frmAtnAlCliente.setVisible(true);
-            this.dispose();
-        } catch (EnviarTicketException etx) {
-            throw new PresentacionException(etx.getMessage());
-        }
     }
 
     /** This method is called from within the constructor to
@@ -290,11 +274,7 @@ public class FrmChatTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_lblQuejasMouseClicked
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        try {
-            mandarTicket();
-        } catch (PresentacionException etx) {
-            
-        }
+        
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
