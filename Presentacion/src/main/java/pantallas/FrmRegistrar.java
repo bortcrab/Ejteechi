@@ -11,6 +11,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
+import org.bson.types.ObjectId;
 import utilidades.Validador;
 
 /**
@@ -50,7 +51,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
             validador.validarConfirmarContrasenia(contrasenia1, contrasenia2);
 
             // Creamos un usuario DTO con los datos introducidos.
-            UsuarioDTO usuario = new UsuarioDTO("", correo, contrasenia1, "cliente");
+            UsuarioDTO usuario = new UsuarioDTO(correo, contrasenia1, "cliente");
 
             // Mandamos a crear la cuenta del usuario.
             usuario = facadeCrearCuentaCliente.crearCuenta(usuario);

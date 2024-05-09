@@ -4,6 +4,7 @@ import dtos.TicketDTO;
 import dtos.UsuarioDTO;
 import excepciones.ObjetosNegocioException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -14,5 +15,5 @@ public interface ITicketBO {
 
     public List<TicketDTO> obtenerTickets(UsuarioDTO usuario);
 
-    public TicketDTO obtenerTicket(String folio);
+    public TicketDTO obtenerTicket(ObjectId folio);
 }

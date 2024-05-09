@@ -3,6 +3,8 @@
  */
 package dtos;
 
+import org.bson.types.ObjectId;
+
 /**
  * Clase DTO con las características que conforman un usuario (ya sea cliente o
  * empleado).
@@ -13,7 +15,7 @@ package dtos;
  */
 public class UsuarioDTO {
 
-    private String id;
+    private ObjectId id;
     private String nombres;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -23,7 +25,6 @@ public class UsuarioDTO {
     private String correo;
     private String contra;
     private String tipo;
-    private String idUsuario;
 
     /**
      * Constructor por ausencia.
@@ -46,7 +47,34 @@ public class UsuarioDTO {
      * @param tipo Tipo de usuario (atención al cliente, rrhh, mantenimiento,
      * gerente).
      */
-    public UsuarioDTO(String id, String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String curp, String rfc, String correo, String contra, String tipo) {
+    public UsuarioDTO(ObjectId id, String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String curp, String rfc, String correo, String contra, String tipo) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.telefono = telefono;
+        this.curp = curp;
+        this.rfc = rfc;
+        this.correo = correo;
+        this.contra = contra;
+        this.tipo = tipo;
+    }
+    
+    /**
+     * Constructor que inicializa todos los atributos de un usuario.
+     *
+     * @param nombres Nombres del usuario.
+     * @param apellidoPaterno Apellido paterno del usuario.
+     * @param apellidoMaterno Apellido materno del usuario.
+     * @param telefono Teléfono del usuario.
+     * @param curp CURP del usuario.
+     * @param rfc RFC del usuario.
+     * @param correo Correo del usuario.
+     * @param contra Contraseña del usuario.
+     * @param tipo Tipo de usuario (atención al cliente, rrhh, mantenimiento,
+     * gerente).
+     */
+    public UsuarioDTO(String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String curp, String rfc, String correo, String contra, String tipo) {
         this.id = id;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
@@ -68,7 +96,21 @@ public class UsuarioDTO {
      * @param contra Contraseña del cliente.
      * @param tipo Tipo de usuario (en este caso cliente).
      */
-    public UsuarioDTO(String id, String correo, String contra, String tipo) {
+    public UsuarioDTO(ObjectId id, String correo, String contra, String tipo) {
+        this.correo = correo;
+        this.contra = contra;
+        this.tipo = tipo;
+    }
+    
+    /**
+     * Constructor que inicializa los atributos del usuario en caso de ser
+     * cliente.
+     *
+     * @param correo Correo del cliente.
+     * @param contra Contraseña del cliente.
+     * @param tipo Tipo de usuario (en este caso cliente).
+     */
+    public UsuarioDTO(String correo, String contra, String tipo) {
         this.correo = correo;
         this.contra = contra;
         this.tipo = tipo;
@@ -79,7 +121,7 @@ public class UsuarioDTO {
      *
      * @return ID de un usuario.
      */
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
@@ -88,7 +130,7 @@ public class UsuarioDTO {
      *
      * @param id ID a asignar a un usuario.
      */
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
     
@@ -99,22 +141,6 @@ public class UsuarioDTO {
      */
     public String getNombres() {
         return nombres;
-    }
-
-    /**
-     * Metodo que devuelve el id de usuario
-     * @return Id del usuario
-     */
-    public String getIdUsuario() {
-        return idUsuario;
-    }
-
-    /**
-     * Metodo que asigna el id de usuario
-     * @param idUsuario
-     */
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     /**

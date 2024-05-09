@@ -2,6 +2,7 @@ package interfaces;
 
 import colecciones.Ticket;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -10,8 +11,8 @@ import java.util.List;
 public interface ITicketDAO {
     public void agregarTicket(Ticket ticket);
 
-    public List<Ticket> obtenerTickets(String id);
+    public List<Ticket> obtenerTickets(ObjectId id);
 
-    public Ticket obtenerTicket(String folio);
+    public Ticket obtenerTicket(ObjectId folio);
 
 }

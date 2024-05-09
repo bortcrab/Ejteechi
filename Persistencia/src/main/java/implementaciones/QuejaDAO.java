@@ -24,7 +24,7 @@ public class QuejaDAO implements IQuejaDAO {
 
     @Override
     public void insertarQueja(Queja queja) {
- if (queja.isAnonimo()) {
+    if (queja.isAnonimo()) {
         queja.setIdCliente(null);
     }
         coleccion.insertOne(queja);

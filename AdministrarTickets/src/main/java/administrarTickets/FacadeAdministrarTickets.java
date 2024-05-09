@@ -4,6 +4,7 @@ import dtos.TicketDTO;
 import dtos.UsuarioDTO;
 import excepciones.AdministrarTicketsException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -28,7 +29,7 @@ public class FacadeAdministrarTickets implements IAdministrarTickets {
     }
 
     @Override
-    public TicketDTO obtenerTicket(String folio) {
+    public TicketDTO obtenerTicket(ObjectId folio) {
         return ctrlContactarAtnAlCliente.obtenerTicket(folio);
     }
 

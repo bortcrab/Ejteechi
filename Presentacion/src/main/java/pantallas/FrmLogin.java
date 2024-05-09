@@ -56,14 +56,14 @@ public class FrmLogin extends javax.swing.JFrame {
             }
 
             // Creamos un usuario DTO con los datos introducidos.
-            UsuarioDTO usuario = new UsuarioDTO("", correo, contrasenia, "");
+            UsuarioDTO usuario = new UsuarioDTO(correo, contrasenia, "");
             
             // Mandamos a crear la cuenta del usuario.
             usuario = facadeIniciarSesion.iniciarSesion(usuario);
             
             if (!usuario.getTipo().equals("cliente")) {
                 // Redireccionamos al usuario al home para clientes.
-                FrmHomeEmpleado frmHome = new FrmHomeEmpleado(usuario);
+                FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
                 frmHome.setVisible(true);
             } else {
                 // Redireccionamos al usuario al home para clientes.

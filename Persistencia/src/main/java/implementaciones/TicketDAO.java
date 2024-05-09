@@ -45,7 +45,7 @@ public class TicketDAO implements ITicketDAO {
     }
 
     @Override
-    public List<Ticket> obtenerTickets(String idUsuario) {
+    public List<Ticket> obtenerTickets(ObjectId idUsuario) {
         // Creamos la conexión con el servidor.
         MongoDatabase db = conexion.crearConexion();
         // Obtenemos la colección de tickets.
@@ -55,7 +55,7 @@ public class TicketDAO implements ITicketDAO {
          * Filtro para indicar que sólo se busque usuarios cuyo correo sea el
          * mismo que el proporcionado.
          */
-        Document filtro = new Document("idUsuario", new ObjectId(idUsuario));
+        Document filtro = new Document("idUsuario", idUsuario);
 
         /**
          * Mandamos a ejecutar la consulta con el filtro, limitamos los
@@ -78,7 +78,7 @@ public class TicketDAO implements ITicketDAO {
     }
 
     @Override
-    public Ticket obtenerTicket(String folio) {
+    public Ticket obtenerTicket(ObjectId folio) {
         // Creamos la conexión con el servidor.
         MongoDatabase db = conexion.crearConexion();
         // Obtenemos la colección de tickets.
@@ -88,7 +88,7 @@ public class TicketDAO implements ITicketDAO {
          * Filtro para indicar que sólo se busque usuarios cuyo correo sea el
          * mismo que el proporcionado.
          */
-        Document filtro = new Document("id", new ObjectId(folio));
+        Document filtro = new Document("id", folio);
 
         /**
          * Mandamos a ejecutar la consulta con el filtro, limitamos los

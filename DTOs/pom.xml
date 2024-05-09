@@ -25,5 +25,10 @@
             <artifactId>graphhopper-core</artifactId>
             <version>9.0-pre1</version>
         </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+            <version>3.10.2</version>
+        </dependency>
     </dependencies>
 </project>

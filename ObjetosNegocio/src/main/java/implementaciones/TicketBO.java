@@ -6,14 +6,10 @@ import colecciones.Usuario;
 import dtos.RespuestaDTO;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
-import excepciones.ObjetosNegocioException;
 import interfaces.ITicketBO;
 import interfaces.ITicketDAO;
-import interfaces.IUsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bson.types.ObjectId;
 import utilidades.Encriptador;
 
@@ -47,7 +43,7 @@ public class TicketBO implements ITicketBO {
     }
 
     @Override
-    public TicketDTO obtenerTicket(String folio) {
+    public TicketDTO obtenerTicket(ObjectId folio) {
         Ticket ticketEnt = ticketDAO.obtenerTicket(folio);
 
         TicketDTO ticketDTO = convertirTicket(ticketEnt);
@@ -60,7 +56,7 @@ public class TicketBO implements ITicketBO {
                 ticketDTO.getContenido(),
                 ticketDTO.getFecha(),
                 ticketDTO.getEstado(),
-                new ObjectId(ticketDTO.getIdUsuario()),
+                ticketDTO.getIdUsuario(),
                 convertirRespuestasDTO(ticketDTO.getRespuestas()));
         
         return ticketEnt;
@@ -68,11 +64,11 @@ public class TicketBO implements ITicketBO {
     
     private TicketDTO convertirTicket(Ticket ticketEnt) {
         TicketDTO ticketDTO = new TicketDTO(
-                ticketEnt.getId().toString(),
+                ticketEnt.getId(),
                 ticketEnt.getContenido(),
                 ticketEnt.getFecha(),
                 ticketEnt.getEstado(),
-                ticketEnt.getIdUsuario().toString(),
+                ticketEnt.getIdUsuario(),
                 convertirRespuestasEntidad(ticketEnt.getRespuestas()));
         
         return ticketDTO;
@@ -110,11 +106,11 @@ public class TicketBO implements ITicketBO {
         List<TicketDTO> listaTicketsDTO = new ArrayList<>();
         for (Ticket ticketEnt : listaTicketsEnt) {
             TicketDTO ticketDTO = new TicketDTO(
-                ticketEnt.getId().toString(),
+                ticketEnt.getId(),
                 ticketEnt.getContenido(),
                 ticketEnt.getFecha(),
                 ticketEnt.getEstado(),
-                ticketEnt.getIdUsuario().toString(),
+                ticketEnt.getIdUsuario(),
                 convertirRespuestasEntidad(ticketEnt.getRespuestas()));
             
             listaTicketsDTO.add(ticketDTO);
@@ -144,7 +140,7 @@ public class TicketBO implements ITicketBO {
      */
     private UsuarioDTO convertirUsuario(Usuario usuarioEnt) {
         UsuarioDTO usuarioDTO = new UsuarioDTO(
-                usuarioEnt.getId().toString(),
+                usuarioEnt.getId(),
                 usuarioEnt.getNombres(),
                 usuarioEnt.getApellidoPaterno(),
                 usuarioEnt.getApellidoMaterno(),

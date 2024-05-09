@@ -1,6 +1,7 @@
 package colecciones;
 
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 public class Queja {
     private String noQueja;
@@ -8,7 +9,7 @@ public class Queja {
     private Date fecha;
     private String descripcion;
     private boolean anonimo;
-    private String idCliente;
+    private ObjectId idCliente;
 
     /**
      * Constructor vacío
@@ -75,11 +76,11 @@ public class Queja {
         this.anonimo = anonimo;
     }
 
-    public String getIdCliente() {
+    public ObjectId getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(String idCliente) {
+    public void setIdCliente(ObjectId idCliente) {
         this.idCliente = idCliente;
     }
 

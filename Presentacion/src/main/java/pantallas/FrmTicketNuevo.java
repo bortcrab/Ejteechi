@@ -292,7 +292,13 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_lblCitasMouseClicked
 
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
-        
+        try {
+            FrmQuejas frmQuejas = new FrmQuejas(usuario);
+            frmQuejas.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
     }//GEN-LAST:event_lblQuejasMouseClicked
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed

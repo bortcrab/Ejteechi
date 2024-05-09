@@ -16,20 +16,21 @@ public class FrmQuejas extends javax.swing.JFrame {
     private final UsuarioDTO usuario;
     private int desiredPosition = 51;
     private IAdministrarQuejas administrar;
-     
+
     /**
      * Creates new form FrmQuejas
+     *
      * @param usuario
      * @throws excepciones.PresentacionException
      */
     public FrmQuejas(UsuarioDTO usuario) throws PresentacionException {
         initComponents();
-        
+
         administrar = new FacadeAdministrarQuejas();
         this.usuario = usuario;
 
         Validador.validarSesion(usuario, this);
-        
+
     }
 
     /**
@@ -280,8 +281,9 @@ public class FrmQuejas extends javax.swing.JFrame {
         int caretPosition = txtQueja.getCaretPosition();
         if (caretPosition == desiredPosition) {
             txtQueja.append("\n");
-            desiredPosition += 54; 
-        }if (txtQueja.getText().length() > 150) {
+            desiredPosition += 54;
+        }
+        if (txtQueja.getText().length() > 150) {
             JOptionPane.showMessageDialog(this, "Has llegado al límite de caracteres", "Límite alcanzado", JOptionPane.ERROR_MESSAGE);
             txtQueja.setText(txtQueja.getText().substring(0, 150));
         }
@@ -290,28 +292,31 @@ public class FrmQuejas extends javax.swing.JFrame {
 
     private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
         // TODO add your handling code here:
-        if(txtQueja.getText()!=null && jComboBoxTipoQueja.getSelectedItem()!="<Elija uno>"){
-        try{
-            QuejaDTO queja = new QuejaDTO();
-            queja.setDescripcion(txtQueja.getText());
-            Date fecha = new Date();
-            queja.setFecha(fecha);
-            queja.setTipoQueja(jComboBoxTipoQueja.getSelectedItem().toString());
-            queja.setAnonimo(btnAnonimo.isSelected());
-            if(!btnAnonimo.isSelected()){
-                queja.setIdCliente(usuario.getIdUsuario());
+        if (txtQueja.getText() != null && jComboBoxTipoQueja.getSelectedItem() != "<Elija uno>") {
+            try {
+                QuejaDTO queja = new QuejaDTO();
+                queja.setDescripcion(txtQueja.getText());
+                Date fecha = new Date();
+                queja.setFecha(fecha);
+                queja.setTipoQueja(jComboBoxTipoQueja.getSelectedItem().toString());
+                queja.setAnonimo(btnAnonimo.isSelected());
+                if (!btnAnonimo.isSelected()) {
+                    queja.setIdCliente(usuario.getId());
+                }
+                administrar.enviarQueja(queja);
+
+                FrmQuejas frmQuejas = new FrmQuejas(usuario);
+                frmQuejas.setVisible(true);
+                this.dispose();
+                JOptionPane.showMessageDialog(this, "La queja se ha mandado con éxito.", "¡Queja enviada con éxito!", JOptionPane.INFORMATION_MESSAGE);
+            } catch (AdministrarQuejaException | PresentacionException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-            administrar.enviarQueja(queja);
-            JOptionPane.showMessageDialog(this, "La queja se ha mandado con éxito","Queja enviada con éxito", JOptionPane.PLAIN_MESSAGE);
-        }catch(AdministrarQuejaException e){
-            JOptionPane.showMessageDialog(this, e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
-        }
-        }else{
-            JOptionPane.showMessageDialog(this, "Para continuar, necesita llenar todos los datos, asegure de llenar el contenido de la queja y seleccionar un tipo de queja","Llene todos los datos", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Para continuar, necesita llenar todos los datos, asegure de llenar el contenido de la queja y seleccionar un tipo de queja", "Llene todos los datos", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEnviarMouseClicked
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnAnonimo;

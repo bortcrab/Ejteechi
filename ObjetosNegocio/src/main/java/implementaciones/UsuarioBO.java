@@ -111,7 +111,7 @@ public class UsuarioBO implements IUsuarioBO {
      */
     private UsuarioDTO convertirUsuario(Usuario usuarioEnt) {
         UsuarioDTO usuarioDTO = new UsuarioDTO(
-                usuarioEnt.getId().toString(),
+                usuarioEnt.getId(),
                 usuarioEnt.getNombres(),
                 usuarioEnt.getApellidoPaterno(),
                 usuarioEnt.getApellidoMaterno(),

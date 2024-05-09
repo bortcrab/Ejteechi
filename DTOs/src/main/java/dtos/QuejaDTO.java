@@ -1,6 +1,7 @@
 package dtos;
 
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 public class QuejaDTO {
     private String noQueja;
@@ -8,7 +9,7 @@ public class QuejaDTO {
     private Date fecha;
     private String descripcion;
     private boolean anonimo;
-    private String idCliente;
+    private ObjectId idCliente;
 
     public QuejaDTO() {
     }
@@ -60,11 +61,11 @@ public class QuejaDTO {
         this.anonimo = anonimo;
     }
 
-    public String getIdCliente() {
+    public ObjectId getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(String idCliente) {
+    public void setIdCliente(ObjectId idCliente) {
         this.idCliente = idCliente;
     }
 

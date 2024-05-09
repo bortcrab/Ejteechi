@@ -2,20 +2,21 @@ package dtos;
 
 import java.util.Date;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 public class TicketDTO {
     
-    private String id;
+    private ObjectId id;
     private String contenido;
     private Date fecha;
     private String estado;
-    private String idUsuario;
+    private ObjectId idUsuario;
     private List<RespuestaDTO> respuestas;
 
     public TicketDTO() {
     }
 
-    public TicketDTO(String id, String contenido, Date fecha, String estado, String idUsuario, List<RespuestaDTO> respuestas) {
+    public TicketDTO(ObjectId id, String contenido, Date fecha, String estado, ObjectId idUsuario, List<RespuestaDTO> respuestas) {
         this.id = id;
         this.contenido = contenido;
         this.fecha = fecha;
@@ -24,7 +25,7 @@ public class TicketDTO {
         this.respuestas = respuestas;
     }
     
-    public TicketDTO(String contenido, Date fecha, String estado, String idUsuario, List<RespuestaDTO> respuestas) {
+    public TicketDTO(String contenido, Date fecha, String estado, ObjectId idUsuario, List<RespuestaDTO> respuestas) {
         this.contenido = contenido;
         this.fecha = fecha;
         this.estado = estado;
@@ -32,11 +33,11 @@ public class TicketDTO {
         this.respuestas = respuestas;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -64,11 +65,11 @@ public class TicketDTO {
         this.estado = estado;
     }
 
-    public String getIdUsuario() {
+    public ObjectId getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(ObjectId idUsuario) {
         this.idUsuario = idUsuario;
     }
 

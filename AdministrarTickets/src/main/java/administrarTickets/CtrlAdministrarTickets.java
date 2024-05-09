@@ -7,6 +7,7 @@ import excepciones.ObjetosNegocioException;
 import implementaciones.TicketBO;
 import interfaces.ITicketBO;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -32,7 +33,7 @@ public class CtrlAdministrarTickets {
         return ticketBO.obtenerTickets(usuario);
     }
 
-    TicketDTO obtenerTicket(String folio) {
+    TicketDTO obtenerTicket(ObjectId folio) {
         return ticketBO.obtenerTicket(folio);
     }
 }

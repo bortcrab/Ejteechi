@@ -65,7 +65,7 @@ public class FrmAtnAlCliente extends javax.swing.JFrame {
 
         for (TicketDTO ticket : listaTickets) {
             Object[] fila = new Object[4];
-            fila[0] = ticket.getId();
+            fila[0] = ticket.getId().toString();
             fila[1] = ticket.getContenido();
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:MM:ss");
             String fecha = formatter.format(ticket.getFecha().getTime());
