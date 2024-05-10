@@ -126,6 +126,24 @@ public class Validador {
             throw new PresentacionException("El ticket no puede exceder los 500 caracteres.");
         }
     }
+    
+    /**
+     * 
+     * @param contenido
+     * @throws PresentacionException 
+     */
+    public void validarRespuesta(String contenido) throws PresentacionException {
+        try {
+            validarVacio(contenido);
+        } catch (PresentacionException pe) {
+            // Si la contraseña está vacía.
+            throw new PresentacionException("El mensaje no puede estar vacío.");
+        }
+        if (contenido.length() > 500) {
+            // Si la contraseña es diferente a la original.
+            throw new PresentacionException("El mensaje no puede exceder los 500 caracteres.");
+        }
+    }
 
     /**
      * Método para validar si hay una sesión activa para continuar.

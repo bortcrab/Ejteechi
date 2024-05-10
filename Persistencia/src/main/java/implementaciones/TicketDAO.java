@@ -1,10 +1,11 @@
 package implementaciones;
 
+import colecciones.Respuesta;
 import colecciones.Ticket;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.ReplaceOptions;
+import com.mongodb.client.model.Updates;
 import conexion.Conexion;
 import conexion.IConexion;
 import interfaces.ITicketDAO;
@@ -55,21 +56,17 @@ public class TicketDAO implements ITicketDAO {
          * Filtro para indicar que sólo se busque usuarios cuyo correo sea el
          * mismo que el proporcionado.
          */
-        Document filtro = new Document("idUsuario", idUsuario);
+        Document filtro = new Document("usuario._id", idUsuario);
 
+        List<Ticket> listaTickets = new ArrayList<>();
+        
         /**
          * Mandamos a ejecutar la consulta con el filtro, limitamos los
          * resultados a uno porque sólo debe haber un usuario con ese correo. Lo
          * que obtengamos lo guardamos en una variable.
          */
-        FindIterable<Ticket> resultados = coleccion.find(filtro);
+        coleccion.find(filtro).into(listaTickets);
 
-        List<Ticket> listaTickets = new ArrayList<>();
-        MongoCursor<Ticket> cursor = resultados.iterator();
-        while (cursor.hasNext()) {
-            listaTickets.add(cursor.next());
-        }
-        
         // Imprimimos lo que se hizo.
         logger.log(Level.INFO, "Se ha insertado un documento en la colección 'tickets'.");
         conexion.cerrarConexion(); // Cerramos la conexión.
@@ -88,7 +85,7 @@ public class TicketDAO implements ITicketDAO {
          * Filtro para indicar que sólo se busque usuarios cuyo correo sea el
          * mismo que el proporcionado.
          */
-        Document filtro = new Document("id", folio);
+        Document filtro = new Document("_id", folio);
 
         /**
          * Mandamos a ejecutar la consulta con el filtro, limitamos los
@@ -102,6 +99,63 @@ public class TicketDAO implements ITicketDAO {
         conexion.cerrarConexion(); // Cerramos la conexión.
         
         return ticket;
+    }
+    
+    @Override
+    public void agregarRespuesta(ObjectId folioTicket, Respuesta respuesta) {
+        // Creamos la conexión con el servidor.
+        MongoDatabase db = conexion.crearConexion();
+        // Obtenemos la colección de tickets.
+        coleccion = db.getCollection("tickets", Ticket.class);
+        
+        Document filtro = new Document("_id", folioTicket);
+        
+        // Mandamos a insertar el ticket.
+        coleccion.updateOne(filtro , Updates.push("respuestas", respuesta));
+
+        // Imprimimos lo que se hizo.
+        logger.log(Level.INFO, "Se ha actualizado un documento de la colección 'tickets'.");
+        conexion.cerrarConexion(); // Cerramos la conexión.
+    }
+
+    @Override
+    public List<Ticket> obtenerTodosTickets() {
+        // Creamos la conexión con el servidor.
+        MongoDatabase db = conexion.crearConexion();
+        // Obtenemos la colección de tickets.
+        coleccion = db.getCollection("tickets", Ticket.class);
+
+        List<Ticket> listaTickets = new ArrayList<>();
+        
+        /**
+         * Mandamos a ejecutar la consulta con el filtro, limitamos los
+         * resultados a uno porque sólo debe haber un usuario con ese correo. Lo
+         * que obtengamos lo guardamos en una variable.
+         */
+        coleccion.find().into(listaTickets);
+
+        // Imprimimos lo que se hizo.
+        logger.log(Level.INFO, "Se ha insertado un documento en la colección 'tickets'.");
+        conexion.cerrarConexion(); // Cerramos la conexión.
+        
+        return listaTickets;
+    }
+
+    @Override
+    public void actualizarEstadoTicket(Ticket ticket) {
+        // Creamos la conexión con el servidor.
+        MongoDatabase db = conexion.crearConexion();
+        // Obtenemos la colección de tickets.
+        coleccion = db.getCollection("tickets", Ticket.class);
+
+        Document filtro = new Document("_id", ticket.getId());
+        
+        // Mandamos a insertar el ticket.
+        coleccion.replaceOne(filtro, ticket);
+
+        // Imprimimos lo que se hizo.
+        logger.log(Level.INFO, "Se ha insertado un documento en la colección 'tickets'.");
+        conexion.cerrarConexion(); // Cerramos la conexión.
     }
 
 }

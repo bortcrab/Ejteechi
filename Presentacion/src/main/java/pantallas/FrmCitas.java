@@ -255,7 +255,7 @@ public class FrmCitas extends javax.swing.JFrame {
 
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
         try {
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
+            FrmAtnVistaCliente frmAtnAlCliente = new FrmAtnVistaCliente(usuario);
             frmAtnAlCliente.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);

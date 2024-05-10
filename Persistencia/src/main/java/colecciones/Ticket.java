@@ -14,17 +14,17 @@ public class Ticket {
     private String contenido;
     private Date fecha;
     private String estado;
-    private ObjectId idUsuario;
+    private Usuario usuario;
     private List<Respuesta> respuestas;
 
     public Ticket() {
     }
 
-    public Ticket(String contenido, Date fecha, String estado, ObjectId idUsuario, List<Respuesta> respuestas) {
+    public Ticket(String contenido, Date fecha, String estado, Usuario usuario, List<Respuesta> respuestas) {
         this.contenido = contenido;
         this.fecha = fecha;
         this.estado = estado;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
         this.respuestas = respuestas;
     }
 
@@ -60,12 +60,12 @@ public class Ticket {
         this.estado = estado;
     }
 
-    public ObjectId getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(ObjectId idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public List<Respuesta> getRespuestas() {

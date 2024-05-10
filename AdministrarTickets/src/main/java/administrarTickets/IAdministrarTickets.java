@@ -1,8 +1,8 @@
 package administrarTickets;
 
+import dtos.RespuestaDTO;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
-import excepciones.AdministrarTicketsException;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -12,9 +12,9 @@ import org.bson.types.ObjectId;
  */
 public interface IAdministrarTickets {
 
-    public void enviarTicket(TicketDTO ticket) throws AdministrarTicketsException;
+    public void enviarTicket(TicketDTO ticket);
 
     public List<TicketDTO> obtenerTickets(UsuarioDTO usuario);
-
-    public TicketDTO obtenerTicket(ObjectId folio);
+    
+    public TicketDTO enviarRespuesta(ObjectId folio, RespuestaDTO respuesta);
 }

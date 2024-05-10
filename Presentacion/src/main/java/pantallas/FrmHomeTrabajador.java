@@ -6,6 +6,8 @@ package pantallas;
 
 import dtos.UsuarioDTO;
 import excepciones.PresentacionException;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 import utilidades.Validador;
 
 /**
@@ -42,64 +44,61 @@ public class FrmHomeTrabajador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblMantenimiento = new javax.swing.JLabel();
-        lblMantenimiento1 = new javax.swing.JLabel();
-        lblRegistrar = new javax.swing.JLabel();
-        lblRegistrar1 = new javax.swing.JLabel();
-        lblQuejas = new javax.swing.JLabel();
-        lblQuejas1 = new javax.swing.JLabel();
-        lblTickets = new javax.swing.JLabel();
-        lblTickets1 = new javax.swing.JLabel();
-        lblSesion = new javax.swing.JLabel();
-        lblSesion1 = new javax.swing.JLabel();
-        img = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
+        lblAtencionClienteTrabajador = new javax.swing.JLabel();
+        lblCerrarSesion = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblMantenimiento.setText("mantenimiento");
-        jPanel1.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 180, 50));
+        lblHome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblHome.setForeground(new java.awt.Color(0, 0, 0));
+        lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHomeMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 230, 110));
 
-        lblMantenimiento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblMantenimiento1.setText("Programar ");
-        jPanel1.add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 120, 50));
+        lblAtencionClienteTrabajador.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblAtencionClienteTrabajador.setText("Atención al cliente");
+        lblAtencionClienteTrabajador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblAtencionClienteTrabajador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtencionClienteTrabajadorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAtencionClienteTrabajadorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAtencionClienteTrabajadorMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblAtencionClienteTrabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, 90));
 
-        lblRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblRegistrar.setText("empleado");
-        jPanel1.add(lblRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 130, 70));
+        lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
+        lblCerrarSesion.setText("       Cerrar sesión");
+        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 50, 200, 70));
 
-        lblRegistrar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblRegistrar1.setText("Registrar");
-        jPanel1.add(lblRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 120, 70));
-
-        lblQuejas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblQuejas.setText("Ver");
-        jPanel1.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 90, 60));
-
-        lblQuejas1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblQuejas1.setText("quejas");
-        jPanel1.add(lblQuejas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 90, 70));
-
-        lblTickets.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblTickets.setText("Atender");
-        jPanel1.add(lblTickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 90, 70));
-
-        lblTickets1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblTickets1.setText("tickets");
-        jPanel1.add(lblTickets1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 60, 90, 70));
-
-        lblSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblSesion.setText("Sesión");
-        jPanel1.add(lblSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 60, 90, 70));
-
-        lblSesion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblSesion1.setText("Cerrar");
-        jPanel1.add(lblSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 90, 70));
-
-        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 6 (2).png"))); // NOI18N
-        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1120, 690));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondHomeTrabajador.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,18 +115,54 @@ public class FrmHomeTrabajador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
+        FrmLogin frmLogin = new FrmLogin();
+        frmLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblCerrarSesionMouseClicked
+
+    private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
+        lblCerrarSesion.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblCerrarSesionMouseEntered
+
+    private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
+        lblCerrarSesion.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblCerrarSesionMouseExited
+
+    private void lblAtencionClienteTrabajadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseClicked
+        try {
+            FrmAtnVistaTrabajador frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
+            frmAtnAlCliente.setVisible(true);
+        } catch (PresentacionException pe) {
+            // Se muestra un mensaje si no se validó la sesión.
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseClicked
+
+    private void lblAtencionClienteTrabajadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseEntered
+        lblAtencionClienteTrabajador.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseEntered
+
+    private void lblAtencionClienteTrabajadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseExited
+        lblAtencionClienteTrabajador.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseExited
+
+    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
+        try {
+            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
+            frmHome.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblHomeMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel img;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblMantenimiento;
-    private javax.swing.JLabel lblMantenimiento1;
-    private javax.swing.JLabel lblQuejas;
-    private javax.swing.JLabel lblQuejas1;
-    private javax.swing.JLabel lblRegistrar;
-    private javax.swing.JLabel lblRegistrar1;
-    private javax.swing.JLabel lblSesion;
-    private javax.swing.JLabel lblSesion1;
-    private javax.swing.JLabel lblTickets;
-    private javax.swing.JLabel lblTickets1;
+    private javax.swing.JLabel lblAtencionClienteTrabajador;
+    private javax.swing.JLabel lblCerrarSesion;
+    private javax.swing.JLabel lblHome;
     // End of variables declaration//GEN-END:variables
 }

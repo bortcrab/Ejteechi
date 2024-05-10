@@ -203,7 +203,7 @@ public class FrmHomeCliente extends javax.swing.JFrame {
      */
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
         try {
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
+            FrmAtnVistaCliente frmAtnAlCliente = new FrmAtnVistaCliente(usuario);
             frmAtnAlCliente.setVisible(true);
         } catch (PresentacionException pe) {
             // Se muestra un mensaje si no se validó la sesión.

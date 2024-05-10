@@ -30,7 +30,7 @@ public class Respuesta {
     public void setId(ObjectId id) {
         this.id = id;
     }
-
+    
     public String getContenido() {
         return contenido;
     }

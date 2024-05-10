@@ -1,8 +1,8 @@
 package administrarTickets;
 
+import dtos.RespuestaDTO;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
-import excepciones.AdministrarTicketsException;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -15,11 +15,11 @@ public class FacadeAdministrarTickets implements IAdministrarTickets {
     private final CtrlAdministrarTickets ctrlContactarAtnAlCliente;
 
     public FacadeAdministrarTickets() {
-        this.ctrlContactarAtnAlCliente = new CtrlAdministrarTickets();
+        ctrlContactarAtnAlCliente = new CtrlAdministrarTickets();
     }
 
     @Override
-    public void enviarTicket(TicketDTO ticket) throws AdministrarTicketsException {
+    public void enviarTicket(TicketDTO ticket) {
         ctrlContactarAtnAlCliente.enviarTicket(ticket);
     }
 
@@ -29,8 +29,8 @@ public class FacadeAdministrarTickets implements IAdministrarTickets {
     }
 
     @Override
-    public TicketDTO obtenerTicket(ObjectId folio) {
-        return ctrlContactarAtnAlCliente.obtenerTicket(folio);
+    public TicketDTO enviarRespuesta(ObjectId folio, RespuestaDTO respuesta) {
+        return ctrlContactarAtnAlCliente.enviarRespuesta(folio, respuesta);
     }
 
 }

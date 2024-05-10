@@ -20,16 +20,15 @@ import utilidades.Encriptador;
 public class TicketBO implements ITicketBO {
 
     private final ITicketDAO ticketDAO;
-    private final Encriptador encriptador;
 
     public TicketBO() {
         this.ticketDAO = new TicketDAO();
-        this.encriptador = new Encriptador();
     }
     
     @Override
     public void enviarTicket(TicketDTO ticketDTO) {
         Ticket ticketEnt = convertirTicket(ticketDTO);
+        ticketEnt.getUsuario().setId(ticketDTO.getUsuario().getId());
         ticketDAO.agregarTicket(ticketEnt);
     }
     
@@ -51,13 +50,37 @@ public class TicketBO implements ITicketBO {
         return ticketDTO;
     }
     
+    @Override
+    public TicketDTO enviarRespuesta(ObjectId folio, RespuestaDTO respuestaDTO) {
+        Respuesta respuestaEnt = convertirRespuesta(respuestaDTO);
+        ticketDAO.agregarRespuesta(folio, respuestaEnt);
+        return this.obtenerTicket(folio);
+    }
+    
+    @Override
+    public List<TicketDTO> obtenerTodosTickets() {
+        List<Ticket> listaTicketsEnt = ticketDAO.obtenerTodosTickets();
+        
+        List<TicketDTO> listaTicketsDTO = convertirListaTickets(listaTicketsEnt);
+        
+        return listaTicketsDTO;
+    }
+    
+    @Override
+    public void cambiarEstado(TicketDTO ticketDTO) {
+        Ticket ticketEnt = convertirTicket(ticketDTO);
+        ticketEnt.getUsuario().setId(ticketDTO.getUsuario().getId());
+        ticketDAO.actualizarEstadoTicket(ticketEnt);
+    }
+    
     private Ticket convertirTicket(TicketDTO ticketDTO) {
         Ticket ticketEnt = new Ticket(
                 ticketDTO.getContenido(),
                 ticketDTO.getFecha(),
                 ticketDTO.getEstado(),
-                ticketDTO.getIdUsuario(),
+                convertirUsuario(ticketDTO.getUsuario()),
                 convertirRespuestasDTO(ticketDTO.getRespuestas()));
+        ticketEnt.setId(ticketDTO.getId());
         
         return ticketEnt;
     }
@@ -68,7 +91,7 @@ public class TicketBO implements ITicketBO {
                 ticketEnt.getContenido(),
                 ticketEnt.getFecha(),
                 ticketEnt.getEstado(),
-                ticketEnt.getIdUsuario(),
+                convertirUsuario(ticketEnt.getUsuario()),
                 convertirRespuestasEntidad(ticketEnt.getRespuestas()));
         
         return ticketDTO;
@@ -80,8 +103,8 @@ public class TicketBO implements ITicketBO {
                 usuarioDTO.getApellidoPaterno(),
                 usuarioDTO.getApellidoMaterno(),
                 usuarioDTO.getTelefono(),
-                encriptador.encriptar(usuarioDTO.getCorreo()),
-                encriptador.encriptar(usuarioDTO.getContra()),
+                usuarioDTO.getCorreo(),
+                usuarioDTO.getContra(),
                 usuarioDTO.getCurp(),
                 usuarioDTO.getRfc(),
                 usuarioDTO.getTipo());
@@ -110,7 +133,7 @@ public class TicketBO implements ITicketBO {
                 ticketEnt.getContenido(),
                 ticketEnt.getFecha(),
                 ticketEnt.getEstado(),
-                ticketEnt.getIdUsuario(),
+                convertirUsuario(ticketEnt.getUsuario()),
                 convertirRespuestasEntidad(ticketEnt.getRespuestas()));
             
             listaTicketsDTO.add(ticketDTO);
@@ -152,6 +175,15 @@ public class TicketBO implements ITicketBO {
                 usuarioEnt.getTipo());
 
         return usuarioDTO;
+    }
+
+    private Respuesta convertirRespuesta(RespuestaDTO respuestaDTO) {
+        Respuesta respuestaEnt = new Respuesta(
+                respuestaDTO.getContenido(),
+                respuestaDTO.getFecha(),
+                convertirUsuario(respuestaDTO.getUsuario()));
+        
+        return respuestaEnt;
     }
 
 }

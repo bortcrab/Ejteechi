@@ -116,6 +116,11 @@ public class FrmLogin extends javax.swing.JFrame {
         btnRegistrate.setBorder(BorderFactory.createMatteBorder(0,0,2,0, java.awt.Color.WHITE));
 
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 440, 60));
 
         btnIngresar.setBackground(new java.awt.Color(133, 175, 218));
@@ -139,6 +144,11 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 440, 60));
 
         pwdContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pwdContrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwdContraseniaActionPerformed(evt);
+            }
+        });
         jPanel1.add(pwdContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 440, 60));
 
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Group 18 (2).png"))); // NOI18N
@@ -202,7 +212,7 @@ public class FrmLogin extends javax.swing.JFrame {
      * @param evt Evento al que se escucha.
      */
     private void btnRegistrateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrateMouseClicked
-        FrmRegistrar frmRegistrar = new FrmRegistrar();
+        FrmRegistrarCliente frmRegistrar = new FrmRegistrarCliente();
         frmRegistrar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrateMouseClicked
@@ -230,6 +240,14 @@ public class FrmLogin extends javax.swing.JFrame {
         btnRegistrate.setForeground(Color.WHITE);
         btnRegistrate.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
     }//GEN-LAST:event_btnRegistrateMouseExited
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        iniciarSesion();
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void pwdContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdContraseniaActionPerformed
+        iniciarSesion();
+    }//GEN-LAST:event_pwdContraseniaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

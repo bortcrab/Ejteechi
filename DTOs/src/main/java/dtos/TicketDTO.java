@@ -10,26 +10,26 @@ public class TicketDTO {
     private String contenido;
     private Date fecha;
     private String estado;
-    private ObjectId idUsuario;
+    private UsuarioDTO usuario;
     private List<RespuestaDTO> respuestas;
 
     public TicketDTO() {
     }
 
-    public TicketDTO(ObjectId id, String contenido, Date fecha, String estado, ObjectId idUsuario, List<RespuestaDTO> respuestas) {
+    public TicketDTO(ObjectId id, String contenido, Date fecha, String estado, UsuarioDTO usuario, List<RespuestaDTO> respuestas) {
         this.id = id;
         this.contenido = contenido;
         this.fecha = fecha;
         this.estado = estado;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
         this.respuestas = respuestas;
     }
     
-    public TicketDTO(String contenido, Date fecha, String estado, ObjectId idUsuario, List<RespuestaDTO> respuestas) {
+    public TicketDTO(String contenido, Date fecha, String estado, UsuarioDTO usuario, List<RespuestaDTO> respuestas) {
         this.contenido = contenido;
         this.fecha = fecha;
         this.estado = estado;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
         this.respuestas = respuestas;
     }
 
@@ -65,12 +65,12 @@ public class TicketDTO {
         this.estado = estado;
     }
 
-    public ObjectId getIdUsuario() {
-        return idUsuario;
+    public UsuarioDTO getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(ObjectId idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
     }
 
     public List<RespuestaDTO> getRespuestas() {

@@ -16,7 +16,7 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
     private final IAdministrarTickets facadeAdministrarTickets;
     private final UsuarioDTO usuario;
     
-    /** Creates new form FrmAtnAlCliente */
+    /** Creates new form FrmAtnVistaCliente */
     public FrmTicketNuevo(UsuarioDTO usuario, IAdministrarTickets facadeAdministrarTickets) throws PresentacionException {
         initComponents();
         
@@ -28,22 +28,22 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
     
     private void enviarTicket() {
         try {
-            Validador validador = new Validador();
-            
             String contenido = areaTicket.getText();
+            
+            Validador validador = new Validador();
             
             validador.validarTicket(contenido);
             
-            TicketDTO ticket = new TicketDTO(contenido, new Date(), "Pendiente", usuario.getId(), new ArrayList<>());
+            TicketDTO ticket = new TicketDTO(contenido, new Date(), "Pendiente", usuario, new ArrayList<>());
             facadeAdministrarTickets.enviarTicket(ticket);
             
             
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
+            FrmAtnVistaCliente frmAtnAlCliente = new FrmAtnVistaCliente(usuario);
             frmAtnAlCliente.setVisible(true);
             this.dispose();
             JOptionPane.showMessageDialog(this, "¡Ticket enviado!", "¡Yippee!", JOptionPane.INFORMATION_MESSAGE);
-        } catch (AdministrarTicketsException | PresentacionException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -307,7 +307,7 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         try {
-            FrmAtnAlCliente frmAtnAlCliente = new FrmAtnAlCliente(usuario);
+            FrmAtnVistaCliente frmAtnAlCliente = new FrmAtnVistaCliente(usuario);
             frmAtnAlCliente.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
