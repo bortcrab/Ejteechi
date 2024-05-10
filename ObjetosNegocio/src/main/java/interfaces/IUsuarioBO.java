@@ -9,7 +9,7 @@ import excepciones.ObjetosNegocioException;
 /**
  * Interfaz que define los métodos para aplicar las reglas de negocio en lo
  * relacionado a los usuarios.
- *
+ *a
  * @author Diego Valenzuela Parra - 00000247700
  */
 public interface IUsuarioBO {

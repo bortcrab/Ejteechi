@@ -4,17 +4,31 @@
  */
 package pantallas;
 
+import dtos.CamionDTO;
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import programarMantenimiento.FacadeProgramarMantenimiento;
+import programarMantenimiento.IProgramarMantenimiento;
+import programarMantenimiento.ProgramarMantenimientoException;
+
 /**
  *
  * @author elimo
  */
 public class FrmProgramarMantenimiento extends javax.swing.JFrame {
 
+    IProgramarMantenimiento programarMantenimiento;
+    CamionDTO camion;
+
     /**
      * Creates new form FrmProgramarMantenimiento
      */
     public FrmProgramarMantenimiento() {
         initComponents();
+        camion = new CamionDTO();
+        programarMantenimiento = new FacadeProgramarMantenimiento();
     }
 
     /**
@@ -27,7 +41,6 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         lblMantenimiento = new javax.swing.JLabel();
         lblMantenimiento1 = new javax.swing.JLabel();
         lblRegistrar1 = new javax.swing.JLabel();
@@ -38,55 +51,481 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         lblTickets1 = new javax.swing.JLabel();
         lblSesion1 = new javax.swing.JLabel();
         lblSesion = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        btnUnidad001 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnUnidad002 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        btnUnidad003 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        btnUnidad004 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        btnUnidad005 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        btnUnidad006 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        btnUnidad007 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        btnUnidad008 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        btnUnidad009 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        btnUnidad010 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        lblLimpieza = new javax.swing.JLabel();
+        lblMotor = new javax.swing.JLabel();
+        lblLlanta = new javax.swing.JLabel();
+        lblLuces = new javax.swing.JLabel();
+        lblFechaMantenimiento = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        lblPrioridad = new javax.swing.JLabel();
         img = new javax.swing.JLabel();
+        btnLlanta = new javax.swing.JButton();
+        btnMotor = new javax.swing.JButton();
+        btnLuces = new javax.swing.JButton();
+        btnLimpieza = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 180, 430, 470));
 
         lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblMantenimiento.setText("mantenimiento");
-        jPanel1.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 180, 50));
+        jPanel1.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 180, 50));
 
         lblMantenimiento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblMantenimiento1.setText("Programar ");
-        jPanel1.add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 120, 50));
+        jPanel1.add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 120, 50));
 
         lblRegistrar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblRegistrar1.setText("Registrar");
-        jPanel1.add(lblRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 120, 70));
+        jPanel1.add(lblRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 120, 70));
 
         lblRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblRegistrar.setText("empleado");
-        jPanel1.add(lblRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 130, 70));
+        jPanel1.add(lblRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 130, 70));
 
         lblQuejas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblQuejas.setText("Ver");
-        jPanel1.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 90, 60));
+        jPanel1.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 60, 30));
 
         lblQuejas1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblQuejas1.setText("quejas");
-        jPanel1.add(lblQuejas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 90, 70));
+        jPanel1.add(lblQuejas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 90, 70));
 
         lblTickets.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTickets.setText("Atender");
-        jPanel1.add(lblTickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 90, 70));
+        jPanel1.add(lblTickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 90, 70));
 
         lblTickets1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTickets1.setText("tickets");
-        jPanel1.add(lblTickets1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 60, 90, 70));
+        jPanel1.add(lblTickets1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 90, 70));
 
         lblSesion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblSesion1.setText("Cerrar");
-        jPanel1.add(lblSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 50, 90, 70));
+        jPanel1.add(lblSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 60, 90, 70));
 
         lblSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblSesion.setText("sesión");
-        jPanel1.add(lblSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, 90, 70));
+        jPanel1.add(lblSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, 90, 70));
 
-        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 8 (1).png"))); // NOI18N
-        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1120, 690));
+        jScrollPane1.setForeground(new java.awt.Color(79, 89, 144));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnUnidad001.setBackground(new java.awt.Color(79, 89, 144));
+        btnUnidad001.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad001.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad001MouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Unidad #001");
+
+        javax.swing.GroupLayout btnUnidad001Layout = new javax.swing.GroupLayout(btnUnidad001);
+        btnUnidad001.setLayout(btnUnidad001Layout);
+        btnUnidad001Layout.setHorizontalGroup(
+            btnUnidad001Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad001Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad001Layout.setVerticalGroup(
+            btnUnidad001Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad001Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad001, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 60));
+
+        btnUnidad002.setBackground(new java.awt.Color(152, 165, 199));
+        btnUnidad002.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad002.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad002MouseClicked(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Unidad #002");
+
+        javax.swing.GroupLayout btnUnidad002Layout = new javax.swing.GroupLayout(btnUnidad002);
+        btnUnidad002.setLayout(btnUnidad002Layout);
+        btnUnidad002Layout.setHorizontalGroup(
+            btnUnidad002Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad002Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad002Layout.setVerticalGroup(
+            btnUnidad002Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad002Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad002, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 410, 60));
+
+        btnUnidad003.setBackground(new java.awt.Color(79, 89, 144));
+        btnUnidad003.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad003.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad003MouseClicked(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Unidad #003");
+
+        javax.swing.GroupLayout btnUnidad003Layout = new javax.swing.GroupLayout(btnUnidad003);
+        btnUnidad003.setLayout(btnUnidad003Layout);
+        btnUnidad003Layout.setHorizontalGroup(
+            btnUnidad003Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad003Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad003Layout.setVerticalGroup(
+            btnUnidad003Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad003Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad003, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 410, 60));
+
+        btnUnidad004.setBackground(new java.awt.Color(152, 165, 199));
+        btnUnidad004.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad004.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad004MouseClicked(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Unidad #004");
+
+        javax.swing.GroupLayout btnUnidad004Layout = new javax.swing.GroupLayout(btnUnidad004);
+        btnUnidad004.setLayout(btnUnidad004Layout);
+        btnUnidad004Layout.setHorizontalGroup(
+            btnUnidad004Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad004Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad004Layout.setVerticalGroup(
+            btnUnidad004Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad004Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad004, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 410, 60));
+
+        btnUnidad005.setBackground(new java.awt.Color(79, 89, 144));
+        btnUnidad005.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad005.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad005MouseClicked(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Unidad #005");
+
+        javax.swing.GroupLayout btnUnidad005Layout = new javax.swing.GroupLayout(btnUnidad005);
+        btnUnidad005.setLayout(btnUnidad005Layout);
+        btnUnidad005Layout.setHorizontalGroup(
+            btnUnidad005Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad005Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad005Layout.setVerticalGroup(
+            btnUnidad005Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad005Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad005, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 410, 70));
+
+        btnUnidad006.setBackground(new java.awt.Color(152, 165, 199));
+        btnUnidad006.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad006.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad006MouseClicked(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Unidad #006");
+
+        javax.swing.GroupLayout btnUnidad006Layout = new javax.swing.GroupLayout(btnUnidad006);
+        btnUnidad006.setLayout(btnUnidad006Layout);
+        btnUnidad006Layout.setHorizontalGroup(
+            btnUnidad006Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad006Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad006Layout.setVerticalGroup(
+            btnUnidad006Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad006Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad006, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 410, 70));
+
+        btnUnidad007.setBackground(new java.awt.Color(79, 89, 144));
+        btnUnidad007.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad007.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad007MouseClicked(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Unidad #007");
+
+        javax.swing.GroupLayout btnUnidad007Layout = new javax.swing.GroupLayout(btnUnidad007);
+        btnUnidad007.setLayout(btnUnidad007Layout);
+        btnUnidad007Layout.setHorizontalGroup(
+            btnUnidad007Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad007Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad007Layout.setVerticalGroup(
+            btnUnidad007Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad007Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad007, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 410, 70));
+
+        btnUnidad008.setBackground(new java.awt.Color(152, 165, 199));
+        btnUnidad008.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad008.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad008MouseClicked(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Unidad #008");
+
+        javax.swing.GroupLayout btnUnidad008Layout = new javax.swing.GroupLayout(btnUnidad008);
+        btnUnidad008.setLayout(btnUnidad008Layout);
+        btnUnidad008Layout.setHorizontalGroup(
+            btnUnidad008Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad008Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad008Layout.setVerticalGroup(
+            btnUnidad008Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad008Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad008, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 410, 60));
+
+        btnUnidad009.setBackground(new java.awt.Color(79, 89, 144));
+        btnUnidad009.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad009.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad009MouseClicked(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Unidad #009");
+
+        javax.swing.GroupLayout btnUnidad009Layout = new javax.swing.GroupLayout(btnUnidad009);
+        btnUnidad009.setLayout(btnUnidad009Layout);
+        btnUnidad009Layout.setHorizontalGroup(
+            btnUnidad009Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad009Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad009Layout.setVerticalGroup(
+            btnUnidad009Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad009Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad009, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 410, 60));
+
+        btnUnidad010.setBackground(new java.awt.Color(152, 165, 199));
+        btnUnidad010.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUnidad010.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnidad010MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Unidad #010");
+
+        javax.swing.GroupLayout btnUnidad010Layout = new javax.swing.GroupLayout(btnUnidad010);
+        btnUnidad010.setLayout(btnUnidad010Layout);
+        btnUnidad010Layout.setHorizontalGroup(
+            btnUnidad010Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad010Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnUnidad010Layout.setVerticalGroup(
+            btnUnidad010Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUnidad010Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(btnUnidad010, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 410, 60));
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, 420, 470));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Estado motor");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 110, -1));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel12.setText("Estado llanta");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 110, 20));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setText("Estado luces");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 490, 110, 20));
+
+        lblLimpieza.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblLimpieza.setForeground(new java.awt.Color(0, 102, 0));
+        jPanel1.add(lblLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 110, -1));
+
+        lblMotor.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblMotor.setForeground(new java.awt.Color(0, 102, 0));
+        jPanel1.add(lblMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 90, 30));
+
+        lblLlanta.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblLlanta.setForeground(new java.awt.Color(0, 102, 0));
+        jPanel1.add(lblLlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 100, -1));
+
+        lblLuces.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblLuces.setForeground(new java.awt.Color(0, 102, 0));
+        jPanel1.add(lblLuces, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 90, -1));
+
+        lblFechaMantenimiento.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblFechaMantenimiento.setText("09/05/2024");
+        jPanel1.add(lblFechaMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 620, 200, -1));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel19.setText("Estado limpieza");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 190, -1));
+
+        lblPrioridad.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblPrioridad.setForeground(new java.awt.Color(0, 102, 0));
+        jPanel1.add(lblPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 610, 100, 50));
+
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Group 19 (1).png"))); // NOI18N
+        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1120, 690));
+
+        btnLlanta.setText("jButton1");
+        btnLlanta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLlantaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 70, 70));
+
+        btnMotor.setText("jButton1");
+        btnMotor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMotorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 70, 70));
+
+        btnLuces.setText("jButton1");
+        btnLuces.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLucesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLuces, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, 60, 70));
+
+        btnLimpieza.setText("jButton1");
+        jPanel1.add(btnLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 70, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,18 +535,293 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnUnidad001MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad001MouseClicked
+        try {
+            camion = programarMantenimiento.obtenerPorNumeroUnidad("001");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad001MouseClicked
+
+    private void btnUnidad002MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad002MouseClicked
+        try {
+            camion = programarMantenimiento.obtenerPorNumeroUnidad("002");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+            
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad002MouseClicked
+
+    private void btnUnidad003MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad003MouseClicked
+        try {
+            camion = programarMantenimiento.obtenerPorNumeroUnidad("003");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad003MouseClicked
+
+    private void btnUnidad004MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad004MouseClicked
+        try {
+          camion = programarMantenimiento.obtenerPorNumeroUnidad("004");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad004MouseClicked
+
+    private void btnUnidad005MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad005MouseClicked
+        try {
+           camion = programarMantenimiento.obtenerPorNumeroUnidad("005");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad005MouseClicked
+
+    private void btnUnidad006MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad006MouseClicked
+        try {
+          camion = programarMantenimiento.obtenerPorNumeroUnidad("006");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad006MouseClicked
+
+    private void btnUnidad007MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad007MouseClicked
+        try {
+
+           camion = programarMantenimiento.obtenerPorNumeroUnidad("007");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad007MouseClicked
+
+    private void btnUnidad008MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad008MouseClicked
+        try {
+          camion = programarMantenimiento.obtenerPorNumeroUnidad("008");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad008MouseClicked
+
+    private void btnUnidad009MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad009MouseClicked
+        try {
+           camion = programarMantenimiento.obtenerPorNumeroUnidad("009");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad009MouseClicked
+
+    private void btnUnidad010MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnidad010MouseClicked
+        try {
+            camion = programarMantenimiento.obtenerPorNumeroUnidad("010");
+            lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
+            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
+            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
+            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
+            FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+        } catch (ProgramarMantenimientoException ex) {
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUnidad010MouseClicked
+
+    private void btnMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMotorActionPerformed
+        // TODO add your handling code here:
+        try{
+        programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), camion.getEstadoMotor(), FacadeProgramarMantenimiento.actualizarLabelEstado(lblMotor));
+        }catch(ProgramarMantenimientoException e){
+            Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_btnMotorActionPerformed
+
+    private void btnLlantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLlantaActionPerformed
+        // TODO add your handling code here:
+        FacadeProgramarMantenimiento.actualizarLabelEstado(lblLlanta);
+    }//GEN-LAST:event_btnLlantaActionPerformed
+
+    private void btnLucesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLucesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLucesActionPerformed
+
+  
+     
+     
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmProgramarMantenimiento().setVisible(true);
+            }
+        });
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpieza;
+    private javax.swing.JButton btnLlanta;
+    private javax.swing.JButton btnLuces;
+    private javax.swing.JButton btnMotor;
+    private javax.swing.JPanel btnUnidad001;
+    private javax.swing.JPanel btnUnidad002;
+    private javax.swing.JPanel btnUnidad003;
+    private javax.swing.JPanel btnUnidad004;
+    private javax.swing.JPanel btnUnidad005;
+    private javax.swing.JPanel btnUnidad006;
+    private javax.swing.JPanel btnUnidad007;
+    private javax.swing.JPanel btnUnidad008;
+    private javax.swing.JPanel btnUnidad009;
+    private javax.swing.JPanel btnUnidad010;
     private javax.swing.JLabel img;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFechaMantenimiento;
+    private javax.swing.JLabel lblLimpieza;
+    private javax.swing.JLabel lblLlanta;
+    private javax.swing.JLabel lblLuces;
     private javax.swing.JLabel lblMantenimiento;
     private javax.swing.JLabel lblMantenimiento1;
+    private javax.swing.JLabel lblMotor;
+    private javax.swing.JLabel lblPrioridad;
     private javax.swing.JLabel lblQuejas;
     private javax.swing.JLabel lblQuejas1;
     private javax.swing.JLabel lblRegistrar;
