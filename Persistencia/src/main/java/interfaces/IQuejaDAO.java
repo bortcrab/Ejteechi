@@ -6,8 +6,6 @@ package interfaces;
 
 import colecciones.Queja;
 import excepciones.PersistenciaException;
-import java.util.List;
-import org.bson.Document;
 
 /**
  *
