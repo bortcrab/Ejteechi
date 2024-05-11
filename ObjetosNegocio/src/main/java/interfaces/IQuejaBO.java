@@ -6,6 +6,7 @@ package interfaces;
 
 import dtos.QuejaDTO;
 import excepciones.ObjetosNegocioException;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,13 @@ import excepciones.ObjetosNegocioException;
 public interface IQuejaBO {
     
     public QuejaDTO enviarQueja(QuejaDTO quejaDTO) throws ObjetosNegocioException;
+    
+    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws ObjetosNegocioException;
+
+    public List<QuejaDTO> obtenerTodasLasQuejas() throws ObjetosNegocioException;
+
+    public List<QuejaDTO> obtenerQuejasLeidas() throws ObjetosNegocioException;
+
+    public List<QuejaDTO> obtenerQuejasNoLeidas() throws ObjetosNegocioException;
     
 }

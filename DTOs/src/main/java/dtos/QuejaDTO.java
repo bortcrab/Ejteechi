@@ -9,6 +9,7 @@ public class QuejaDTO {
     private Date fecha;
     private String descripcion;
     private boolean anonimo;
+    private boolean leido;
     private ObjectId idCliente;
 
     public QuejaDTO() {
@@ -19,6 +20,14 @@ public class QuejaDTO {
         this.fecha = fecha;
         this.tipoQueja = tipoQueja;
         this.anonimo = anonimo;
+    }
+
+    public boolean isLeido() {
+        return leido;
+    }
+
+    public void setLeido(boolean leido) {
+        this.leido = leido;
     }
 
     public String getTipoQueja() {

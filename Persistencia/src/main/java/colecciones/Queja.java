@@ -9,6 +9,7 @@ public class Queja {
     private Date fecha;
     private String descripcion;
     private boolean anonimo;
+    private boolean leido;
     private ObjectId idCliente;
 
     /**
@@ -40,6 +41,15 @@ public class Queja {
         return noQueja;
     }
 
+    public boolean isLeido() {
+        return leido;
+    }
+
+    public void setLeido(boolean leido) {
+        this.leido = leido;
+    }
+
+    
     public void setNoQueja(String noQueja) {
         this.noQueja = noQueja;
     }
