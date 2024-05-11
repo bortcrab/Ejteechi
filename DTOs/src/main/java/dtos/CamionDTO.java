@@ -1,5 +1,7 @@
 package dtos;
 
+import java.util.Date;
+
 public class CamionDTO {
     
     private String numeroUnidad;
@@ -7,6 +9,7 @@ public class CamionDTO {
     private String estadoLimpieza;
     private String estadoLlantas;
     private String estadoLuces;
+    private Date fechaUltimoMantenimiento;
     private String nivelPrioridad;
 
     // Constructor vacío
@@ -14,7 +17,8 @@ public class CamionDTO {
     }
 
     // Constructor con parámetros
-    public CamionDTO(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces, String nivelPrioridad) {
+    public CamionDTO(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces, String nivelPrioridad, Date fechaUltimoMantenimiento ) {
+        this.fechaUltimoMantenimiento = fechaUltimoMantenimiento;
         this.numeroUnidad = numeroUnidad;
         this.estadoMotor = estadoMotor;
         this.estadoLimpieza = estadoLimpieza;
@@ -26,6 +30,14 @@ public class CamionDTO {
     // Getters y Setters
     public String getNumeroUnidad() {
         return numeroUnidad;
+    }
+
+    public Date getFechaUltimoMantenimiento() {
+        return fechaUltimoMantenimiento;
+    }
+
+    public void setFechaUltimoMantenimiento(Date fechaUltimoMantenimiento) {
+        this.fechaUltimoMantenimiento = fechaUltimoMantenimiento;
     }
 
     public void setNumeroUnidad(String numeroUnidad) {

@@ -23,6 +23,7 @@ public class CamionBO implements ICamionBO {
         camionDTO.setEstadoLlantas(camion.getEstadoLlantas());
         camionDTO.setEstadoLuces(camion.getEstadoLuces());
         camionDTO.setNivelPrioridad(camion.getNivelPrioridad());
+        camionDTO.setFechaUltimoMantenimiento(camion.getFechaUltimoMantenimiento());
         return camionDTO;
     }
 
