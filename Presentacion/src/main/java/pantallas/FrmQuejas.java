@@ -25,7 +25,6 @@ public class FrmQuejas extends javax.swing.JFrame {
      */
     public FrmQuejas(UsuarioDTO usuario) throws PresentacionException {
         initComponents();
-
         administrar = new FacadeAdministrarQuejas();
         this.usuario = usuario;
 

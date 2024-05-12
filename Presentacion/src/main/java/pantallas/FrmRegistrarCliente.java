@@ -23,6 +23,8 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
 
     private final ICrearCuentaCliente facadeCrearCuentaCliente;
 
+    private final ICrearCuentaCliente facadeCrearCuentaCliente;
+
     /**
      * Constructor que el único atributo de la clase.
      */

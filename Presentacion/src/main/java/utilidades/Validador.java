@@ -29,11 +29,87 @@ public class Validador {
     }
 
     /**
-     * Método para validar que un correo cumple con el formato correcto.
+     * Método para validar que un nombre cumple con el formato correcto.
      *
      * @param correo Correo a validar.
-     * @throws PresentacionException si el correo está vacío, excede la longitud
+     * @throws PresentacionException si el nombre está vacío, excede la longitud
      * de caracteres o no cumple con el patrón especifico.
+     */
+    
+    public void validarNombres(String nombres) throws PresentacionException {
+        try {
+            validarVacio(nombres);
+        } catch (PresentacionException pe) {
+            // Si nombres está vacío.
+            throw new PresentacionException("Nombre(s) no puede estar vacío. ");
+        }
+        if (nombres.length() > 25) {
+            // Si el correo excede los 256 caracteres.
+            throw new PresentacionException("Nombre(s) excede el límite. ");
+        }
+        if (!nombres.matches("^[A-Z][a-zA-Z]*(\\s+[A-Z][a-zA-Z]*)*$")) {
+            // Si el texto no coincide con el patrón "Nombre(s)".
+            throw new PresentacionException("El nombre no es válido. "
+                    + "Debe contener solo letras con la primera letra de cada nombre en mayúscula.");
+        }
+    }
+    
+    /**
+     * Método para validar que el apellido paterno cumple con el formato correcto.
+     *
+     * @param apellidoP apellido paterno a validar.
+     * @throws PresentacionException si el apellido está vacio, excede la
+     * longitud de caracteres o no cumple con el patrón especifico.
+     */
+    public void validarApellidoP(String apellidoP) throws PresentacionException {
+        try {
+            validarVacio(apellidoP);
+        } catch (PresentacionException pe) {
+            // Si nombres está vacío.
+            throw new PresentacionException("El apellido paterno no puede estar vacío. ");
+        }
+        if (apellidoP.length() > 25) {
+            // Si el correo excede los 256 caracteres.
+            throw new PresentacionException("El apellido paterno excede el límite. ");
+        }
+        if (!apellidoP.matches("^[A-Z][a-zA-Z]*(\\s+[A-Z][a-zA-Z]*)*$")) {
+            // Si el texto no coincide con el patrón "Apellido Paterno".
+            throw new PresentacionException("El apellido paterno no es válido. "
+                    + "Debe contener solo letras con la primera letra de cada nombre en mayúscula.");
+        }
+    }
+    
+    /**
+     * Método para validar que el apellido materno cumple con el formato correcto.
+     *
+     * @param apellidoM apellido materno a validar.
+     * @throws PresentacionException si el apellido está vacío, excede la
+     * longitud de caracteres o no cumple con el patrón especifico.
+     */
+    public void validarApellidoM(String apellidoM) throws PresentacionException {
+        try {
+            validarVacio(apellidoM);
+        } catch (PresentacionException pe) {
+            // Si nombres está vacío.
+            throw new PresentacionException("El apellido paterno no puede estar vacío. ");
+        }
+        if (apellidoM.length() > 25) {
+            // Si el correo excede los 256 caracteres.
+            throw new PresentacionException("El apellido paterno excede el límite. ");
+        }
+        if (!apellidoM.matches("^[A-Z][a-zA-Z]*(\\s+[A-Z][a-zA-Z]*)*$")) {
+            // Si el texto no coincide con el patrón "Apellido Paterno".
+            throw new PresentacionException("El apellido paterno no es válido. "
+                    + "Debe contener solo letras con la primera letra de cada nombre en mayúscula.");
+        }
+    }
+    
+    /**
+     * Método para validar que un correo cumple con el formato correcto.
+     *
+     * @param correo correo a validar.
+     * @throws PresentacionException si el correo está vacío, excede la
+     * longitud de caracteres o no cumple con el patrón especifico.
      */
     public void validarCorreo(String correo) throws PresentacionException {
         try {
@@ -55,6 +131,88 @@ public class Validador {
         }
     }
 
+    /**
+     * Método para validar que un telefono cumple con el formato correcto.
+     *
+     * @param telefono telefono a validar.
+     * @throws PresentacionException si el telefono está vacío, excede la
+     * longitud de caracteres o no cumple con el patrón especifico.
+     */
+    public void validarTelefono(String telefono) throws PresentacionException {
+        try {
+            validarVacio(telefono);
+        } catch (PresentacionException pe) {
+            // Si el correo está vacío.
+            throw new PresentacionException("El correo no puede estar vacío. "
+                    + "Ejemplo: \"ejemplo@ejemplo.com\".");
+        }
+        // Elimina cualquier espacio en blanco y guiones del número de teléfono
+        telefono = telefono.replaceAll("\\s|-", "");
+        
+        // Verifica si el número de teléfono tiene exactamente 10 dígitos
+        if (telefono.matches("\\d{10}")) {
+            System.out.println("Número de teléfono válido.");
+        } else {
+            System.out.println("Número de teléfono inválido."
+                                + "Tienen que ser 10 digitos");
+        }
+    }
+    
+    /**
+     * Método para validar que una CURP cumple con el formato correcto.
+     *
+     * @param curp curp a validar.
+     * @throws PresentacionException si la curp está vacía, excede la
+     * longitud de caracteres o no cumple con el patrón especifico.
+     */
+    public void validarCURP(String curp) throws PresentacionException {
+        try {
+            validarVacio(curp);
+        } catch (PresentacionException pe) {
+            // Si el correo está vacío.
+            throw new PresentacionException("El correo no puede estar vacío. "
+                    + "Ejemplo: \"ejemplo@ejemplo.com\".");
+        }
+        // Elimina cualquier espacio en blanco del CURP y lo convierte a mayúsculas
+        curp = curp.trim().toUpperCase();
+
+        // Verifica si la CURP tiene el formato correcto
+        if (curp.matches("[a-zA-Z0-9]{18}")) {
+            System.out.println("CURP valida.");
+        } else {
+            System.out.println("CURP inválida. Debe contener exactamente 18 caracteres alfanuméricos.");
+        }
+    }
+    
+    
+    /**
+     * Método para validar que un rfc cumple con el formato correcto.
+     *
+     * @param rfc rfc a validar.
+     * @throws PresentacionException si el rfc está vacío, excede la
+     * longitud de caracteres o no cumple con el patrón especifico.
+     */
+    public void validarRFC(String rfc) throws PresentacionException {
+        try {
+            validarVacio(rfc);
+        } catch (PresentacionException pe) {
+            // Si el correo está vacío.
+            throw new PresentacionException("El correo no puede estar vacío. "
+                    + "Ejemplo: \"ejemplo@ejemplo.com\".");
+        }
+        // Elimina cualquier espacio en blanco del CURP y lo convierte a mayúsculas
+        rfc = rfc.trim().toUpperCase();
+
+        // Verifica si la CURP tiene el formato correcto
+        if (rfc.matches("[a-zA-Z0-9]{13}")) {
+            System.out.println("RFC valida.");
+        } else {
+            System.out.println("CURFCRP inválida. Debe contener exactamente 13 caracteres alfanuméricos.");
+        }
+    }
+    
+    
+    
     /**
      * Método para validar que una contraseña cumple con el formato correcto.
      *
