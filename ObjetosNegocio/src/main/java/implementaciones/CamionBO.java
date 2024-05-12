@@ -31,7 +31,7 @@ public class CamionBO implements ICamionBO {
     public CamionDTO obtenerPorNumeroUnidad(String numeroUnidad) throws ObjetosNegocioException {
         camionDAO.obtenerPorNumeroUnidad(numeroUnidad);
         if(camionDAO.obtenerPorNumeroUnidad(numeroUnidad)==null){
-            throw new ObjetosNegocioException("Ocurrio un error al obtener la unidad");
+            throw new ObjetosNegocioException("Ocurrió un error al obtener la unidad.");
         }
         return CamionADTO(camionDAO.obtenerPorNumeroUnidad(numeroUnidad));
     }

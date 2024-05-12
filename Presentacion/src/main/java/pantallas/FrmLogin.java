@@ -212,7 +212,7 @@ public class FrmLogin extends javax.swing.JFrame {
      * @param evt Evento al que se escucha.
      */
     private void btnRegistrateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrateMouseClicked
-        FrmRegistrarCliente frmRegistrar = new FrmRegistrarCliente();
+        FrmRegistroCliente frmRegistrar = new FrmRegistroCliente();
         frmRegistrar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistrateMouseClicked

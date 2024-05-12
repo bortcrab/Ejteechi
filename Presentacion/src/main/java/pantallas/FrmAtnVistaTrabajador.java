@@ -39,6 +39,18 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
         this.usuario = usuario;
 
         Validador.validarSesion(usuario, this);
+        
+        switch (usuario.getTipo()) {
+            case "AACC":
+                lblQuejas.setVisible(true);
+                lblAtnCliente.setVisible(true);
+                break;
+            case "GERE":
+                lblQuejas.setVisible(true);
+                lblAtnCliente.setVisible(true);
+                lblMantenimiento1.setVisible(true);
+                break;
+        }
 
         // Mandamos a formatear la tabla y a cargar los datos.
         formatearTabla();
@@ -88,11 +100,11 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
      */
     private void formatearTabla() {
         // Cambiamos el color del fondo.
-        tblTickets.getTableHeader().setBackground(new Color(106, 27, 49));
+        tblTickets.getTableHeader().setBackground(new Color(79,89,144));
         // Cambiamos la fuente y el tamaño.
         tblTickets.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 24));
         // Cambiamos el color de la letra.
-        tblTickets.getTableHeader().setForeground(new Color(188, 149, 92));
+        tblTickets.getTableHeader().setForeground(new Color(255, 255, 255));
         
         // Creamos el evento de cuando le pican al botón para ver el historial
         // de una persona.
@@ -132,32 +144,19 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblAtencionClienteTrabajador = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTickets = new javax.swing.JTable();
         lblCerrarSesion = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
+        lblQuejas = new javax.swing.JLabel();
+        lblAtnCliente = new javax.swing.JLabel();
+        lblMantenimiento1 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1120, 690));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblAtencionClienteTrabajador.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblAtencionClienteTrabajador.setText("Atención al cliente");
-        lblAtencionClienteTrabajador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAtencionClienteTrabajador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseExited(evt);
-            }
-        });
-        getContentPane().add(lblAtencionClienteTrabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, 90));
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 80));
 
@@ -174,6 +173,7 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
                 "Folio", "Contenido", "Fecha", "Estado", "Acción"
             }
         ));
+        tblTickets.setGridColor(new java.awt.Color(79, 89, 144));
         tblTickets.setMaximumSize(new java.awt.Dimension(2147483647, 420));
         tblTickets.setShowGrid(true);
         tblTickets.getTableHeader().setReorderingAllowed(false);
@@ -209,6 +209,57 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
         });
         getContentPane().add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 230, 100));
 
+        lblQuejas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblQuejas.setText("Ver quejas");
+        lblQuejas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblQuejas.setPreferredSize(null);
+        lblQuejas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuejasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblQuejasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblQuejasMouseExited(evt);
+            }
+        });
+        lblQuejas.setVisible(false);
+        getContentPane().add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, 100));
+
+        lblAtnCliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblAtnCliente.setText("Atención al cliente");
+        lblAtnCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblAtnCliente.setPreferredSize(null);
+        lblAtnCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAtnClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAtnClienteMouseExited(evt);
+            }
+        });
+        lblAtnCliente.setVisible(false);
+        getContentPane().add(lblAtnCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, 100));
+
+        lblMantenimiento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMantenimiento1.setText("Mantenimiento");
+        lblMantenimiento1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMantenimiento1.setPreferredSize(null);
+        lblMantenimiento1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMantenimiento1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMantenimiento1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMantenimiento1MouseExited(evt);
+            }
+        });
+        lblMantenimiento1.setVisible(false);
+        getContentPane().add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, -1, 100));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoTicketsTrabajador.png"))); // NOI18N
         fondo.setText("jLabel3");
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
@@ -233,7 +284,7 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
-            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
+            FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
             frmHome.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -241,32 +292,61 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
-    private void lblAtencionClienteTrabajadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseClicked
+    private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
         try {
-            FrmAtnVistaTrabajador frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
+            FrmVisualizarQuejas frmAtnAlCliente = new FrmVisualizarQuejas(usuario);
             frmAtnAlCliente.setVisible(true);
         } catch (PresentacionException pe) {
             // Se muestra un mensaje si no se validó la sesión.
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseClicked
+    }//GEN-LAST:event_lblQuejasMouseClicked
 
-    private void lblAtencionClienteTrabajadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseEntered
-        lblAtencionClienteTrabajador.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseEntered
+    private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
+        lblQuejas.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblQuejasMouseEntered
 
-    private void lblAtencionClienteTrabajadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseExited
-        lblAtencionClienteTrabajador.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseExited
+    private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
+        lblQuejas.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblQuejasMouseExited
+
+    private void lblAtnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseEntered
+        lblAtnCliente.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblAtnClienteMouseEntered
+
+    private void lblAtnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseExited
+        lblAtnCliente.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblAtnClienteMouseExited
+
+    private void lblMantenimiento1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseClicked
+        try {
+            FrmProgramarMantenimiento frmAtnAlCliente = new FrmProgramarMantenimiento(usuario);
+            frmAtnAlCliente.setVisible(true);
+        } catch (PresentacionException pe) {
+            // Se muestra un mensaje si no se validó la sesión.
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblMantenimiento1MouseClicked
+
+    private void lblMantenimiento1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseEntered
+        lblMantenimiento1.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblMantenimiento1MouseEntered
+
+    private void lblMantenimiento1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseExited
+        lblMantenimiento1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblMantenimiento1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAtencionClienteTrabajador;
+    private javax.swing.JLabel lblAtnCliente;
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JLabel lblHome;
+    private javax.swing.JLabel lblMantenimiento1;
+    private javax.swing.JLabel lblQuejas;
     private javax.swing.JTable tblTickets;
     // End of variables declaration//GEN-END:variables
 

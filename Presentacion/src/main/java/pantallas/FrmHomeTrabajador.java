@@ -32,6 +32,24 @@ public class FrmHomeTrabajador extends javax.swing.JFrame {
 
         // Mandamos a validar la sesión.
         Validador.validarSesion(usuario, this);
+        
+        switch (usuario.getTipo()) {
+            case "RRHH":
+                lblRegistroEmpleado.setVisible(true);
+                break;
+            case "AACC":
+                lblQuejas.setVisible(true);
+                lblAtnCliente.setVisible(true);
+                break;
+            case "PPMM":
+                lblMantenimiento.setVisible(true);
+                break;
+            case "GERE":
+                lblQuejas.setVisible(true);
+                lblAtnCliente.setVisible(true);
+                lblMantenimiento1.setVisible(true);
+                break;
+        }
     }
 
     /**
@@ -45,9 +63,13 @@ public class FrmHomeTrabajador extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblHome = new javax.swing.JLabel();
-        lblAtencionClienteTrabajador = new javax.swing.JLabel();
+        lblRegistroEmpleado = new javax.swing.JLabel();
+        lblQuejas = new javax.swing.JLabel();
+        lblAtnCliente = new javax.swing.JLabel();
+        lblMantenimiento = new javax.swing.JLabel();
+        lblMantenimiento1 = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,28 +79,97 @@ public class FrmHomeTrabajador extends javax.swing.JFrame {
         lblHome.setForeground(new java.awt.Color(0, 0, 0));
         lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblHomeMouseClicked(evt);
-            }
-        });
         jPanel1.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 230, 110));
 
-        lblAtencionClienteTrabajador.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblAtencionClienteTrabajador.setText("Atención al cliente");
-        lblAtencionClienteTrabajador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAtencionClienteTrabajador.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblRegistroEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblRegistroEmpleado.setText("Registrar empleado");
+        lblRegistroEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblRegistroEmpleado.setPreferredSize(null);
+        lblRegistroEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseClicked(evt);
+                lblRegistroEmpleadoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseEntered(evt);
+                lblRegistroEmpleadoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseExited(evt);
+                lblRegistroEmpleadoMouseExited(evt);
             }
         });
-        jPanel1.add(lblAtencionClienteTrabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, 90));
+        lblRegistroEmpleado.setVisible(false);
+        jPanel1.add(lblRegistroEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, 100));
+
+        lblQuejas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblQuejas.setText("Ver quejas");
+        lblQuejas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblQuejas.setPreferredSize(null);
+        lblQuejas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuejasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblQuejasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblQuejasMouseExited(evt);
+            }
+        });
+        lblQuejas.setVisible(false);
+        jPanel1.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, 100));
+
+        lblAtnCliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblAtnCliente.setText("Atención al cliente");
+        lblAtnCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblAtnCliente.setPreferredSize(null);
+        lblAtnCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAtnClienteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAtnClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAtnClienteMouseExited(evt);
+            }
+        });
+        lblAtnCliente.setVisible(false);
+        jPanel1.add(lblAtnCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, 100));
+
+        lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMantenimiento.setText("Mantenimiento");
+        lblMantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMantenimiento.setPreferredSize(null);
+        lblMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMantenimientoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMantenimientoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMantenimientoMouseExited(evt);
+            }
+        });
+        lblMantenimiento.setVisible(false);
+        jPanel1.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, 100));
+
+        lblMantenimiento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMantenimiento1.setText("Mantenimiento");
+        lblMantenimiento1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMantenimiento1.setPreferredSize(null);
+        lblMantenimiento1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMantenimiento1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMantenimiento1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMantenimiento1MouseExited(evt);
+            }
+        });
+        lblMantenimiento1.setVisible(false);
+        jPanel1.add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, -1, 100));
 
         lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -95,10 +186,10 @@ public class FrmHomeTrabajador extends javax.swing.JFrame {
                 lblCerrarSesionMouseExited(evt);
             }
         });
-        jPanel1.add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 50, 200, 70));
+        jPanel1.add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, 200, 100));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondHomeTrabajador.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondHomeTrabajador.png"))); // NOI18N
+        jPanel1.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,7 +220,7 @@ public class FrmHomeTrabajador extends javax.swing.JFrame {
         lblCerrarSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
-    private void lblAtencionClienteTrabajadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseClicked
+    private void lblAtnClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseClicked
         try {
             FrmAtnVistaTrabajador frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
             frmAtnAlCliente.setVisible(true);
@@ -138,31 +229,101 @@ public class FrmHomeTrabajador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseClicked
+    }//GEN-LAST:event_lblAtnClienteMouseClicked
 
-    private void lblAtencionClienteTrabajadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseEntered
-        lblAtencionClienteTrabajador.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseEntered
+    private void lblAtnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseEntered
+        lblAtnCliente.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblAtnClienteMouseEntered
 
-    private void lblAtencionClienteTrabajadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseExited
-        lblAtencionClienteTrabajador.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseExited
+    private void lblAtnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseExited
+        lblAtnCliente.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblAtnClienteMouseExited
 
-    private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
+    private void lblRegistroEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistroEmpleadoMouseClicked
         try {
-            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
-            frmHome.setVisible(true);
+            FrmRegistroTrabajador frmRegistroTrabajador = new FrmRegistroTrabajador(usuario);
+            frmRegistroTrabajador.setVisible(true);
         } catch (PresentacionException pe) {
+            // Se muestra un mensaje si no se validó la sesión.
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_lblHomeMouseClicked
+    }//GEN-LAST:event_lblRegistroEmpleadoMouseClicked
+
+    private void lblRegistroEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistroEmpleadoMouseEntered
+        lblRegistroEmpleado.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblRegistroEmpleadoMouseEntered
+
+    private void lblRegistroEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistroEmpleadoMouseExited
+        lblRegistroEmpleado.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblRegistroEmpleadoMouseExited
+
+    private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
+        try {
+            FrmVisualizarQuejas frmAtnAlCliente = new FrmVisualizarQuejas(usuario);
+            frmAtnAlCliente.setVisible(true);
+        } catch (PresentacionException pe) {
+            // Se muestra un mensaje si no se validó la sesión.
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblQuejasMouseClicked
+
+    private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
+        lblQuejas.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblQuejasMouseEntered
+
+    private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
+        lblQuejas.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblQuejasMouseExited
+
+    private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
+        try {
+            FrmProgramarMantenimiento frmAtnAlCliente = new FrmProgramarMantenimiento(usuario);
+            frmAtnAlCliente.setVisible(true);
+        } catch (PresentacionException pe) {
+            // Se muestra un mensaje si no se validó la sesión.
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblMantenimientoMouseClicked
+
+    private void lblMantenimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseEntered
+        lblMantenimiento.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblMantenimientoMouseEntered
+
+    private void lblMantenimientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseExited
+        lblMantenimiento.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblMantenimientoMouseExited
+
+    private void lblMantenimiento1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseClicked
+        try {
+            FrmProgramarMantenimiento frmAtnAlCliente = new FrmProgramarMantenimiento(usuario);
+            frmAtnAlCliente.setVisible(true);
+        } catch (PresentacionException pe) {
+            // Se muestra un mensaje si no se validó la sesión.
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblMantenimiento1MouseClicked
+
+    private void lblMantenimiento1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseEntered
+        lblMantenimiento1.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblMantenimiento1MouseEntered
+
+    private void lblMantenimiento1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseExited
+        lblMantenimiento1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblMantenimiento1MouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel fondo;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAtencionClienteTrabajador;
+    private javax.swing.JLabel lblAtnCliente;
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JLabel lblHome;
+    private javax.swing.JLabel lblMantenimiento;
+    private javax.swing.JLabel lblMantenimiento1;
+    private javax.swing.JLabel lblQuejas;
+    private javax.swing.JLabel lblRegistroEmpleado;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,8 +23,8 @@ public class JButtonRenderer implements TableCellRenderer {
     public JButtonRenderer(String text) {
         this.button = new JButton(text);
         this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-        this.button.setBackground(new Color(188, 149, 92));
-        this.button.setForeground(new Color(242, 242, 242));
+        this.button.setBackground(new Color(79,89,144));
+        this.button.setForeground(new Color(255, 255, 255));
     }
 
     @Override

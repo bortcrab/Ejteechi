@@ -29,9 +29,6 @@ public class JButtonCellEditor implements TableCellEditor {
 
     public JButtonCellEditor(String text, ActionListener actionListener) {
         this.button = new JButton(text);
-        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-        this.button.setBackground(new Color(188, 149, 92));
-        this.button.setForeground(new Color(242, 242, 242));
         this.actionListener = actionListener;
         this.button.addActionListener((ActionEvent evt) -> {
             this.actionListener.actionPerformed(

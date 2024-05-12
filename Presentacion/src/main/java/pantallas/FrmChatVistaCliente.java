@@ -169,12 +169,10 @@ public class FrmChatVistaCliente extends javax.swing.JFrame {
         txtMensaje = new javax.swing.JTextField();
         btnEnviar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        lblAtencionClienteTrabajador = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
-        lblAtnAlCliente = new javax.swing.JLabel();
         lblQuejas = new javax.swing.JLabel();
-        lblCitas = new javax.swing.JLabel();
-        lblMapa = new javax.swing.JLabel();
+        lblMapa2 = new javax.swing.JLabel();
+        lblAtnAlCliente = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
@@ -225,22 +223,6 @@ public class FrmChatVistaCliente extends javax.swing.JFrame {
         });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 610, 110, 40));
 
-        lblAtencionClienteTrabajador.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblAtencionClienteTrabajador.setText("Atención al cliente");
-        lblAtencionClienteTrabajador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAtencionClienteTrabajador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblAtencionClienteTrabajadorMouseExited(evt);
-            }
-        });
-        getContentPane().add(lblAtencionClienteTrabajador, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, 90));
-
         lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
         lblCerrarSesion.setText("       Cerrar sesión");
@@ -258,24 +240,6 @@ public class FrmChatVistaCliente extends javax.swing.JFrame {
         });
         getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 200, 100));
 
-        lblAtnAlCliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblAtnAlCliente.setForeground(new java.awt.Color(0, 0, 0));
-        lblAtnAlCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAtnAlCliente.setText("Atención al cliente");
-        lblAtnAlCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAtnAlCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAtnAlClienteMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblAtnAlClienteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblAtnAlClienteMouseExited(evt);
-            }
-        });
-        getContentPane().add(lblAtnAlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 210, 90));
-
         lblQuejas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblQuejas.setForeground(new java.awt.Color(0, 0, 0));
         lblQuejas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -292,43 +256,40 @@ public class FrmChatVistaCliente extends javax.swing.JFrame {
                 lblQuejasMouseExited(evt);
             }
         });
-        getContentPane().add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 90, 70));
+        getContentPane().add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 90, 80));
 
-        lblCitas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCitas.setForeground(new java.awt.Color(0, 0, 0));
-        lblCitas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCitas.setText("Citas");
-        lblCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblMapa2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMapa2.setForeground(new java.awt.Color(0, 0, 0));
+        lblMapa2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMapa2.setText("Mapa");
+        lblMapa2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMapa2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCitasMouseClicked(evt);
+                lblMapa2MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCitasMouseEntered(evt);
+                lblMapa2MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCitasMouseExited(evt);
+                lblMapa2MouseExited(evt);
             }
         });
-        getContentPane().add(lblCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 100, 70));
+        getContentPane().add(lblMapa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 90, 80));
 
-        lblMapa.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblMapa.setForeground(new java.awt.Color(0, 0, 0));
-        lblMapa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMapa.setText("Mapa");
-        lblMapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblMapa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMapaMouseClicked(evt);
-            }
+        lblAtnAlCliente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblAtnAlCliente.setForeground(new java.awt.Color(0, 0, 0));
+        lblAtnAlCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAtnAlCliente.setText("Atención al cliente");
+        lblAtnAlCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblAtnAlCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblMapaMouseEntered(evt);
+                lblAtnAlClienteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblMapaMouseExited(evt);
+                lblAtnAlClienteMouseExited(evt);
             }
         });
-        getContentPane().add(lblMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 90, 70));
+        getContentPane().add(lblAtnAlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 210, 80));
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblHome.setForeground(new java.awt.Color(0, 0, 0));
@@ -365,48 +326,6 @@ public class FrmChatVistaCliente extends javax.swing.JFrame {
         lblCerrarSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
-    private void lblAtnAlClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseEntered
-        lblAtnAlCliente.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblAtnAlClienteMouseEntered
-
-    private void lblAtnAlClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseExited
-        lblAtnAlCliente.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblAtnAlClienteMouseExited
-
-    private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
-        lblQuejas.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblQuejasMouseEntered
-
-    private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
-        lblQuejas.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblQuejasMouseExited
-
-    private void lblCitasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseEntered
-        lblCitas.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblCitasMouseEntered
-
-    private void lblCitasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseExited
-        lblCitas.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblCitasMouseExited
-
-    private void lblMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseClicked
-        try {
-            FrmMapa frmMapa = new FrmMapa(usuario);
-            frmMapa.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
-    }//GEN-LAST:event_lblMapaMouseClicked
-
-    private void lblMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseEntered
-        lblMapa.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblMapaMouseEntered
-
-    private void lblMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseExited
-        lblMapa.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblMapaMouseExited
-
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
             FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
@@ -416,26 +335,6 @@ public class FrmChatVistaCliente extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
-
-    private void lblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCitasMouseClicked
-        try {
-            FrmCitas frmCitas = new FrmCitas(usuario);
-            frmCitas.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
-    }//GEN-LAST:event_lblCitasMouseClicked
-
-    private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
-        try {
-            FrmQuejas frmQuejas = new FrmQuejas(usuario);
-            frmQuejas.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
-    }//GEN-LAST:event_lblQuejasMouseClicked
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         enviarRespuesta();
@@ -456,38 +355,53 @@ public class FrmChatVistaCliente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
-        try {
-            FrmAtnVistaCliente frmAtnAlCliente = new FrmAtnVistaCliente(usuario);
-            frmAtnAlCliente.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
-    }//GEN-LAST:event_lblAtnAlClienteMouseClicked
-
     private void txtMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMensajeActionPerformed
         enviarRespuesta();
     }//GEN-LAST:event_txtMensajeActionPerformed
 
-    private void lblAtencionClienteTrabajadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseClicked
+    private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
         try {
-            FrmAtnVistaTrabajador frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
-            frmAtnAlCliente.setVisible(true);
+            FrmQuejas frmQuejas = new FrmQuejas(usuario);
+            frmQuejas.setVisible(true);
         } catch (PresentacionException pe) {
-            // Se muestra un mensaje si no se validó la sesión.
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseClicked
+    }//GEN-LAST:event_lblQuejasMouseClicked
 
-    private void lblAtencionClienteTrabajadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseEntered
-        lblAtencionClienteTrabajador.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseEntered
+    private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
+        lblQuejas.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblQuejasMouseEntered
 
-    private void lblAtencionClienteTrabajadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseExited
-        lblAtencionClienteTrabajador.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblAtencionClienteTrabajadorMouseExited
+    private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
+        lblQuejas.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblQuejasMouseExited
+
+    private void lblMapa2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapa2MouseClicked
+        try {
+            FrmMapa frmMapa = new FrmMapa(usuario);
+            frmMapa.setVisible(true);
+        } catch (PresentacionException pe) {
+            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblMapa2MouseClicked
+
+    private void lblMapa2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapa2MouseEntered
+        lblMapa.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblMapa2MouseEntered
+
+    private void lblMapa2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapa2MouseExited
+        lblMapa.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblMapa2MouseExited
+
+    private void lblAtnAlClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseEntered
+        lblAtnAlCliente.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblAtnAlClienteMouseEntered
+
+    private void lblAtnAlClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseExited
+        lblAtnAlCliente.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblAtnAlClienteMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -497,12 +411,12 @@ public class FrmChatVistaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JEditorPane jepChat;
-    private javax.swing.JLabel lblAtencionClienteTrabajador;
     private javax.swing.JLabel lblAtnAlCliente;
     private javax.swing.JLabel lblCerrarSesion;
-    private javax.swing.JLabel lblCitas;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblMapa;
+    private javax.swing.JLabel lblMapa1;
+    private javax.swing.JLabel lblMapa2;
     private javax.swing.JLabel lblQuejas;
     private javax.swing.JTextField txtMensaje;
     // End of variables declaration//GEN-END:variables

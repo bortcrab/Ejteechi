@@ -1,6 +1,6 @@
-// PRIMERO DEBEN CREAR UNA BASE DE DATOS LLAMADA "ejteechidb"
+// Paso 1: Crear una base de datos llamada "ejteechidb".
 
-// Luego ejecutan todo de golpe en Studio 3T
+// Paso 2: Ejecutar todo el script completo.
 db.mapas.insertOne(
     {
         "posicionDefault" : [27.4845523,-109.9237108],
@@ -78,3 +78,97 @@ db.mapas.insertOne(
         ]
     }
 )
+
+db.camiones.insertMany([
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aac3"),
+        "numeroUnidad": "001",
+        "estadoMotor": "MEDIO",
+        "estadoLimpieza": "MALO",
+        "estadoLlantas": "MEDIO",
+        "estadoLuces": "MEDIO",
+        "fechaUltimoMantenimiento": ISODate("2024-05-10T07:00:00.000+0000"),
+        "nivelPrioridad": "MEDIO"
+    },
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aac4"),
+        "numeroUnidad": "002",
+        "estadoMotor": "MALO",
+        "estadoLimpieza": "BUENO",
+        "estadoLlantas": "MALO",
+        "estadoLuces": "MALO",
+        "fechaUltimoMantenimiento": ISODate("2024-05-10T07:00:00.000+0000"),
+        "nivelPrioridad": "ALTO",
+        "bueno": "medio"
+    },
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aac5"),
+        "numeroUnidad": "003",
+        "estadoMotor": "bueno",
+        "estadoLimpieza": "medio",
+        "estadoLlantas": "medio",
+        "estadoLuces": "bueno",
+        "fechaUltimoMantenimiento": ISODate("2024-05-10T07:00:00.000+0000"),
+        "nivelPrioridad": "BAJO"
+    },
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aac6"),
+        "numeroUnidad": "004",
+        "estadoMotor": "bueno",
+        "estadoLimpieza": "bueno",
+        "estadoLlantas": "bueno",
+        "estadoLuces": "bueno",
+        "fechaUltimoMantenimiento": ISODate("2024-04-01T00:00:00.000+0000"),
+        "nivelPrioridad": "bajo"
+    },
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aac7"),
+        "numeroUnidad": "005",
+        "estadoMotor": "bueno",
+        "estadoLimpieza": "bueno",
+        "estadoLlantas": "bueno",
+        "estadoLuces": "bueno",
+        "fechaUltimoMantenimiento": ISODate("2024-04-01T00:00:00.000+0000"),
+        "nivelPrioridad": "bajo"
+    },
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aac8"),
+        "numeroUnidad": "006",
+        "estadoMotor": "bueno",
+        "estadoLimpieza": "bueno",
+        "estadoLlantas": "bueno",
+        "estadoLuces": "bueno",
+        "fechaUltimoMantenimiento": ISODate("2024-04-01T00:00:00.000+0000"),
+        "nivelPrioridad": "bajo"
+    },
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aac9"),
+        "numeroUnidad": "007",
+        "estadoMotor": "bueno",
+        "estadoLimpieza": "bueno",
+        "estadoLlantas": "bueno",
+        "estadoLuces": "bueno",
+        "fechaUltimoMantenimiento": ISODate("2024-04-01T00:00:00.000+0000"),
+        "nivelPrioridad": "bajo"
+    },
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aaca"),
+        "numeroUnidad": "008",
+        "estadoMotor": "bueno",
+        "estadoLimpieza": "bueno",
+        "estadoLlantas": "bueno",
+        "estadoLuces": "bueno",
+        "fechaUltimoMantenimiento": ISODate("2024-04-01T00:00:00.000+0000"),
+        "nivelPrioridad": "bajo"
+    },
+    {
+        "_id": ObjectId("663d9c45479fbf42e452aacb"),
+        "numeroUnidad": "009",
+        "estadoMotor": "bueno",
+        "estadoLimpieza": "bueno",
+        "estadoLlantas": "bueno",
+        "estadoLuces": "bueno",
+        "fechaUltimoMantenimiento": ISODate("2024-04-01T00:00:00.000+0000"),
+        "nivelPrioridad": "bajo"
+    }
+])
