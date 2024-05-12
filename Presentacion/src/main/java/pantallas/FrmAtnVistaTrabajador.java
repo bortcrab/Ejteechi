@@ -50,7 +50,7 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
      */
     private void cargarTickets() {
         // Obtenemos la lista de trámites.
-        listaTickets = facadeAtenderTickets.obtenerTodosTickets();
+        listaTickets = facadeAtenderTickets.obtenerTodosTickets(usuario.getId());
         llenarTabla(listaTickets);
     }
 
@@ -115,7 +115,7 @@ public class FrmAtnVistaTrabajador extends javax.swing.JFrame {
     private void seleccionarTicket() {
         try {
             TicketDTO ticket = listaTickets.get(this.tblTickets.getSelectedRow());
-            FrmChatTicket frmChatTicket = new FrmChatTicket(usuario, facadeAdministrarTickets, facadeAtenderTickets, ticket);
+            FrmChatVistaTrabajador frmChatTicket = new FrmChatVistaTrabajador(usuario, facadeAtenderTickets, ticket);
             frmChatTicket.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);

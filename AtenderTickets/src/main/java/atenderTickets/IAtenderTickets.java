@@ -11,9 +11,9 @@ import org.bson.types.ObjectId;
  */
 public interface IAtenderTickets {
 
-    public List<TicketDTO> obtenerTodosTickets();
+    public List<TicketDTO> obtenerTodosTickets(ObjectId idAtendiendo);
     
-    public TicketDTO enviarRespuesta(ObjectId folio, RespuestaDTO respuesta);
-
     public void cambiarEstado(TicketDTO ticket);
+
+    public TicketDTO enviarRespuestaTrabajador(ObjectId folio, RespuestaDTO respuesta, ObjectId idAtendiendo);
 }

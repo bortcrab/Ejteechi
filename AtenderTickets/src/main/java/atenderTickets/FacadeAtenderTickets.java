@@ -19,13 +19,13 @@ public class FacadeAtenderTickets implements IAtenderTickets {
     }
 
     @Override
-    public List<TicketDTO> obtenerTodosTickets() {
-        return ctrlAtenderTickets.obtenerTodosTickets();
+    public List<TicketDTO> obtenerTodosTickets(ObjectId idAtendiendo) {
+        return ctrlAtenderTickets.obtenerTodosTickets(idAtendiendo);
     }
 
     @Override
-    public TicketDTO enviarRespuesta(ObjectId folio, RespuestaDTO respuesta) {
-        return ctrlAtenderTickets.enviarRespuesta(folio, respuesta);
+    public TicketDTO enviarRespuestaTrabajador(ObjectId folio, RespuestaDTO respuesta, ObjectId idAtendiendo) {
+        return ctrlAtenderTickets.enviarRespuestaTrabajador(folio, respuesta, idAtendiendo);
     }
 
     @Override

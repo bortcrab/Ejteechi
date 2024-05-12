@@ -3,11 +3,10 @@
  */
 package presentacion;
 
-import pantallas.FrmLogin;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import utilidades.Encriptador;
+import pantallas.FrmLogin;
 
 /**
  * Clase principal del programa.

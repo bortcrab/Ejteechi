@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
 import java.util.ArrayList;
 import java.util.Date;
+import org.bson.types.ObjectId;
 import utilidades.Validador;
 
 public class FrmTicketNuevo extends javax.swing.JFrame {
@@ -29,12 +30,20 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
     private void enviarTicket() {
         try {
             String contenido = areaTicket.getText();
+            String emisor = usuario.getNombres() + " " + usuario.getApellidoPaterno();
+            ObjectId idUsuario = usuario.getId();
             
             Validador validador = new Validador();
             
             validador.validarTicket(contenido);
             
-            TicketDTO ticket = new TicketDTO(contenido, new Date(), "Pendiente", usuario, new ArrayList<>());
+            TicketDTO ticket = new TicketDTO(
+                    contenido,
+                    new Date(), 
+                    "Pendiente", 
+                    idUsuario, 
+                    emisor, 
+                    new ArrayList<>());
             facadeAdministrarTickets.enviarTicket(ticket);
             
             

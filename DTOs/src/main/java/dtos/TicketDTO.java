@@ -10,26 +10,41 @@ public class TicketDTO {
     private String contenido;
     private Date fecha;
     private String estado;
-    private UsuarioDTO usuario;
+    private ObjectId idUsuario;
+    private String nombreUsuario;
+    private ObjectId idAtendiendo;
     private List<RespuestaDTO> respuestas;
 
     public TicketDTO() {
     }
 
-    public TicketDTO(ObjectId id, String contenido, Date fecha, String estado, UsuarioDTO usuario, List<RespuestaDTO> respuestas) {
+    public TicketDTO(ObjectId id, String contenido, Date fecha, String estado, ObjectId idUsuario, String nombreUsuario, List<RespuestaDTO> respuestas) {
         this.id = id;
         this.contenido = contenido;
         this.fecha = fecha;
         this.estado = estado;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
         this.respuestas = respuestas;
     }
     
-    public TicketDTO(String contenido, Date fecha, String estado, UsuarioDTO usuario, List<RespuestaDTO> respuestas) {
+    public TicketDTO(String contenido, Date fecha, String estado, ObjectId idUsuario, String nombreUsuario, List<RespuestaDTO> respuestas) {
         this.contenido = contenido;
         this.fecha = fecha;
         this.estado = estado;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.respuestas = respuestas;
+    }
+
+    public TicketDTO(ObjectId id, String contenido, Date fecha, String estado, ObjectId idUsuario, String nombreUsuario, ObjectId idAtendiendo, List<RespuestaDTO> respuestas) {
+        this.id = id;
+        this.contenido = contenido;
+        this.fecha = fecha;
+        this.estado = estado;
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.idAtendiendo = idAtendiendo;
         this.respuestas = respuestas;
     }
 
@@ -65,14 +80,30 @@ public class TicketDTO {
         this.estado = estado;
     }
 
-    public UsuarioDTO getUsuario() {
-        return usuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+    
+    public ObjectId getIdUsuario() {
+        return idUsuario;
     }
 
+    public void setIdUsuario(ObjectId idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public ObjectId getIdAtendiendo() {
+        return idAtendiendo;
+    }
+
+    public void setIdAtendiendo(ObjectId idAtendiendo) {
+        this.idAtendiendo = idAtendiendo;
+    }
+    
     public List<RespuestaDTO> getRespuestas() {
         return respuestas;
     }

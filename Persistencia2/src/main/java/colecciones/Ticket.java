@@ -9,25 +9,29 @@ import org.bson.types.ObjectId;
  * @author Diego Valenzuela Parra - 00000247700
  */
 public class Ticket {
-    
+
     private ObjectId id;
     private String contenido;
     private Date fecha;
     private String estado;
-    private Usuario usuario;
+    private ObjectId idUsuario;
+    private String nombreUsuario;
+    private ObjectId idAtendiendo;
     private List<Respuesta> respuestas;
 
     public Ticket() {
     }
 
-    public Ticket(String contenido, Date fecha, String estado, Usuario usuario, List<Respuesta> respuestas) {
+    public Ticket(String contenido, Date fecha, String estado, ObjectId idUsuario, String nombreUsuario, ObjectId idAtendiendo, List<Respuesta> respuestas) {
         this.contenido = contenido;
         this.fecha = fecha;
         this.estado = estado;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.idAtendiendo = idAtendiendo;
         this.respuestas = respuestas;
     }
-
+    
     public ObjectId getId() {
         return id;
     }
@@ -60,12 +64,28 @@ public class Ticket {
         this.estado = estado;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public ObjectId getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(ObjectId idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public ObjectId getIdAtendiendo() {
+        return idAtendiendo;
+    }
+
+    public void setIdAtendiendo(ObjectId idAtendiendo) {
+        this.idAtendiendo = idAtendiendo;
     }
 
     public List<Respuesta> getRespuestas() {
@@ -75,5 +95,5 @@ public class Ticket {
     public void setRespuestas(List<Respuesta> respuestas) {
         this.respuestas = respuestas;
     }
-    
+
 }

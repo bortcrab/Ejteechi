@@ -19,8 +19,8 @@ public interface ITicketDAO {
 
     public void agregarRespuesta(ObjectId folio, Respuesta respuestaEnt);
 
-    public List<Ticket> obtenerTodosTickets();
+    public List<Ticket> obtenerTodosTickets(ObjectId idAtendiendo);
 
-    public void actualizarEstadoTicket(Ticket ticket);
+    public void actualizarTicket(Ticket ticket);
 
 }

@@ -15,56 +15,40 @@ import javax.swing.JScrollBar;
 import utilidades.Encriptador;
 import utilidades.Validador;
 
-public class FrmChatTicket extends javax.swing.JFrame {
+public class FrmChatVistaCliente extends javax.swing.JFrame {
 
     private final IAdministrarTickets facadeAdministrarTickets;
-    private final IAtenderTickets facadeAtenderTickets;
     private final UsuarioDTO usuario;
     private TicketDTO ticket;
 
     /**
      * Creates new form FrmAtnVistaCliente
      */
-    public FrmChatTicket(UsuarioDTO usuario, IAdministrarTickets facadeAdministrarTickets, IAtenderTickets facadeAtenderTickets, TicketDTO ticket) throws PresentacionException {
+    public FrmChatVistaCliente(UsuarioDTO usuario, IAdministrarTickets facadeAdministrarTickets, TicketDTO ticket) throws PresentacionException {
         initComponents();
 
         Validador.validarSesion(usuario, this);
 
         this.facadeAdministrarTickets = facadeAdministrarTickets;
-        this.facadeAtenderTickets = facadeAtenderTickets;
         this.usuario = usuario;
         this.ticket = ticket;
-
-        if (usuario.getTipo().equals("cliente")) {
-            btnEstado.setEnabled(false);
-            btnEstado.setVisible(false);
-            lblAtencionClienteTrabajador.setVisible(false);
-        } else {
-            lblMapa.setVisible(false);
-            lblCitas.setVisible(false);
-            lblQuejas.setVisible(false);
-            lblAtnAlCliente.setVisible(false);
-        }
         
-        if (ticket.getEstado().equals("Pendiente")) {
-            btnEstado.setText("Marcar como resuelto");
-        } else {
-            btnEstado.setText("Marcar como pendiente");
-            txtMensaje.setEnabled(false);
-            btnEnviar.setEnabled(false);
-        }
-
         cargarChat();
     }
 
     private void cargarChat() {
+        if (ticket.getEstado().equals("Resuelto")) {
+            txtMensaje.setEnabled(false);
+            btnEnviar.setEnabled(false);
+        }
+        
         jepChat.setText(null);
         String contenidoTicket = ticket.getContenido();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:MM:ss");
         String fechaTicket = formatter.format(ticket.getFecha().getTime());
         List<RespuestaDTO> respuestas = ticket.getRespuestas();
-        Encriptador e = new Encriptador();
-        String mensajesChat = """
+        String mensajesChat =
+                """
                 <html>
                     <style>
                         .cabecera-izquierda {
@@ -100,11 +84,6 @@ public class FrmChatTicket extends javax.swing.JFrame {
                         }
                     </style>
                     <body>
-                """;
-
-        if (usuario.getTipo().equals("cliente")) {
-            mensajesChat
-                    += """
                         <div class="cabecera-izquierda">
                             <b>Yo <u>(%s)</u>:</b>
                         </div>
@@ -112,12 +91,28 @@ public class FrmChatTicket extends javax.swing.JFrame {
                             %s
                         </div>
                         <br>
-                    """
-                            .formatted(fechaTicket, contenidoTicket);
-        } else {
-            String correoCliente = e.desencriptar(ticket.getUsuario().getCorreo());
-            mensajesChat
-                    += """
+                """
+                .formatted(fechaTicket, contenidoTicket);
+
+        for (RespuestaDTO respuesta : respuestas) {
+            String fechaRespuesta = formatter.format(respuesta.getFecha().getTime());
+            String contenidoRespuesta = respuesta.getContenido();
+            if (respuesta.getIdEmisor().equals(usuario.getId())) {
+                mensajesChat += 
+                        """
+                        <div class="cabecera-izquierda">
+                            <b>Yo <u>(%s)</u>:</b>
+                        </div>
+                        <div class="contenido-izquierda">
+                            %s
+                        </div>
+                        <br>
+                        """
+                        .formatted(fechaRespuesta, contenidoRespuesta);
+            } else {
+                String emisor = respuesta.getEmisor();
+                mensajesChat +=
+                        """
                         <div class="cabecera-derecha">
                             <b>%s <u>(%s)</u>:</b>
                         </div>
@@ -125,48 +120,8 @@ public class FrmChatTicket extends javax.swing.JFrame {
                             %s
                         </div>
                         <br>
-                    """
-                            .formatted(correoCliente, fechaTicket, contenidoTicket);
-        }
-
-        for (RespuestaDTO respuesta : respuestas) {
-            UsuarioDTO emisor = respuesta.getUsuario();
-            String nombreEmisor;
-            String fechaRespuesta = formatter.format(respuesta.getFecha().getTime());
-            String contenidoRespuesta = respuesta.getContenido();
-            String tipoUsuario = usuario.getTipo();
-            String tipoEmisor = emisor.getTipo();
-            if ((tipoUsuario.equals("cliente") && tipoEmisor.equals("cliente"))
-                    || (!tipoUsuario.equals("cliente") && !tipoEmisor.equals("cliente"))) {
-                nombreEmisor = "Yo";
-                mensajesChat
-                        += """
-                                <div class="cabecera-izquierda">
-                                    <b>%s <u>(%s)</u>:</b>
-                                </div>
-                                <div class="contenido-izquierda">
-                                    %s
-                                </div>
-                                <br>
                         """
-                                .formatted(nombreEmisor, fechaRespuesta, contenidoRespuesta);
-            } else {
-                if (tipoEmisor.equals("cliente")) {
-                    nombreEmisor = e.desencriptar(ticket.getUsuario().getCorreo());
-                } else {
-                    nombreEmisor = emisor.getNombres() + " " + emisor.getApellidoPaterno();
-                }
-                mensajesChat
-                        += """
-                                <div class="cabecera-derecha">
-                                    <b>%s <u>(%s)</u>:</b>
-                                </div>
-                                <div class="contenido-derecha">
-                                    %s
-                                </div>
-                                <br>
-                        """
-                                .formatted(nombreEmisor, fechaRespuesta, contenidoRespuesta);
+                        .formatted(emisor, fechaRespuesta, contenidoRespuesta);
             }
         }
         mensajesChat = mensajesChat.substring(0, mensajesChat.length() - 4);
@@ -187,7 +142,8 @@ public class FrmChatTicket extends javax.swing.JFrame {
             RespuestaDTO respuesta = new RespuestaDTO(
                     mensaje,
                     new Date(),
-                    usuario);
+                    usuario.getNombres() + " " + usuario.getApellidoPaterno(),
+                    usuario.getId());
             ticket = facadeAdministrarTickets.enviarRespuesta(ticket.getId(), respuesta);
             txtMensaje.setText("");
             this.cargarChat();
@@ -195,27 +151,6 @@ public class FrmChatTicket extends javax.swing.JFrame {
             scrollBar.setValue(scrollBar.getMaximum());
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void cambiarEstado() {
-        if (ticket.getEstado().equals("Pendiente")) { // Si actualmente está pendiente.
-            ticket.setEstado("Resuelto");
-            facadeAtenderTickets.cambiarEstado(ticket);
-            FrmAtnVistaTrabajador frmAtnAlCliente;
-            try {
-                frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
-                frmAtnAlCliente.setVisible(true);
-            } catch (PresentacionException pe) {
-                JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-            }
-            this.dispose();
-        } else {                                      // Si actualmente está resuelto.
-            ticket.setEstado("Pendiente");
-            facadeAtenderTickets.cambiarEstado(ticket);
-            btnEstado.setText("Marcar como pendiente");
-            txtMensaje.setEnabled(true);
-            btnEnviar.setEnabled(true);
         }
     }
 
@@ -232,7 +167,6 @@ public class FrmChatTicket extends javax.swing.JFrame {
         jepChat = new javax.swing.JEditorPane("text/html", "");
         jPanel1 = new javax.swing.JPanel();
         txtMensaje = new javax.swing.JTextField();
-        btnEstado = new javax.swing.JButton();
         btnEnviar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         lblAtencionClienteTrabajador = new javax.swing.JLabel();
@@ -264,17 +198,6 @@ public class FrmChatTicket extends javax.swing.JFrame {
         jPanel1.add(txtMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, 940, 40));
-
-        btnEstado.setBackground(new java.awt.Color(79, 89, 144));
-        btnEstado.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnEstado.setForeground(new java.awt.Color(255, 255, 255));
-        btnEstado.setText("Marcar como");
-        btnEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEstadoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 610, 330, 40));
 
         btnEnviar.setBackground(new java.awt.Color(79, 89, 144));
         btnEnviar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -547,10 +470,6 @@ public class FrmChatTicket extends javax.swing.JFrame {
         enviarRespuesta();
     }//GEN-LAST:event_txtMensajeActionPerformed
 
-    private void btnEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadoActionPerformed
-        cambiarEstado();
-    }//GEN-LAST:event_btnEstadoActionPerformed
-
     private void lblAtencionClienteTrabajadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtencionClienteTrabajadorMouseClicked
         try {
             FrmAtnVistaTrabajador frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
@@ -574,7 +493,6 @@ public class FrmChatTicket extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEnviar;
-    private javax.swing.JButton btnEstado;
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

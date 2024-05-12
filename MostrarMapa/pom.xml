@@ -13,12 +13,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ObtenerImagenesMapa</artifactId>
+            <artifactId>ObjetosNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ObjetosNegocio</artifactId>
+            <artifactId>ObtenerImagenesMapa</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -20,15 +20,15 @@ public class CtrlAtenderTickets {
         this.ticketBO = new TicketBO();
     }
 
-    public List<TicketDTO> obtenerTodosTickets() {
-        return ticketBO.obtenerTodosTickets();
+    public List<TicketDTO> obtenerTodosTickets(ObjectId idAtendiendo) {
+        return ticketBO.obtenerTodosTickets(idAtendiendo);
     }
 
-    public TicketDTO enviarRespuesta(ObjectId folio, RespuestaDTO respuesta) {
-        return ticketBO.enviarRespuesta(folio, respuesta);
+    public TicketDTO enviarRespuestaTrabajador(ObjectId folio, RespuestaDTO respuesta, ObjectId idAtendiendo)  {
+        return ticketBO.enviarRespuestaTrabajador(folio, respuesta, idAtendiendo);
     }
 
     public void cambiarEstado(TicketDTO ticket) {
-        ticketBO.cambiarEstado(ticket);
+        ticketBO.actualizarTicket(ticket);
     }
 }

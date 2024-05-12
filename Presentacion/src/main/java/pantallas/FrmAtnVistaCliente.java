@@ -110,7 +110,7 @@ public class FrmAtnVistaCliente extends javax.swing.JFrame {
     private void seleccionarTicket() {
         try {
             TicketDTO ticket = listaTickets.get(this.tblTickets.getSelectedRow());
-            FrmChatTicket frmChatTicket = new FrmChatTicket(usuario, facadeAdministrarTickets, null, ticket);
+            FrmChatVistaCliente frmChatTicket = new FrmChatVistaCliente(usuario, facadeAdministrarTickets, ticket);
             frmChatTicket.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);

@@ -5,6 +5,13 @@
     <artifactId>AdministrarTickets</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <exec.mainClass>mandarTicket.MandarTicket</exec.mainClass>
+    </properties>
+    <name>AdministrarTickets</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -17,11 +24,4 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <exec.mainClass>mandarTicket.MandarTicket</exec.mainClass>
-    </properties>
-    <name>AdministrarTickets</name>
 </project>

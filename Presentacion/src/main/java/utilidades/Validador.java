@@ -145,6 +145,57 @@ public class Validador {
         }
     }
 
+    public void validarNombres(String nombres) throws PresentacionException {
+        try {
+            validarVacio(nombres);
+        } catch (PresentacionException pe) {
+            // Si la contraseña está vacía.
+            throw new PresentacionException("El nombre no puede estar vacío.");
+        }
+        if (nombres.length() > 100) {
+            // Si la contraseña es diferente a la original.
+            throw new PresentacionException("El nombre no puede exceder los 100 caracteres.");
+        }
+        if (!nombres.matches("^[a-zA-ZÀ-ÿ ]+$")) {
+            // Si la contraseña es diferente a la original.
+            throw new PresentacionException("El nombre sólo puede tener letras.");
+        }
+    }
+    
+    public void validarApellidoP(String apellido) throws PresentacionException {
+        try {
+            validarVacio(apellido);
+        } catch (PresentacionException pe) {
+            // Si la contraseña está vacía.
+            throw new PresentacionException("El apellido paterno no puede estar vacío.");
+        }
+        if (apellido.length() > 100) {
+            // Si la contraseña es diferente a la original.
+            throw new PresentacionException("El apellido paterno no puede exceder los 100 caracteres.");
+        }
+        if (!apellido.matches("^[a-zA-ZÀ-ÿ ]+$")) {
+            // Si la contraseña es diferente a la original.
+            throw new PresentacionException("El apellido paterno sólo puede tener letras.");
+        }
+    }
+    
+    public void validarApellidoM(String apellido) throws PresentacionException {
+        try {
+            validarVacio(apellido);
+        } catch (PresentacionException pe) {
+            // Si la contraseña está vacía.
+            throw new PresentacionException("El apellido materno no puede estar vacío.");
+        }
+        if (apellido.length() > 100) {
+            // Si la contraseña es diferente a la original.
+            throw new PresentacionException("El apellido materno no puede exceder los 100 caracteres.");
+        }
+        if (!apellido.matches("^[a-zA-ZÀ-ÿ ]+$")) {
+            // Si la contraseña es diferente a la original.
+            throw new PresentacionException("El apellido materno sólo puede tener letras.");
+        }
+    }
+    
     /**
      * Método para validar si hay una sesión activa para continuar.
      *
@@ -160,4 +211,5 @@ public class Validador {
             throw new PresentacionException("Necesitas una sesión activa para acceder a esta funcionalidad.");
         }
     }
+
 }

@@ -19,3 +19,5 @@
 *.tar.gz
 *.rar
 /AtenderTickets/target/
+/DTOss/target/
+/MostrarMapa/target/

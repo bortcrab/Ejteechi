@@ -12,15 +12,17 @@ public class Respuesta {
     private ObjectId id;
     private String contenido;
     private Date fecha;
-    private Usuario usuario;
+    private String emisor;
+    private ObjectId idEmisor;
 
     public Respuesta() {
     }
 
-    public Respuesta(String contenido, Date fecha, Usuario usuario) {
+    public Respuesta(String contenido, Date fecha, String emisor, ObjectId idEmisor) {
         this.contenido = contenido;
         this.fecha = fecha;
-        this.usuario = usuario;
+        this.emisor = emisor;
+        this.idEmisor = idEmisor;
     }
 
     public ObjectId getId() {
@@ -47,12 +49,20 @@ public class Respuesta {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getEmisor() {
+        return emisor;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setEmisor(String emisor) {
+        this.emisor = emisor;
+    }
+
+    public ObjectId getIdEmisor() {
+        return idEmisor;
+    }
+
+    public void setIdEmisor(ObjectId idEmisor) {
+        this.idEmisor = idEmisor;
     }
     
 }

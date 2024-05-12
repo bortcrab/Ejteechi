@@ -39,10 +39,10 @@ public class MapaBO implements IMapaBO {
     public MapaBO() {
         this.mapaDAO = new MapaDAO();
     }
-    
+
     /**
      * Método que devuelve el mapa a mostrar.
-     * 
+     *
      * @return El mapa encontrado.
      * @throws ObjetosNegocioException si no se encontró ningún mapa.
      */
@@ -63,7 +63,7 @@ public class MapaBO implements IMapaBO {
 
     /**
      * Método que convierte una entidad de mapa a una instancia de MapaDTO.
-     * 
+     *
      * @param mapa Mapa entidad a convertir.
      * @return El mapa convertido a DTO.
      */
@@ -72,15 +72,15 @@ public class MapaBO implements IMapaBO {
         List<Linea> lineas = mapa.getLineas();
         // Creamos una lista de líneas DTO.
         List<LineaDTO> lineasDTO = new ArrayList<>();
-        
+
         for (Linea linea : lineas) {
             // Mandamos a convertir cada línea a DTO y la agregamos a su respectiva lista.
             lineasDTO.add(convertirLinea(linea));
         }
-        
+
         // Para las coordenadas convertimos una lista de double a un arreglo de double.
         double[] posicionDefault = mapa.getPosicionDefault().stream().mapToDouble(Double::doubleValue).toArray();
-        
+
         // Hacemos un mapa DTO y le asignamos las líneas y las coordenadas ya convertidas.
         MapaDTO mapaDTO = new MapaDTO(posicionDefault, lineasDTO);
         return mapaDTO; // Lo retornamos.
@@ -88,7 +88,7 @@ public class MapaBO implements IMapaBO {
 
     /**
      * Método que convierte una entidad de línea a una instancia de LineaDTO.
-     * 
+     *
      * @param linea Línea entidad a convertir.
      * @return La línea convertida a DTO.
      */
@@ -97,19 +97,19 @@ public class MapaBO implements IMapaBO {
         List<List<Double>> paradas = linea.getParadas();
         // Creamos un set de Waypoints para almacenar las paradas.
         Set<Waypoint> paradasWaypoint = new HashSet<>();
-        
+
         for (List<Double> parada : paradas) {
             // Convertimos cada lista de coordenadas de cada parada a un arreglo de coordenadas.
             double[] coordenadas = parada.stream().mapToDouble(Double::doubleValue).toArray();
             // Con cada arreglo creamos un DefaultWaypoint y lo agregamos al set de paradas.
             paradasWaypoint.add(new DefaultWaypoint(new GeoPosition(coordenadas)));
         }
-        
+
         // Mandamos a convertir la ruta de la línea a DTO.
         RutaDTO rutaDTO = convertirRuta(linea.getRuta());
-        
+
         int numLinea = linea.getNumero();
-        
+
         // Hacemos una línea DTO y le asignamos las paradas y su ruta ya convertidas.
         LineaDTO lineaDTO = new LineaDTO(numLinea, paradasWaypoint, rutaDTO);
         return lineaDTO; // La retornamos.
@@ -117,7 +117,7 @@ public class MapaBO implements IMapaBO {
 
     /**
      * Método que convierte una entidad de ruta a una instancia de RutaDTO.
-     * 
+     *
      * @param ruta Ruta entidad a convertir.
      * @return La ruta convertida a DTO.
      */
@@ -126,17 +126,16 @@ public class MapaBO implements IMapaBO {
         List<List<Double>> puntos = ruta.getPuntos();
         // Creamos una lista de posiciones geográficas para guardar los puntos.
         List<GeoPosition> puntosGeoPosition = new ArrayList<>();
-        
+
         for (List<Double> punto : puntos) {
             // Similar a lo de las paradas, convertimos cadar lista de puntos a un arreglo.
             double[] coordenadas = punto.stream().mapToDouble(Double::doubleValue).toArray();
             // Con cada arreglo creamos una nueva GeoPosition y la agregamos a la lista de puntos.
             puntosGeoPosition.add(new GeoPosition(coordenadas));
         }
-        
+
         // Hacemos una ruta DTO con un arraylist vacío y los puntos ya convertidos.
         RutaDTO rutaDTO = new RutaDTO(new ArrayList<>(), puntosGeoPosition);
         return rutaDTO; // La retornamos.
     }
-
 }

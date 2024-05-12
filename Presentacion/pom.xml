@@ -26,12 +26,17 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>DTOs</artifactId>
+            <artifactId>AdministrarQuejas</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>MostrarMapa</artifactId>
+            <artifactId>AtenderTickets</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>AdministrarTickets</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -46,17 +51,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>AdministrarQuejas</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>AdministrarTickets</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>AtenderTickets</artifactId>
+            <artifactId>MostrarMapa</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

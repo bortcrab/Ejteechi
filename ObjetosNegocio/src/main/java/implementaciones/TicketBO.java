@@ -2,7 +2,6 @@ package implementaciones;
 
 import colecciones.Respuesta;
 import colecciones.Ticket;
-import colecciones.Usuario;
 import dtos.RespuestaDTO;
 import dtos.TicketDTO;
 import dtos.UsuarioDTO;
@@ -11,7 +10,6 @@ import interfaces.ITicketDAO;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
-import utilidades.Encriptador;
 
 /**
  *
@@ -28,7 +26,7 @@ public class TicketBO implements ITicketBO {
     @Override
     public void enviarTicket(TicketDTO ticketDTO) {
         Ticket ticketEnt = convertirTicket(ticketDTO);
-        ticketEnt.getUsuario().setId(ticketDTO.getUsuario().getId());
+        ticketEnt.setIdUsuario(ticketDTO.getIdUsuario());
         ticketDAO.agregarTicket(ticketEnt);
     }
     
@@ -36,7 +34,11 @@ public class TicketBO implements ITicketBO {
     public List<TicketDTO> obtenerTickets(UsuarioDTO usuario) {
         List<Ticket> listaTicketsEnt = ticketDAO.obtenerTickets(usuario.getId());
         
-        List<TicketDTO> listaTicketsDTO = convertirListaTickets(listaTicketsEnt);
+        List<TicketDTO> listaTicketsDTO = new ArrayList<>();
+        
+        for (Ticket ticket : listaTicketsEnt) {
+            listaTicketsDTO.add(convertirTicket(ticket));
+        }
         
         return listaTicketsDTO;
     }
@@ -58,27 +60,48 @@ public class TicketBO implements ITicketBO {
     }
     
     @Override
-    public List<TicketDTO> obtenerTodosTickets() {
-        List<Ticket> listaTicketsEnt = ticketDAO.obtenerTodosTickets();
+    public TicketDTO enviarRespuestaTrabajador(ObjectId folio, RespuestaDTO respuestaDTO, ObjectId idAtendiendo) {
+        Respuesta respuestaEnt = convertirRespuesta(respuestaDTO);
+        ticketDAO.agregarRespuesta(folio, respuestaEnt);
         
-        List<TicketDTO> listaTicketsDTO = convertirListaTickets(listaTicketsEnt);
+        Ticket ticketEnt = ticketDAO.obtenerTicket(folio);
+        
+        if (ticketEnt.getIdAtendiendo() == null) {
+            ticketEnt.setIdAtendiendo(idAtendiendo);
+            ticketDAO.actualizarTicket(ticketEnt);
+        }
+        
+        return this.obtenerTicket(folio);
+    }
+    
+    @Override
+    public List<TicketDTO> obtenerTodosTickets(ObjectId idAtendiendo) {
+        List<Ticket> listaTicketsEnt = ticketDAO.obtenerTodosTickets(idAtendiendo);
+        
+        List<TicketDTO> listaTicketsDTO = new ArrayList<>();
+        
+        for (Ticket ticket : listaTicketsEnt) {
+            listaTicketsDTO.add(convertirTicket(ticket));
+        }
         
         return listaTicketsDTO;
     }
     
     @Override
-    public void cambiarEstado(TicketDTO ticketDTO) {
+    public void actualizarTicket(TicketDTO ticketDTO) {
         Ticket ticketEnt = convertirTicket(ticketDTO);
-        ticketEnt.getUsuario().setId(ticketDTO.getUsuario().getId());
-        ticketDAO.actualizarEstadoTicket(ticketEnt);
+        ticketEnt.setIdUsuario(ticketDTO.getIdUsuario());
+        ticketDAO.actualizarTicket(ticketEnt);
     }
     
     private Ticket convertirTicket(TicketDTO ticketDTO) {
         Ticket ticketEnt = new Ticket(
-                ticketDTO.getContenido(),
-                ticketDTO.getFecha(),
-                ticketDTO.getEstado(),
-                convertirUsuario(ticketDTO.getUsuario()),
+                ticketDTO.getContenido(), 
+                ticketDTO.getFecha(), 
+                ticketDTO.getEstado(), 
+                ticketDTO.getIdUsuario(), 
+                ticketDTO.getNombreUsuario(), 
+                ticketDTO.getIdAtendiendo(), 
                 convertirRespuestasDTO(ticketDTO.getRespuestas()));
         ticketEnt.setId(ticketDTO.getId());
         
@@ -91,99 +114,48 @@ public class TicketBO implements ITicketBO {
                 ticketEnt.getContenido(),
                 ticketEnt.getFecha(),
                 ticketEnt.getEstado(),
-                convertirUsuario(ticketEnt.getUsuario()),
+                ticketEnt.getIdUsuario(),
+                ticketEnt.getNombreUsuario(),
+                ticketEnt.getIdAtendiendo(),
                 convertirRespuestasEntidad(ticketEnt.getRespuestas()));
         
         return ticketDTO;
     }
     
-    private Usuario convertirUsuario(UsuarioDTO usuarioDTO) {
-        Usuario usuarioEnt = new Usuario(
-                usuarioDTO.getNombres(),
-                usuarioDTO.getApellidoPaterno(),
-                usuarioDTO.getApellidoMaterno(),
-                usuarioDTO.getTelefono(),
-                usuarioDTO.getCorreo(),
-                usuarioDTO.getContra(),
-                usuarioDTO.getCurp(),
-                usuarioDTO.getRfc(),
-                usuarioDTO.getTipo());
-
-        return usuarioEnt;
-    }
-    
-    private List<Respuesta> convertirRespuestasDTO(List<RespuestaDTO> respuestasDTO) {
-        List<Respuesta> respuestasEnt = new ArrayList<>();
-        for (RespuestaDTO respuestaDTO : respuestasDTO) {
-            Respuesta respuestaEnt = new Respuesta(
-                    respuestaDTO.getContenido(),
-                    respuestaDTO.getFecha(),
-                    convertirUsuario(respuestaDTO.getUsuario()));
-            
-            respuestasEnt.add(respuestaEnt);
-        }
-        return respuestasEnt;
-    }
-
-    private List<TicketDTO> convertirListaTickets(List<Ticket> listaTicketsEnt) {
-        List<TicketDTO> listaTicketsDTO = new ArrayList<>();
-        for (Ticket ticketEnt : listaTicketsEnt) {
-            TicketDTO ticketDTO = new TicketDTO(
-                ticketEnt.getId(),
-                ticketEnt.getContenido(),
-                ticketEnt.getFecha(),
-                ticketEnt.getEstado(),
-                convertirUsuario(ticketEnt.getUsuario()),
-                convertirRespuestasEntidad(ticketEnt.getRespuestas()));
-            
-            listaTicketsDTO.add(ticketDTO);
-        }
-        
-        return listaTicketsDTO;
-    }
-    
-    private List<RespuestaDTO> convertirRespuestasEntidad(List<Respuesta> respuestasEnt) {
-        List<RespuestaDTO> respuestasDTO = new ArrayList<>();
-        for (Respuesta respuestaEnt : respuestasEnt) {
-            RespuestaDTO respuestaDTO = new RespuestaDTO(
-                    respuestaEnt.getContenido(),
-                    respuestaEnt.getFecha(),
-                    convertirUsuario(respuestaEnt.getUsuario()));
-            
-            respuestasDTO.add(respuestaDTO);
-        }
-        return respuestasDTO;
-    }
-    
-    /**
-     * Método para convertir de una entidad Usuario a UsuarioDTO.
-     *
-     * @param usuarioEnt Entidad de Usuario a convertir.
-     * @return UsuarioDTO ya convertido.
-     */
-    private UsuarioDTO convertirUsuario(Usuario usuarioEnt) {
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
-                usuarioEnt.getId(),
-                usuarioEnt.getNombres(),
-                usuarioEnt.getApellidoPaterno(),
-                usuarioEnt.getApellidoMaterno(),
-                usuarioEnt.getTelefono(),
-                usuarioEnt.getCurp(),
-                usuarioEnt.getRfc(),
-                usuarioEnt.getCorreo(),
-                usuarioEnt.getContrasenia(),
-                usuarioEnt.getTipo());
-
-        return usuarioDTO;
-    }
-
     private Respuesta convertirRespuesta(RespuestaDTO respuestaDTO) {
         Respuesta respuestaEnt = new Respuesta(
                 respuestaDTO.getContenido(),
                 respuestaDTO.getFecha(),
-                convertirUsuario(respuestaDTO.getUsuario()));
+                respuestaDTO.getEmisor(),
+                respuestaDTO.getIdEmisor());
         
         return respuestaEnt;
     }
+    
+    private RespuestaDTO convertirRespuesta(Respuesta respuestaEnt) {
+        RespuestaDTO respuestaDTO = new RespuestaDTO(
+                respuestaEnt.getContenido(),
+                respuestaEnt.getFecha(),
+                respuestaEnt.getEmisor(),
+                respuestaEnt.getIdEmisor());
+        
+        return respuestaDTO;
+    }
+    
+    private List<Respuesta> convertirRespuestasDTO(List<RespuestaDTO> listaRespuestasDTO) {
+        List<Respuesta> listaRespuestasEnt = new ArrayList<>();
+        for (RespuestaDTO respuestaDTO : listaRespuestasDTO) {
+            listaRespuestasEnt.add(convertirRespuesta(respuestaDTO));
+        }
+        return listaRespuestasEnt;
+    }
 
+    private List<RespuestaDTO> convertirRespuestasEntidad(List<Respuesta> listaRespuestasEnt) {
+        List<RespuestaDTO> listaRespuestasDTO = new ArrayList<>();
+        for (Respuesta respuestaEnt : listaRespuestasEnt) {
+            listaRespuestasDTO.add(convertirRespuesta(respuestaEnt));
+        }
+        return listaRespuestasDTO;
+    }
+    
 }

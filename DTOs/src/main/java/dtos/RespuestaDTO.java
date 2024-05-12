@@ -1,6 +1,7 @@
 package dtos;
 
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -10,15 +11,17 @@ public class RespuestaDTO {
     
     private String contenido;
     private Date fecha;
-    private UsuarioDTO usuario;
+    private String emisor;
+    private ObjectId idEmisor;
 
     public RespuestaDTO() {
     }
 
-    public RespuestaDTO(String contenido, Date fecha, UsuarioDTO usuario) {
+    public RespuestaDTO(String contenido, Date fecha, String emisor, ObjectId idEmisor) {
         this.contenido = contenido;
         this.fecha = fecha;
-        this.usuario = usuario;
+        this.emisor = emisor;
+        this.idEmisor = idEmisor;
     }
 
     public String getContenido() {
@@ -37,12 +40,20 @@ public class RespuestaDTO {
         this.fecha = fecha;
     }
 
-    public UsuarioDTO getUsuario() {
-        return usuario;
+    public String getEmisor() {
+        return emisor;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
+    public void setEmisor(String emisor) {
+        this.emisor = emisor;
+    }
+
+    public ObjectId getIdEmisor() {
+        return idEmisor;
+    }
+
+    public void setIdEmisor(ObjectId idEmisor) {
+        this.idEmisor = idEmisor;
     }
     
 }

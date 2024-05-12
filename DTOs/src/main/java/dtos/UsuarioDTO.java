@@ -75,7 +75,6 @@ public class UsuarioDTO {
      * gerente).
      */
     public UsuarioDTO(String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String curp, String rfc, String correo, String contra, String tipo) {
-        this.id = id;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -96,7 +95,7 @@ public class UsuarioDTO {
      * @param contra Contraseña del cliente.
      * @param tipo Tipo de usuario (en este caso cliente).
      */
-    public UsuarioDTO(ObjectId id, String correo, String contra, String tipo) {
+    public UsuarioDTO(String correo, String contra, String tipo) {
         this.correo = correo;
         this.contra = contra;
         this.tipo = tipo;
@@ -110,7 +109,10 @@ public class UsuarioDTO {
      * @param contra Contraseña del cliente.
      * @param tipo Tipo de usuario (en este caso cliente).
      */
-    public UsuarioDTO(String correo, String contra, String tipo) {
+    public UsuarioDTO(String nombres, String apellidoPaterno, String apellidoMaterno, String correo, String contra, String tipo) {    
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
         this.contra = contra;
         this.tipo = tipo;

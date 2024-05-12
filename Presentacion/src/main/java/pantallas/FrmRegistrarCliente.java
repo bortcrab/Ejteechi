@@ -38,6 +38,9 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
      */
     private void crearCuenta() {
         // Obtenemos el correo y las contraseñas sin espacios.
+        String nombres = txtNombres.getText().trim();
+        String apellidoM = txtApellidoP.getText().trim();
+        String apellidoP = txtApellidoM.getText().trim();
         String correo = txtCorreo.getText().trim();
         String contrasenia1 = new String(pwdContrasenia.getPassword()).trim();
         String contrasenia2 = new String(pwdConfirmarContrasenia.getPassword()).trim();
@@ -46,12 +49,15 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
         Validador validador = new Validador();
         try {
             // Validamos cada dato.
+            validador.validarNombres(nombres);
+            validador.validarApellidoP(apellidoP);
+            validador.validarApellidoM(apellidoM);
             validador.validarCorreo(correo);
             validador.validarContrasenia(contrasenia1);
             validador.validarConfirmarContrasenia(contrasenia1, contrasenia2);
 
             // Creamos un usuario DTO con los datos introducidos.
-            UsuarioDTO usuario = new UsuarioDTO(correo, contrasenia1, "cliente");
+            UsuarioDTO usuario = new UsuarioDTO(nombres, apellidoP, apellidoM, correo, contrasenia1, "cliente");
 
             // Mandamos a crear la cuenta del usuario.
             usuario = facadeCrearCuentaCliente.crearCuenta(usuario);
@@ -78,6 +84,9 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtNombres = new javax.swing.JTextField();
+        txtApellidoP = new javax.swing.JTextField();
+        txtApellidoM = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         pwdConfirmarContrasenia = new javax.swing.JPasswordField();
         pwdContrasenia = new javax.swing.JPasswordField();
@@ -90,27 +99,36 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtNombres.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 350, 70));
+
+        txtApellidoP.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 350, 70));
+
+        txtApellidoM.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 350, 70));
+
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 420, 70));
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 350, 70));
 
         pwdConfirmarContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdConfirmarContraseniaActionPerformed(evt);
             }
         });
-        jPanel1.add(pwdConfirmarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 420, 70));
+        jPanel1.add(pwdConfirmarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 350, 70));
 
         pwdContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdContraseniaActionPerformed(evt);
             }
         });
-        jPanel1.add(pwdContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 420, 70));
+        jPanel1.add(pwdContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 350, 70));
 
         btnCrearCuenta.setBackground(new java.awt.Color(133, 175, 218));
         btnCrearCuenta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -130,7 +148,7 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                 btnCrearCuentaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, 420, 70));
+        jPanel1.add(btnCrearCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 420, 70));
 
         btnYaTengoCuenta.setFont(new java.awt.Font("Segoe UI Emoji", 0, 24)); // NOI18N
         btnYaTengoCuenta.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,10 +165,10 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
                 btnYaTengoCuentaMouseExited(evt);
             }
         });
-        jPanel1.add(btnYaTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 630, 240, 30));
+        jPanel1.add(btnYaTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 620, 240, 30));
         btnYaTengoCuenta.setBorder(BorderFactory.createMatteBorder(0,0,2,0, java.awt.Color.WHITE));
 
-        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 2 (3).png"))); // NOI18N
+        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoRegistroCliente.png"))); // NOI18N
         jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
@@ -247,7 +265,10 @@ public class FrmRegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField pwdConfirmarContrasenia;
     private javax.swing.JPasswordField pwdContrasenia;
+    private javax.swing.JTextField txtApellidoM;
+    private javax.swing.JTextField txtApellidoP;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
 
 }
