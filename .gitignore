@@ -18,7 +18,3 @@
 *.zip
 *.tar.gz
 *.rar
-/AtenderTickets/target/
-/DTOss/target/
-/MostrarMapa/target/
-/Persistencia/target/
