@@ -3,7 +3,12 @@
  */
 package interfaces;
 
+import dtos.LineaDTO;
 import dtos.MapaDTO;
+import dtos.RutaDTO;
+import colecciones.Linea;
+import colecciones.Mapa;
+import colecciones.Ruta;
 import excepciones.ObjetosNegocioException;
 
 /**

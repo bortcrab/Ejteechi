@@ -3,8 +3,13 @@
  */
 package utilidades;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
@@ -24,12 +29,16 @@ public class Encriptador {
      * @return El valor encriptado.
      * @throws Exception si sucede algún imprevisto.
      */
-    public String encriptar(String valor) throws Exception {
-        SecretKeySpec llave = generarLlave();
-        Cipher cipher = Cipher.getInstance(ALGORITMO);
-        cipher.init(Cipher.ENCRYPT_MODE, (java.security.Key) llave);
-        byte[] valorByteEncriptado = cipher.doFinal(valor.getBytes("utf-8"));
-        return Base64.getEncoder().encodeToString(valorByteEncriptado);
+    public String encriptar(String valor) {
+        try {
+            SecretKeySpec llave = generarLlave();
+            Cipher cipher = Cipher.getInstance(ALGORITMO);
+            cipher.init(Cipher.ENCRYPT_MODE, (java.security.Key) llave);
+            byte[] valorByteEncriptado = cipher.doFinal(valor.getBytes("utf-8"));
+            return Base64.getEncoder().encodeToString(valorByteEncriptado);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -39,13 +48,17 @@ public class Encriptador {
      * @return El valor desencriptado.
      * @throws Exception si sucede algún imprevisto.
      */
-    public String desencriptar(String valor) throws Exception {
-        SecretKeySpec llave = generarLlave();
-        Cipher cipher = Cipher.getInstance(ALGORITMO);
-        cipher.init(Cipher.DECRYPT_MODE, (java.security.Key) llave);
-        byte[] valor64Desencriptado = Base64.getDecoder().decode(valor);
-        byte[] valorByteDesencriptado = cipher.doFinal(valor64Desencriptado);
-        return new String(valorByteDesencriptado, "utf-8");
+    public String desencriptar(String valor) {
+        try {
+            SecretKeySpec llave = generarLlave();
+            Cipher cipher = Cipher.getInstance(ALGORITMO);
+            cipher.init(Cipher.DECRYPT_MODE, (java.security.Key) llave);
+            byte[] valor64Desencriptado = Base64.getDecoder().decode(valor);
+            byte[] valorByteDesencriptado = cipher.doFinal(valor64Desencriptado);
+            return new String(valorByteDesencriptado, "utf-8");
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

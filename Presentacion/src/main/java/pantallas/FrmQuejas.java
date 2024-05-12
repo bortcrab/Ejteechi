@@ -1,37 +1,36 @@
 package pantallas;
 
+import administrarQuejas.AdministrarQuejaException;
+import administrarQuejas.FacadeAdministrarQuejas;
+import administrarQuejas.IAdministrarQuejas;
+import dtos.QuejaDTO;
 import dtos.UsuarioDTO;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
+import java.util.Date;
 import utilidades.Validador;
 
 public class FrmQuejas extends javax.swing.JFrame {
 
     private final UsuarioDTO usuario;
-    
+    private int desiredPosition = 51;
+    private IAdministrarQuejas administrar;
+     
     /**
      * Creates new form FrmQuejas
+     * @param usuario
+     * @throws excepciones.PresentacionException
      */
     public FrmQuejas(UsuarioDTO usuario) throws PresentacionException {
         initComponents();
         
+        administrar = new FacadeAdministrarQuejas();
+        this.usuario = usuario;
 
         Validador.validarSesion(usuario, this);
-        this.usuario = usuario;
         
-//        cargarDatos();
     }
-
-    private void validarSesion(UsuarioDTO usuario) throws PresentacionException {
-        if (usuario == null) {
-            FrmLogin frmLogin = new FrmLogin();
-            frmLogin.setVisible(true);
-            this.dispose();
-            throw new PresentacionException("Necesitas una sesión activa para acceder a esta funcionalidad.");
-        }
-    }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,7 +63,14 @@ public class FrmQuejas extends javax.swing.JFrame {
 
         txtQueja.setColumns(20);
         txtQueja.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtQueja.setLineWrap(true);
         txtQueja.setRows(5);
+        txtQueja.setWrapStyleWord(true);
+        txtQueja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQuejaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtQueja);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 690, 280));
@@ -170,7 +176,12 @@ public class FrmQuejas extends javax.swing.JFrame {
         jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
         btnEnviar.setText("jButton1");
-        jPanel1.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 280, 160));
+        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEnviarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 450, 310, 180));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 700));
 
@@ -263,6 +274,42 @@ public class FrmQuejas extends javax.swing.JFrame {
     private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
         lblCerrarSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCerrarSesionMouseExited
+
+    private void txtQuejaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuejaKeyTyped
+        // TODO add your handling code here:
+        int caretPosition = txtQueja.getCaretPosition();
+        if (caretPosition == desiredPosition) {
+            txtQueja.append("\n");
+            desiredPosition += 54; 
+        }if (txtQueja.getText().length() > 150) {
+            JOptionPane.showMessageDialog(this, "Has llegado al límite de caracteres", "Límite alcanzado", JOptionPane.ERROR_MESSAGE);
+            txtQueja.setText(txtQueja.getText().substring(0, 150));
+        }
+
+    }//GEN-LAST:event_txtQuejaKeyTyped
+
+    private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
+        // TODO add your handling code here:
+        if(txtQueja.getText()!=null && jComboBoxTipoQueja.getSelectedItem()!="<Elija uno>"){
+        try{
+            QuejaDTO queja = new QuejaDTO();
+            queja.setDescripcion(txtQueja.getText());
+            Date fecha = new Date();
+            queja.setFecha(fecha);
+            queja.setTipoQueja(jComboBoxTipoQueja.getSelectedItem().toString());
+            queja.setAnonimo(btnAnonimo.isSelected());
+            if(!btnAnonimo.isSelected()){
+                queja.setIdCliente(usuario.getIdUsuario());
+            }
+            administrar.enviarQueja(queja);
+            JOptionPane.showMessageDialog(this, "La queja se ha mandado con éxito","Queja enviada con éxito", JOptionPane.PLAIN_MESSAGE);
+        }catch(AdministrarQuejaException e){
+            JOptionPane.showMessageDialog(this, e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "Para continuar, necesita llenar todos los datos, asegure de llenar el contenido de la queja y seleccionar un tipo de queja","Llene todos los datos", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEnviarMouseClicked
 
     
 

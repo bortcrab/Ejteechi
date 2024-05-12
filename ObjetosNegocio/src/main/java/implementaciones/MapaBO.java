@@ -1,4 +1,4 @@
-/**
+/*
  * MapaBO.java
  */
 package implementaciones;

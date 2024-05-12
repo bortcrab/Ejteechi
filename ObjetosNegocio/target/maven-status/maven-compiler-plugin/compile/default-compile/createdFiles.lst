@@ -1,4 +1,10 @@
+implementaciones\QuejaBO.class
 interfaces\IMapaBO.class
-utilidades\Encriptador.class
+interfaces\IUsuarioBO.class
 excepciones\ObjetosNegocioException.class
+implementaciones\UsuarioBO.class
+implementaciones\TicketBO.class
+utilidades\Encriptador.class
+interfaces\IQuejaBO.class
+interfaces\ITicketBO.class
 implementaciones\MapaBO.class

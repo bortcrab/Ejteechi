@@ -3,26 +3,68 @@
  */
 package pantallas;
 
+import excepciones.CrearCuentaClienteException;
+import crearCuentaCliente.FacadeCrearCuentaCliente;
+import crearCuentaCliente.ICrearCuentaCliente;
 import dtos.UsuarioDTO;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
+import utilidades.Validador;
 
 /**
  * Clase que representa la pantalla para que el cliente pueda crear una cuenta.
  *
- * @author Eliana Monge Cámara - 00000247782
- * @author Francisco Valdez Gastelum - 00000246904
  * @author Diego Valenzuela Parra - 00000247700
  */
 public class FrmRegistrar extends javax.swing.JFrame {
 
+    private final ICrearCuentaCliente facadeCrearCuentaCliente;
+
     /**
-     * Constructor que inicializa los componentes de la clase.
+     * Constructor que el único atributo de la clase.
      */
     public FrmRegistrar() {
         initComponents();
+
+        this.facadeCrearCuentaCliente = new FacadeCrearCuentaCliente();
+    }
+
+    /**
+     * Método para mandar a crear una cuenta con el correo y contraseña
+     * introducidos.
+     */
+    private void crearCuenta() {
+        // Obtenemos el correo y las contraseñas sin espacios.
+        String correo = txtCorreo.getText().trim();
+        String contrasenia1 = new String(pwdContrasenia.getPassword()).trim();
+        String contrasenia2 = new String(pwdConfirmarContrasenia.getPassword()).trim();
+
+        // Creamos una instancia del validador.
+        Validador validador = new Validador();
+        try {
+            // Validamos cada dato.
+            validador.validarCorreo(correo);
+            validador.validarContrasenia(contrasenia1);
+            validador.validarConfirmarContrasenia(contrasenia1, contrasenia2);
+
+            // Creamos un usuario DTO con los datos introducidos.
+            UsuarioDTO usuario = new UsuarioDTO("", correo, contrasenia1, "cliente");
+
+            // Mandamos a crear la cuenta del usuario.
+            usuario = facadeCrearCuentaCliente.crearCuenta(usuario);
+
+            // Redireccionamos al usuario al home para clientes.
+            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
+            frmHome.setVisible(true);
+            this.dispose();
+            // Mensaje para indicar que la cuenta fue creada.
+            JOptionPane.showMessageDialog(this, "¡Cuenta creada con éxito!", "¡Yippee!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (PresentacionException | CrearCuentaClienteException ex) {
+            // Si se cacha alguna excepción, imprimimos su mensaje.
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -36,7 +78,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         txtCorreo = new javax.swing.JTextField();
-        pwdConfirmarContrasena = new javax.swing.JPasswordField();
+        pwdConfirmarContrasenia = new javax.swing.JPasswordField();
         pwdContrasenia = new javax.swing.JPasswordField();
         btnCrearCuenta = new javax.swing.JButton();
         btnYaTengoCuenta = new javax.swing.JLabel();
@@ -48,8 +90,13 @@ public class FrmRegistrar extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 420, 70));
-        jPanel1.add(pwdConfirmarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 420, 70));
+        jPanel1.add(pwdConfirmarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 420, 70));
         jPanel1.add(pwdContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 420, 70));
 
         btnCrearCuenta.setBackground(new java.awt.Color(133, 175, 218));
@@ -106,13 +153,7 @@ public class FrmRegistrar extends javax.swing.JFrame {
      * @param evt Evento al que se escucha.
      */
     private void btnCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCuentaActionPerformed
-        try {
-            FrmHomeCliente frmHomeCliente = new FrmHomeCliente(new UsuarioDTO());
-            frmHomeCliente.setVisible(true);
-        } catch (PresentacionException pe) {
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
+        crearCuenta(); // Llamamos al método para crear cuentas.
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     /**
@@ -173,13 +214,17 @@ public class FrmRegistrar extends javax.swing.JFrame {
         btnYaTengoCuenta.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
     }//GEN-LAST:event_btnYaTengoCuentaMouseExited
 
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearCuenta;
     private javax.swing.JLabel btnYaTengoCuenta;
     private javax.swing.JLabel img;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField pwdConfirmarContrasena;
+    private javax.swing.JPasswordField pwdConfirmarContrasenia;
     private javax.swing.JPasswordField pwdContrasenia;
     private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables

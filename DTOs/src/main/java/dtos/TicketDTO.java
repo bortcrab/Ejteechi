@@ -1,40 +1,59 @@
 package dtos;
 
+import java.util.Date;
+import java.util.List;
+
 public class TicketDTO {
-    private String noTicket;
-    private String categoria;
-    private String ticket;
+    
+    private String id;
+    private String contenido;
+    private Date fecha;
     private String estado;
+    private String idUsuario;
+    private List<RespuestaDTO> respuestas;
 
-    public TicketDTO(String noTicket, String categoria, String ticket, String estado) {
-        this.noTicket = noTicket;
-        this.categoria = categoria;
-        this.ticket = ticket;
+    public TicketDTO() {
+    }
+
+    public TicketDTO(String id, String contenido, Date fecha, String estado, String idUsuario, List<RespuestaDTO> respuestas) {
+        this.id = id;
+        this.contenido = contenido;
+        this.fecha = fecha;
         this.estado = estado;
+        this.idUsuario = idUsuario;
+        this.respuestas = respuestas;
+    }
+    
+    public TicketDTO(String contenido, Date fecha, String estado, String idUsuario, List<RespuestaDTO> respuestas) {
+        this.contenido = contenido;
+        this.fecha = fecha;
+        this.estado = estado;
+        this.idUsuario = idUsuario;
+        this.respuestas = respuestas;
     }
 
-    public String getNoTicket() {
-        return noTicket;
+    public String getId() {
+        return id;
     }
 
-    public void setNoTicket(String noTicket) {
-        this.noTicket = noTicket;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
-    public String getTicket() {
-        return ticket;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setTicket(String ticket) {
-        this.ticket = ticket;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public String getEstado() {
@@ -43,6 +62,22 @@ public class TicketDTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public List<RespuestaDTO> getRespuestas() {
+        return respuestas;
+    }
+
+    public void setRespuestas(List<RespuestaDTO> respuestas) {
+        this.respuestas = respuestas;
     }
     
 }
