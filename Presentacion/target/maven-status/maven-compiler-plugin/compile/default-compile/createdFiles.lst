@@ -7,6 +7,7 @@ pantallas\FrmHomeTrabajador.class
 pantallas\FrmMapa$12.class
 pantallas\FrmProgramarMantenimiento$12.class
 pantallas\FrmCitas.class
+pantallas\FrmVisualizarQuejas$1.class
 pantallas\FrmTicketNuevo.class
 pantallas\FrmQuejas$3.class
 utilidades\JButtonCellEditor.class
@@ -65,12 +66,14 @@ pantallas\FrmAtnAlCliente.class
 pantallas\FrmMapa.class
 pantallas\FrmChatTicket.class
 excepciones\PresentacionException.class
+pantallas\FrmVisualizarQuejas$2.class
 pantallas\FrmMapa$21.class
 pantallas\FrmProgramarMantenimiento$5.class
 pantallas\FrmMapa$19.class
 pantallas\FrmHomeCliente$2.class
 pantallas\FrmMapa$16.class
 pantallas\FrmProgramarMantenimiento$11.class
+pantallas\FrmVisualizarQuejas.class
 pantallas\FrmCitas$5.class
 pantallas\FrmTicketNuevo$7.class
 pantallas\FrmMapa$10.class
@@ -79,12 +82,14 @@ pantallas\FrmMapa$1.class
 pantallas\FrmProgramarMantenimiento$4.class
 pantallas\FrmMapa$17.class
 pantallas\FrmQuejas$7.class
+pantallas\FrmVisualizarQuejas$3.class
 pantallas\FrmProgramarMantenimiento$15.class
 pantallas\FrmChatTicket$1.class
 pantallas\FrmMapa$2.class
 pantallas\FrmProgramarMantenimiento$10.class
 pantallas\FrmTicketNuevo$1.class
 pantallas\FrmRegistrar.class
+pantallas\FrmVisualizarQuejas$4.class
 pantallas\FrmCitas$4.class
 pantallas\FrmHomeCliente$1.class
 pantallas\FrmQuejas$8.class

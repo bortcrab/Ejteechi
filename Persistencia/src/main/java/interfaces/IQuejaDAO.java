@@ -20,8 +20,8 @@ public interface IQuejaDAO {
 
     public List<Queja> obtenerTodasLasQuejas() throws PersistenciaException;
 
-    public List<Queja> obtenerQuejasLeidas() throws PersistenciaException;
-
-    public List<Queja> obtenerQuejasNoLeidas() throws PersistenciaException;
+    public List<Queja> obtenerQuejasPorEstadoYAnonimato(boolean leido) throws PersistenciaException;
+    
+    public Queja confirmarLectura(Queja queja) throws PersistenciaException;
 
 }

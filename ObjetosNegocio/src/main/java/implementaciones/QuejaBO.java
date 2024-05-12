@@ -31,10 +31,11 @@ public class QuejaBO implements IQuejaBO {
 
     public static QuejaDTO convertirQuejaToDTO(Queja queja) {
         QuejaDTO quejaDTO = new QuejaDTO();
-        quejaDTO.setNoQueja(queja.getNoQueja());
-        quejaDTO.setTipoQueja(queja.getTipoQueja());
+        quejaDTO.setLeido(queja.isLeido());
+        quejaDTO.setNoQueja(queja.getId());
+        quejaDTO.setTipoQueja(queja.getTipo());
         quejaDTO.setFecha(queja.getFecha());
-        quejaDTO.setDescripcion(queja.getDescripcion());
+        quejaDTO.setDescripcion(queja.getComentario());
         quejaDTO.setAnonimo(queja.isAnonimo());
         quejaDTO.setIdCliente(queja.getIdCliente());
         return quejaDTO;
@@ -42,10 +43,11 @@ public class QuejaBO implements IQuejaBO {
 
     public static Queja convertirDTOToQueja(QuejaDTO quejaDTO) {
         Queja queja = new Queja();
-        queja.setNoQueja(quejaDTO.getNoQueja());
-        queja.setTipoQueja(quejaDTO.getTipoQueja());
+        queja.setLeido(quejaDTO.isLeido());
+        queja.setId(quejaDTO.getNoQueja());
+        queja.setTipo(quejaDTO.getTipoQueja());
         queja.setFecha(quejaDTO.getFecha());
-        queja.setDescripcion(quejaDTO.getDescripcion());
+        queja.setComentario(quejaDTO.getDescripcion());
         queja.setAnonimo(quejaDTO.isAnonimo());
         queja.setIdCliente(quejaDTO.getIdCliente());
         return queja;
@@ -80,9 +82,9 @@ public class QuejaBO implements IQuejaBO {
     }
 
     @Override
-    public List<QuejaDTO> obtenerQuejasLeidas() throws ObjetosNegocioException {
+    public List<QuejaDTO> obtenerQuejasPorEstado(boolean leido) throws ObjetosNegocioException {
         try {
-            List<Queja> quejas = quejaDAO.obtenerQuejasLeidas();
+            List<Queja> quejas = quejaDAO.obtenerQuejasPorEstadoYAnonimato(leido);
             List<QuejaDTO> quejasDTO = new ArrayList<>();
             for (Queja queja : quejas) {
                 quejasDTO.add(convertirQuejaToDTO(queja));
@@ -94,14 +96,10 @@ public class QuejaBO implements IQuejaBO {
     }
 
     @Override
-    public List<QuejaDTO> obtenerQuejasNoLeidas() throws ObjetosNegocioException {
+    public QuejaDTO confirmarLectura(QuejaDTO queja) throws ObjetosNegocioException {
         try {
-            List<Queja> quejas = quejaDAO.obtenerQuejasNoLeidas();
-            List<QuejaDTO> quejasDTO = new ArrayList<>();
-            for (Queja queja : quejas) {
-                quejasDTO.add(convertirQuejaToDTO(queja));
-            }
-            return quejasDTO;
+            Queja quejas = quejaDAO.confirmarLectura(convertirDTOToQueja(queja));
+            return convertirQuejaToDTO(quejas);
         } catch (PersistenciaException e) {
             throw new ObjetosNegocioException(e.getMessage());
         }

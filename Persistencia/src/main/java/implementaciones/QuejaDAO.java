@@ -3,7 +3,12 @@ package implementaciones;
 import colecciones.Queja;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.exists;
+import static com.mongodb.client.model.Filters.or;
+import static com.mongodb.client.model.Updates.set;
+import com.mongodb.client.result.UpdateResult;
 import conexion.Conexion;
 import conexion.IConexion;
 import excepciones.PersistenciaException;
@@ -12,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 public class QuejaDAO implements IQuejaDAO {
 
@@ -25,22 +32,22 @@ public class QuejaDAO implements IQuejaDAO {
         db = conexion.crearConexion();
         coleccion = db.getCollection("quejas", Queja.class);
     }
-            
+
     @Override
-    public void insertarQueja(Queja queja) throws PersistenciaException{
-    if (queja.isAnonimo()) {
-        queja.setIdCliente(null);
-    }
+    public void insertarQueja(Queja queja) throws PersistenciaException {
+        if (queja.isAnonimo()) {
+            queja.setIdCliente(null);
+        }
         coleccion.insertOne(queja);
         logger.log(Level.INFO, "Se ha insertado la queja en la colección 'quejas'.");
         conexion.cerrarConexion();
     }
 
     @Override
-    public List<Queja> obtenerQuejasPorTipo(String tipo) throws PersistenciaException{
-      List<Queja> quejasPorTipo = new ArrayList<>();
+    public List<Queja> obtenerQuejasPorTipo(String tipo) throws PersistenciaException {
+        List<Queja> quejasPorTipo = new ArrayList<>();
         try {
-            for (Queja queja : coleccion.find(eq("tipoQueja", tipo))) {
+            for (Queja queja : coleccion.find(eq("tipo", tipo))) {
                 quejasPorTipo.add(queja);
             }
         } catch (Exception ex) {
@@ -51,8 +58,8 @@ public class QuejaDAO implements IQuejaDAO {
     }
 
     @Override
-    public List<Queja> obtenerTodasLasQuejas() throws PersistenciaException{
-         List<Queja> todasLasQuejas = new ArrayList<>();
+    public List<Queja> obtenerTodasLasQuejas() throws PersistenciaException {
+        List<Queja> todasLasQuejas = new ArrayList<>();
         try {
             for (Queja queja : coleccion.find()) {
                 todasLasQuejas.add(queja);
@@ -65,32 +72,41 @@ public class QuejaDAO implements IQuejaDAO {
     }
 
     @Override
-    public List<Queja> obtenerQuejasLeidas() throws PersistenciaException{
-        List<Queja> quejasLeidas = new ArrayList<>();
+    public List<Queja> obtenerQuejasPorEstadoYAnonimato(boolean leido) throws PersistenciaException {
+        List<Queja> quejasFiltradas = new ArrayList<>();
         try {
-            for (Queja queja : coleccion.find(eq("leido", true))) {
-                quejasLeidas.add(queja);
+            Bson filtroLeido;
+            if (leido) {
+                filtroLeido = eq("leido", true);
+            } else {
+                filtroLeido = or(eq("leido", false), exists("leido", false)); // No leído o atributo "leido" no existe
+            }
+
+            for (Queja queja : coleccion.find(filtroLeido)) {
+                quejasFiltradas.add(queja);
             }
         } catch (Exception ex) {
-            logger.log(Level.SEVERE, "Error al obtener quejas leídas", ex);
+            logger.log(Level.SEVERE, "Error al obtener quejas ", ex);
             throw new PersistenciaException(ex.getMessage());
         }
-        return quejasLeidas;
+        return quejasFiltradas;
     }
 
     @Override
-    public List<Queja> obtenerQuejasNoLeidas() throws PersistenciaException{
-        List<Queja> quejasNoLeidas = new ArrayList<>();
+    public Queja confirmarLectura(Queja queja) throws PersistenciaException {
         try {
-            for (Queja queja : coleccion.find(eq("leido", false))) {
-                quejasNoLeidas.add(queja);
+            queja.setLeido(true);
+
+            UpdateResult result = coleccion.updateOne(eq("_id", queja.getId()), set("leido", true));
+
+            if (result.getModifiedCount() != 1) {
+                logger.log(Level.WARNING, "No se pudo actualizar la queja en la base de datos");
             }
         } catch (Exception ex) {
-            logger.log(Level.SEVERE, "Error al obtener quejas no leídas", ex);
+            logger.log(Level.SEVERE, "Error al confirmar la lectura de la queja", ex);
             throw new PersistenciaException(ex.getMessage());
         }
-        return quejasNoLeidas;
-    }
+        return queja;
     }
 
-
+}

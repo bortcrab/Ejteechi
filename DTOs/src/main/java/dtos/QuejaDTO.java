@@ -4,7 +4,7 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 
 public class QuejaDTO {
-    private String noQueja;
+    private ObjectId noQueja;
     private String tipoQueja;
     private Date fecha;
     private String descripcion;
@@ -38,11 +38,11 @@ public class QuejaDTO {
         this.tipoQueja = tipoQueja;
     }
 
-    public String getNoQueja() {
+    public ObjectId getNoQueja() {
         return noQueja;
     }
 
-    public void setNoQueja(String noQueja) {
+    public void setNoQueja(ObjectId noQueja) {
         this.noQueja = noQueja;
     }
 

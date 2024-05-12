@@ -4,17 +4,31 @@
  */
 package pantallas;
 
+import dtos.QuejaDTO;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import org.bson.types.ObjectId;
+import visualizarQuejas.FacadeVisualizarQuejas;
+import visualizarQuejas.IVisualizarQuejas;
+import visualizarQuejas.VisualizarQuejasException;
+
 /**
  *
  * @author elimo
  */
 public class FrmVisualizarQuejas extends javax.swing.JFrame {
 
+    IVisualizarQuejas visualizar;
+
     /**
      * Creates new form FrmVisualizarQuejas
      */
     public FrmVisualizarQuejas() {
         initComponents();
+        visualizar = new FacadeVisualizarQuejas();
     }
 
     /**
@@ -28,33 +42,30 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblQuejas = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         comboBoxFiltro = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        btnActualizarLectura = new javax.swing.JButton();
         img = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblQuejas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Queja", "Tipo", "Anonimo", "Fecha", "Confirmación lectura"
+                "No. Queja", "Tipo queja", "Fecha", "Descripción", "Anonimo", "ID cliente", "Confirmar lectura"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -65,13 +76,13 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(tblQuejas);
+        if (tblQuejas.getColumnModel().getColumnCount() > 0) {
+            tblQuejas.getColumnModel().getColumn(0).setResizable(false);
+            tblQuejas.getColumnModel().getColumn(1).setResizable(false);
+            tblQuejas.getColumnModel().getColumn(2).setResizable(false);
+            tblQuejas.getColumnModel().getColumn(3).setResizable(false);
+            tblQuejas.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 1000, 330));
@@ -79,21 +90,32 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         btnActualizar.setBackground(new java.awt.Color(0, 0, 102));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("Actualizar datos");
+        btnActualizar.setText("Actualizar tabla");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 580, 300, 40));
 
         comboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Elije uno>", "Sugerencia", "Queja por conductor", "Queja por unidad", "Queja por pasajero", "No leidos", "Leidos" }));
         jPanel1.add(comboBoxFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, 310, -1));
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Visualizar quejas anonimas");
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Filtrar por:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 100, 40));
+
+        btnActualizarLectura.setBackground(new java.awt.Color(0, 0, 102));
+        btnActualizarLectura.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnActualizarLectura.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizarLectura.setText("Actualizar lectura");
+        btnActualizarLectura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarLecturaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnActualizarLectura, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 580, 300, 40));
 
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Frame 8 (2).png"))); // NOI18N
         jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 1120, 690));
@@ -111,6 +133,134 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MMMM/yyyy");
+        if (comboBoxFiltro.getSelectedItem().equals("<Elije uno>")) {
+            try {
+                DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
+                model.setRowCount(0);
+                if (tblQuejas.getRowCount() == 0) {
+                    List<QuejaDTO> quejas = visualizar.obtenerTodasLasQuejas();
+
+                    for (QuejaDTO queja : quejas) {
+
+                        Object[] rowData = {
+                            queja.getNoQueja(),
+                            queja.getTipoQueja(),
+                            formato.format(queja.getFecha()),
+                            queja.getDescripcion(),
+                            queja.isAnonimo(),
+                            queja.getIdCliente(),
+                            queja.isLeido()
+                        };
+                        model.addRow(rowData);
+                    }
+                }
+            } catch (VisualizarQuejasException ex) {
+                Logger.getLogger(FrmVisualizarQuejas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (!comboBoxFiltro.getSelectedItem().equals("<Elije uno>")) {
+            if (!comboBoxFiltro.getSelectedItem().equals("No leidos") || !comboBoxFiltro.getSelectedItem().equals("Leidos")) {
+                try {
+                    DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
+                    model.setRowCount(0);
+                    if (tblQuejas.getRowCount() == 0) {
+                        List<QuejaDTO> quejas = visualizar.obtenerQuejasPorTipo(comboBoxFiltro.getSelectedItem().toString());
+
+                        for (QuejaDTO queja : quejas) {
+
+                            Object[] rowData = {
+                                queja.getNoQueja(),
+                                queja.getTipoQueja(),
+                                formato.format(queja.getFecha()),
+                                queja.getDescripcion(),
+                                queja.isAnonimo(),
+                                queja.getIdCliente(),
+                                queja.isLeido()
+                            };
+                            model.addRow(rowData);
+                        }
+                    }
+                } catch (VisualizarQuejasException ex) {
+                    Logger.getLogger(FrmVisualizarQuejas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (comboBoxFiltro.getSelectedItem().equals("No leidos")) {
+                try {
+                    DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
+                    model.setRowCount(0);
+                    if (tblQuejas.getRowCount() == 0) {
+                        List<QuejaDTO> quejas = visualizar.obtenerQuejasPorEstado(false);
+
+                        for (QuejaDTO queja : quejas) {
+
+                            Object[] rowData = {
+                                queja.getNoQueja(),
+                                queja.getTipoQueja(),
+                                formato.format(queja.getFecha()),
+                                queja.getDescripcion(),
+                                queja.isAnonimo(),
+                                queja.getIdCliente(),
+                                queja.isLeido()
+                            };
+                            model.addRow(rowData);
+                        }
+                    }
+                } catch (VisualizarQuejasException ex) {
+                    Logger.getLogger(FrmVisualizarQuejas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (comboBoxFiltro.getSelectedItem().equals("Leidos")) {
+                try {
+                    DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
+                    model.setRowCount(0);
+                    if (tblQuejas.getRowCount() == 0) {
+                        List<QuejaDTO> quejas = visualizar.obtenerQuejasPorEstado(true);
+
+                        for (QuejaDTO queja : quejas) {
+
+                            Object[] rowData = {
+                                queja.getNoQueja(),
+                                queja.getTipoQueja(),
+                                formato.format(queja.getFecha()),
+                                queja.getDescripcion(),
+                                queja.isAnonimo(),
+                                queja.getIdCliente(),
+                                queja.isLeido()
+                            };
+                            model.addRow(rowData);
+                        }
+                    }
+                } catch (VisualizarQuejasException ex) {
+                    Logger.getLogger(FrmVisualizarQuejas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnActualizarLecturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarLecturaActionPerformed
+    
+        for (int i = 0; i < tblQuejas.getModel().getRowCount(); i++) {
+    boolean confirmacion = (boolean) tblQuejas.getModel().getValueAt(i, 6); // Índice de la columna de confirmación de lectura
+    
+    // Si la confirmación de lectura está marcada como verdadera
+    if (confirmacion) {
+        // Obtener el ID de la queja de la fila actual
+        ObjectId idQueja = (ObjectId) tblQuejas.getModel().getValueAt(i, 0); // Índice de la columna del ID de la queja
+        
+        QuejaDTO queja = new QuejaDTO();
+        queja.setNoQueja(idQueja);
+        try {
+            visualizar.confirmarLectura(queja);
+            
+        } catch (VisualizarQuejasException ex) {
+            Logger.getLogger(FrmVisualizarQuejas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+
+    }//GEN-LAST:event_btnActualizarLecturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,12 +299,12 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnActualizarLectura;
     private javax.swing.JComboBox<String> comboBoxFiltro;
     private javax.swing.JLabel img;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblQuejas;
     // End of variables declaration//GEN-END:variables
 }
