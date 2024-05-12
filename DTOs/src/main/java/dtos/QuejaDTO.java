@@ -4,11 +4,12 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 
 public class QuejaDTO {
-    private String noQueja;
+    private ObjectId noQueja;
     private String tipoQueja;
     private Date fecha;
     private String descripcion;
     private boolean anonimo;
+    private boolean leido;
     private ObjectId idCliente;
 
     public QuejaDTO() {
@@ -21,6 +22,14 @@ public class QuejaDTO {
         this.anonimo = anonimo;
     }
 
+    public boolean isLeido() {
+        return leido;
+    }
+
+    public void setLeido(boolean leido) {
+        this.leido = leido;
+    }
+
     public String getTipoQueja() {
         return tipoQueja;
     }
@@ -29,11 +38,11 @@ public class QuejaDTO {
         this.tipoQueja = tipoQueja;
     }
 
-    public String getNoQueja() {
+    public ObjectId getNoQueja() {
         return noQueja;
     }
 
-    public void setNoQueja(String noQueja) {
+    public void setNoQueja(ObjectId noQueja) {
         this.noQueja = noQueja;
     }
 

@@ -1,5 +1,6 @@
 utilidades\JXMapViewerCustom.class
 dtos\DatosRutaDTO.class
+dtos\CamionDTO.class
 dtos\QuejaDTO.class
 dtos\RutaDTO.class
 utilidades\JXMapViewerCustom$1.class

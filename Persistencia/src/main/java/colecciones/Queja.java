@@ -1,55 +1,35 @@
 package colecciones;
 
-import java.util.Date;
 import org.bson.types.ObjectId;
+import java.util.Date;
 
 public class Queja {
-    private String noQueja;
-    private String tipoQueja;
+    private ObjectId _id;
+    private String tipo;
     private Date fecha;
-    private String descripcion;
+    private String comentario;
     private boolean anonimo;
+    private boolean leido;
     private ObjectId idCliente;
 
-    /**
-     * Constructor vacío
-     */
     public Queja() {
     }
 
-    /**
-     * 
-     * @param tipoQueja
-     * @param fecha
-     * @param descripcion
-     * @param anonimo
-     */
-    public Queja(String tipoQueja, Date fecha, String descripcion, boolean anonimo) {
-        this.tipoQueja = tipoQueja;
-        this.fecha = fecha;
-        this.descripcion = descripcion;
-        this.anonimo = anonimo;
-    }
-
     
-    /**
-     * 
-     * @return 
-     */
-    public String getNoQueja() {
-        return noQueja;
+    public ObjectId getId() {
+        return _id;
     }
 
-    public void setNoQueja(String noQueja) {
-        this.noQueja = noQueja;
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
 
-    public String getTipoQueja() {
-        return tipoQueja;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoQueja(String tipoQueja) {
-        this.tipoQueja = tipoQueja;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Date getFecha() {
@@ -60,12 +40,12 @@ public class Queja {
         this.fecha = fecha;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getComentario() {
+        return comentario;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
     public boolean isAnonimo() {
@@ -76,6 +56,14 @@ public class Queja {
         this.anonimo = anonimo;
     }
 
+    public boolean isLeido() {
+        return leido;
+    }
+
+    public void setLeido(boolean leido) {
+        this.leido = leido;
+    }
+
     public ObjectId getIdCliente() {
         return idCliente;
     }
@@ -84,6 +72,5 @@ public class Queja {
         this.idCliente = idCliente;
     }
 
-    
+   
 }
-

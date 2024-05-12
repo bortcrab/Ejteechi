@@ -6,9 +6,11 @@ import excepciones.ObjetosNegocioException;
 import excepciones.PersistenciaException;
 import interfaces.IQuejaBO;
 import interfaces.IQuejaDAO;
+import java.util.ArrayList;
+import java.util.List;
 
-public class QuejaBO implements IQuejaBO{
-    
+public class QuejaBO implements IQuejaBO {
+
     private IQuejaDAO quejaDAO;
 
     public QuejaBO() {
@@ -17,36 +19,90 @@ public class QuejaBO implements IQuejaBO{
 
     @Override
     public QuejaDTO enviarQueja(QuejaDTO quejaDTO) throws ObjetosNegocioException {
-        
-        try{
+
+        try {
             quejaDAO.insertarQueja(convertirDTOToQueja(quejaDTO));
             return quejaDTO;
-        }catch(PersistenciaException e){
+        } catch (PersistenciaException e) {
             throw new ObjetosNegocioException(e.getMessage());
         }
-        
+
     }
-    
-     public static QuejaDTO convertirQuejaToDTO(Queja queja) {
+
+    public static QuejaDTO convertirQuejaToDTO(Queja queja) {
         QuejaDTO quejaDTO = new QuejaDTO();
-        quejaDTO.setNoQueja(queja.getNoQueja());
-        quejaDTO.setTipoQueja(queja.getTipoQueja());
+        quejaDTO.setLeido(queja.isLeido());
+        quejaDTO.setNoQueja(queja.getId());
+        quejaDTO.setTipoQueja(queja.getTipo());
         quejaDTO.setFecha(queja.getFecha());
-        quejaDTO.setDescripcion(queja.getDescripcion());
+        quejaDTO.setDescripcion(queja.getComentario());
         quejaDTO.setAnonimo(queja.isAnonimo());
         quejaDTO.setIdCliente(queja.getIdCliente());
         return quejaDTO;
     }
-     
-     public static Queja convertirDTOToQueja(QuejaDTO quejaDTO) {
+
+    public static Queja convertirDTOToQueja(QuejaDTO quejaDTO) {
         Queja queja = new Queja();
-        queja.setNoQueja(quejaDTO.getNoQueja());
-        queja.setTipoQueja(quejaDTO.getTipoQueja());
+        queja.setLeido(quejaDTO.isLeido());
+        queja.setId(quejaDTO.getNoQueja());
+        queja.setTipo(quejaDTO.getTipoQueja());
         queja.setFecha(quejaDTO.getFecha());
-        queja.setDescripcion(quejaDTO.getDescripcion());
+        queja.setComentario(quejaDTO.getDescripcion());
         queja.setAnonimo(quejaDTO.isAnonimo());
         queja.setIdCliente(quejaDTO.getIdCliente());
         return queja;
+    }
+
+    @Override
+    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws ObjetosNegocioException {
+        try {
+            List<Queja> quejas = quejaDAO.obtenerQuejasPorTipo(tipo);
+            List<QuejaDTO> quejasDTO = new ArrayList<>();
+            for (Queja queja : quejas) {
+                quejasDTO.add(convertirQuejaToDTO(queja));
+            }
+            return quejasDTO;
+        } catch (PersistenciaException e) {
+            throw new ObjetosNegocioException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<QuejaDTO> obtenerTodasLasQuejas() throws ObjetosNegocioException {
+        try {
+            List<Queja> quejas = quejaDAO.obtenerTodasLasQuejas();
+            List<QuejaDTO> quejasDTO = new ArrayList<>();
+            for (Queja queja : quejas) {
+                quejasDTO.add(convertirQuejaToDTO(queja));
+            }
+            return quejasDTO;
+        } catch (PersistenciaException e) {
+            throw new ObjetosNegocioException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<QuejaDTO> obtenerQuejasPorEstado(boolean leido) throws ObjetosNegocioException {
+        try {
+            List<Queja> quejas = quejaDAO.obtenerQuejasPorEstadoYAnonimato(leido);
+            List<QuejaDTO> quejasDTO = new ArrayList<>();
+            for (Queja queja : quejas) {
+                quejasDTO.add(convertirQuejaToDTO(queja));
+            }
+            return quejasDTO;
+        } catch (PersistenciaException e) {
+            throw new ObjetosNegocioException(e.getMessage());
+        }
+    }
+
+    @Override
+    public QuejaDTO confirmarLectura(QuejaDTO queja) throws ObjetosNegocioException {
+        try {
+            Queja quejas = quejaDAO.confirmarLectura(convertirDTOToQueja(queja));
+            return convertirQuejaToDTO(quejas);
+        } catch (PersistenciaException e) {
+            throw new ObjetosNegocioException(e.getMessage());
+        }
     }
 
 }

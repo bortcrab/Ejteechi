@@ -7,16 +7,21 @@ package interfaces;
 import colecciones.Queja;
 import excepciones.PersistenciaException;
 import java.util.List;
-import org.bson.Document;
 
 /**
  *
  * @author elimo
  */
 public interface IQuejaDAO {
+
+    public void insertarQueja(Queja queja) throws PersistenciaException;
+
+    public List<Queja> obtenerQuejasPorTipo(String tipo) throws PersistenciaException;
+
+    public List<Queja> obtenerTodasLasQuejas() throws PersistenciaException;
+
+    public List<Queja> obtenerQuejasPorEstadoYAnonimato(boolean leido) throws PersistenciaException;
     
-    
-    
-     public void insertarQueja(Queja queja) throws PersistenciaException;
-    
+    public Queja confirmarLectura(Queja queja) throws PersistenciaException;
+
 }
