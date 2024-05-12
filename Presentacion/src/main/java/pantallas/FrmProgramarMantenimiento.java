@@ -5,6 +5,7 @@
 package pantallas;
 
 import dtos.CamionDTO;
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -99,43 +100,98 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
 
         lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblMantenimiento.setText("mantenimiento");
-        jPanel1.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 180, 50));
+        lblMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMantenimientoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMantenimientoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMantenimientoMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 180, 80));
 
         lblMantenimiento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblMantenimiento1.setText("Programar ");
-        jPanel1.add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 120, 50));
+        jPanel1.add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 120, 50));
 
         lblRegistrar1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblRegistrar1.setText("Registrar");
-        jPanel1.add(lblRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 120, 70));
+        jPanel1.add(lblRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 120, 90));
 
         lblRegistrar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblRegistrar.setText("empleado");
-        jPanel1.add(lblRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 130, 70));
+        lblRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRegistrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblRegistrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblRegistrarMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 130, 70));
 
         lblQuejas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblQuejas.setText("Ver");
-        jPanel1.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 60, 30));
+        jPanel1.add(lblQuejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 60, 30));
 
         lblQuejas1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblQuejas1.setText("quejas");
-        jPanel1.add(lblQuejas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 90, 70));
+        lblQuejas1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblQuejas1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblQuejas1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblQuejas1MouseExited(evt);
+            }
+        });
+        jPanel1.add(lblQuejas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, 90, 70));
 
         lblTickets.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTickets.setText("Atender");
-        jPanel1.add(lblTickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 90, 70));
+        lblTickets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTicketsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblTicketsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblTicketsMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblTickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 90, 70));
 
         lblTickets1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTickets1.setText("tickets");
-        jPanel1.add(lblTickets1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 90, 70));
+        jPanel1.add(lblTickets1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 70, 90, 70));
 
         lblSesion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblSesion1.setText("Cerrar");
-        jPanel1.add(lblSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 60, 90, 70));
+        lblSesion1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSesion1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblSesion1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblSesion1MouseExited(evt);
+            }
+        });
+        jPanel1.add(lblSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, 140, 70));
 
         lblSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblSesion.setText("sesión");
-        jPanel1.add(lblSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, 90, 70));
+        jPanel1.add(lblSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 60, 90, 70));
 
         jScrollPane1.setForeground(new java.awt.Color(79, 89, 144));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -989,6 +1045,86 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
             Logger.getLogger(FrmProgramarMantenimiento.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_lblFechaMantenimientoMouseClicked
+
+    private void lblTicketsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTicketsMouseEntered
+        // TODO add your handling code here:
+        lblTickets.setForeground(Color.GRAY);
+        lblTickets1.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblTicketsMouseEntered
+
+    private void lblMantenimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseEntered
+        // TODO add your handling code here:
+        lblMantenimiento.setForeground(Color.GRAY);
+        lblMantenimiento1.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblMantenimientoMouseEntered
+
+    private void lblMantenimientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseExited
+        // TODO add your handling code here:
+        lblMantenimiento.setForeground(Color.BLACK);
+        lblMantenimiento1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblMantenimientoMouseExited
+
+    private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblMantenimientoMouseClicked
+
+    private void lblRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarMouseEntered
+        // TODO add your handling code here:
+        lblRegistrar.setForeground(Color.GRAY);
+        lblRegistrar1.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblRegistrarMouseEntered
+
+    private void lblRegistrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarMouseExited
+        // TODO add your handling code here:
+        lblRegistrar.setForeground(Color.BLACK);
+        lblRegistrar1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblRegistrarMouseExited
+
+    private void lblRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblRegistrarMouseClicked
+
+    private void lblQuejas1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejas1MouseEntered
+        // TODO add your handling code here:
+        lblQuejas.setForeground(Color.GRAY);
+        lblQuejas1.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblQuejas1MouseEntered
+
+    private void lblQuejas1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejas1MouseExited
+        // TODO add your handling code here:
+        lblQuejas.setForeground(Color.BLACK);
+        lblQuejas1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblQuejas1MouseExited
+
+    private void lblQuejas1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejas1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblQuejas1MouseClicked
+
+    private void lblTicketsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTicketsMouseExited
+        // TODO add your handling code here:
+        lblTickets.setForeground(Color.BLACK);
+        lblTickets1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblTicketsMouseExited
+
+    private void lblTicketsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTicketsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblTicketsMouseClicked
+
+    private void lblSesion1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesion1MouseEntered
+        // TODO add your handling code here:
+        lblSesion.setForeground(Color.BLACK);
+        lblSesion1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblSesion1MouseEntered
+
+    private void lblSesion1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesion1MouseExited
+        // TODO add your handling code here:
+        lblSesion.setForeground(Color.BLACK);
+        lblSesion1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblSesion1MouseExited
+
+    private void lblSesion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesion1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSesion1MouseClicked
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

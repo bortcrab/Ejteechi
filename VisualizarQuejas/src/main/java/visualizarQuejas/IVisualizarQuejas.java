@@ -13,11 +13,13 @@ import java.util.List;
  */
 public interface IVisualizarQuejas {
 
-    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo, boolean anonimo) throws VisualizarQuejasException;
+    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws VisualizarQuejasException;
 
     public List<QuejaDTO> obtenerTodasLasQuejas() throws VisualizarQuejasException;
 
-    public List<QuejaDTO> obtenerQuejasPorEstadoYAnonimato(boolean leido, boolean anonimo) throws VisualizarQuejasException;
+    public List<QuejaDTO> obtenerQuejasPorEstado(boolean leido) throws VisualizarQuejasException;
+    
+    public QuejaDTO confirmarLectura(QuejaDTO queja) throws VisualizarQuejasException;
 
 
 }

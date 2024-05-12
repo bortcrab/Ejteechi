@@ -19,8 +19,8 @@ public class FacadeVisualizarQuejas implements IVisualizarQuejas {
      * @throws VisualizarQuejasException
      */
     @Override
-    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo, boolean anonimo) throws VisualizarQuejasException {
-        return ctrlVisualizarQuejas.obtenerQuejasPorTipo(tipo, anonimo);
+    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws VisualizarQuejasException {
+        return ctrlVisualizarQuejas.obtenerQuejasPorTipo(tipo);
     }
 
     @Override
@@ -29,8 +29,13 @@ public class FacadeVisualizarQuejas implements IVisualizarQuejas {
     }
 
     @Override
-    public List<QuejaDTO> obtenerQuejasPorEstadoYAnonimato(boolean leido, boolean anonimo) throws VisualizarQuejasException{
-         return ctrlVisualizarQuejas.obtenerQuejasPorEstadoYAnonimato(leido, anonimo);
+    public List<QuejaDTO> obtenerQuejasPorEstado(boolean leido) throws VisualizarQuejasException{
+         return ctrlVisualizarQuejas.obtenerQuejasPorEstadoYAnonimato(leido);
+    }
+
+    @Override
+    public QuejaDTO confirmarLectura(QuejaDTO queja) throws VisualizarQuejasException {
+       return ctrlVisualizarQuejas.confirmarLectura(queja);
     }
 
 }

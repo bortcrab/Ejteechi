@@ -16,9 +16,9 @@ public class CtrlVisualizarQuejas {
 
    
     
-    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo, boolean anonimo) throws VisualizarQuejasException{
+    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws VisualizarQuejasException{
         try{
-        return quejasBO.obtenerQuejasPorTipo(tipo,anonimo);
+        return quejasBO.obtenerQuejasPorTipo(tipo);
         }catch(ObjetosNegocioException e){
             throw new VisualizarQuejasException(e.getMessage());
         }
@@ -32,13 +32,20 @@ public class CtrlVisualizarQuejas {
         }
     }
 
-    public List<QuejaDTO> obtenerQuejasPorEstadoYAnonimato(boolean leido, boolean anonimo) throws VisualizarQuejasException{
+    public List<QuejaDTO> obtenerQuejasPorEstadoYAnonimato(boolean leido) throws VisualizarQuejasException{
        try{
-        return quejasBO.obtenerQuejasPorEstadoYAnonimato(leido, anonimo);
+        return quejasBO.obtenerQuejasPorEstado(leido);
         }catch(ObjetosNegocioException e){
             throw new VisualizarQuejasException(e.getMessage());
         } 
     }
     
+    public QuejaDTO confirmarLectura(QuejaDTO queja) throws VisualizarQuejasException{
+        try{
+        return quejasBO.confirmarLectura(queja);
+        }catch(ObjetosNegocioException e){
+            throw new VisualizarQuejasException(e.getMessage());
+        } 
+    }
 
 }
