@@ -6,29 +6,86 @@ import java.awt.Color;
 import java.util.Date;
 import javax.swing.JLabel;
 
+/**
+ * Implementación de la interfaz IProgramarMantenimiento que proporciona una
+ * fachada para programar mantenimientos de camiones. Esta clase actúa como una
+ * fachada para proporcionar métodos para programar y gestionar mantenimientos
+ * de camiones en el sistema.
+ *
+ * @author elimo
+ */
 public class FacadeProgramarMantenimiento implements IProgramarMantenimiento {
 
     private final CtrlProgramarMantenimiento ctrlProgramarMantenimiento;
 
+    /**
+     * Constructor de la clase FacadeProgramarMantenimiento. Inicializa un nuevo
+     * objeto FacadeProgramarMantenimiento con una instancia de
+     * CtrlProgramarMantenimiento.
+     */
     public FacadeProgramarMantenimiento() {
         this.ctrlProgramarMantenimiento = new CtrlProgramarMantenimiento();
     }
 
+    /**
+     * Obtiene un camión por su número de unidad.
+     *
+     * @param numeroUnidad El número de unidad del camión a obtener.
+     * @return El objeto CamionDTO correspondiente al número de unidad
+     * especificado.
+     * @throws ProgramarMantenimientoException Si ocurre un error al obtener el
+     * camión por su número de unidad.
+     */
     @Override
     public CamionDTO obtenerPorNumeroUnidad(String numeroUnidad) throws ProgramarMantenimientoException {
         return ctrlProgramarMantenimiento.obtenerPorNumeroUnidad(numeroUnidad);
     }
 
+    /**
+     * Actualiza el estado de un camión.
+     *
+     * @param numeroUnidad El número de unidad del camión a actualizar.
+     * @param estadoMotor El nuevo estado del motor del camión.
+     * @param estadoLimpieza El nuevo estado de limpieza del camión.
+     * @param estadoLlantas El nuevo estado de las llantas del camión.
+     * @param estadoLuces El nuevo estado de las luces del camión.
+     * @return El objeto Camion actualizado.
+     * @throws ProgramarMantenimientoException Si ocurre un error al actualizar
+     * el estado del camión.
+     */
     @Override
     public Camion actualizarEstado(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces) throws ProgramarMantenimientoException {
         return ctrlProgramarMantenimiento.actualizarEstado(numeroUnidad, estadoMotor, estadoLimpieza, estadoLlantas, estadoLuces);
     }
 
+    /**
+     * Actualiza la prioridad y la fecha de mantenimiento de un camión.
+     *
+     * @param numeroUnidad El número de unidad del camión a actualizar.
+     * @param nuevaPrioridad La nueva prioridad del camión.
+     * @param nuevaFechaMantenimiento La nueva fecha de mantenimiento del
+     * camión.
+     * @return El objeto CamionDTO actualizado.
+     * @throws ProgramarMantenimientoException Si ocurre un error al actualizar
+     * la prioridad y la fecha de mantenimiento del camión.
+     */
     @Override
     public CamionDTO actualizarPrioridadYFechaMantenimiento(String numeroUnidad, String nuevaPrioridad, Date nuevaFechaMantenimiento) throws ProgramarMantenimientoException {
         return ctrlProgramarMantenimiento.actualizarPrioridadYFechaMantenimiento(numeroUnidad, nuevaPrioridad, nuevaFechaMantenimiento);
     }
 
+    /**
+     * Actualiza una serie de etiquetas con sus respectivos estados y colores.
+     *
+     * @param label La primera etiqueta a actualizar.
+     * @param estado El estado para la primera etiqueta.
+     * @param label1 La segunda etiqueta a actualizar.
+     * @param estado1 El estado para la segunda etiqueta.
+     * @param label2 La tercera etiqueta a actualizar.
+     * @param estado2 El estado para la tercera etiqueta.
+     * @param label3 La cuarta etiqueta a actualizar.
+     * @param estado3 El estado para la cuarta etiqueta.
+     */
     public static void actualizarLabelConEstado(JLabel label, String estado, JLabel label1, String estado1, JLabel label2, String estado2, JLabel label3, String estado3) {
         label.setText(estado);
         label1.setText(estado1);
@@ -92,6 +149,13 @@ public class FacadeProgramarMantenimiento implements IProgramarMantenimiento {
         }
     }
 
+    /**
+     * Actualiza una etiqueta de prioridad con el nivel de prioridad
+     * proporcionado.
+     *
+     * @param nivelPrioridad El nivel de prioridad a mostrar en la etiqueta.
+     * @param lblMantenimiento La etiqueta de prioridad a actualizar.
+     */
     public static void updatePrioridadLabel(String nivelPrioridad, JLabel lblMantenimiento) {
         lblMantenimiento.setText(nivelPrioridad);
         switch (nivelPrioridad.toLowerCase()) {
@@ -110,6 +174,12 @@ public class FacadeProgramarMantenimiento implements IProgramarMantenimiento {
         }
     }
 
+    /**
+     * Actualiza el estado de una etiqueta entre "BUENO", "MEDIO" y "MALO".
+     *
+     * @param label La etiqueta cuyo estado se actualizará.
+     * @return El nuevo estado de la etiqueta ("bueno", "medio" o "malo").
+     */
     public static String actualizarLabelEstado(JLabel label) {
         String textoActual = label.getText();
 
@@ -132,23 +202,31 @@ public class FacadeProgramarMantenimiento implements IProgramarMantenimiento {
         }
     }
 
+    /**
+     * Calcula la prioridad de mantenimiento para un camión basándose en el
+     * estado de sus componentes.
+     *
+     * @param camion El objeto CamionDTO para el cual se calculará la prioridad.
+     * @return La prioridad de mantenimiento del camión ("ALTO", "MEDIO" o
+     * "BAJO").
+     */
     public static String calcularPrioridad(CamionDTO camion) {
         int contadorMalo = 0;
         int contadorMedio = -2;
         if (camion.getEstadoMotor().equals("MEDIO")) {
-            contadorMedio ++;
+            contadorMedio++;
         }
 
         if (camion.getEstadoLuces().equals("MEDIO")) {
-           contadorMedio ++;
+            contadorMedio++;
         }
 
         if (camion.getEstadoLlantas().equals("MEDIO")) {
-            contadorMedio ++;
+            contadorMedio++;
         }
 
         if (camion.getEstadoLimpieza().equals("MEDIO")) {
-            contadorMedio ++;
+            contadorMedio++;
         }
         if (camion.getEstadoMotor().equals("MALO")) {
             contadorMalo++;
@@ -169,7 +247,7 @@ public class FacadeProgramarMantenimiento implements IProgramarMantenimiento {
         String nuevaPrioridad;
         if (contadorMalo > 2) {
             nuevaPrioridad = "ALTO";
-        } else if (contadorMalo == 1 || contadorMalo == 2 || contadorMedio == 1 || contadorMedio == 2 ) {
+        } else if (contadorMalo == 1 || contadorMalo == 2 || contadorMedio == 1 || contadorMedio == 2) {
             nuevaPrioridad = "MEDIO";
         } else {
             nuevaPrioridad = "BAJO";
