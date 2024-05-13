@@ -91,6 +91,72 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
     
     /**
+     * Método para obtener un usuario de la base de datos dada su CURP.
+     *
+     * @param curp CURP del usuario a buscar.
+     * @return El usuario encontrado, null si no se encontró nada.
+     */
+    @Override
+    public Usuario obtenerUsuarioCurp(String curp) {
+        // Creamos la conexión con el servidor.
+        MongoDatabase db = conexion.crearConexion();
+        // Obtenemos la colección de usuarios.
+        coleccion = db.getCollection("usuarios", Usuario.class);
+
+        /**
+         * Filtro para indicar que sólo se busque usuarios cuya CURP sea la
+         * misma que la proporcionada.
+         */
+        Document filtro = new Document("curp", curp);
+
+        /**
+         * Mandamos a ejecutar la consulta con el filtro, limitamos los
+         * resultados a uno porque sólo debe haber un usuario con esa CURP. Lo
+         * que obtengamos lo guardamos en una variable.
+         */
+        Usuario usuario = coleccion.find(filtro).first();
+        // Mensajito indicando lo que se hizo.
+        logger.log(Level.INFO, "Se ha consultado la colección 'usuarios'.");
+        conexion.cerrarConexion(); // Cerramos la conexión.
+
+        // Retornamos el usuario encontrado.
+        return usuario;
+    }
+    
+    /**
+     * Método para obtener un usuario de la base de datos dado su RFC.
+     *
+     * @param rfc RFC del usuario a buscar.
+     * @return El usuario encontrado, null si no se encontró nada.
+     */
+    @Override
+    public Usuario obtenerUsuarioRfc(String rfc) {
+        // Creamos la conexión con el servidor.
+        MongoDatabase db = conexion.crearConexion();
+        // Obtenemos la colección de usuarios.
+        coleccion = db.getCollection("usuarios", Usuario.class);
+
+        /**
+         * Filtro para indicar que sólo se busque usuarios cuyo RFC sea el
+         * mismo que el proporcionado.
+         */
+        Document filtro = new Document("rfc", rfc);
+
+        /**
+         * Mandamos a ejecutar la consulta con el filtro, limitamos los
+         * resultados a uno porque sólo debe haber un usuario con ese RFC. Lo
+         * que obtengamos lo guardamos en una variable.
+         */
+        Usuario usuario = coleccion.find(filtro).first();
+        // Mensajito indicando lo que se hizo.
+        logger.log(Level.INFO, "Se ha consultado la colección 'usuarios'.");
+        conexion.cerrarConexion(); // Cerramos la conexión.
+
+        // Retornamos el usuario encontrado.
+        return usuario;
+    }
+    
+    /**
      * Método para obtener un usuario de la base de datos dados su correo y
      * contraseña.
      *

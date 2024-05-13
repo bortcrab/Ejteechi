@@ -4,15 +4,13 @@
 package pantallas;
 
 import dtos.UsuarioDTO;
-import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import excepciones.PresentacionException;
 import iniciarSesion.FacadeIniciarSesion;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Color;
 import utilidades.Validador;
 
 /**
@@ -57,22 +55,23 @@ public class FrmLogin extends javax.swing.JFrame {
 
             // Creamos un usuario DTO con los datos introducidos.
             UsuarioDTO usuario = new UsuarioDTO(correo, contrasenia, "");
-            
-            // Mandamos a crear la cuenta del usuario.
+
+            // Mandamos a iniciar sesión.
             usuario = facadeIniciarSesion.iniciarSesion(usuario);
-            
+
+            // Si el usuario NO es un cliente
             if (!usuario.getTipo().equals("cliente")) {
-                // Redireccionamos al usuario al home para clientes.
+                // Redireccionamos al usuario al home para trabajadores.
                 FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
                 frmHome.setVisible(true);
-            } else {
+            } else { // Si el usuario SÍ es un cliente.
                 // Redireccionamos al usuario al home para clientes.
                 FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
                 frmHome.setVisible(true);
             }
             this.dispose();
         } catch (PresentacionException | IniciarSesionException ex) {
-            // Mensaje para indicar que la cuenta fue creada.
+            // Mostramos mensajes de errores.
             JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -241,10 +240,20 @@ public class FrmLogin extends javax.swing.JFrame {
         btnRegistrate.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
     }//GEN-LAST:event_btnRegistrateMouseExited
 
+    /**
+     * Método para que cuando se presione enter se mande a iniciar sesión.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         iniciarSesion();
     }//GEN-LAST:event_txtCorreoActionPerformed
 
+    /**
+     * Método para que cuando se presione enter se mande a iniciar sesión.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void pwdContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdContraseniaActionPerformed
         iniciarSesion();
     }//GEN-LAST:event_pwdContraseniaActionPerformed

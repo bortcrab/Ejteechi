@@ -6,8 +6,10 @@ package colecciones;
 import org.bson.types.ObjectId;
 
 /**
- * Clase para representar una entidad de Usuario.
+ * Clase DTO con las características que conforman un usuario.
  *
+ * @author Eliana Monge Cámara - 00000247782
+ * @author Francisco Valdez Gastelum - 00000246904
  * @author Diego Valenzuela Parra - 00000247700
  */
 public class Usuario {

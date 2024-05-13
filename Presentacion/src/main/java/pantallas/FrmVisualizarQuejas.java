@@ -9,18 +9,13 @@ import dtos.UsuarioDTO;
 import excepciones.PresentacionException;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import org.bson.types.ObjectId;
-import utilidades.JButtonCellEditor;
-import utilidades.JButtonRenderer;
 import utilidades.Validador;
 import visualizarQuejas.FacadeVisualizarQuejas;
 import visualizarQuejas.IVisualizarQuejas;
@@ -53,16 +48,16 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
             case "GERE":
                 lblQuejas.setVisible(true);
                 lblAtnCliente.setVisible(true);
-                lblMantenimiento1.setVisible(true);
+                lblMantenimiento.setVisible(true);
                 break;
         }
-        
+
         formatearTabla();
     }
-    
+
     private void formatearTabla() {
         // Cambiamos el color del fondo.
-        tblQuejas.getTableHeader().setBackground(new Color(179,185,206));
+        tblQuejas.getTableHeader().setBackground(new Color(179, 185, 206));
         // Cambiamos la fuente y el tamaño.
         tblQuejas.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
         // Cambiamos el color de la letra.
@@ -83,7 +78,7 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         lblCerrarSesion = new javax.swing.JLabel();
         lblQuejas = new javax.swing.JLabel();
         lblAtnCliente = new javax.swing.JLabel();
-        lblMantenimiento1 = new javax.swing.JLabel();
+        lblMantenimiento = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblQuejas = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
@@ -157,23 +152,23 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         lblAtnCliente.setVisible(false);
         jPanel1.add(lblAtnCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, 90));
 
-        lblMantenimiento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblMantenimiento1.setText("Mantenimiento");
-        lblMantenimiento1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblMantenimiento1.setPreferredSize(null);
-        lblMantenimiento1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMantenimiento.setText("Mantenimiento");
+        lblMantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMantenimiento.setPreferredSize(null);
+        lblMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMantenimiento1MouseClicked(evt);
+                lblMantenimientoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblMantenimiento1MouseEntered(evt);
+                lblMantenimientoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblMantenimiento1MouseExited(evt);
+                lblMantenimientoMouseExited(evt);
             }
         });
-        lblMantenimiento1.setVisible(false);
-        jPanel1.add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, -1, 90));
+        lblMantenimiento.setVisible(false);
+        jPanel1.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, -1, 90));
 
         tblQuejas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -381,10 +376,22 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnActualizarLecturaActionPerformed
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
         lblQuejas.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblQuejasMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
         lblQuejas.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblQuejasMouseExited
@@ -400,37 +407,85 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAtnClienteMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseEntered
         lblAtnCliente.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblAtnClienteMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseExited
         lblAtnCliente.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblAtnClienteMouseExited
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para cerrar
+     * sesión. Devuelve al usuario al login.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
         FrmLogin frmLogin = new FrmLogin();
         frmLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
         lblCerrarSesion.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblCerrarSesionMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
         lblCerrarSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
-    private void lblMantenimiento1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseExited
-        lblMantenimiento1.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblMantenimiento1MouseExited
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de programar mantenimiento y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
+    private void lblMantenimientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseExited
+        lblMantenimiento.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblMantenimientoMouseExited
 
-    private void lblMantenimiento1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseEntered
-        lblMantenimiento1.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblMantenimiento1MouseEntered
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * programar mantenimiento y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
+    private void lblMantenimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseEntered
+        lblMantenimiento.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblMantenimientoMouseEntered
 
-    private void lblMantenimiento1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseClicked
+    /**
+     * Método que reacciona al evento de dar clic en el botón para programar el
+     * mantenimiento.
+     *
+     * @param evt Evento al que se escucha.
+     */
+    private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
         try {
             FrmProgramarMantenimiento frmAtnAlCliente = new FrmProgramarMantenimiento(usuario);
             frmAtnAlCliente.setVisible(true);
@@ -439,8 +494,14 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_lblMantenimiento1MouseClicked
+    }//GEN-LAST:event_lblMantenimientoMouseClicked
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para ir a la
+     * pantalla principal.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
             FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
@@ -462,7 +523,7 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
     private javax.swing.JLabel lblAtnCliente;
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JLabel lblHome;
-    private javax.swing.JLabel lblMantenimiento1;
+    private javax.swing.JLabel lblMantenimiento;
     private javax.swing.JLabel lblQuejas;
     private javax.swing.JTable tblQuejas;
     // End of variables declaration//GEN-END:variables

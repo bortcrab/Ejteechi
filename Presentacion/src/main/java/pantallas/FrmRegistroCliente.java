@@ -3,7 +3,7 @@
  */
 package pantallas;
 
-import excepciones.CrearCuentaClienteException;
+import excepciones.RegistrarClienteException;
 import dtos.UsuarioDTO;
 import java.awt.Color;
 import javax.swing.BorderFactory;
@@ -32,11 +32,10 @@ public class FrmRegistroCliente extends javax.swing.JFrame {
     }
 
     /**
-     * Método para mandar a crear una cuenta con el correo y contraseña
-     * introducidos.
+     * Método para mandar a crear una cuenta con los datos introducidos.
      */
     private void crearCuenta() {
-        // Obtenemos el correo y las contraseñas sin espacios.
+        // Obtenemos los datos sin espacios.
         String nombres = txtNombres.getText().trim();
         String apellidoM = txtApellidoP.getText().trim();
         String apellidoP = txtApellidoM.getText().trim();
@@ -58,16 +57,17 @@ public class FrmRegistroCliente extends javax.swing.JFrame {
             // Creamos un usuario DTO con los datos introducidos.
             UsuarioDTO usuario = new UsuarioDTO(nombres, apellidoP, apellidoM, correo, contrasenia1, "cliente");
 
-            // Mandamos a crear la cuenta del usuario.
+            // Mandamos a crear la cuenta del cliente.
             usuario = facadeRegistrarCliente.crearCuenta(usuario);
 
-            // Redireccionamos al usuario al home para clientes.
+            // Redireccionamos al cliente al home para clientes.
             FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
             frmHome.setVisible(true);
             this.dispose();
+
             // Mensaje para indicar que la cuenta fue creada.
             JOptionPane.showMessageDialog(this, "¡Cuenta creada con éxito!", "¡Yippee!", JOptionPane.INFORMATION_MESSAGE);
-        } catch (PresentacionException | CrearCuentaClienteException ex) {
+        } catch (PresentacionException | RegistrarClienteException ex) {
             // Si se cacha alguna excepción, imprimimos su mensaje.
             JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
@@ -101,15 +101,25 @@ public class FrmRegistroCliente extends javax.swing.JFrame {
         txtNombres.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
+                txtNombresActionPerformed(evt);
             }
         });
         jPanel1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 350, 70));
 
         txtApellidoP.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtApellidoP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoPActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 350, 70));
 
         txtApellidoM.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtApellidoM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoMActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 350, 70));
 
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -249,17 +259,59 @@ public class FrmRegistroCliente extends javax.swing.JFrame {
         btnYaTengoCuenta.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
     }//GEN-LAST:event_btnYaTengoCuentaMouseExited
 
+    /**
+     * Método para que cuando se presione enter se mande a crear la cuenta.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         crearCuenta();
     }//GEN-LAST:event_txtCorreoActionPerformed
 
+    /**
+     * Método para que cuando se presione enter se mande a crear la cuenta.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void pwdContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdContraseniaActionPerformed
         crearCuenta();
     }//GEN-LAST:event_pwdContraseniaActionPerformed
 
+    /**
+     * Método para que cuando se presione enter se mande a crear la cuenta.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void pwdConfirmarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdConfirmarContraseniaActionPerformed
         crearCuenta();
     }//GEN-LAST:event_pwdConfirmarContraseniaActionPerformed
+
+    /**
+     * Método para que cuando se presione enter se mande a crear la cuenta.
+     *
+     * @param evt Evento al que se escucha.
+     */
+    private void txtApellidoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPActionPerformed
+        crearCuenta();
+    }//GEN-LAST:event_txtApellidoPActionPerformed
+
+    /**
+     * Método para que cuando se presione enter se mande a crear la cuenta.
+     *
+     * @param evt Evento al que se escucha.
+     */
+    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
+        crearCuenta();
+    }//GEN-LAST:event_txtNombresActionPerformed
+
+    /**
+     * Método para que cuando se presione enter se mande a crear la cuenta.
+     *
+     * @param evt Evento al que se escucha.
+     */
+    private void txtApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMActionPerformed
+        crearCuenta();
+    }//GEN-LAST:event_txtApellidoMActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

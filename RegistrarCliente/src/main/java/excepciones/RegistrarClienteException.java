@@ -1,14 +1,14 @@
 /*
- * CrearCuentaClienteException.java
+ * RegistrarClienteException.java
  */
 package excepciones;
 
 /**
- * Clase para customizar las excepciones generadas en el subsistema MostrarMapa.
+ * Clase para customizar las excepciones generadas en el subsistema RegistrarCliente.
  *
  * @author Diego Valenzuela Parra - 00000247700
  */
-public class CrearCuentaClienteException extends Exception {
+public class RegistrarClienteException extends Exception {
 
     /**
      * Constructor que establece el mensaje de error que explica el origen del
@@ -16,7 +16,7 @@ public class CrearCuentaClienteException extends Exception {
      *
      * @param mensaje Mensaje de error.
      */
-    public CrearCuentaClienteException(String mensaje) {
+    public RegistrarClienteException(String mensaje) {
         super(mensaje);
     }
 }

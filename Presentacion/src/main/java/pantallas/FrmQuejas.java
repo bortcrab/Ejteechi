@@ -173,6 +173,12 @@ public class FrmQuejas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para ir a la
+     * pantalla principal.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
             FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
@@ -183,16 +189,34 @@ public class FrmQuejas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para cerrar
+     * sesión. Devuelve al usuario al login.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
         FrmLogin frmLogin = new FrmLogin();
         frmLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
         lblCerrarSesion.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblCerrarSesionMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
         lblCerrarSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCerrarSesionMouseExited
@@ -238,6 +262,12 @@ public class FrmQuejas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEnviarMouseClicked
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para abrir el
+     * mapa.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseClicked
         try {
             FrmMapa frmMapa = new FrmMapa(usuario);
@@ -248,30 +278,72 @@ public class FrmQuejas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblMapaMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón del
+     * mapa y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseEntered
         lblMapa.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblMapaMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * del mapa y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseExited
         lblMapa.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblMapaMouseExited
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
         lblQuejas.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblQuejasMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
         lblQuejas.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblQuejasMouseExited
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnAlClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseEntered
         lblAtnAlCliente.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblAtnAlClienteMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnAlClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseExited
         lblAtnAlCliente.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblAtnAlClienteMouseExited
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para abrir el
+     * módulo de atención al cliente.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
         try {
             FrmAtnVistaCliente frmAtnVistaCliente = new FrmAtnVistaCliente(usuario);

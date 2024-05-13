@@ -3,7 +3,7 @@
  */
 package registrarCliente;
 
-import excepciones.CrearCuentaClienteException;
+import excepciones.RegistrarClienteException;
 import dtos.UsuarioDTO;
 import interfaces.IUsuarioBO;
 import excepciones.ObjetosNegocioException;
@@ -26,20 +26,20 @@ public class CtrlRegistrarCliente {
     }
 
     /**
-     * Método para crear la cuenta de un usuario del tipo "cliente".
+     * Método para crear la cuenta de un cliente.
      *
-     * @param usuario Usuario a quien se le creará la cuenta.
-     * @return El usuario con sus datos encriptados.
-     * @throws CrearCuentaClienteException si ya hay una cuenta con el correo
+     * @param usuario Cliente a quien se le creará la cuenta.
+     * @return El cliente con sus datos encriptados.
+     * @throws RegistrarClienteException si ya hay una cuenta con el correo
      * proporcionado.
      */
-    public UsuarioDTO crearCuenta(UsuarioDTO usuario) throws CrearCuentaClienteException {
+    public UsuarioDTO crearCuenta(UsuarioDTO usuario) throws RegistrarClienteException {
         try {
             // Mandamos a crear la cuenta y devolvemos el usuario con sus datos encriptados.
             return usuarioBO.agregarUsuario(usuario);
         } catch (ObjetosNegocioException one) {
             // Si ya existe una cuenta con el correo proporcionado.
-            throw new CrearCuentaClienteException(one.getMessage());
+            throw new RegistrarClienteException(one.getMessage());
         }
     }
 

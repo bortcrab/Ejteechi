@@ -12,6 +12,7 @@ import excepciones.PresentacionException;
  * Clase con todos los métodos necesarios para validar que los datos
  * introducidos por el cliente tengan el formato correcto.
  *
+ * @author Francisco Valdez Gastelum - 00000247700
  * @author Diego Valenzuela Parra - 00000247700
  */
 public class Validador {
@@ -32,8 +33,8 @@ public class Validador {
      * Método para validar que un correo cumple con el formato correcto.
      *
      * @param correo correo a validar.
-     * @throws PresentacionException si el correo está vacío, excede la
-     * longitud de caracteres o no cumple con el patrón especifico.
+     * @throws PresentacionException si el correo está vacío, excede la longitud
+     * de caracteres o no cumple con el patrón especifico.
      */
     public void validarCorreo(String correo) throws PresentacionException {
         try {
@@ -58,80 +59,78 @@ public class Validador {
     /**
      * Método para validar que un telefono cumple con el formato correcto.
      *
-     * @param telefono telefono a validar.
-     * @throws PresentacionException si el telefono está vacío, excede la
+     * @param telefono Teléfono a validar.
+     * @throws PresentacionException si el teléfono está vacío, excede la
      * longitud de caracteres o no cumple con el patrón especifico.
      */
     public void validarTelefono(String telefono) throws PresentacionException {
         try {
             validarVacio(telefono);
         } catch (PresentacionException pe) {
-            // Si el correo está vacío.
+            // Si el teléfono está vacío.
             throw new PresentacionException("El teléfono no puede estar vacío. "
                     + "Ejemplo: \"6440123456\".");
         }
         // Elimina cualquier espacio en blanco y guiones del número de teléfono
         telefono = telefono.replaceAll("\\s|-", "");
-        
+
         // Verifica si el número de teléfono tiene exactamente 10 dígitos
         if (!telefono.matches("\\d{10}")) {
             throw new PresentacionException("El teléfono sólo debe tener 10 dígitos. "
                     + "Ejemplo: \"6440123456\".");
         }
     }
-    
+
     /**
      * Método para validar que una CURP cumple con el formato correcto.
      *
-     * @param curp curp a validar.
-     * @throws PresentacionException si la curp está vacía, excede la
-     * longitud de caracteres o no cumple con el patrón especifico.
+     * @param curp CURP a validar.
+     * @throws PresentacionException si la CURP está vacía, excede la longitud
+     * de caracteres o no cumple con el patrón especifico.
      */
     public void validarCURP(String curp) throws PresentacionException {
         try {
             validarVacio(curp);
         } catch (PresentacionException pe) {
-            // Si el correo está vacío.
+            // Si la CURP está vacío.
             throw new PresentacionException("La CURP no puede estar vacía. "
                     + "Ejemplo: \"ABCD010312HSRLRPM5\".");
         }
-        // Elimina cualquier espacio en blanco del CURP y lo convierte a mayúsculas
+        // Elimina cualquier espacio en blanco de la CURP y la convierte a mayúsculas.
         curp = curp.trim().toUpperCase();
 
-        // Verifica si la CURP tiene el formato correcto
+        // Verifica si la CURP tiene el formato correcto.
         if (!curp.matches("[a-zA-Z0-9]{18}")) {
-            // Si el correo está vacío.
             throw new PresentacionException("La CURP sólo puede tener 18 caracteres. "
                     + "Ejemplo: \"ABCD010312HSRLRPM5\".");
         }
     }
-    
-    
+
     /**
-     * Método para validar que un rfc cumple con el formato correcto.
+     * Método para validar que un RFC cumple con el formato correcto.
      *
-     * @param rfc rfc a validar.
-     * @throws PresentacionException si el rfc está vacío, excede la
-     * longitud de caracteres o no cumple con el patrón especifico.
+     * @param rfc RFC a validar.
+     * @throws PresentacionException si el RFC está vacío, excede la longitud de
+     * caracteres o no cumple con el patrón especifico.
      */
     public void validarRFC(String rfc) throws PresentacionException {
         try {
             validarVacio(rfc);
         } catch (PresentacionException pe) {
-            // Si el correo está vacío.
+            // Si el RFC está vacío.
             throw new PresentacionException("El RFC no puede estar vacío. "
                     + "Ejemplo: \"ABCD010312MC2\".");
         }
-        // Elimina cualquier espacio en blanco del CURP y lo convierte a mayúsculas
+        // Elimina cualquier espacio en blanco del RFC y lo convierte a mayúsculas.
         rfc = rfc.trim().toUpperCase();
 
-        // Verifica si la CURP tiene el formato correcto
+        // Verifica si el RFC tiene el formato correcto
         if (rfc.matches("[a-zA-Z0-9]{13}")) {
-            throw new PresentacionException("El RFC sólo puede tener 18 caracteres. "
-                    + "Ejemplo: \"ABCD010312HSRLRPM5\".");
+            throw new PresentacionException("El RFC sólo puede tener 13 caracteres. "
+                    + "Ejemplo: \"ABCD010312MC2\".");
         }
     }
-    
+
     /**
      * Método para validar que una contraseña cumple con el formato correcto.
      *
@@ -185,94 +184,124 @@ public class Validador {
             throw new PresentacionException("Las contraseñas son diferentes.");
         }
     }
-    
+
     /**
-     * 
-     * @param contenido
-     * @throws PresentacionException 
+     * Método para validar que el contenido de un ticket es correcto.
+     *
+     * @param contenido Contenido del ticket.
+     * @throws PresentacionException si el contenido del ticket está vacío o
+     * excede el límite de caracteteres.PresentacionException
      */
     public void validarTicket(String contenido) throws PresentacionException {
         try {
             validarVacio(contenido);
         } catch (PresentacionException pe) {
-            // Si la contraseña está vacía.
+            // Si el contenido del ticket está vacío.
             throw new PresentacionException("El ticket no puede estar vacío.");
         }
         if (contenido.length() > 500) {
-            // Si la contraseña es diferente a la original.
+            // Si el contenido del ticket excede los 500 caracteres.
             throw new PresentacionException("El ticket no puede exceder los 500 caracteres.");
         }
     }
-    
+
     /**
-     * 
-     * @param contenido
-     * @throws PresentacionException 
+     * Método para validar que el contenido de una respuesta es correcto.
+     *
+     * @param contenido Contenido de la respuesta.
+     * @throws PresentacionException si el contenido de la respuesta está vacío
+     * o excede el límite de caracteteres.PresentacionException
      */
     public void validarRespuesta(String contenido) throws PresentacionException {
         try {
             validarVacio(contenido);
         } catch (PresentacionException pe) {
-            // Si la contraseña está vacía.
+            // Si el contenido de la respuesta está vacío.
             throw new PresentacionException("El mensaje no puede estar vacío.");
         }
         if (contenido.length() > 500) {
-            // Si la contraseña es diferente a la original.
+            // Si el contenido de la respuesta excede los 500 caracteres.
             throw new PresentacionException("El mensaje no puede exceder los 500 caracteres.");
         }
     }
 
+    /**
+     * Método para validar nombres.
+     *
+     * @param nombres Nombres a validar.
+     * @throws PresentacionException si los nombres están vacíos, exceden el
+     * límite de caracteres o contienen caracteres diferentes a letras y
+     * espacios.
+     */
     public void validarNombres(String nombres) throws PresentacionException {
         try {
             validarVacio(nombres);
         } catch (PresentacionException pe) {
-            // Si la contraseña está vacía.
+            // Si los nombres están vacíos.
             throw new PresentacionException("El nombre no puede estar vacío.");
         }
         if (nombres.length() > 100) {
-            // Si la contraseña es diferente a la original.
+            // Si los nombres exceden los 100 caracteres.
             throw new PresentacionException("El nombre no puede exceder los 100 caracteres.");
         }
+
+        // Patrón para checar que los nombres sólo tengan letras (contando las acentuadas) y espacios.
         if (!nombres.matches("^[a-zA-ZÀ-ÿ ]+$")) {
-            // Si la contraseña es diferente a la original.
             throw new PresentacionException("El nombre sólo puede tener letras.");
         }
     }
-    
+
+    /**
+     * Método para validar el apellido paterno.
+     *
+     * @param apellido Apellido paterno a validar.
+     * @throws PresentacionException si el apellido paterno está vacío, excede
+     * el límite de caracteres o contiene caracteres diferentes a letras y
+     * espacios.
+     */
     public void validarApellidoP(String apellido) throws PresentacionException {
         try {
             validarVacio(apellido);
         } catch (PresentacionException pe) {
-            // Si la contraseña está vacía.
+            // Si el apellido está vacío.
             throw new PresentacionException("El apellido paterno no puede estar vacío.");
         }
         if (apellido.length() > 100) {
-            // Si la contraseña es diferente a la original.
+            // Si el apellido excede los 100 caracteres.
             throw new PresentacionException("El apellido paterno no puede exceder los 100 caracteres.");
         }
+
+        // Patrón para checar que el apellido sólo tenga letras (contando las acentuadas) y espacios.
         if (!apellido.matches("^[a-zA-ZÀ-ÿ ]+$")) {
-            // Si la contraseña es diferente a la original.
             throw new PresentacionException("El apellido paterno sólo puede tener letras.");
         }
     }
-    
+
+    /**
+     * Método para validar el apellido materno.
+     *
+     * @param apellido Apellido materno a validar.
+     * @throws PresentacionException si el apellido materno está vacío, excede
+     * el límite de caracteres o contiene caracteres diferentes a letras y
+     * espacios.
+     */
     public void validarApellidoM(String apellido) throws PresentacionException {
         try {
             validarVacio(apellido);
         } catch (PresentacionException pe) {
-            // Si la contraseña está vacía.
+            // Si el apellido está vacío.
             throw new PresentacionException("El apellido materno no puede estar vacío.");
         }
         if (apellido.length() > 100) {
-            // Si la contraseña es diferente a la original.
+            // Si el apellido excede los 100 caracteres.
             throw new PresentacionException("El apellido materno no puede exceder los 100 caracteres.");
         }
+        // Patrón para checar que el apellido sólo tenga letras (contando las acentuadas) y espacios.
         if (!apellido.matches("^[a-zA-ZÀ-ÿ ]+$")) {
-            // Si la contraseña es diferente a la original.
             throw new PresentacionException("El apellido materno sólo puede tener letras.");
         }
     }
-    
+
     /**
      * Método para validar si hay una sesión activa para continuar.
      *

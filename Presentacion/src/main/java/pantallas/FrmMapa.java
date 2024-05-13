@@ -977,14 +977,32 @@ public class FrmMapa extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnAlClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseEntered
         lblAtnAlCliente.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblAtnAlClienteMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnAlClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseExited
         lblAtnAlCliente.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblAtnAlClienteMouseExited
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para mandar
+     * quejas.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
         try {
             FrmQuejas frmQuejas = new FrmQuejas(usuario);
@@ -995,22 +1013,52 @@ public class FrmMapa extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblQuejasMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
         lblQuejas.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblQuejasMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
         lblQuejas.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblQuejasMouseExited
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón del
+     * mapa y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblMapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseEntered
         lblMapa.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblMapaMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * del mapa y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblMapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseExited
         lblMapa.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblMapaMouseExited
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para abrir el
+     * módulo de atención al cliente.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblAtnAlClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnAlClienteMouseClicked
         try {
             FrmAtnVistaCliente frmAtnVistaCliente = new FrmAtnVistaCliente(usuario);

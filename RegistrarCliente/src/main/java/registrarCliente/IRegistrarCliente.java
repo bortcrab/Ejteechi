@@ -3,7 +3,7 @@
  */
 package registrarCliente;
 
-import excepciones.CrearCuentaClienteException;
+import excepciones.RegistrarClienteException;
 import dtos.UsuarioDTO;
 
 /**
@@ -14,13 +14,13 @@ import dtos.UsuarioDTO;
 public interface IRegistrarCliente {
 
     /**
-     * Método para crear la cuenta de un usuario del tipo "cliente".
+     * Método para crear la cuenta de un cliente.
      *
-     * @param usuario Usuario a quien se le creará la cuenta.
-     * @return El usuario con sus datos encriptados.
-     * @throws CrearCuentaClienteException si ya hay una cuenta con el correo
+     * @param usuario Cliente a quien se le creará la cuenta.
+     * @return El cliente con sus datos encriptados.
+     * @throws RegistrarClienteException si ya hay una cuenta con el correo
      * proporcionado.
      */
-    public UsuarioDTO crearCuenta(UsuarioDTO usuario) throws CrearCuentaClienteException;
+    public UsuarioDTO crearCuenta(UsuarioDTO usuario) throws RegistrarClienteException;
 
 }

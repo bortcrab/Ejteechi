@@ -1,3 +1,6 @@
+/*
+ * TicketDAO.java
+ */
 package implementaciones;
 
 import colecciones.Respuesta;
@@ -20,6 +23,8 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
+ * Clase que implementa los métodos de la interfaz ITicketDAO para realizar
+ * operaciones relacionadas con la entidad Ticket en la base de datos.
  *
  * @author Diego Valenzuela Parra - 00000247700
  */
@@ -29,10 +34,18 @@ public class TicketDAO implements ITicketDAO {
     private MongoCollection<Ticket> coleccion;
     private static final Logger logger = Logger.getLogger(TicketDAO.class.getName());
 
+    /**
+     * Constructor que inicializa el atributo de conexión de la clase.
+     */
     public TicketDAO() {
         conexion = new Conexion();
     }
 
+    /**
+     * Método para agregar un ticket a la base de datos.
+     *
+     * @param ticket
+     */
     @Override
     public void agregarTicket(Ticket ticket) {
         // Creamos la conexión con el servidor.
@@ -48,6 +61,12 @@ public class TicketDAO implements ITicketDAO {
         conexion.cerrarConexion(); // Cerramos la conexión.
     }
 
+    /**
+     * Método para obtener los tickets asociados a un cliente.
+     *
+     * @param idUsuario ID del cliente.
+     * @return La lista de tickets encontrada.
+     */
     @Override
     public List<Ticket> obtenerTickets(ObjectId idUsuario) {
         // Creamos la conexión con el servidor.
@@ -77,6 +96,12 @@ public class TicketDAO implements ITicketDAO {
         return listaTickets;
     }
 
+    /**
+     * Método para obtener un ticket dado un folio.
+     *
+     * @param folio Folio del ticket a buscar.
+     * @return El ticket encontrado.
+     */
     @Override
     public Ticket obtenerTicket(ObjectId folio) {
         // Creamos la conexión con el servidor.
@@ -104,14 +129,20 @@ public class TicketDAO implements ITicketDAO {
         return ticket;
     }
 
+    /**
+     * Método para agregar una respuesta a un ticket.
+     *
+     * @param folio Folio del ticket al que se le agregará la respuesta.
+     * @param respuesta Respuesta a agregar.
+     */
     @Override
-    public void agregarRespuesta(ObjectId folioTicket, Respuesta respuesta) {
+    public void agregarRespuesta(ObjectId folio, Respuesta respuesta) {
         // Creamos la conexión con el servidor.
         MongoDatabase db = conexion.crearConexion();
         // Obtenemos la colección de tickets.
         coleccion = db.getCollection("tickets", Ticket.class);
 
-        Document filtro = new Document("_id", folioTicket);
+        Document filtro = new Document("_id", folio);
 
         // Mandamos a insertar el ticket.
         coleccion.updateOne(filtro, Updates.push("respuestas", respuesta));
@@ -121,6 +152,13 @@ public class TicketDAO implements ITicketDAO {
         conexion.cerrarConexion(); // Cerramos la conexión.
     }
 
+    /**
+     * Método para obtener todos los tickets atendidos por un trabajador en
+     * específico o que no están siendo atendidos por nadie.
+     *
+     * @param idAtendiendo ID del trabajador que está atendiendo.
+     * @return La lista de tickets encontrada.
+     */
     @Override
     public List<Ticket> obtenerTodosTickets(ObjectId idAtendiendo) {
         // Creamos la conexión con el servidor.
@@ -143,6 +181,11 @@ public class TicketDAO implements ITicketDAO {
         return listaTickets;
     }
 
+    /**
+     * Método para actualizar un ticket.
+     *
+     * @param ticket Ticket a actualizar.
+     */
     @Override
     public void actualizarTicket(Ticket ticket) {
         // Creamos la conexión con el servidor.

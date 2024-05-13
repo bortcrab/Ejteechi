@@ -14,8 +14,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import programarMantenimiento.FacadeProgramarMantenimiento;
 import programarMantenimiento.IProgramarMantenimiento;
@@ -40,9 +38,9 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         programarMantenimiento = new FacadeProgramarMantenimiento();
         this.usuario = usuario;
         camion = new CamionDTO();
-        
+
         Validador.validarSesion(usuario, this);
-        
+
         switch (usuario.getTipo()) {
             case "PPMM":
                 lblMantenimiento.setVisible(true);
@@ -54,7 +52,7 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void seleccionarUnidad(String numero) {
         try {
             LocalDate fechaHoy = LocalDate.now();
@@ -221,9 +219,6 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         lblMantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblMantenimiento.setPreferredSize(null);
         lblMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMantenimientoMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblMantenimientoMouseEntered(evt);
             }
@@ -751,20 +746,44 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         seleccionarUnidad("001");
     }//GEN-LAST:event_btnUnidad001MouseClicked
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para cerrar
+     * sesión. Devuelve al usuario al login.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
         FrmLogin frmLogin = new FrmLogin();
         frmLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
         lblCerrarSesion.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblCerrarSesionMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
         lblCerrarSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para visualizar
+     * quejas.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
         try {
             FrmVisualizarQuejas frmAtnAlCliente = new FrmVisualizarQuejas(usuario);
@@ -776,14 +795,32 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblQuejasMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
         lblQuejas.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblQuejasMouseEntered
-
+    
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
         lblQuejas.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblQuejasMouseExited
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para el módulo de
+     * atención al cliente.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblAtnClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseClicked
         try {
             FrmAtnVistaTrabajador frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
@@ -795,41 +832,72 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAtnClienteMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseEntered
         lblAtnCliente.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblAtnClienteMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseExited
         lblAtnCliente.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblAtnClienteMouseExited
 
-    private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
-        try {
-            FrmProgramarMantenimiento frmAtnAlCliente = new FrmProgramarMantenimiento(usuario);
-            frmAtnAlCliente.setVisible(true);
-        } catch (PresentacionException pe) {
-            // Se muestra un mensaje si no se validó la sesión.
-            JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-        }
-        this.dispose();
-    }//GEN-LAST:event_lblMantenimientoMouseClicked
-
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * programar mantenimiento y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblMantenimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseEntered
         lblMantenimiento.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblMantenimientoMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de programar mantenimiento y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblMantenimientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseExited
         lblMantenimiento.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblMantenimientoMouseExited
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * programar mantenimiento y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblMantenimiento1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseEntered
         lblMantenimiento1.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblMantenimiento1MouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de programar mantenimiento y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblMantenimiento1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseExited
         lblMantenimiento1.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblMantenimiento1MouseExited
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para ir a la
+     * pantalla principal.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
             FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
@@ -840,7 +908,7 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpieza;
     private javax.swing.JButton btnLlanta;

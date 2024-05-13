@@ -14,7 +14,6 @@ import javax.swing.table.TableCellRenderer;
  * Clase que nos brinda la posibilidad de agregar botones en las tablas.
  *
  * @author Diego Valenzuela Parra - 00000247700
- * @author Juventino López García - 00000248547
  */
 public class JButtonRenderer implements TableCellRenderer {
 
@@ -23,7 +22,7 @@ public class JButtonRenderer implements TableCellRenderer {
     public JButtonRenderer(String text) {
         this.button = new JButton(text);
         this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-        this.button.setBackground(new Color(79,89,144));
+        this.button.setBackground(new Color(79, 89, 144));
         this.button.setForeground(new Color(255, 255, 255));
     }
 

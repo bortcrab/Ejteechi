@@ -3,9 +3,7 @@
  */
 package utilidades;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventObject;
@@ -19,7 +17,6 @@ import javax.swing.table.TableCellEditor;
  * agregados a una tabla.
  *
  * @author Diego Valenzuela Parra - 00000247700
- * @author Juventino López García - 00000248547
  */
 public class JButtonCellEditor implements TableCellEditor {
 

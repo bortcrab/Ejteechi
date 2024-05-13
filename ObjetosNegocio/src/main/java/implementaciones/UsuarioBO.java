@@ -39,18 +39,41 @@ public class UsuarioBO implements IUsuarioBO {
      */
     @Override
     public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) throws ObjetosNegocioException {
+        // Obtenemos el usuario de la base de datos con base al correo.
         Usuario usuarioEnt = usuarioDAO.obtenerUsuarioCorreo(encriptador.encriptar(usuarioDTO.getCorreo()));
 
+        // Si se obtuvo algo, lanzamos una excepción.
         if (usuarioEnt != null) {
             throw new ObjetosNegocioException("Ese correo ya está registrado.");
         }
 
+        // Si el usuario es un empleado.
+        if (!usuarioDTO.getTipo().equals("cliente")) {
+            // Obtenemos el usuario de la base de datos con base a la CURP
+            usuarioEnt = usuarioDAO.obtenerUsuarioCurp(usuarioDTO.getCurp());
+            // Si se obtuvo algo, lanzamos una excepción.
+            if (usuarioEnt != null) {
+                throw new ObjetosNegocioException("Ya se registró esa CURP.");
+            }
+
+            // Obtenemos el usuario de la base de datos con base al RFC.
+            usuarioEnt = usuarioDAO.obtenerUsuarioRfc(usuarioDTO.getRfc());
+            // Si se obtuvo algo, lanzamos una excepción.
+            if (usuarioEnt != null) {
+                throw new ObjetosNegocioException("Ya se registró ese RFC.");
+            }
+        }
+
+        // Convertimos el usuario.
         usuarioEnt = convertirUsuario(usuarioDTO);
 
+        // Lo mandamos a agregar.
         usuarioEnt = usuarioDAO.agregarUsuario(usuarioEnt);
 
+        // Lo convertirmos de vuelta a DTO:
         usuarioDTO = convertirUsuario(usuarioEnt);
 
+        // Lo retornamos.
         return usuarioDTO;
     }
 
@@ -64,21 +87,28 @@ public class UsuarioBO implements IUsuarioBO {
      */
     @Override
     public UsuarioDTO obtenerUsuarioCorreoContra(UsuarioDTO usuarioDTO) throws ObjetosNegocioException {
+        // Obtenemos el correo y la contraseña y desencriptamos ambos datos.
         String correo = encriptador.encriptar(usuarioDTO.getCorreo());
         String contrasenia = encriptador.encriptar(usuarioDTO.getContra());
 
+        // Obtenemos el usuario de la base de datos con base al correo.
         Usuario usuarioEnt = usuarioDAO.obtenerUsuarioCorreo(correo);
+        // Si NO se obtuvo nada, lanzamos una excepción.
         if (usuarioEnt == null) {
             throw new ObjetosNegocioException("No se encontró ninguna cuenta con el correo proporcionado.");
         }
 
+        // Obtenemos el usuario de la base de datos con base al correo y la contraseña.
         usuarioEnt = usuarioDAO.obtenerUsuarioCorreoContra(correo, contrasenia);
+        // Si NO se obtuvo nada, lanzamos una excepción.
         if (usuarioEnt == null) {
             throw new ObjetosNegocioException("Contraseña incorrecta.");
         }
 
+        // Convertirmos el usuario a DTO.
         usuarioDTO = convertirUsuario(usuarioEnt);
 
+        // Lo retornamos.
         return usuarioDTO;
     }
 

@@ -90,7 +90,6 @@ public class UsuarioDTO {
      * Constructor que inicializa los atributos del usuario en caso de ser
      * cliente.
      *
-     * @param id ID del cliente.
      * @param correo Correo del cliente.
      * @param contra Contraseña del cliente.
      * @param tipo Tipo de usuario (en este caso cliente).

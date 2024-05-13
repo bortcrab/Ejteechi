@@ -1,3 +1,6 @@
+/*
+ * FrmChatVistaTrabajador.java
+ */
 package pantallas;
 
 import atenderTickets.IAtenderTickets;
@@ -14,6 +17,12 @@ import javax.swing.JScrollBar;
 import org.bson.types.ObjectId;
 import utilidades.Validador;
 
+/**
+ * Clase que representa la pantalla donde aparecen el chat del ticket
+ * seleccionado.
+ *
+ * @author Diego Valenzuela Parra - 00000247700
+ */
 public class FrmChatVistaTrabajador extends javax.swing.JFrame {
 
     private final IAtenderTickets facadeAtenderTickets;
@@ -21,25 +30,38 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
     private TicketDTO ticket;
 
     /**
-     * Creates new form FrmAtnVistaCliente
+     * Constructor que inicializa los atributos de la clase.
+     *
+     * @param usuario Usuario que está logueado en el sistema.
+     * @param facadeAtenderTickets Interfaz para administrar tickets.
+     * @param ticket Ticket que fue seleccionado.
+     * @throws PresentacionException si ocurre un error a la hora de validar la
+     * sesión.
      */
     public FrmChatVistaTrabajador(UsuarioDTO usuario, IAtenderTickets facadeAtenderTickets, TicketDTO ticket) throws PresentacionException {
         initComponents();
 
+        // Validamos la sesión.
         Validador.validarSesion(usuario, this);
 
         this.facadeAtenderTickets = facadeAtenderTickets;
         this.usuario = usuario;
         this.ticket = ticket;
 
+        // Si el ticket está pendiente, cambiamos el texto de un botón.
         if (ticket.getEstado().equals("Pendiente")) {
             btnEstado.setText("Marcar como resuelto");
         } else {
+            /**
+             * Si el ticket está resuelto, cambiamos el texto de un botón y lo
+             * deshabilitamos junto con el campo de texto del mensaje.
+             */
             btnEstado.setText("Marcar como pendiente");
             txtMensaje.setEnabled(false);
             btnEnviar.setEnabled(false);
         }
-        
+
+        // Dependiendo del tipo de usuario que sea, mostramos unos u otros labels.
         switch (usuario.getTipo()) {
             case "AACC":
                 lblQuejas.setVisible(true);
@@ -48,20 +70,37 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
             case "GERE":
                 lblQuejas.setVisible(true);
                 lblAtnCliente.setVisible(true);
-                lblMantenimiento1.setVisible(true);
+                lblMantenimiento.setVisible(true);
                 break;
         }
 
+        // Cargamos los datos del chat.
         cargarChat();
     }
 
+    /**
+     * Método para cargar el chat con los datos del ticket seleccionado.
+     */
     private void cargarChat() {
+        // Seteamos el texto del chat como nulo.
         jepChat.setText(null);
+
+        // Obtenemos el nombre del cliente que envió el ticket.
         String nombreCliente = ticket.getNombreUsuario();
+        // Obtenemos el mensaje inicial del ticket.
         String contenidoTicket = ticket.getContenido();
+        // Para formatear las fechas.
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:MM:ss");
+        // Obtenemos la fecha del ticket.
         String fechaTicket = formatter.format(ticket.getFecha().getTime());
+        // Obtenemos las respuestas del ticket.
         List<RespuestaDTO> respuestas = ticket.getRespuestas();
+
+        /**
+         * Este string es lo que vamos a poner en el texto del chat. El chat es
+         * un Java Text Editor, el cual acepta HTML. En nuestro caso, usamos
+         * HTML para darle formato a las respuestas del chat.
+         */
         String mensajesChat = """
                 <html>
                     <style>
@@ -107,13 +146,19 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
                         <br>
                 """
                 .formatted(nombreCliente, fechaTicket, contenidoTicket);
+        // En ese string, a lo último, ponemos los datos del ticket como si fuera una respuesta.
 
+        // Luego iteramos sobre las respuestas.
         for (RespuestaDTO respuesta : respuestas) {
+            // Obtenemos la fecha y el contenido de la respuesta.
             String fechaRespuesta = formatter.format(respuesta.getFecha().getTime());
             String contenidoRespuesta = respuesta.getContenido();
+
+            // Si el emisor de la respuesta es el trabajador.
             if (respuesta.getIdEmisor().equals(usuario.getId())) {
-                mensajesChat += 
-                        """
+                // Ponemos su respuesta a la izquierda.
+                mensajesChat
+                        += """
                         <div class="cabecera-izquierda">
                             <b>Yo <u>(%s)</u>:</b>
                         </div>
@@ -122,10 +167,11 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
                         </div>
                         <br>
                         """
-                        .formatted(fechaRespuesta, contenidoRespuesta);
-            } else {
-                mensajesChat +=
-                        """
+                                .formatted(fechaRespuesta, contenidoRespuesta);
+            } else {// Si es el cliente.
+                // Lo ponemos a la derecha.
+                mensajesChat
+                        += """
                         <div class="cabecera-derecha">
                             <b>%s <u>(%s)</u>:</b>
                         </div>
@@ -134,56 +180,87 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
                         </div>
                         <br>
                         """
-                        .formatted(nombreCliente, fechaRespuesta, contenidoRespuesta);
+                                .formatted(nombreCliente, fechaRespuesta, contenidoRespuesta);
             }
         }
+
+        // Con esto borramos el salto de línea del último mensaje.
         mensajesChat = mensajesChat.substring(0, mensajesChat.length() - 4);
+        // Y con esto cerramos el HTML.
         mensajesChat += """
                     </body>
                 </html>
                 """;
+        // Ponemos todo el texto en el chat.
         jepChat.setText(mensajesChat);
     }
 
+    /**
+     * Método para enviar una respuesta.
+     */
     private void enviarRespuesta() {
         try {
+            // Obtenemos el mensaje de la respuesta.
             String mensaje = txtMensaje.getText();
 
+            // Mandamos a validar el mensaje de la respuesta.
             Validador validador = new Validador();
-
             validador.validarRespuesta(mensaje);
+
+            // Creamos una respuesta con los datos necesarios.
             RespuestaDTO respuesta = new RespuestaDTO(
                     mensaje,
                     new Date(),
-                    usuario.getNombres()+" "+usuario.getApellidoPaterno(),
+                    usuario.getNombres() + " " + usuario.getApellidoPaterno(),
                     usuario.getId());
+
+            // Obtenemos el folio del ticket y el id del trabajador.
             ObjectId folio = ticket.getId();
             ObjectId idAtendiendo = usuario.getId();
+
+            // Enviamos la respuesta y la obtenemos actualizada.
             ticket = facadeAtenderTickets.enviarRespuestaTrabajador(folio, respuesta, idAtendiendo);
+
+            // Limpiamos el campo de texto del mensaje.
             txtMensaje.setText("");
+
+            // Actualizamos el chat.
             this.cargarChat();
+
+            // Hacemos que la barrita del scroll se haga para abajo lo más que se pueda.
             JScrollBar scrollBar = jScrollPane1.getVerticalScrollBar();
             scrollBar.setValue(scrollBar.getMaximum());
         } catch (PresentacionException pe) {
+            // Mensajito de error.
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    /**
+     * Método para cambiar de estado un ticket.
+     */
     private void cambiarEstado() {
         if (ticket.getEstado().equals("Pendiente")) { // Si actualmente está pendiente.
+            // Cambiamos el estado.
             ticket.setEstado("Resuelto");
+            // Mandamos a actualizar el ticket.
             facadeAtenderTickets.cambiarEstado(ticket);
-            FrmAtnVistaTrabajador frmAtnAlCliente;
             try {
-                frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
+                // Redireccionamos a la pantalla de los tickets.
+                FrmAtnVistaTrabajador frmAtnAlCliente = new FrmAtnVistaTrabajador(usuario);
                 frmAtnAlCliente.setVisible(true);
             } catch (PresentacionException pe) {
+                // Mensajito de error.
                 JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
             }
             this.dispose();
         } else {                                      // Si actualmente está resuelto.
+            // Cambiamos el estado.
             ticket.setEstado("Pendiente");
+            // Mandamos a actualizar el ticket.
             facadeAtenderTickets.cambiarEstado(ticket);
+
+            // Cambiamos el texto de un botón, y lo habilitamos junto al campo de texto del mensaje.
             btnEstado.setText("Marcar como pendiente");
             txtMensaje.setEnabled(true);
             btnEnviar.setEnabled(true);
@@ -205,11 +282,11 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
         txtMensaje = new javax.swing.JTextField();
         lblQuejas = new javax.swing.JLabel();
         lblAtnCliente = new javax.swing.JLabel();
-        lblMantenimiento1 = new javax.swing.JLabel();
+        lblMantenimiento = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
         btnEstado = new javax.swing.JButton();
         btnEnviar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         lblHome = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
@@ -267,23 +344,23 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
         lblAtnCliente.setVisible(false);
         getContentPane().add(lblAtnCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, 100));
 
-        lblMantenimiento1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblMantenimiento1.setText("Mantenimiento");
-        lblMantenimiento1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblMantenimiento1.setPreferredSize(null);
-        lblMantenimiento1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMantenimiento.setText("Mantenimiento");
+        lblMantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMantenimiento.setPreferredSize(null);
+        lblMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMantenimiento1MouseClicked(evt);
+                lblMantenimientoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblMantenimiento1MouseEntered(evt);
+                lblMantenimientoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblMantenimiento1MouseExited(evt);
+                lblMantenimientoMouseExited(evt);
             }
         });
-        lblMantenimiento1.setVisible(false);
-        getContentPane().add(lblMantenimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, -1, 100));
+        lblMantenimiento.setVisible(false);
+        getContentPane().add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, -1, 100));
 
         lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
@@ -326,18 +403,18 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
         });
         getContentPane().add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 610, 120, 40));
 
-        btnCancelar.setBackground(new java.awt.Color(255, 102, 102));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Volver");
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCancelar.setFocusable(false);
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setBackground(new java.awt.Color(255, 102, 102));
+        btnVolver.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolver.setText("Volver");
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVolver.setFocusable(false);
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 610, 110, 40));
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 610, 110, 40));
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblHome.setForeground(new java.awt.Color(0, 0, 0));
@@ -360,6 +437,12 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para ir a la
+     * pantalla principal.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
             FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
@@ -370,11 +453,21 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón de enviar.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         enviarRespuesta();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    /**
+     * Método que reacciona al evento de dar clic en el botón de volver.
+     *
+     * @param evt Evento al que se escucha.
+     */
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         try {
             if (usuario.getTipo().equals("cliente")) {
                 FrmAtnVistaCliente frmAtnAlCliente = new FrmAtnVistaCliente(usuario);
@@ -387,30 +480,64 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * Método para que cuando se presione enter se mande el mensaje.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void txtMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMensajeActionPerformed
         enviarRespuesta();
     }//GEN-LAST:event_txtMensajeActionPerformed
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón de cambiar estado del ticket.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void btnEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadoActionPerformed
         cambiarEstado();
     }//GEN-LAST:event_btnEstadoActionPerformed
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para cerrar
+     * sesión. Devuelve al usuario al login.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
         FrmLogin frmLogin = new FrmLogin();
         frmLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
         lblCerrarSesion.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblCerrarSesionMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
         lblCerrarSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblCerrarSesionMouseExited
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para visualizar
+     * quejas.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseClicked
         try {
             FrmVisualizarQuejas frmAtnAlCliente = new FrmVisualizarQuejas(usuario);
@@ -422,23 +549,53 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblQuejasMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseEntered
         lblQuejas.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblQuejasMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de quejas y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblQuejasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuejasMouseExited
         lblQuejas.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblQuejasMouseExited
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseEntered
         lblAtnCliente.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblAtnClienteMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de atención al cliente y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblAtnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtnClienteMouseExited
         lblAtnCliente.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblAtnClienteMouseExited
 
-    private void lblMantenimiento1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseClicked
+    /**
+     * Método que reacciona al evento de dar clic en el botón para programar el
+     * mantenimiento.
+     *
+     * @param evt Evento al que se escucha.
+     */
+    private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
         try {
             FrmProgramarMantenimiento frmAtnAlCliente = new FrmProgramarMantenimiento(usuario);
             frmAtnAlCliente.setVisible(true);
@@ -447,21 +604,33 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_lblMantenimiento1MouseClicked
+    }//GEN-LAST:event_lblMantenimientoMouseClicked
 
-    private void lblMantenimiento1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseEntered
-        lblMantenimiento1.setForeground(Color.GRAY);
-    }//GEN-LAST:event_lblMantenimiento1MouseEntered
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * programar mantenimiento y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
+    private void lblMantenimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseEntered
+        lblMantenimiento.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblMantenimientoMouseEntered
 
-    private void lblMantenimiento1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimiento1MouseExited
-        lblMantenimiento1.setForeground(Color.BLACK);
-    }//GEN-LAST:event_lblMantenimiento1MouseExited
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de programar mantenimiento y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
+    private void lblMantenimientoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseExited
+        lblMantenimiento.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblMantenimientoMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnEstado;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -469,7 +638,7 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
     private javax.swing.JLabel lblAtnCliente;
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JLabel lblHome;
-    private javax.swing.JLabel lblMantenimiento1;
+    private javax.swing.JLabel lblMantenimiento;
     private javax.swing.JLabel lblQuejas;
     private javax.swing.JTextField txtMensaje;
     // End of variables declaration//GEN-END:variables

@@ -29,7 +29,7 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
         initComponents();
         this.facadeRegistrarEmpleado = new FacadeRegistrarEmpleado();
         this.usuario = usuario;
-        
+
         Validador.validarSesion(usuario, this);
     }
 
@@ -44,9 +44,9 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
         String correo = txtCorreo.getText().trim();
         String contrasenia1 = new String(pwdContrasenia.getPassword()).trim();
         String contrasenia2 = new String(pwdConfirmarContrasenia.getPassword()).trim();
-        String tipo = (String) cmbxTipoEmpleado.getSelectedItem();
+        String tipo = (String) cbxTipoEmpleado.getSelectedItem();
         // Obtener el índice del elemento seleccionado en el JComboBox
-        int opcion = cmbxTipoEmpleado.getSelectedIndex();
+        int opcion = cbxTipoEmpleado.getSelectedIndex();
 
         // Actualizar el atributo Tipo dependiendo del elemento seleccionado
         switch (opcion) {
@@ -84,16 +84,28 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
             // Mandamos a crear la cuenta del usuario.
             facadeRegistrarEmpleado.crearCuenta(trabajador);
 
-            // Redireccionamos al usuario al home de trabajador.
-            FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
-            frmHome.setVisible(true);
-            this.dispose();
+            // Limpiamos los campos.
+            limpiarCampos();
+
             // Mensaje para indicar que el registro se completo correctamente.
             JOptionPane.showMessageDialog(this, "¡Empleado registrado con éxito!", "¡Yippee!", JOptionPane.INFORMATION_MESSAGE);
         } catch (PresentacionException | RegistrarEmpleadoException ex) {
             // Si se obtiene alguna excepción, imprimimos su mensaje.
             JOptionPane.showMessageDialog(this, ex.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void limpiarCampos() {
+        txtNombres.setText("");
+        txtApellidoP.setText("");
+        txtApellidoM.setText("");
+        txtTel.setText("");
+        txtCurp.setText("");
+        txtRfc.setText("");
+        txtCorreo.setText("");
+        pwdContrasenia.setText("");
+        pwdConfirmarContrasenia.setText("");
+        cbxTipoEmpleado.setSelectedIndex(0);
     }
 
     /**
@@ -125,7 +137,7 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         pwdConfirmarContrasenia = new javax.swing.JPasswordField();
-        cmbxTipoEmpleado = new javax.swing.JComboBox<>();
+        cbxTipoEmpleado = new javax.swing.JComboBox<>();
         btnRegistrarEmpleado = new javax.swing.JButton();
         lblRegistrarEmpleado = new javax.swing.JLabel();
         lblSesion = new javax.swing.JLabel();
@@ -187,6 +199,11 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, -1, 20));
 
         txtTel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtTel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 270, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -229,6 +246,11 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 270, 40));
 
         pwdContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        pwdContrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pwdContraseniaActionPerformed(evt);
+            }
+        });
         jPanel1.add(pwdContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 440, 270, 40));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -242,17 +264,17 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 500, 200, 20));
 
         pwdConfirmarContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(pwdConfirmarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, 270, 40));
-
-        cmbxTipoEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        cmbxTipoEmpleado.setForeground(new java.awt.Color(0, 102, 102));
-        cmbxTipoEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recursos humanos", "Atención al cliente", "Personal de mantenimiento", "Gerente" }));
-        cmbxTipoEmpleado.addActionListener(new java.awt.event.ActionListener() {
+        pwdConfirmarContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbxTipoEmpleadoActionPerformed(evt);
+                pwdConfirmarContraseniaActionPerformed(evt);
             }
         });
-        jPanel1.add(cmbxTipoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 600, 270, -1));
+        jPanel1.add(pwdConfirmarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, 270, 40));
+
+        cbxTipoEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cbxTipoEmpleado.setForeground(new java.awt.Color(0, 102, 102));
+        cbxTipoEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recursos humanos", "Atención al cliente", "Personal de mantenimiento", "Gerente" }));
+        jPanel1.add(cbxTipoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 600, 270, -1));
 
         btnRegistrarEmpleado.setBackground(new java.awt.Color(0, 102, 102));
         btnRegistrarEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -309,37 +331,39 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtApellidoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPActionPerformed
-        // TODO add your handling code here:
+        crearCuentaEmpleado();
     }//GEN-LAST:event_txtApellidoPActionPerformed
 
     private void txtApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMActionPerformed
-        // TODO add your handling code here:
+        crearCuentaEmpleado();
     }//GEN-LAST:event_txtApellidoMActionPerformed
 
     private void txtCurpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCurpActionPerformed
-        // TODO add your handling code here:
+        crearCuentaEmpleado();
     }//GEN-LAST:event_txtCurpActionPerformed
 
     private void txtRfcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRfcActionPerformed
-        // TODO add your handling code here:
+        crearCuentaEmpleado();
     }//GEN-LAST:event_txtRfcActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
+        crearCuentaEmpleado();
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
-        // TODO add your handling code here:
+        crearCuentaEmpleado();
     }//GEN-LAST:event_txtNombresActionPerformed
-
-    private void cmbxTipoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxTipoEmpleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbxTipoEmpleadoActionPerformed
 
     private void btnRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEmpleadoActionPerformed
         crearCuentaEmpleado();
     }//GEN-LAST:event_btnRegistrarEmpleadoActionPerformed
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para ir a la
+     * pantalla principal.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoMouseClicked
         try {
             FrmHomeTrabajador frmHomeTrabajador = new FrmHomeTrabajador(usuario);
@@ -351,37 +375,79 @@ public class FrmRegistroTrabajador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblLogoMouseClicked
 
+    /**
+     * Método que reacciona al evento de dar clic en el botón para cerrar
+     * sesión. Devuelve al usuario al login.
+     *
+     * @param evt Evento al que se escucha.
+     */
     private void lblSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesionMouseClicked
         FrmLogin frmLogin = new FrmLogin();
         frmLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblSesionMouseClicked
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesionMouseEntered
         // TODO add your handling code here:
         lblSesion.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblSesionMouseEntered
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de cerrar sesión y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSesionMouseExited
         // TODO add your handling code here:
         lblSesion.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblSesionMouseExited
 
+    /**
+     * Método que reacciona al evento de que el mouse ya no esté sobre el botón
+     * de registrar empleados y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblRegistrarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarEmpleadoMouseExited
         // TODO add your handling code here:
         lblRegistrarEmpleado.setForeground(Color.BLACK);
     }//GEN-LAST:event_lblRegistrarEmpleadoMouseExited
 
+    /**
+     * Método que reacciona al evento de pasar el mouse por encima del botón de
+     * registrar empleados y cambiar su color.
+     *
+     * @param evt Evento al que se escucha
+     */
     private void lblRegistrarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistrarEmpleadoMouseEntered
         // TODO add your handling code here:
         lblRegistrarEmpleado.setForeground(Color.GRAY);
         lblRegistrarEmpleado.setForeground(Color.GRAY);
     }//GEN-LAST:event_lblRegistrarEmpleadoMouseEntered
 
+    private void txtTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelActionPerformed
+        crearCuentaEmpleado();
+    }//GEN-LAST:event_txtTelActionPerformed
+
+    private void pwdContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdContraseniaActionPerformed
+        crearCuentaEmpleado();
+    }//GEN-LAST:event_pwdContraseniaActionPerformed
+
+    private void pwdConfirmarContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdConfirmarContraseniaActionPerformed
+        crearCuentaEmpleado();
+    }//GEN-LAST:event_pwdConfirmarContraseniaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarEmpleado;
-    private javax.swing.JComboBox<String> cmbxTipoEmpleado;
+    private javax.swing.JComboBox<String> cbxTipoEmpleado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

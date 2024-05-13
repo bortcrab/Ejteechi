@@ -27,7 +27,7 @@ public class RutaDTO {
     /**
      * Constructor que inicializa todos los atributos de la clase.
      *
-     * @param datosRuta
+     * @param listaDatosRuta
      * @param puntos
      */
     public RutaDTO(List<DatosRutaDTO> listaDatosRuta, List<GeoPosition> puntos) {
