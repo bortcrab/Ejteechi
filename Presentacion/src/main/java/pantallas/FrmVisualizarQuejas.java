@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import org.bson.types.ObjectId;
 import utilidades.Validador;
@@ -120,7 +121,6 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblHome.setForeground(new java.awt.Color(0, 0, 0));
         lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,7 +131,6 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         jPanel1.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 220, 110));
 
         lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
         lblCerrarSesion.setText("Cerrar sesión");
         lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -223,6 +222,11 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         });
         tblQuejas.setGridColor(new java.awt.Color(179, 185, 206));
         tblQuejas.setShowGrid(true);
+        tblQuejas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblQuejasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblQuejas);
         if (tblQuejas.getColumnModel().getColumnCount() > 0) {
             tblQuejas.getColumnModel().getColumn(0).setResizable(false);
@@ -299,7 +303,7 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
                 queja.setNoQueja(idQueja);
                 try {
                     visualizar.confirmarLectura(queja);
-
+                    JOptionPane.showMessageDialog(this, "Se ha marcado la lectura con éxito");
                 } catch (VisualizarQuejasException ex) {
                     Logger.getLogger(FrmVisualizarQuejas.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -442,6 +446,16 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
+
+    private void tblQuejasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQuejasMouseClicked
+        // TODO add your handling code here:
+        
+         int fila = tblQuejas.getSelectedRow();
+                int columna = 3;
+                    String mensaje = (String) tblQuejas.getValueAt(fila, columna);
+                    JOptionPane.showMessageDialog(this, mensaje);
+                
+    }//GEN-LAST:event_tblQuejasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;

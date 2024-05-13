@@ -61,32 +61,22 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
 
             long mesesDesdeUltimoMantenimiento = ChronoUnit.MONTHS.between(fechaUltimoMantenimiento, fechaHoy);
             if (mesesDesdeUltimoMantenimiento >= 2) {
-                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoMotor", "MALO");
-                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLuces", "MALO");
-                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLlantas", "MALO");
-                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLimpieza", "MALO");
+                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "MALO", "MALO", "MALO", "MALO");
                 programarMantenimiento.actualizarPrioridadYFechaMantenimiento(camion.getNumeroUnidad(), "ALTO", camion.getFechaUltimoMantenimiento());
+                camion = programarMantenimiento.obtenerPorNumeroUnidad(numero);
 
             }
             if (mesesDesdeUltimoMantenimiento == 1) {
-                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoMotor", "MEDIO");
-                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLuces", "MEDIO");
-                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLlantas", "MEDIO");
-                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLimpieza", "MEDIO");
+                programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "MEDIO", "MEDIO", "MEDIO", "MEDIO");
                 programarMantenimiento.actualizarPrioridadYFechaMantenimiento(camion.getNumeroUnidad(), "MEDIO", camion.getFechaUltimoMantenimiento());
 
+                camion = programarMantenimiento.obtenerPorNumeroUnidad(numero);
             }
-            camion = programarMantenimiento.obtenerPorNumeroUnidad(numero);
             lblLimpieza.setText(camion.getEstadoLimpieza().toUpperCase());
-            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText());
-            lblLlanta.setText(camion.getEstadoLlantas().toUpperCase());
-            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLlanta, lblLimpieza.getText());
-            lblLuces.setText(camion.getEstadoLuces().toUpperCase());
-            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLuces, lblLimpieza.getText());
-            lblMotor.setText(camion.getEstadoMotor().toUpperCase());
-            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblMotor, lblLimpieza.getText());
+            FacadeProgramarMantenimiento.actualizarLabelConEstado(lblLimpieza, lblLimpieza.getText(), lblLlanta, lblLimpieza.getText(), lblLuces, lblLimpieza.getText(),lblMotor, lblLimpieza.getText());
             lblPrioridad.setText(camion.getNivelPrioridad().toUpperCase());
             FacadeProgramarMantenimiento.updatePrioridadLabel(lblPrioridad.getText().toUpperCase(), lblPrioridad);
+            txtUnidad.setText("Estas visualizando la unidad "+camion.getNumeroUnidad());
         } catch (ProgramarMantenimientoException pme) {
             JOptionPane.showMessageDialog(this, pme.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
@@ -140,6 +130,7 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         lblFechaMantenimiento = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         lblPrioridad = new javax.swing.JLabel();
+        txtUnidad = new javax.swing.JLabel();
         img = new javax.swing.JLabel();
         btnLlanta = new javax.swing.JButton();
         btnMotor = new javax.swing.JButton();
@@ -151,7 +142,6 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblHome.setForeground(new java.awt.Color(0, 0, 0));
         lblHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -162,7 +152,6 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         jPanel1.add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 220, 100));
 
         lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblCerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
         lblCerrarSesion.setText("Cerrar sesión");
         lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -613,6 +602,9 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
         lblPrioridad.setForeground(new java.awt.Color(0, 102, 0));
         jPanel1.add(lblPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 610, 160, 50));
 
+        txtUnidad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jPanel1.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 290, 20));
+
         img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Group 19 (1).png"))); // NOI18N
         jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 690));
 
@@ -686,10 +678,7 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
     private void lblFechaMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFechaMantenimientoMouseClicked
         // TODO add your handling code here:
         try {
-            programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoMotor", lblMotor.getText());
-            programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLuces", lblLuces.getText());
-            programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLlantas", lblLlanta.getText());
-            programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), "estadoLimpieza", lblLimpieza.getText());
+            programarMantenimiento.actualizarEstado(camion.getNumeroUnidad(), lblMotor.getText(), lblLimpieza.getText(), lblLlanta.getText(), lblLuces.getText());
 
             Date fecha = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/yyyy/MM");
@@ -900,7 +889,7 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
      */
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
-            FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
+            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
             frmHome.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
@@ -954,5 +943,6 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
     private javax.swing.JLabel lblMotor;
     private javax.swing.JLabel lblPrioridad;
     private javax.swing.JLabel lblQuejas;
+    private javax.swing.JLabel txtUnidad;
     // End of variables declaration//GEN-END:variables
 }
