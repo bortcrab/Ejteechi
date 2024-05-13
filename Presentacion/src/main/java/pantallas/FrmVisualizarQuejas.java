@@ -55,6 +55,45 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         formatearTabla();
     }
 
+    private void cargarDatos() {
+        try {
+            if (comboBoxFiltro.getSelectedItem().equals("<Elije uno>")) {
+                List<QuejaDTO> quejas = visualizar.obtenerTodasLasQuejas();
+                llenarTabla(quejas);
+            } else if (comboBoxFiltro.getSelectedItem().equals("No leidos")) {
+                List<QuejaDTO> quejas = visualizar.obtenerQuejasPorEstado(false);
+                llenarTabla(quejas);
+            } else if (comboBoxFiltro.getSelectedItem().equals("Leidos")) {
+                List<QuejaDTO> quejas = visualizar.obtenerQuejasPorEstado(true);
+                llenarTabla(quejas);
+            } else {
+                List<QuejaDTO> quejas = visualizar.obtenerQuejasPorTipo(comboBoxFiltro.getSelectedItem().toString());
+                llenarTabla(quejas);
+            }
+        } catch (VisualizarQuejasException vqe) {
+            JOptionPane.showMessageDialog(this, vqe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void llenarTabla(List<QuejaDTO> quejas) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MMMM/yyyy");
+        DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
+        model.setRowCount(0);
+
+        for (QuejaDTO queja : quejas) {
+
+            Object[] rowData = {
+                queja.getNoQueja(),
+                queja.getTipoQueja(),
+                formato.format(queja.getFecha()),
+                queja.getDescripcion(),
+                queja.getIdCliente(),
+                queja.isLeido()
+            };
+            model.addRow(rowData);
+        }
+    }
+
     private void formatearTabla() {
         // Cambiamos el color del fondo.
         tblQuejas.getTableHeader().setBackground(new Color(179, 185, 206));
@@ -254,104 +293,7 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MMMM/yyyy");
-        if (comboBoxFiltro.getSelectedItem().equals("<Elije uno>")) {
-            try {
-                DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
-                model.setRowCount(0);
-                if (tblQuejas.getRowCount() == 0) {
-                    List<QuejaDTO> quejas = visualizar.obtenerTodasLasQuejas();
-
-                    for (QuejaDTO queja : quejas) {
-
-                        Object[] rowData = {
-                            queja.getNoQueja(),
-                            queja.getTipoQueja(),
-                            formato.format(queja.getFecha()),
-                            queja.getDescripcion(),
-                            queja.getIdCliente(),
-                            queja.isLeido()
-                        };
-                        model.addRow(rowData);
-                    }
-                }
-            } catch (VisualizarQuejasException vqe) {
-                JOptionPane.showMessageDialog(this, vqe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (!comboBoxFiltro.getSelectedItem().equals("<Elije uno>")) {
-            if (!comboBoxFiltro.getSelectedItem().equals("No leidos") || !comboBoxFiltro.getSelectedItem().equals("Leidos")) {
-                try {
-                    DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
-                    model.setRowCount(0);
-                    if (tblQuejas.getRowCount() == 0) {
-                        List<QuejaDTO> quejas = visualizar.obtenerQuejasPorTipo(comboBoxFiltro.getSelectedItem().toString());
-
-                        for (QuejaDTO queja : quejas) {
-
-                            Object[] rowData = {
-                                queja.getNoQueja(),
-                                queja.getTipoQueja(),
-                                formato.format(queja.getFecha()),
-                                queja.getDescripcion(),
-                                queja.getIdCliente(),
-                                queja.isLeido()
-                            };
-                            model.addRow(rowData);
-                        }
-                    }
-                } catch (VisualizarQuejasException vqe) {
-                    JOptionPane.showMessageDialog(this, vqe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            if (comboBoxFiltro.getSelectedItem().equals("No leidos")) {
-                try {
-                    DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
-                    model.setRowCount(0);
-                    if (tblQuejas.getRowCount() == 0) {
-                        List<QuejaDTO> quejas = visualizar.obtenerQuejasPorEstado(false);
-
-                        for (QuejaDTO queja : quejas) {
-
-                            Object[] rowData = {
-                                queja.getNoQueja(),
-                                queja.getTipoQueja(),
-                                formato.format(queja.getFecha()),
-                                queja.getDescripcion(),
-                                queja.getIdCliente(),
-                                queja.isLeido()
-                            };
-                            model.addRow(rowData);
-                        }
-                    }
-                } catch (VisualizarQuejasException vqe) {
-                    JOptionPane.showMessageDialog(this, vqe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (comboBoxFiltro.getSelectedItem().equals("Leidos")) {
-                try {
-                    DefaultTableModel model = (DefaultTableModel) tblQuejas.getModel();
-                    model.setRowCount(0);
-                    if (tblQuejas.getRowCount() == 0) {
-                        List<QuejaDTO> quejas = visualizar.obtenerQuejasPorEstado(true);
-
-                        for (QuejaDTO queja : quejas) {
-
-                            Object[] rowData = {
-                                queja.getNoQueja(),
-                                queja.getTipoQueja(),
-                                formato.format(queja.getFecha()),
-                                queja.getDescripcion(),
-                                queja.getIdCliente(),
-                                queja.isLeido()
-                            };
-                            model.addRow(rowData);
-                        }
-                    }
-                } catch (VisualizarQuejasException vqe) {
-                    JOptionPane.showMessageDialog(this, vqe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
+        cargarDatos();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnActualizarLecturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarLecturaActionPerformed
