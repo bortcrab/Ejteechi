@@ -18,3 +18,20 @@ Recomendamos compilar todos los proyectos que conforman el programa en caso de q
 
 ### **Solución por remoción de dependencias**
 Si tras haber seguido los pasos de compilación siguen apareciendo errores de artefactos, identifique el proyecto donde se generan los errores (por lo general es en Presentacion) y vea qué artefacto no se puede resolver. Vaya a las dependencias del proyecto y remueva aquellas que presentan problemas, luego vuelva a agregar dichas dependencias y recomendamos seguir los pasos de compilación del punto anterior.
+
+## ***Créditos***
+### **Integrantes del equipo:**
+Eliana Monge Cámara  
+Francisco Valdez Gastelum  
+Diego Valenzuela Parra  
+
+### **Encargados de los Casos de uso**
+**RegistrarCliente**: Diego Valenzuela  
+**IniciarSesion**: Francisco Valdez  
+**MostrarMapa**: Todo el equipo  
+**AdministrarQuejas**: Eliana Monge  
+**AdministrarTickets**: Diego Valenzuela  
+**RegistrarEmpleado**: Francisco Valdez  
+**VisualizarQuejas**: Eliana Monge  
+**AtenderTickets**: Diego Valenzuela  
+**ProgramarMantenimiento**: Eliana Monge  
