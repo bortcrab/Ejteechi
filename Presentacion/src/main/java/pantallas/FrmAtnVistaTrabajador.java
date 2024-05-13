@@ -3,7 +3,6 @@
  */
 package pantallas;
 
-import administrarTickets.FacadeAdministrarTickets;
 import atenderTickets.FacadeAtenderTickets;
 import atenderTickets.IAtenderTickets;
 import dtos.TicketDTO;

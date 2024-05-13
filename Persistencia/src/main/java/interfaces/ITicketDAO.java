@@ -40,7 +40,7 @@ public interface ITicketDAO {
      * Método para agregar una respuesta a un ticket.
      *
      * @param folio Folio del ticket al que se le agregará la respuesta.
-     * @param respuestaEnt Respuesta a agregar.
+     * @param respuesta Respuesta a agregar.
      */
     public void agregarRespuesta(ObjectId folio, Respuesta respuesta);
 
