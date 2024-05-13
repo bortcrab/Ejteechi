@@ -15,7 +15,7 @@ public interface ICamionDAO {
 
     Camion obtenerPorNumeroUnidad(String numeroUnidad);
 
-    Camion actualizarEstado(String numeroUnidad, String atributoEstado, String nuevoEstado);
+    public Camion actualizarEstado(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces);
 
     Camion actualizarPrioridadYFechaMantenimiento(String numeroUnidad, String nuevaPrioridad, Date nuevaFechaMantenimiento);
 }

@@ -20,8 +20,8 @@ public class FacadeProgramarMantenimiento implements IProgramarMantenimiento {
     }
 
     @Override
-    public CamionDTO actualizarEstado(String numeroUnidad, String atributoEstado, String nuevoEstado) throws ProgramarMantenimientoException {
-        return ctrlProgramarMantenimiento.actualizarEstado(numeroUnidad, atributoEstado, nuevoEstado);
+    public Camion actualizarEstado(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces) throws ProgramarMantenimientoException {
+        return ctrlProgramarMantenimiento.actualizarEstado(numeroUnidad, estadoMotor, estadoLimpieza, estadoLlantas, estadoLuces);
     }
 
     @Override
@@ -29,8 +29,11 @@ public class FacadeProgramarMantenimiento implements IProgramarMantenimiento {
         return ctrlProgramarMantenimiento.actualizarPrioridadYFechaMantenimiento(numeroUnidad, nuevaPrioridad, nuevaFechaMantenimiento);
     }
 
-    public static void actualizarLabelConEstado(JLabel label, String estado) {
+    public static void actualizarLabelConEstado(JLabel label, String estado, JLabel label1, String estado1, JLabel label2, String estado2, JLabel label3, String estado3) {
         label.setText(estado);
+        label1.setText(estado1);
+        label2.setText(estado2);
+        label3.setText(estado3);
         switch (estado.toLowerCase()) {
             case "bueno":
                 label.setForeground(Color.GREEN);
@@ -44,6 +47,48 @@ public class FacadeProgramarMantenimiento implements IProgramarMantenimiento {
             default:
                 // Dejar el color por defecto
                 label.setForeground(null);
+        }
+        switch (estado1.toLowerCase()) {
+            case "bueno":
+                label1.setForeground(Color.GREEN);
+                break;
+            case "medio":
+                label1.setForeground(Color.YELLOW);
+                break;
+            case "malo":
+                label1.setForeground(Color.RED);
+                break;
+            default:
+                // Dejar el color por defecto
+                label1.setForeground(null);
+        }
+        switch (estado.toLowerCase()) {
+            case "bueno":
+                label2.setForeground(Color.GREEN);
+                break;
+            case "medio":
+                label2.setForeground(Color.YELLOW);
+                break;
+            case "malo":
+                label2.setForeground(Color.RED);
+                break;
+            default:
+                // Dejar el color por defecto
+                label2.setForeground(null);
+        }
+        switch (estado.toLowerCase()) {
+            case "bueno":
+                label3.setForeground(Color.GREEN);
+                break;
+            case "medio":
+                label3.setForeground(Color.YELLOW);
+                break;
+            case "malo":
+                label3.setForeground(Color.RED);
+                break;
+            default:
+                // Dejar el color por defecto
+                label3.setForeground(null);
         }
     }
 

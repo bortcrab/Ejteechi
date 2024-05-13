@@ -36,14 +36,7 @@ public class CamionBO implements ICamionBO {
         return CamionADTO(camionDAO.obtenerPorNumeroUnidad(numeroUnidad));
     }
 
-    @Override
-    public CamionDTO actualizarEstado(String numeroUnidad, String atributoEstado, String nuevoEstado) throws ObjetosNegocioException {
-        camionDAO.actualizarEstado(numeroUnidad, atributoEstado, nuevoEstado);
-        if(camionDAO.actualizarEstado(numeroUnidad, atributoEstado, nuevoEstado)==null){
-            throw new ObjetosNegocioException("Ocurrio un error al actualizar la unidad");
-        }
-        return CamionADTO(camionDAO.actualizarEstado(numeroUnidad, atributoEstado, nuevoEstado));
-    }
+    
 
     @Override
     public CamionDTO actualizarPrioridadYFechaMantenimiento(String numeroUnidad, String nuevaPrioridad, Date nuevaFechaMantenimiento) throws ObjetosNegocioException {
@@ -52,6 +45,15 @@ public class CamionBO implements ICamionBO {
             throw new ObjetosNegocioException("Ocurrio un error al actualizar los datos de la unidad");
         }
         return CamionADTO(camionDAO.actualizarPrioridadYFechaMantenimiento(numeroUnidad, nuevaPrioridad, nuevaFechaMantenimiento));
+    }
+
+    @Override
+    public Camion actualizarEstado(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces) throws ObjetosNegocioException {
+        camionDAO.actualizarEstado(numeroUnidad, estadoMotor, estadoLimpieza, estadoLlantas, estadoLuces);
+        if(camionDAO.actualizarEstado(numeroUnidad, estadoMotor, estadoLimpieza, estadoLlantas, estadoLuces)==null){
+            throw new ObjetosNegocioException("Ocurrio un error al actualizar la unidad");
+        }
+        return camionDAO.actualizarEstado(numeroUnidad, estadoMotor, estadoLimpieza, estadoLlantas, estadoLuces);
     }
 
 }

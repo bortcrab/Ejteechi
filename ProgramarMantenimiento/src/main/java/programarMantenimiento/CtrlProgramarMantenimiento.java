@@ -1,5 +1,6 @@
 package programarMantenimiento;
 
+import colecciones.Camion;
 import dtos.CamionDTO;
 import excepciones.ObjetosNegocioException;
 import implementaciones.CamionBO;
@@ -23,10 +24,10 @@ public class CtrlProgramarMantenimiento {
         }
     }
 
-    public CamionDTO actualizarEstado(String numeroUnidad, String atributoEstado, String nuevoEstado) throws ProgramarMantenimientoException, ProgramarMantenimientoException {
+    public Camion actualizarEstado(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces) throws ProgramarMantenimientoException {
         try{
-        camionBO.actualizarEstado(numeroUnidad, atributoEstado, nuevoEstado);
-        return  camionBO.actualizarEstado(numeroUnidad, atributoEstado, nuevoEstado);
+        camionBO.actualizarEstado(numeroUnidad, estadoMotor, estadoLimpieza, estadoLlantas, estadoLuces);
+        return  camionBO.actualizarEstado(numeroUnidad, estadoMotor, estadoLimpieza, estadoLlantas, estadoLuces);
         }catch(ObjetosNegocioException one){
              throw new ProgramarMantenimientoException(one.getMessage());
         }

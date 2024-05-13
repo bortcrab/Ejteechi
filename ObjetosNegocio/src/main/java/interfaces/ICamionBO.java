@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import colecciones.Camion;
 import dtos.CamionDTO;
 import excepciones.ObjetosNegocioException;
 import java.util.Date;
@@ -16,7 +17,7 @@ public interface ICamionBO {
     
     CamionDTO obtenerPorNumeroUnidad(String numeroUnidad) throws ObjetosNegocioException;
 
-    CamionDTO actualizarEstado(String numeroUnidad, String atributoEstado, String nuevoEstado) throws ObjetosNegocioException;
+    public Camion actualizarEstado(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces) throws ObjetosNegocioException;
 
     CamionDTO actualizarPrioridadYFechaMantenimiento(String numeroUnidad, String nuevaPrioridad, Date nuevaFechaMantenimiento) throws ObjetosNegocioException;
     
