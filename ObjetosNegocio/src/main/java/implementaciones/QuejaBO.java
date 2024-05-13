@@ -54,37 +54,18 @@ public class QuejaBO implements IQuejaBO {
     }
 
     @Override
-    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws ObjetosNegocioException {
+    public List<QuejaDTO> obtenerQuejas(String seleccion) throws ObjetosNegocioException {
         try {
-            List<Queja> quejas = quejaDAO.obtenerQuejasPorTipo(tipo);
-            List<QuejaDTO> quejasDTO = new ArrayList<>();
-            for (Queja queja : quejas) {
-                quejasDTO.add(convertirQuejaToDTO(queja));
+            List<Queja> quejas = new ArrayList<>();
+            if (seleccion.equals("<Elije uno>")) {
+                quejas = quejaDAO.obtenerTodasLasQuejas();
+            } else if (seleccion.equals("No leidos")) {
+                quejas = quejaDAO.obtenerQuejasPorEstadoYAnonimato(false);
+            } else if (seleccion.equals("Leidos")) {
+                quejas = quejaDAO.obtenerQuejasPorEstadoYAnonimato(true);
+            } else {
+                quejas = quejaDAO.obtenerQuejasPorTipo(seleccion);
             }
-            return quejasDTO;
-        } catch (PersistenciaException e) {
-            throw new ObjetosNegocioException(e.getMessage());
-        }
-    }
-
-    @Override
-    public List<QuejaDTO> obtenerTodasLasQuejas() throws ObjetosNegocioException {
-        try {
-            List<Queja> quejas = quejaDAO.obtenerTodasLasQuejas();
-            List<QuejaDTO> quejasDTO = new ArrayList<>();
-            for (Queja queja : quejas) {
-                quejasDTO.add(convertirQuejaToDTO(queja));
-            }
-            return quejasDTO;
-        } catch (PersistenciaException e) {
-            throw new ObjetosNegocioException(e.getMessage());
-        }
-    }
-
-    @Override
-    public List<QuejaDTO> obtenerQuejasPorEstado(boolean leido) throws ObjetosNegocioException {
-        try {
-            List<Queja> quejas = quejaDAO.obtenerQuejasPorEstadoYAnonimato(leido);
             List<QuejaDTO> quejasDTO = new ArrayList<>();
             for (Queja queja : quejas) {
                 quejasDTO.add(convertirQuejaToDTO(queja));

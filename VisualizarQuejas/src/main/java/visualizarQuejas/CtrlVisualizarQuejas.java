@@ -14,38 +14,20 @@ public class CtrlVisualizarQuejas {
         this.quejasBO = new QuejaBO();
     }
 
-   
-    
-    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws VisualizarQuejasException{
-        try{
-        return quejasBO.obtenerQuejasPorTipo(tipo);
-        }catch(ObjetosNegocioException e){
+    public List<QuejaDTO> obtenerQuejas(String seleccion) throws VisualizarQuejasException {
+        try {
+            return quejasBO.obtenerQuejas(seleccion);
+        } catch (ObjetosNegocioException e) {
             throw new VisualizarQuejasException(e.getMessage());
         }
     }
 
-    public List<QuejaDTO> obtenerTodasLasQuejas() throws VisualizarQuejasException{
-        try{
-        return quejasBO.obtenerTodasLasQuejas();
-        }catch(ObjetosNegocioException e){
+    public QuejaDTO confirmarLectura(QuejaDTO queja) throws VisualizarQuejasException {
+        try {
+            return quejasBO.confirmarLectura(queja);
+        } catch (ObjetosNegocioException e) {
             throw new VisualizarQuejasException(e.getMessage());
         }
-    }
-
-    public List<QuejaDTO> obtenerQuejasPorEstadoYAnonimato(boolean leido) throws VisualizarQuejasException{
-       try{
-        return quejasBO.obtenerQuejasPorEstado(leido);
-        }catch(ObjetosNegocioException e){
-            throw new VisualizarQuejasException(e.getMessage());
-        } 
-    }
-    
-    public QuejaDTO confirmarLectura(QuejaDTO queja) throws VisualizarQuejasException{
-        try{
-        return quejasBO.confirmarLectura(queja);
-        }catch(ObjetosNegocioException e){
-            throw new VisualizarQuejasException(e.getMessage());
-        } 
     }
 
 }

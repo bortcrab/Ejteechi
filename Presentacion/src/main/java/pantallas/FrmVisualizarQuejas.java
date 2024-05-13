@@ -55,21 +55,10 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
         formatearTabla();
     }
 
-    private void cargarDatos() {
+    private void actualizarTabla() {
         try {
-            if (comboBoxFiltro.getSelectedItem().equals("<Elije uno>")) {
-                List<QuejaDTO> quejas = visualizar.obtenerTodasLasQuejas();
-                llenarTabla(quejas);
-            } else if (comboBoxFiltro.getSelectedItem().equals("No leidos")) {
-                List<QuejaDTO> quejas = visualizar.obtenerQuejasPorEstado(false);
-                llenarTabla(quejas);
-            } else if (comboBoxFiltro.getSelectedItem().equals("Leidos")) {
-                List<QuejaDTO> quejas = visualizar.obtenerQuejasPorEstado(true);
-                llenarTabla(quejas);
-            } else {
-                List<QuejaDTO> quejas = visualizar.obtenerQuejasPorTipo(comboBoxFiltro.getSelectedItem().toString());
-                llenarTabla(quejas);
-            }
+            List<QuejaDTO> quejas = visualizar.obtenerQuejas(comboBoxFiltro.getSelectedItem().toString());
+            llenarTabla(quejas);
         } catch (VisualizarQuejasException vqe) {
             JOptionPane.showMessageDialog(this, vqe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);
         }
@@ -293,7 +282,7 @@ public class FrmVisualizarQuejas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        cargarDatos();
+        actualizarTabla();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnActualizarLecturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarLecturaActionPerformed

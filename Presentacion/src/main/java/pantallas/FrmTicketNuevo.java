@@ -29,6 +29,7 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
      * Constructor que inicializa los atributos de la clase.
      *
      * @param usuario Usuario que está logueado en el sistema.
+     * @param facadeAdministrarTickets Interfaz para administrar tickets.
      * @throws PresentacionException si ocurre un error a la hora de validar la
      * sesión.
      */

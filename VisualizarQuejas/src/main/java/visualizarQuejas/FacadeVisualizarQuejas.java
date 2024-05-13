@@ -10,27 +10,10 @@ public class FacadeVisualizarQuejas implements IVisualizarQuejas {
     public FacadeVisualizarQuejas() {
         this.ctrlVisualizarQuejas = new CtrlVisualizarQuejas();
     }
-
-    /**
-     *
-     * @param tipo
-     * @param anonimo
-     * @return
-     * @throws VisualizarQuejasException
-     */
+    
     @Override
-    public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws VisualizarQuejasException {
-        return ctrlVisualizarQuejas.obtenerQuejasPorTipo(tipo);
-    }
-
-    @Override
-    public List<QuejaDTO> obtenerTodasLasQuejas() throws VisualizarQuejasException {
-       return ctrlVisualizarQuejas.obtenerTodasLasQuejas();
-    }
-
-    @Override
-    public List<QuejaDTO> obtenerQuejasPorEstado(boolean leido) throws VisualizarQuejasException{
-         return ctrlVisualizarQuejas.obtenerQuejasPorEstadoYAnonimato(leido);
+    public List<QuejaDTO> obtenerQuejas(String seleccion) throws VisualizarQuejasException {
+        return ctrlVisualizarQuejas.obtenerQuejas(seleccion);
     }
 
     @Override
