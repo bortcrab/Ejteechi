@@ -10,7 +10,6 @@ implementaciones\TicketDAO.class
 interfaces\ICamionDAO.class
 colecciones\Ticket.class
 colecciones\Camion.class
-implementaciones\fdgdfg.class
 interfaces\ITicketDAO.class
 implementaciones\QuejaDAO.class
 colecciones\Mapa.class

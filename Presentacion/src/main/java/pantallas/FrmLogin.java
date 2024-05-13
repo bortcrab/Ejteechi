@@ -11,8 +11,6 @@ import excepciones.PresentacionException;
 import iniciarSesion.FacadeIniciarSesion;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import utilidades.Validador;
 
 /**
