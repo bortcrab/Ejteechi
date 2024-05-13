@@ -57,8 +57,8 @@ public class CamionDAO implements ICamionDAO {
         coleccion.updateOne(Filters.eq("numeroUnidad", numeroUnidad), Updates.combine(updates));
 
         return obtenerPorNumeroUnidad(numeroUnidad);
-    }
-
+    } 
+        
     @Override
     public Camion actualizarPrioridadYFechaMantenimiento(String numeroUnidad, String nuevaPrioridad, Date nuevaFechaMantenimiento) {
         MongoDatabase db = conexion.crearConexion();

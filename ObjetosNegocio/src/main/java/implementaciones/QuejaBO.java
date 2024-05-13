@@ -8,15 +8,27 @@ import interfaces.IQuejaBO;
 import interfaces.IQuejaDAO;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author elimo
+ */
 public class QuejaBO implements IQuejaBO {
 
     private IQuejaDAO quejaDAO;
 
+    /**
+     * 
+     */
     public QuejaBO() {
         this.quejaDAO = new QuejaDAO();
     }
 
+    /**
+     * 
+     * @param quejaDTO
+     * @return
+     * @throws ObjetosNegocioException 
+     */
     @Override
     public QuejaDTO enviarQueja(QuejaDTO quejaDTO) throws ObjetosNegocioException {
 
@@ -29,6 +41,11 @@ public class QuejaBO implements IQuejaBO {
 
     }
 
+    /**
+     * 
+     * @param queja
+     * @return 
+     */
     public static QuejaDTO convertirQuejaToDTO(Queja queja) {
         QuejaDTO quejaDTO = new QuejaDTO();
         quejaDTO.setLeido(queja.isLeido());
@@ -41,6 +58,11 @@ public class QuejaBO implements IQuejaBO {
         return quejaDTO;
     }
 
+    /**
+     * 
+     * @param quejaDTO
+     * @return 
+     */
     public static Queja convertirDTOToQueja(QuejaDTO quejaDTO) {
         Queja queja = new Queja();
         queja.setLeido(quejaDTO.isLeido());
@@ -53,6 +75,12 @@ public class QuejaBO implements IQuejaBO {
         return queja;
     }
 
+    /**
+     * 
+     * @param tipo
+     * @return
+     * @throws ObjetosNegocioException 
+     */
     @Override
     public List<QuejaDTO> obtenerQuejasPorTipo(String tipo) throws ObjetosNegocioException {
         try {
@@ -67,6 +95,11 @@ public class QuejaBO implements IQuejaBO {
         }
     }
 
+    /**
+     * 
+     * @return
+     * @throws ObjetosNegocioException 
+     */
     @Override
     public List<QuejaDTO> obtenerTodasLasQuejas() throws ObjetosNegocioException {
         try {
@@ -81,6 +114,12 @@ public class QuejaBO implements IQuejaBO {
         }
     }
 
+    /**
+     * 
+     * @param leido
+     * @return
+     * @throws ObjetosNegocioException 
+     */
     @Override
     public List<QuejaDTO> obtenerQuejasPorEstado(boolean leido) throws ObjetosNegocioException {
         try {
@@ -95,6 +134,12 @@ public class QuejaBO implements IQuejaBO {
         }
     }
 
+    /**
+     * 
+     * @param queja
+     * @return
+     * @throws ObjetosNegocioException 
+     */
     @Override
     public QuejaDTO confirmarLectura(QuejaDTO queja) throws ObjetosNegocioException {
         try {

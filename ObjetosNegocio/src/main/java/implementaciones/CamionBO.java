@@ -7,14 +7,26 @@ import interfaces.ICamionBO;
 import interfaces.ICamionDAO;
 import java.util.Date;
 
+/**
+ * 
+ * @author elimo
+ */
 public class CamionBO implements ICamionBO {
 
     private final ICamionDAO camionDAO;
 
+    /**
+     * 
+     */
     public CamionBO() {
         this.camionDAO = new CamionDAO();
     }
 
+    /**
+     * 
+     * @param camion
+     * @return 
+     */
     public static CamionDTO CamionADTO(Camion camion) {
         CamionDTO camionDTO = new CamionDTO();
         camionDTO.setNumeroUnidad(camion.getNumeroUnidad());
@@ -27,6 +39,12 @@ public class CamionBO implements ICamionBO {
         return camionDTO;
     }
 
+    /**
+     * 
+     * @param numeroUnidad
+     * @return
+     * @throws ObjetosNegocioException 
+     */
     @Override
     public CamionDTO obtenerPorNumeroUnidad(String numeroUnidad) throws ObjetosNegocioException {
         camionDAO.obtenerPorNumeroUnidad(numeroUnidad);
@@ -37,7 +55,14 @@ public class CamionBO implements ICamionBO {
     }
 
     
-
+/**
+ * 
+ * @param numeroUnidad
+ * @param nuevaPrioridad
+ * @param nuevaFechaMantenimiento
+ * @return
+ * @throws ObjetosNegocioException 
+ */
     @Override
     public CamionDTO actualizarPrioridadYFechaMantenimiento(String numeroUnidad, String nuevaPrioridad, Date nuevaFechaMantenimiento) throws ObjetosNegocioException {
         camionDAO.actualizarPrioridadYFechaMantenimiento(numeroUnidad, nuevaPrioridad, nuevaFechaMantenimiento);
@@ -46,7 +71,17 @@ public class CamionBO implements ICamionBO {
         }
         return CamionADTO(camionDAO.actualizarPrioridadYFechaMantenimiento(numeroUnidad, nuevaPrioridad, nuevaFechaMantenimiento));
     }
-
+        
+    /**
+     * 
+     * @param numeroUnidad
+     * @param estadoMotor
+     * @param estadoLimpieza
+     * @param estadoLlantas
+     * @param estadoLuces
+     * @return
+     * @throws ObjetosNegocioException 
+     */
     @Override
     public Camion actualizarEstado(String numeroUnidad, String estadoMotor, String estadoLimpieza, String estadoLlantas, String estadoLuces) throws ObjetosNegocioException {
         camionDAO.actualizarEstado(numeroUnidad, estadoMotor, estadoLimpieza, estadoLlantas, estadoLuces);
