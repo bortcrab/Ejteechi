@@ -125,7 +125,7 @@ public class Validador {
         rfc = rfc.trim().toUpperCase();
 
         // Verifica si el RFC tiene el formato correcto
-        if (rfc.matches("[a-zA-Z0-9]{13}")) {
+        if (!rfc.matches("[a-zA-Z0-9]{13}")) {
             throw new PresentacionException("El RFC sólo puede tener 13 caracteres. "
                     + "Ejemplo: \"ABCD010312MC2\".");
         }

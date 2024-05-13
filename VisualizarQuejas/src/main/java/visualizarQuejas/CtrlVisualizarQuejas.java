@@ -27,7 +27,7 @@ public class CtrlVisualizarQuejas {
     /**
      * Obtiene una lista de todas las quejas según la selección.
      *
-     * @param Selección La selección realizada.
+     * @param seleccion La selección realizada.
      * @return Una lista de QuejaDTO que coinciden con la selección.
      * @throws VisualizarQuejasException Si ocurre un error al obtener las
      * quejas.
@@ -35,6 +35,22 @@ public class CtrlVisualizarQuejas {
     public List<QuejaDTO> obtenerQuejas(String seleccion) throws VisualizarQuejasException {
         try {
             return quejasBO.obtenerQuejas(seleccion);
+        } catch (ObjetosNegocioException e) {
+            throw new VisualizarQuejasException(e.getMessage());
+        }
+    }
+
+    /**
+     * Confirma la lectura de una queja.
+     *
+     * @param queja La queja que se va a marcar como leída.
+     * @return La queja actualizada con la confirmación de lectura.
+     * @throws VisualizarQuejasException Si ocurre un error al confirmar la
+     * lectura de la queja.
+     */
+    public QuejaDTO confirmarLectura(QuejaDTO queja) throws VisualizarQuejasException {
+        try {
+            return quejasBO.confirmarLectura(queja);
         } catch (ObjetosNegocioException e) {
             throw new VisualizarQuejasException(e.getMessage());
         }

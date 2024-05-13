@@ -29,7 +29,7 @@ public interface IQuejaBO {
     /**
      * Devuelve todas las quejas según la selección que se haya hecho.
      *
-     * @param selección Filtro para obtener las quejas.
+     * @param seleccion Filtro para obtener las quejas.
      * @return Una lista con todas las quejas encontradas.
      * @throws ObjetosNegocioException Si ocurre un error al obtener las quejas.
      */

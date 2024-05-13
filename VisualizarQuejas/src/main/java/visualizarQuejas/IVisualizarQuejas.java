@@ -18,7 +18,7 @@ public interface IVisualizarQuejas {
     /**
      * Obtiene una lista de todas las quejas según la selección.
      *
-     * @param Selección La selección realizada.
+     * @param seleccion La selección realizada.
      * @return Una lista de QuejaDTO que coinciden con la selección.
      * @throws VisualizarQuejasException Si ocurre un error al obtener las
      * quejas.

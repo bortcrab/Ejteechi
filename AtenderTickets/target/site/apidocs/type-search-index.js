@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"atenderTickets","l":"CtrlAtenderTickets"},{"p":"atenderTickets","l":"FacadeAtenderTickets"},{"p":"atenderTickets","l":"IAtenderTickets"}];updateSearchResults();

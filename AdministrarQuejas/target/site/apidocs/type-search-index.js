@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"administrarQuejas","l":"AdministrarQuejaException"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"administrarQuejas","l":"CtrlAdministrarQuejas"},{"p":"administrarQuejas","l":"FacadeAdministrarQuejas"},{"p":"administrarQuejas","l":"IAdministrarQuejas"}];updateSearchResults();

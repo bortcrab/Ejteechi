@@ -18,3 +18,5 @@
 *.zip
 *.tar.gz
 *.rar
+/ObjetosNegocio2/target/
+/ObjetosNegocio1/target/

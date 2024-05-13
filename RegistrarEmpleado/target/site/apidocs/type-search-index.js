@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"registrarEmpleado","l":"CtrlRegistrarEmpleado"},{"p":"registrarEmpleado","l":"FacadeRegistrarEmpleado"},{"p":"registrarEmpleado","l":"IRegistrarEmpleado"},{"p":"excepciones","l":"RegistrarEmpleadoException"}];updateSearchResults();
