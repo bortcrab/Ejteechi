@@ -56,6 +56,7 @@ pantallas\FrmTicketNuevo$4.class
 pantallas\FrmAtnVistaTrabajador$1.class
 pantallas\FrmHomeCliente$3.class
 pantallas\FrmChatVistaTrabajador$2.class
+pantallas\FrmRegistroTrabajador$13.class
 utilidades\Validador.class
 pantallas\FrmAtnVistaCliente$7.class
 pantallas\FrmMapa$4.class
@@ -77,6 +78,7 @@ pantallas\FrmProgramarMantenimiento$2.class
 pantallas\FrmRegistroTrabajador$1.class
 pantallas\FrmRegistroTrabajador.class
 pantallas\FrmTicketNuevo$5.class
+pantallas\FrmRegistroTrabajador$12.class
 pantallas\FrmTicketNuevo$2.class
 pantallas\FrmRegistroTrabajador$4.class
 pantallas\FrmVisualizarQuejas$8.class

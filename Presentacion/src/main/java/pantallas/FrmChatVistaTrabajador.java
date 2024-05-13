@@ -261,7 +261,7 @@ public class FrmChatVistaTrabajador extends javax.swing.JFrame {
             facadeAtenderTickets.cambiarEstado(ticket);
 
             // Cambiamos el texto de un botón, y lo habilitamos junto al campo de texto del mensaje.
-            btnEstado.setText("Marcar como pendiente");
+            btnEstado.setText("Marcar como resuelto");
             txtMensaje.setEnabled(true);
             btnEnviar.setEnabled(true);
         }

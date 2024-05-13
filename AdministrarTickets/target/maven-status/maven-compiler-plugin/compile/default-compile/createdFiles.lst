@@ -1,4 +1,3 @@
-administrarTickets\CtrlAdministrarTickets.class
 administrarTickets\FacadeAdministrarTickets.class
-excepciones\AdministrarTicketsException.class
 administrarTickets\IAdministrarTickets.class
+administrarTickets\CtrlAdministrarTickets.class
