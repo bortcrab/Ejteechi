@@ -19,8 +19,8 @@
         </dependency>
         <dependency>
             <groupId>com.mycompany</groupId>
-            <artifactId>ObjetosNegocio2</artifactId>
-            <version>1.0-SNAPSHOT</version>
+    <artifactId>ObjetosNegocio</artifactId>
+    <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
