@@ -889,7 +889,7 @@ public class FrmProgramarMantenimiento extends javax.swing.JFrame {
      */
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
-            FrmHomeCliente frmHome = new FrmHomeCliente(usuario);
+            FrmHomeTrabajador frmHome = new FrmHomeTrabajador(usuario);
             frmHome.setVisible(true);
         } catch (PresentacionException pe) {
             JOptionPane.showMessageDialog(this, pe.getMessage(), "¡Error!", JOptionPane.ERROR_MESSAGE);

@@ -219,7 +219,7 @@ public class FrmTicketNuevo extends javax.swing.JFrame {
                 lblHomeMouseClicked(evt);
             }
         });
-        getContentPane().add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 220, 100));
+        getContentPane().add(lblHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 230, 100));
 
         fondo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         fondo.setForeground(new java.awt.Color(0, 0, 0));
